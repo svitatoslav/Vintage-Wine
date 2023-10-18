@@ -1,7 +1,7 @@
 {
   "name": "vintage-vine",
   "version": "1.0.0",
-  "description": "Back End code for final projects of Front End group",
+  "description": "Final projects of Front End group",
   "main": "server.js",
   "scripts": {
     "dev": "vite",
