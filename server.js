@@ -6,7 +6,6 @@ const path = require('path');
 require('dotenv').config();
 
 const globalConfigs = require('./backend/routes/globalConfigs');
-// ./backend/routes/globalConfigs
 const customers = require('./backend/routes/customers');
 const catalog = require('./backend/routes/catalog');
 const products = require('./backend/routes/products');
@@ -34,12 +33,12 @@ app.use(bodyParser.json());
 
 // DB Config
 const db = require('./backend/config/keys').mongoURI;
-
 // Connect to MongoDB
 mongoose
-  .connect(db, { useNewUrlParser: true, useFindAndModify: false })
+  .connect(db, {useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false })
   .then(() => console.log('MongoDB Connected'))
   .catch((err) => console.log(err));
+
 
 // Passport middleware
 app.use(passport.initialize());
