@@ -5,24 +5,25 @@ const passport = require('passport');
 const path = require('path');
 require('dotenv').config();
 
-const globalConfigs = require('./routes/globalConfigs');
-const customers = require('./routes/customers');
-const catalog = require('./routes/catalog');
-const products = require('./routes/products');
-const colors = require('./routes/colors');
-const sizes = require('./routes/sizes');
-const filters = require('./routes/filters');
-const subscribers = require('./routes/subscribers');
-const cart = require('./routes/cart');
-const orders = require('./routes/orders');
-const links = require('./routes/links');
-const pages = require('./routes/pages');
-const slides = require('./routes/slides');
-const wishlist = require('./routes/wishlist');
-const comments = require('./routes/comments');
-const shippingMethods = require('./routes/shippingMethods');
-const paymentMethods = require('./routes/paymentMethods');
-const partners = require('./routes/partners');
+const globalConfigs = require('./backend/routes/globalConfigs');
+// ./backend/routes/globalConfigs
+const customers = require('./backend/routes/customers');
+const catalog = require('./backend/routes/catalog');
+const products = require('./backend/routes/products');
+const colors = require('./backend/routes/colors');
+const sizes = require('./backend/routes/sizes');
+const filters = require('./backend/routes/filters');
+const subscribers = require('./backend/routes/subscribers');
+const cart = require('./backend/routes/cart');
+const orders = require('./backend/routes/orders');
+const links = require('./backend/routes/links');
+const pages = require('./backend/routes/pages');
+const slides = require('./backend/routes/slides');
+const wishlist = require('./backend/routes/wishlist');
+const comments = require('./backend/routes/comments');
+const shippingMethods = require('./backend/routes/shippingMethods');
+const paymentMethods = require('./backend/routes/paymentMethods');
+const partners = require('./backend/routes/partners');
 // const mainRoute = require('./routes/index');
 
 const app = express();
@@ -32,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // DB Config
-const db = require('./config/keys').mongoURI;
+const db = require('./backend/config/keys').mongoURI;
 
 // Connect to MongoDB
 mongoose
@@ -44,7 +45,7 @@ mongoose
 app.use(passport.initialize());
 
 // Passport Config
-require('./config/passport')(passport);
+require('./backend/config/passport')(passport);
 
 // Use Routes
 app.use('/api/configs', globalConfigs);
