@@ -1,11 +1,4 @@
 # React + Vite
-vanylinss94
-TbAS0m2FavPwrTRA
-
-mongodb+srv://<vanylinss94>:<password>@vintagevine.wjuqlba.mongodb.net/
-
-vanylinss94 
-E0zWvpqPYsBtlFu7
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
