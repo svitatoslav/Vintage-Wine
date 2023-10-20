@@ -1,5 +1,4 @@
 module.exports = {
-  mongoURI:
-    'mongodb+srv://VintageVine:q8Eh6LsnJquENVJ@vintagevine.wjuqlba.mongodb.net/',
+  mongoURI: process.env.MONGO_URI,
   secretOrKey: 'random very very secret string',
 };
