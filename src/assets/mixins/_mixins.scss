@@ -1,0 +1,36 @@
+@mixin flex-cc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-ac {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flex-ac-sb {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-sb {
+    display: flex;
+    justify-content: space-between;
+}
+
+@mixin flex-w {
+    flex-wrap: wrap;
+}
+
+@mixin flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+@mixin transition {
+    transition: all .3s ease-in-out;
+}
+
