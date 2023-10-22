@@ -14,7 +14,6 @@ const UploadWidget = () => {
         // console.log(result);  
       }
     );
-    // console.log(cloudinaryRef.current);
   }, [])
   return (
       <button onClick={() => widgetRef.current.open()}>
