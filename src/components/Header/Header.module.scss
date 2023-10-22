@@ -1,0 +1,81 @@
+@import '../../assets/variables/variables';
+
+.Header {
+    padding-top: 4px;
+    width: 100%;
+
+    @media screen and (min-width: 480px) {
+        padding-top: 8px;
+    }
+
+    @media screen and (min-width: 1000px) {
+        padding-top: 16px;
+    }
+
+    @media screen and (min-width: 1440px) {
+        padding-top: 24px;
+    }
+}
+
+.HeaderBody {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.HeaderLogo {
+    width: 111px;
+    height: 49px;
+
+    @media screen and (min-width: 480px) {
+        width: 184px;
+        height: 81px;
+    }
+
+    @media screen and (min-width: 1440px) {
+        width: 276px;
+        height: 121px;
+    }
+}
+
+.HeaderWidgets {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+
+    @media screen and (min-width: 480px) {
+        padding-bottom: 16px;
+    }
+
+    @media screen and (min-width: 1440px) {
+        padding-bottom: 30px;
+    }
+}
+
+.HeaderWidgetsGroup {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.HeaderCart {
+    position: relative;
+    .Counter {
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        min-width: 17px;
+        min-height: 17px;
+        padding: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px; 
+        font-family: $secondary-font;
+        background: $btn-bg; 
+        color: #FFF;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1; 
+    }
+}
