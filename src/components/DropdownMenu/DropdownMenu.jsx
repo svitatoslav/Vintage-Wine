@@ -6,19 +6,24 @@ import CloseBtn from './icons/close.svg?react';
 import cn from 'classnames';
 
 const DropdownMenu = ({ onClose }) => {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleClose = (e) => {
-    if (!e.target.closest(`.${styles.DropdownClose}`) && e.target.nodeName !== 'A') return;
+    const target = e.target;
+    if (!target.closest(`.${styles.DropdownClose}`) && target.nodeName !== 'A') return;
 
-    onClose();
+    setIsVisible(!isVisible);
+
+    setTimeout(() => {
+      onClose();
+    }, 300);
   }
 
   useEffect(() => {
     setTimeout(() => {
-      setIsVisible(true)
-    }, 0)
-  })
+      setIsVisible(!isVisible)
+    }, 0);
+  }, []);
 
   return (
     <div className={styles.DropdownMenu} data-testid="DropdownMenu" onClick={handleClose}>
@@ -30,9 +35,11 @@ const DropdownMenu = ({ onClose }) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
-DropdownMenu.propTypes = {};
+DropdownMenu.propTypes = {
+  onClose: PropTypes.func.isRequired
+};
 
 export default DropdownMenu;

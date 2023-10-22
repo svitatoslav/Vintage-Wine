@@ -17,12 +17,8 @@ const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
-  const handleCloseMenu = () => {
-    setIsOpenMenu(false);
-  }
-
-  const handleOpenMenu = () => {
-    setIsOpenMenu(true);
+  const handleMenu = () => {
+    setIsOpenMenu(!isOpenMenu);
   }
 
   useEffect(() => {
@@ -50,7 +46,7 @@ const Header = () => {
           </Link>
           {
             viewportWidth <= BURGER_BREAKPOINT ?
-              (isOpenMenu && <DropdownMenu mobile onClose={handleCloseMenu} />) :
+              (isOpenMenu && <DropdownMenu mobile onClose={handleMenu} />) :
               <Navigation />
           }
           <div className={styles.HeaderWidgets}>
@@ -67,7 +63,7 @@ const Header = () => {
               <Login />
               {
                 viewportWidth <= BURGER_BREAKPOINT &&
-                <Burger onClick={handleOpenMenu} />
+                <Burger onClick={handleMenu} />
               }
             </div>
           </div>

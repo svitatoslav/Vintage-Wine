@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Container.module.scss';
 
@@ -8,8 +8,8 @@ const Container = ({ children }) => (
   </div>
 );
 
-Container.propTypes = {};
-
-Container.defaultProps = {};
+Container.propTypes = {
+  children: PropTypes.node.isRequired
+};
 
 export default Container;

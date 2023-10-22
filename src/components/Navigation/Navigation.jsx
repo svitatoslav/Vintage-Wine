@@ -25,6 +25,8 @@ const Navigation = ({ mobile }) => {
   );
 }
 
-Navigation.propTypes = {};
+Navigation.propTypes = {
+  mobile: PropTypes.bool
+};
 
 export default Navigation;
