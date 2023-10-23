@@ -1,0 +1,20 @@
+.Container {
+    max-width: 340px;
+    margin: 0 auto;
+
+    @media screen and (min-width: 480px) {
+        max-width: 460px;
+    }
+
+    @media screen and (min-width: 768px) {
+        max-width: 640px;
+    }
+
+    @media screen and (min-width: 1000px) {
+        max-width: 960px;
+    }
+
+    @media screen and (min-width: 1440px) {
+        max-width: 1162px;
+    }
+}

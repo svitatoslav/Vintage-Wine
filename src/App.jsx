@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, Routes } from 'react-router-dom';
+import Layout from './pages/Layout/Layout';
+import Home from './pages/Home/Home';
+import About from './pages/About/About';
+import Collections from './pages/Collections/Collections';
+import Shop from './pages/Shop/Shop';
+import News from './pages/News/News';
+import DeliveryAndPayment from './pages/DeliveryAndPayment/DeliveryAndPayment';
+import Contact from './pages/Contact/Contact';
+import NoPage from './pages/NoPage/NoPage';
+import './App.scss';
+import Cart from './pages/Cart/Cart';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/collections' element={<Collections />} />
+        <Route path='/shop' element={<Shop />} />
+        <Route path='/news' element={<News />} />
+        <Route path='/delivery' element={<DeliveryAndPayment />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='*' element={<NoPage />} />
+      </Route>
+    </Routes>
   )
 }
 
-export default App
+export default App;
