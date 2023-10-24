@@ -16,7 +16,7 @@ const DropdownMenu = ({ onClose }) => {
 
     setTimeout(() => {
       onClose();
-    }, 300);
+    }, 600);
   }
 
   useEffect(() => {
