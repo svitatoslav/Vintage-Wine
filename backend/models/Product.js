@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema(
@@ -19,7 +19,7 @@ const ProductSchema = new Schema(
             type: String,
             required: true
         },
-        collection: {
+        collectionOfProduct: {
             type: String,
             required: true
         },
@@ -61,6 +61,6 @@ const ProductSchema = new Schema(
     { strict: false }
 );
 
-ProductSchema.index({ "$**": "text" });
+ProductSchema.index({ '$**': 'text' });
 
-module.exports = Product = mongoose.model("products", ProductSchema);
+module.exports = Product = mongoose.model('products', ProductSchema);
