@@ -1,0 +1,22 @@
+@import '../../assets/variables/variables';
+
+.Container {
+    max-width: 340px;
+    margin: 0 auto;
+
+    @media screen and (min-width: $mobile) {
+        max-width: 460px;
+    }
+
+    @media screen and (min-width: $tablet) {
+        max-width: 640px;
+    }
+
+    @media screen and (min-width: $tablet-lg) {
+        max-width: 960px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        max-width: 1162px;
+    }
+}

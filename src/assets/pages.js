@@ -1,0 +1,1 @@
+export const pages = ['Home', 'About', 'Collections', 'Shop', 'News', 'Delivery', 'Contact'];
