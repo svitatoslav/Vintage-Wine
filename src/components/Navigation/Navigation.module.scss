@@ -1,0 +1,49 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.Navigation {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    font-family: $secondary-font;
+    padding-bottom: 16px;
+
+    @media screen and (min-width: $desktop) {
+        padding-bottom: 30px;
+    }
+}
+
+.PageLink {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    color: $main-color;
+    display: inline-block;
+    padding: 10px 0;
+    width: 100%;
+    @include transition;
+    &:hover {
+        color: $btn-bg;
+    }
+}
+
+.NavigationBurger {
+    flex-direction: column;
+    width: 100%;
+    gap: 6px;
+    text-align: center;
+    .PageLink {
+        font-family: $main-font;
+        // &:focus {
+        //     background: $btn-bg;
+        // }
+        &:hover {
+            color: $main-color;
+        }
+    }
+
+    .PageLinkActive {
+        background: $btn-bg;
+        color: $main-color;
+    }
+}
