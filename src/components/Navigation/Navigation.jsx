@@ -11,11 +11,17 @@ const Navigation = ({ mobile }) => {
 
   const links = pages?.map((page, i) => {
     const path = `/${page.toLowerCase()}`;
-
+    console.log(path, pathname);
     return (
       <Link key={i}
         to={path}
-        className={cn(styles.PageLink, {[styles.PageLinkActive]: mobile && pathname === path})}
+        className={
+          cn(styles.PageLink, {
+            [styles.PageLinkActive]: mobile &&
+              pathname === path ||
+              pathname === '/' && path === '/home'
+          })
+        }
       >
         {page}
       </Link>

@@ -14,9 +14,7 @@ const DropdownMenu = ({ onClose }) => {
 
     setIsVisible(!isVisible);
 
-    setTimeout(() => {
-      onClose();
-    }, 600);
+    setTimeout(onClose, 600);
   }
 
   useEffect(() => {
