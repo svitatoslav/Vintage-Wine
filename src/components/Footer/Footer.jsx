@@ -1,22 +1,14 @@
-import "./Footer.scss";
-import Logo from "./icon/logo.svg?react";
+import styles from './Footer.module.scss';
+import Logo from "./icon/footer-logo.svg?react";
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="footer__info">
-        <div className="footer__info-logo">
+    <footer className={styles.Footer}>
+      <div className={styles.FooterInfo}>
+        <div className={styles.FooterLogo}>
           <Logo />
-          <span className="logo-text">Vintage Wine</span>
         </div>
 
-        <div></div>
-
-      </div>
-      <div className="footer__copywriting">
-        <p className="footer-info__copywriting--text">
-          All rights reserved@2023
-        </p>
       </div>
     </footer>
   );
