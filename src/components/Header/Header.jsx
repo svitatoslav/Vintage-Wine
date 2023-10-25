@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import styles from './Header.module.scss';
-import Navigation from '../Navigation/Navigation';
-import DropdownMenu from '../DropdownMenu/DropdownMenu';
-import Search from './icons/search.svg?react';
-import Cart from './icons/cart.svg?react';
-import Logo from '../../assets/logo.svg?react';
-import Login from './icons/login.svg?react';
-import Burger from './icons/burger.svg?react';
 import { Link } from 'react-router-dom';
 import Container from '../Container/Container';
+import Navigation from '../Navigation/Navigation';
+import DropdownMenu from '../DropdownMenu/DropdownMenu';
+import SearchWidget from './icons/search.svg?react';
+import CartWidget from './icons/cart.svg?react';
+import Logo from '../../assets/logo.svg?react';
+import LoginWidget from './icons/login.svg?react';
+import BurgerBtn from './icons/burger.svg?react';
+import styles from './Header.module.scss';
 
 const BURGER_BREAKPOINT = 1000;
 
@@ -38,7 +37,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className={styles.Header} data-testid="Header">
+    <header className={styles.Header} data-testid="Header">
       <Container>
         <div className={styles.HeaderBody}>
           <Link to='/'>
@@ -53,26 +52,24 @@ const Header = () => {
             <div className={styles.HeaderWidgetsGroup}>
               <div className={styles.HeaderCart}>
                 <Link to='/cart'>
-                  <Cart />
+                  <CartWidget />
                 </Link>
                 <span className={styles.Counter}>0</span>
               </div>
-              <Search />
+              <SearchWidget />
             </div>
             <div className={styles.HeaderWidgetsGroup}>
-              <Login />
+              <LoginWidget style={{cursor: "pointer"}}/>
               {
                 viewportWidth <= BURGER_BREAKPOINT &&
-                <Burger onClick={handleMenu} />
+                <BurgerBtn onClick={handleMenu} />
               }
             </div>
           </div>
         </div>
       </Container>
-    </div>
+    </header>
   )
 };
-
-Header.propTypes = {};
 
 export default Header;

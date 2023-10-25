@@ -10,31 +10,35 @@ import Contact from './pages/Contact/Contact';
 import NoPage from './pages/NoPage/NoPage';
 import './App.scss';
 import Cart from './pages/Cart/Cart';
+import { useDispatch } from 'react-redux';
+import { fetchProductsThunk } from './redux/reducers/products-reducer';
+import { useEffect } from 'react';
 import Footer from './components/Footer/Footer';
-import UploadWidget from './components/UploadWidget/UploadWidget';
 
 const App = () => {
-  return (
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchProductsThunk());
+    }, [dispatch]);
+    return (
       <>
-    <Routes>
-      <Route path='/' element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/collections' element={<Collections />} />
-        <Route path='/shop' element={<Shop />} />
-        <Route path='/news' element={<News />} />
-        <Route path='/delivery' element={<DeliveryAndPayment />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='*' element={<NoPage />} />
-      </Route>
-    </Routes>
-        {/* <UploadWidget /> */}
-      <Footer />
-
-      </>
-  )
-}
+        <Routes>
+            <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/collections" element={<Collections />} />
+                <Route path="/shop" element={<Shop />} />
+                <Route path="/news" element={<News />} />
+                <Route path="/delivery" element={<DeliveryAndPayment />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="*" element={<NoPage />} />
+            </Route>
+        </Routes>
+            <Footer />
+        </>
+    );
+};
 
 export default App;

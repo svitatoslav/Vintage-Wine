@@ -1,72 +1,70 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema(
-  {
-    itemNo: {
-      type: String,
-      required: true
+    {
+        vendorCode: {
+            type: String,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        },
+        currentPrice: {
+            type: Number,
+            required: true
+        },
+        categories: {
+            type: String,
+            required: true
+        },
+        collectionOfProduct: {
+            type: String,
+            required: true
+        },
+        productImg: {
+            type: String,
+            required: true
+        },
+        slidesImageUrls: [
+            {
+                type: String,
+                required: true
+            }
+        ],
+        productUrl: {
+            type: String
+        },
+        grape: {
+            type: String
+        },
+        volume: {
+            type: String
+        },
+        color: {
+            type: String
+        },
+        strength: {
+            type: String
+        },
+        sweetness: {
+            type: String
+        },
+        supplyTemperature: {
+            type: String
+        },
+        manufacturerCountry: {
+            type: String
+        },
+        productDescription: {
+            aroma: { type: String },
+            taste: { type: String }
+        }
     },
-    enabled: {
-      type: Boolean,
-      required: true,
-      default: true
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    currentPrice: {
-      type: Number,
-      required: true
-    },
-    previousPrice: {
-      type: Number
-    },
-    categories: {
-      type: String,
-      required: true
-    },
-    imageUrls: [
-      {
-        type: String,
-        required: true
-      }
-    ],
-    quantity: {
-      type: Number,
-      required: true,
-      default: 0
-    },
-    color: {
-      type: String
-    },
-    sizes: {
-      type: String
-    },
-    productUrl: {
-      type: String
-    },
-    brand: {
-      type: String
-    },
-    manufacturer: {
-      type: String
-    },
-    manufacturerCountry: {
-      type: String
-    },
-    seller: {
-      type: String
-    },
-    date: {
-      type: Date,
-      default: Date.now
-    }
-  },
-  { strict: false }
+    { strict: false }
 );
 
-ProductSchema.index({ "$**": "text" });
+ProductSchema.index({ '$**': 'text' });
 
-module.exports = Product = mongoose.model("products", ProductSchema);
+module.exports = Product = mongoose.model('products', ProductSchema);

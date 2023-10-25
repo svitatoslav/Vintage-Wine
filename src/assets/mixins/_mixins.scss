@@ -32,6 +32,12 @@
     align-items: flex-start;
 }
 
+@mixin flex-col-c {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 @mixin transition {
     transition: all .3s ease-in-out;
 }

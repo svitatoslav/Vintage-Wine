@@ -5,15 +5,15 @@
     background-color: #5B0007;
     // @include flex-cc;
 
-    @__info{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+    // @__info{
+    //     display: flex;
+    //     justify-content: space-around;
+    //     align-items: center;
 
-        .info-logo{
-            @include flex-cc;
-        }
-    }
+    //     .info-logo{
+    //         @include flex-cc;
+    //     }
+    // }
 
     
 }

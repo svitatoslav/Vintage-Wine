@@ -13,11 +13,7 @@ const CatalogSchema = new Schema(
     },
     parentId: {
       type: String,
-      required: true
-    },
-    date: {
-      type: Date,
-      default: Date.now
+      required: false
     }
   },
   { strict: false }
