@@ -1,4 +1,3 @@
-import axios from 'axios';
 const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 
 const initialState = {
