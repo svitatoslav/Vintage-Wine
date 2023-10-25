@@ -56,6 +56,10 @@ const ProductSchema = new Schema(
         },
         manufacturerCountry: {
             type: String
+        },
+        productDescription: {
+            aroma: { type: String },
+            taste: { type: String }
         }
     },
     { strict: false }
