@@ -9,23 +9,32 @@ import { Link, useLocation } from 'react-router-dom';
 const Navigation = ({ mobile }) => {
   const { pathname } = useLocation();
 
-  const links = pages?.map((page, i) => {
-    const path = `/${page.toLowerCase()}`;
-
+  const links = pages?.map(({text, url}, i) => {
+    
     return (
-      <Link key={i}
-        to={path}
-        className={cn(styles.PageLink, {[styles.PageLinkActive]: mobile && pathname === path})}
-      >
-        {page}
-      </Link>
+      <li key={i}>
+        <Link 
+          to={url}
+          className={
+            cn(styles.PageLink, {
+              [styles.PageLinkActive]: mobile &&
+                pathname === url ||
+                pathname === '/' && url === '/home'
+            })
+          }
+        >
+          {text}
+        </Link>
+      </li>
     );
   });
 
   return (
-    <ul className={cn(styles.Navigation, { [styles.NavigationBurger]: mobile })} data-testid="Navigation">
-      {links}
-    </ul>
+    <nav>
+      <ul className={cn(styles.NavigationList, { [styles.NavigationBurger]: mobile })} data-testid="Navigation">
+        {links}
+      </ul>
+    </nav>
   );
 }
 
