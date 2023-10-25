@@ -37,7 +37,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className={styles.Header} data-testid="Header">
+    <header className={styles.Header} data-testid="Header">
       <Container>
         <div className={styles.HeaderBody}>
           <Link to='/'>
@@ -68,7 +68,7 @@ const Header = () => {
           </div>
         </div>
       </Container>
-    </div>
+    </header>
   )
 };
 

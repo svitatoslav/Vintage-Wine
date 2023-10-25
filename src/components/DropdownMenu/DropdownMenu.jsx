@@ -28,7 +28,9 @@ const DropdownMenu = ({ onClose }) => {
       <div className={cn(styles.DropdownHidden, {[styles.DropdownVisible]: isVisible})}>
         <CloseBtn className={styles.DropdownClose} />
         <div className={styles.DropdownBody}>
-          <h2 className={styles.DropdownTitle}>Menu</h2>
+          <h2 className={styles.DropdownTitle}>
+            <span>Menu</span>
+          </h2>
           <Navigation mobile />
         </div>
       </div>
