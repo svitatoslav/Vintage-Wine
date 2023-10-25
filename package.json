@@ -1,7 +1,6 @@
 {
     "name": "vintage-vine",
     "version": "1.0.0",
-    "type": "module",
     "description": "Final projects of Front End group",
     "main": "server.js",
     "scripts": {
