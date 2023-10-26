@@ -1,14 +1,44 @@
 import styles from "./Footer.module.scss";
 import Logo from "./icon/footer-logo.svg?react";
 import Location from "./icon/location.svg?react";
+import In from "./icon/in.svg?react";
+import Twitter from "./icon/twitter.svg?react";
+import Facebook from "./icon/facebook.svg?react";
+import { Link } from "react-router-dom";
+import cn from "classnames";
 
 const Footer = () => {
   return (
     <footer className={styles.Footer}>
       <div className={styles.FooterInfo}>
-        {/* <div className={styles.FooterLogo}> */}
-          <Logo className={styles.FooterLogo} />
-        {/* </div> */}
+        <Logo className={styles.FooterLogo} />
+
+        <div className={styles.FooterMenu}>
+          <ul className={styles.FooterNav}>
+            <li className={styles.FooterItem}>
+              <Link to="/home" className={styles.FooterLink}>Home</Link>
+            </li>
+            <li className={styles.FooterItem}>
+              <Link to="/about_as" className={styles.FooterLink}>About us</Link>
+            </li>
+            <li className={styles.FooterItem}>
+              <Link to="/our_collections" className={styles.FooterLink}>Our collections</Link>
+            </li>
+            <li className={styles.FooterItem}>
+              <Link to="/shop" className={styles.FooterLink}>Shop</Link>
+            </li>
+            <li className={styles.FooterItem}>
+              <Link to="/news" className={styles.FooterLink}>News</Link>
+            </li>
+            <li className={styles.FooterItem}>
+              <Link to="/delivery_and_payment" className={styles.FooterLink}>Delivery and payment</Link>
+            </li>
+            <li className={styles.FooterItem}>
+              <Link to="/contacts" className={styles.FooterLink}>Contacts</Link>
+            </li>
+          </ul>
+        </div>
+
         <div className={styles.Location}>
           <h2 className={styles.LocationTitle}>Our shops</h2>
           <div className={styles.LocationAddress}>
@@ -26,6 +56,36 @@ const Footer = () => {
               </p>
             </div>
           </div>
+
+        </div>
+
+          <div className={styles.Search}>
+
+          </div>
+
+          <div className={styles.Network}>
+            <ul className={styles.NetworkNav}>
+              <li className={styles.NetworkItem}>
+                <Link to="/linkedIn" className={styles.NetworkLink}>
+                  <In className={styles.NetworkLogo} />
+                </Link>
+              </li>
+              <li className={styles.NetworkItem}>
+                <Link to="/twitter" className={styles.NetworkLink}>
+                <Twitter className={styles.NetworkLogo} />
+                </Link>
+              </li>
+              <li className={styles.NetworkItem}>
+                <Link to="/facebook" className={styles.NetworkLink}>
+                <Facebook className={styles.NetworkLogo} />
+                </Link>
+              </li>
+            </ul>
+            
+            
+          </div>
+        <div className={styles.Copywriting}>
+          <p className={styles.CopywritingText}>All rights reserved@2023</p>
         </div>
       </div>
     </footer>

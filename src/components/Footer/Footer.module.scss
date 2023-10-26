@@ -2,29 +2,71 @@
 @import "./../../assets/variables/variables";
 
 .Footer {
+  width: 100%;
   background-color: #5b0007;
+  padding-top: 18px;
 }
 .FooterInfo {
-
-    @media screen and (max-width: $mobile) {
-        padding: 0 70px;  
-    }
-    @media (min-width: $mobile) and (max-width: $tablet) {
-        padding: 0 127px;  
-    }
+  @media screen and (max-width: $mobile) {
+    padding: 0 70px;
+  }
+  //   @media (min-width: $mobile) and (max-width: $tablet) {
+  //     padding: 0 127px;
+  //   }
 }
 .FooterLogo {
-    width: 225px;
-    height: 60px;
+  width: 225px;
+  height: 60px;
+  margin-bottom: 18px;
+}
+.FooterMenu {
+  margin-bottom: 18px;
+}
+.FooterNav {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.FooterItem {
+    padding-bottom: 8px;
+}
+.FooterLink {
 }
 .Location {
 }
 .LocationTitle {
-    font-size: 20px;
+  font-size: 20px;
+  padding-bottom: 20px;
 }
-.LocationAddress {}
+.LocationAddress {
+}
 .AddressInfo {
-    display: flex;
+  display: flex;
+  padding-bottom: 20px;
 }
-.AddressText {}
-
+.AddressText {
+  width: 100%;
+  padding-left: 2px;
+}
+.Search {
+}
+.Network {
+}
+.NetworkNav {
+  @include flex-cc;
+  padding-bottom: 28px;
+}
+.NetworkItem {
+}
+.NetworkLink {
+}
+.NetworkLogo {
+  margin-inline: 6px;
+}
+.Copywriting {
+  display: none;
+  text-align: center;
+  padding-bottom: 28px;
+}
+.CopywritingText {
+}
