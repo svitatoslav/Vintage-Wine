@@ -1,0 +1,68 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.Button {
+  background-color: $btn-bg;
+  color: $main-color;
+  //width: 100px;
+  padding: 4px 34px;
+  font-size: 15px;
+  line-height: 36px;
+
+  @media screen and (min-width: $mobile) {
+    padding: 9px 52px;
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: $tablet-lg) {
+    padding: 14px 79px;
+    font-size: 30px;
+  }
+}
+
+.ReadAllBtn {
+  @extend .Button;
+  //width: 165px;
+  //height: 48px;
+  min-width: 165px;
+  padding: 11px 50px;
+  font-size: 20px;
+  //  без адаптива + book-time   + Read more + Read all
+
+}
+
+.ReadMoreBtn {
+  @extend .Button;
+  //width: 134px;
+  //height: 38px;
+  padding: 11px 36px;
+  font-size: 14px;
+  line-height: 16px;
+  @media screen and (min-width: $tablet-lg) {
+    //width: 165px;
+    //height: 46px;
+    padding: 11px 40px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+.AddToCartBtn {
+  @extend .Button;
+  font-size: 30px;
+  //width: 218px;
+  //height: 60px;
+  min-width: 218px;
+  padding: 12px 35px;
+  //  + continue  + send + Sign in
+}
+
+.WideButton {
+  @extend .Button;
+  padding: 12px 27px;
+  font-size: 30px;
+  min-width: 280px;
+}
+
+
+
