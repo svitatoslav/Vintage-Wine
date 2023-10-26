@@ -27,8 +27,7 @@
 
 .DropdownBody {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.70) 100%), url('../../assets/images/menu-bg.webp') center 50%/cover no-repeat;
-    @include flex-cc;
-    flex-direction: column;
+    @include flex-col-c;
     gap: 94px;
     min-height: 100%;
     padding: 50px 0;
@@ -39,24 +38,28 @@
     font-size: 40px;
     font-weight: 400;
     line-height: 1;
+    text-align: center;
     color: $main-color;
-    position: relative;
 
-    &::before,
-    &::after {
-        content: '';
-        position: absolute;
-        width: 30px;
-        height: 7px;
-        background: url('./icons/symbol.svg');
-        top: 50%;
-        transform: translateY(-50%);
-        left: -44px;
-    }
+    span {
+        position: relative;
 
-    &::after {
-        left: unset;
-        right: -44px;
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 7px;
+            background: url('./icons/symbol.svg');
+            top: 50%;
+            transform: translateY(-50%);
+            left: -44px;
+        }
+    
+        &::after {
+            left: unset;
+            right: -44px;
+        }
     }
 }
 

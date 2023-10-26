@@ -1,0 +1,111 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+// $mobile: 340px;
+// $tablet: 460px;
+// $tablet-lg: 640px;
+// $tablet-xlg: 960px;
+// $desktop: 1160px;
+
+.ShopContainer {
+    @include flex-ac-col-c;
+    width: 100%;
+    color: $main-color;
+    font-weight: 400;
+    height: auto;
+
+    @media screen and (max-width: $mobile) {
+        .ShopFilterBarItems  {
+            display: none;
+        }
+    }
+
+    @media screen and (min-width: $mobile) {
+        .ShopParagraph {
+            font-size: 50px;
+        }
+        .ShopFilterBarItems  {
+            display: none;
+        }
+    }
+
+    @media screen and (min-width: $tablet) {
+        .ShopFilterBarItems  {
+            display: none;
+        }
+    }
+
+    @media screen and (min-width: $tablet-lg) {
+        .ShopParagraph {
+            font-size: 70px;
+        }
+        .ShopFilterBarItems {
+            width: 75%;
+            @include flex-ac-sb;
+            padding: 1px;
+            
+            li {
+                color: $main-color;
+                font-family: $secondary-font;
+                font-weight: 400;
+                font-size: 16px;
+                position: relative;
+                &:hover {
+                    &::after {
+                        content: url("./icons/Shophover.svg");
+                        position: absolute;
+                        bottom: 90%;
+                        left: 4%;
+                        display: inline-block;
+                    } 
+                    &::before {
+                        content: url("./icons/Shophover.svg");
+                        position: absolute;
+                        top: 90%;
+                        left: 4%;
+                        display: inline-block;
+                    } 
+                }
+            }
+        }
+        .ShopFilterBar {
+            width: 60%;
+        }
+    }
+
+    @media screen and (min-width: $tablet-xlg) {
+        
+    }
+
+    @media screen and (min-width: $desktop) {
+       
+    }
+}
+
+.ShopParagraph {
+    font-family: $main-font;
+    font-weight: 400;
+    font-size: 70px;
+    line-height: 85px;
+    margin: 10px 0 10px 0;
+    cursor: pointer
+}
+
+.ShopBreadCrumbs {
+    @include flex-cc;
+    margin-bottom: 35px;
+    background-color: RED;
+}
+
+.ShopFilterBar {
+    @include flex-ac-sb;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.ShopFilterBarAllFilter {
+    @include flex-ac;
+     p {
+        margin-right: 10px;
+     }
+}
