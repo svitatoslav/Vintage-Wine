@@ -38,6 +38,19 @@
     justify-content: center;
 }
 
+@mixin flex-row-c {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@mixin flex-ac-col-c {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 @mixin transition {
     transition: all .3s ease-in-out;
 }
