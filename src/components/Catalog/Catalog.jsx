@@ -1,15 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './Catalog.module.scss';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCatalogThunk } from '../../redux/reducers/catalog-reducer';
 
-const Catalog = () => (
-  <div className={styles.Catalog} data-testid="Catalog">
-    Catalog Component1111
-  </div>
-);
+import Container from './../Container/Container';
+import CustomSlider from '../CustomSlider/CustomSlider';
 
-Catalog.propTypes = {};
-
-Catalog.defaultProps = {};
+const Catalog = () => {
+    const dispatch = useDispatch();
+    const catalog = useSelector((state) => state.catalog.catalog);
+    useEffect(() => {
+        dispatch(fetchCatalogThunk());
+    }, [dispatch]);
+    return (
+        <section>
+            <Container>
+                <div className="vvWrapperTitle">
+                    <h3 className="vvSectionTitle">
+                        <span className="vvSubTitle">Our</span>Catalog
+                    </h3>
+                </div>
+                <CustomSlider sliderArray={catalog} type="CATALOG" toShow={4} toScroll={ 1} />
+            </Container>
+        </section>
+    );
+};
 
 export default Catalog;

@@ -1,9 +1,13 @@
+import Catalog from '../../components/Catalog/Catalog';
+import Collections from '../../components/Collections/Collections';
+
 const Home = () => {
     return (
-        <div>
-            Home Page
-        </div>
+        <main>
+            <Collections />
+            <Catalog />
+        </main>
     );
-}
- 
+};
+
 export default Home;
