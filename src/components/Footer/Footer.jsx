@@ -4,6 +4,7 @@ import Location from "./icon/location.svg?react";
 import In from "./icon/in.svg?react";
 import Twitter from "./icon/twitter.svg?react";
 import Facebook from "./icon/facebook.svg?react";
+import SearchFooter from "./icon/search.svg?react"
 import { Link } from "react-router-dom";
 import cn from "classnames";
 
@@ -11,7 +12,11 @@ const Footer = () => {
   return (
     <footer className={styles.Footer}>
       <div className={styles.FooterInfo}>
-        <Logo className={styles.FooterLogo} />
+        <div className={styles.FooterLogo}>
+        <Logo className={styles.FooterImage} />
+        </div>
+
+        <div className={styles.MenuLocation}>
 
         <div className={styles.FooterMenu}>
           <ul className={styles.FooterNav}>
@@ -58,8 +63,15 @@ const Footer = () => {
           </div>
 
         </div>
+        </div>
+        <div className={styles.SearchNetwork}>
 
           <div className={styles.Search}>
+            <h2 className={styles.SearchTitle}>Search</h2>
+            <label className={styles.SearchLabel}>
+              <input type="text" name="find a product" placeholder="find a product" className={styles.SearchInput}/>
+              <SearchFooter className={styles.SearchLogo}/>
+            </label>
 
           </div>
 
@@ -84,6 +96,7 @@ const Footer = () => {
             
             
           </div>
+        </div>
         <div className={styles.Copywriting}>
           <p className={styles.CopywritingText}>All rights reserved@2023</p>
         </div>
