@@ -13,6 +13,7 @@ import Cart from './pages/Cart/Cart';
 import { useDispatch } from 'react-redux';
 import { fetchProductsThunk } from './redux/reducers/products-reducer';
 import { useEffect } from 'react';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const App = () => {
         dispatch(fetchProductsThunk());
     }, [dispatch]);
     return (
+      <>
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
@@ -34,6 +36,8 @@ const App = () => {
                 <Route path="*" element={<NoPage />} />
             </Route>
         </Routes>
+            <Footer />
+        </>
     );
 };
 
