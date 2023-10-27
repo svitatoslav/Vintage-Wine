@@ -1,4 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { fetchProductsThunk } from './redux/reducers/products-reducer';
+import { useEffect } from 'react';
 import Layout from './pages/Layout/Layout';
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
@@ -7,12 +10,10 @@ import Shop from './pages/Shop/Shop';
 import News from './pages/News/News';
 import DeliveryAndPayment from './pages/DeliveryAndPayment/DeliveryAndPayment';
 import Contact from './pages/Contact/Contact';
+import Cart from './pages/Cart/Cart';
+import Login from './pages/Login/Login';
 import NoPage from './pages/NoPage/NoPage';
 import './App.scss';
-import Cart from './pages/Cart/Cart';
-import { useDispatch } from 'react-redux';
-import { fetchProductsThunk } from './redux/reducers/products-reducer';
-import { useEffect } from 'react';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const App = () => {
                 <Route path="/delivery" element={<DeliveryAndPayment />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path='/login' element={<Login />} />
                 <Route path="*" element={<NoPage />} />
             </Route>
         </Routes>

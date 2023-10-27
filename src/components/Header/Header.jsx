@@ -59,7 +59,9 @@ const Header = () => {
               <SearchWidget />
             </div>
             <div className={styles.HeaderWidgetsGroup}>
-              <LoginWidget style={{cursor: "pointer"}}/>
+              <Link to="/login">
+                <LoginWidget style={{cursor: "pointer"}}/>
+              </Link>
               {
                 viewportWidth <= BURGER_BREAKPOINT &&
                 <BurgerBtn onClick={handleMenu} />
