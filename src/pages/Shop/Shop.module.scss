@@ -13,99 +13,376 @@
     color: $main-color;
     font-weight: 400;
     height: auto;
-
-    @media screen and (max-width: $mobile) {
-        .ShopFilterBarItems  {
-            display: none;
-        }
-    }
+    margin-bottom: 40px;
 
     @media screen and (min-width: $mobile) {
         .ShopParagraph {
+            font-family: $main-font;
+            font-weight: 400;
             font-size: 50px;
+            margin-bottom: 20px;
+        }
+        .ShopBreadCrumbs {
+            margin-bottom: 20px;
         }
         .ShopFilterBarItems  {
+            display: none;
+        }
+        
+        .ShopFilterBarAllFilter {
+            @include flex-ac;
+             p {
+                font-family: $secondary-font;
+                font-weight: 400;
+                font-size: 15px;
+                margin-right: 10px;
+                line-height: 18px;
+             }
+        }
+        .ShopFilterBarItems  {
+            display: none;
+        }
+        .ShopImagesContainer {
+            display: flex;
+            flex-direction: column;
+            margin-top: 30px;
+        }    
+
+        .ShopImagesPortionOne {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            img {
+                width: 340px;
+                height: 446px;
+            }
+        }
+        .ShopImagesSmall_One {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        .ShopImagesPortionTwo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            img {
+                width: 340px;
+                height: 446px;
+            }
+        }
+        .ShopImagesSmall_Two {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        .ShopImagesPortionThree {
             display: none;
         }
     }
 
     @media screen and (min-width: $tablet) {
+        .ShopParagraph {
+            margin-top: 40px;
+        }
+        .ShopBreadCrumbs {
+            margin-bottom: 20px;
+        }
         .ShopFilterBarItems  {
             display: none;
         }
+
+        .ShopImagesContainer {
+            display: flex;
+            flex-direction: column;
+            margin-top: 30px;
+        }    
+
+        .ShopImagesPortionOne {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            img {
+                width: 383px;
+                height: 502px;
+            }
+        }
+        .ShopImagesSmall_One {
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            column-gap: 4%;
+            row-gap: 2%;
+            margin-bottom: 10px;
+            img {
+                width: 240px;
+                height: 244px;
+            }
+        }
+
+        .ShopImagesPortionTwo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            img {
+                width: 383px;
+                height: 502px;
+            }
+        }
+        .ShopImagesSmall_Two {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            column-gap: 4%;
+            row-gap: 2%;
+            margin-bottom: 10px;
+            img {
+                width: 240px;
+                height: 244px;
+            }
+        }
+       
+        .ShopImagesPortionThree {
+             display: none;
+        }
+         
     }
 
     @media screen and (min-width: $tablet-lg) {
         .ShopParagraph {
             font-size: 70px;
         }
+
+        .ShopBreadCrumbs {
+            @include flex-cc;
+            background-color: RED;
+        }
+        .ShopFilterBar {
+            width: 97%;
+            @include flex-ac-sb;
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+
         .ShopFilterBarItems {
-            width: 75%;
+            width: 70%;
             @include flex-ac-sb;
             padding: 1px;
-            
+            margin-right: 20px;
             li {
                 color: $main-color;
                 font-family: $secondary-font;
                 font-weight: 400;
                 font-size: 16px;
                 position: relative;
+                
                 &:hover {
                     &::after {
                         content: url("./icons/Shophover.svg");
                         position: absolute;
                         bottom: 90%;
-                        left: 4%;
+                        left: 14%;
                         display: inline-block;
                     } 
                     &::before {
                         content: url("./icons/Shophover.svg");
                         position: absolute;
                         top: 90%;
-                        left: 4%;
+                        left: 14%;
                         display: inline-block;
                     } 
                 }
             }
         }
-        .ShopFilterBar {
-            width: 60%;
+        .ShopFilterBarAllFilter {
+            margin-left: 20px;
+        }
+        .ShopImagesPortionOne {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            margin-bottom: 20px;
+            img {
+                // margin-left: 5%;
+                width: 383px;
+                height: 502px;
+            }
+        }
+        .ShopImagesSmall_One {
+            width: 50em;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            column-gap: 7%;
+            row-gap: 2%;
+            margin-bottom: 10px;
+            img {
+                width: 240px;
+                height: 244px;
+            }
+            :nth-last-child(n+1):nth-last-child(-n+2) {
+                display: none;
+            }
+        }
+
+        .ShopImagesPortionTwo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            margin-bottom: 20px;
+            img {
+                // margin-left: 5%;
+                width: 383px;
+                height: 502px;
+            }
+        }
+        .ShopImagesSmall_Two {
+            width: 50em;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            column-gap: 7%;
+            row-gap: 2%;
+            margin-bottom: 10px;
+            img {
+                width: 240px;
+                height: 244px;
+            }
+            :nth-last-child(n+1):nth-last-child(-n+2) {
+                display: none;
+            }
+        }
+       
+        .ShopImagesPortionThree {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            img {
+                // margin-left: 5%;
+                width: 383px;
+                height: 502px;
+            }
+        }
+        .ShopImagesSmall_Three {
+            width: 50em;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            column-gap: 7%;
+            row-gap: 2%;
+            margin-bottom: 10px;
+            img {
+                width: 240px;
+                height: 244px;
+            }
+            :nth-last-child(n+1):nth-last-child(-n+2) {
+                display: none;
+            }
         }
     }
 
     @media screen and (min-width: $tablet-xlg) {
-        
+        .ShopImagesPortionOne {
+            img {
+                width: 535px;
+                height: 680px;
+            }
+        }
+        .ShopImagesSmall_One {
+                img {
+                    width: 295px;
+                    height: 335px;
+                }
+            }
+        }
+
+        .ShopImagesPortionTwo {
+            img {
+                width: 535px;
+                height: 680px;
+            }
+        }
+        .ShopImagesSmall_Two {
+            img {
+                width: 295px;
+                height: 335px;
+            }
+        }
+       
+        .ShopImagesPortionThree {
+            img {
+                width: 535px;
+                height: 680px;
+            }
+        }
+        .ShopImagesSmall_Three {
+            img {
+                width: 295px;
+                height: 335px;
+            }
+        }
     }
 
     @media screen and (min-width: $desktop) {
-       
+        .ShopFilterBar {
+            width: 46%!important;
+        }
+        .ShopImagesSmall_One {
+            :nth-last-child(n+1):nth-last-child(-n+2) {
+                display: block!important;
+            }
+        }
+        .ShopImagesSmall_Two {
+            :nth-last-child(n+1):nth-last-child(-n+2) {
+                display: block!important;
+            }
+        }
+        .ShopImagesSmall_Three {
+            :nth-last-child(n+1):nth-last-child(-n+2) {
+                display: block!important;
+            }
+        }
     }
-}
 
-.ShopParagraph {
-    font-family: $main-font;
-    font-weight: 400;
-    font-size: 70px;
-    line-height: 85px;
-    margin: 10px 0 10px 0;
-    cursor: pointer
-}
 
-.ShopBreadCrumbs {
-    @include flex-cc;
-    margin-bottom: 35px;
-    background-color: RED;
-}
 
-.ShopFilterBar {
-    @include flex-ac-sb;
-    margin-top: 25px;
-    margin-bottom: 20px;
-}
 
-.ShopFilterBarAllFilter {
-    @include flex-ac;
-     p {
-        margin-right: 10px;
-     }
-}
+
+
