@@ -64,6 +64,8 @@ const Footer = () => {
 
         </div>
         </div>
+        
+        <div className={styles.SearchCopywriting}>
         <div className={styles.SearchNetwork}>
 
           <div className={styles.Search}>
@@ -99,6 +101,7 @@ const Footer = () => {
         </div>
         <div className={styles.Copywriting}>
           <p className={styles.CopywritingText}>All rights reserved@2023</p>
+        </div>
         </div>
       </div>
     </footer>

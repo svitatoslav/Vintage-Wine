@@ -58,8 +58,18 @@
   width: 100%;
   padding-left: 2px;
 }
+.SearchCopywriting {
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        @include flex-ac;
+        justify-content: space-evenly;
+      }
+}
 .SearchNetwork {
   @media (min-width: $mobile) and (max-width: $tablet) {
+    @include flex-ac;
+    justify-content: space-evenly;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
     @include flex-ac;
     justify-content: space-evenly;
   }
@@ -72,11 +82,17 @@
   @media (min-width: $mobile) and (max-width: $tablet) {
     display: grid;
   }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    display: grid;
+  }
 }
 .SearchTitle {
   font-size: 20px;
 
   @media (min-width: $mobile) and (max-width: $tablet) {
+    margin-bottom: 18px;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
     margin-bottom: 18px;
   }
 }
@@ -120,6 +136,13 @@
   @media (min-width: $mobile) and (max-width: $tablet) {
     display: block;
   }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    display: block;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    display: block;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    display: block;
+  }
 }
-// .CopywritingText {
-// }
