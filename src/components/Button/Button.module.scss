@@ -1,0 +1,98 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.Button {
+  padding: 4px 34px;
+  font-size: 15px;
+  line-height: 36px;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: $secondary-color;
+    color: $main-color;
+    cursor: default;
+  }
+
+  @media screen and (min-width: $tablet) {
+    padding: 9px 52px;
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: $tablet-xlg) {
+    padding: 14px 79px;
+    font-size: 30px;
+  }
+}
+
+
+.xSmall {
+  @extend .Button;
+  min-width: 215px;
+  padding: 8px 0;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+
+//  без адаптива + book-time   + Read more + Read all
+
+.Small {
+  @extend .Button;
+  min-width: 165px;
+  padding: 11px 50px;
+  font-size: 20px;
+
+}
+
+// Read More
+
+.SmallAdaptive {
+  @extend .Button;
+  padding: 11px 36px;
+  font-size: 14px;
+  line-height: 16px;
+
+  @media screen and (min-width: $tablet-xlg) {
+    padding: 11px 40px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+.Medium {
+  @extend .Button;
+  font-size: 30px;
+  min-width: 218px;
+  padding: 12px 35px;
+  //  + continue  + send + Sign in
+}
+
+.WideButton {
+  @extend .Button;
+  padding: 12px 27px;
+  font-size: 30px;
+  min-width: 280px;
+}
+
+.BigButton {
+  min-width: 305px;
+  padding: 21px 0;
+  font-size: 30px;
+  line-height: 36px;
+}
+
+.Primary {
+  background-color: $btn-bg;
+  color: $main-color;
+
+}
+
+.Secondary {
+  background-color: $main-color;
+  color: $black-color;
+}
+
+
+
+
+

@@ -1,0 +1,166 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.wrapperSlider {
+    .itemSlide {
+        height: 300px;
+         @media screen and (min-width: $tablet-lg) {
+              height: 400px;
+            }
+         @media screen and (min-width: $tablet-xlg) {
+              height: auto;
+            }
+        a {
+            position: relative;
+            display: block;
+            height: inherit;
+            margin: 0 10px;
+
+            img {
+                object-fit: cover;
+                height: 100%;
+            }
+            .catalogName {
+                position: absolute;
+                bottom: 40px;
+                right: 30px;
+                font-size: 40px;
+            }
+        }
+    }
+}
+.slickArrows {
+    margin-top: 0;
+    @include flex-cc;
+    position: relative;
+    gap: 15px;
+    @media screen and (min-width: $tablet-lg) {
+        margin-top: 30px;
+    }
+
+    button {
+        position: static;
+        width: 30px;
+        height: 30px;
+        transform: translate(0, 0);
+        background: #909090;
+        border-radius: 100%;
+        @include transition;
+        &::before {
+            display: none !important;
+        }
+        svg {
+            fill: #000;
+        }
+        &:hover {
+            background: $main-color;
+            @include transition;
+        }
+        &:focus {
+            background: #909090;
+        }
+    }
+    .sliderNavigation {
+        position: relative;
+        min-width: 35px;
+        min-height: 45px;
+        &::before {
+            position: absolute;
+            content: '';
+            display: block;
+            top: 60%;
+            transform: translateY(-50%) rotate(-45deg);
+            left: 0;
+            background: $main-color;
+            height: 2px;
+            border-radius: 2px;
+            width: 100%;
+            color: $main-color;
+        }
+        .currentIndex {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 30px;
+        }
+        .lengthOfSlider {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            font-size: 20px;
+            color: #909090;
+        }
+    }
+}
+
+.collectionsWrapperSlider {
+    .collectionsSlide {
+        position: relative;
+        display: flex !important;
+        justify-content: flex-end;
+        @media screen and (min-width: $tablet-lg) {
+                justify-content: space-evenly;
+            }
+        @media screen and (min-width: $tablet-xlg) {
+                justify-content: flex-end;
+            }
+        img {
+            max-width: 70%;
+            @media screen and (min-width:$tablet-lg) {
+                max-width: 40%;
+            }
+            @media screen and (min-width:768px) {
+                max-width: 70%;
+            }
+            @media screen and (min-width: $desktop) {
+                max-width: 400px;
+                margin-right: 45px;
+            }
+        }
+        .collectionData {
+            max-width: 350px;
+            position: absolute;
+            top: 130px;
+            left: 0;
+            @media screen and (min-width: $tablet-lg) {
+               left:18%;
+            }
+            .catalogName {
+                font-size: 30px;
+                margin-bottom: 15px;
+                @media screen and (min-width: $tablet) {
+                    font-size: 50px;
+                }
+                @media screen and (min-width: $desktop) {
+                    font-size: 100px;
+                }
+            }
+            .collectionsDescription {
+                font-size: 14px;
+                a {
+                    font-size: 14px;
+                    margin-top: 10px;
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+    @media screen and (min-width: $tablet-xlg) {
+        .collectionsSlide.oddSlide {
+            justify-content: flex-start;
+            .collectionData {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                left: auto;
+                right: 0;
+                 @media screen and (min-width: $desktop) {
+                    align-items: flex-end
+                 }
+            }
+            img {
+                margin-left: 45px;
+            }
+        }
+    }
+}

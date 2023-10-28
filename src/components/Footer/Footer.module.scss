@@ -1,0 +1,150 @@
+@import './../../assets/mixins/mixins';
+@import './../../assets/variables/variables';
+
+.Footer {
+    width: 100%;
+    background-color: #5b0007;
+    padding-top: 18px;
+    position: relative;
+    z-index: 20;
+}
+// .FooterInfo {
+// }
+.FooterLogo {
+    @include flex-cc;
+    margin-bottom: 18px;
+}
+// .FooterImage {
+// }
+.MenuLocation {
+    @media (min-width: $mobile) and (max-width: $tablet) {
+        display: flex;
+    }
+}
+.FooterMenu {
+    margin-bottom: 18px;
+
+    @media (min-width: $mobile) and (max-width: $tablet) {
+        width: 100%;
+    }
+}
+.FooterNav {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.FooterItem {
+    padding-bottom: 16px;
+    font-family: $secondary-font;
+}
+// .FooterLink {
+// }
+.Location {
+    margin-inline: 51px;
+
+    @media (min-width: $mobile) and (max-width: $tablet) {
+        margin: 0 10px 0 56px;
+    }
+}
+.LocationTitle {
+    font-size: 20px;
+    padding-bottom: 20px;
+}
+// .LocationAddress {
+// }
+.AddressInfo {
+    display: flex;
+    padding-bottom: 20px;
+}
+.AddressText {
+    width: 100%;
+    padding-left: 2px;
+}
+.SearchCopywriting {
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        @include flex-ac;
+        justify-content: space-evenly;
+    }
+}
+.SearchNetwork {
+    @media (min-width: $mobile) and (max-width: $tablet) {
+        @include flex-ac;
+        justify-content: space-evenly;
+    }
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        @include flex-ac;
+        justify-content: space-evenly;
+    }
+}
+.Search {
+    @include flex-ac;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+
+    @media (min-width: $mobile) and (max-width: $tablet) {
+        display: grid;
+    }
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        display: grid;
+    }
+}
+.SearchTitle {
+    font-size: 20px;
+
+    @media (min-width: $mobile) and (max-width: $tablet) {
+        margin-bottom: 18px;
+    }
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        margin-bottom: 18px;
+    }
+}
+.SearchLabel {
+    display: flex;
+    height: 41px;
+}
+.SearchInput {
+    padding: 16px;
+    font-size: 14px;
+    color: #c7c7c7;
+}
+.SearchLogo {
+    background-color: $main-color;
+    width: 49px;
+    height: 41px;
+    padding: 12px;
+}
+// .Network {
+// }
+.NetworkNav {
+    @include flex-cc;
+    padding-bottom: 28px;
+
+    @media (min-width: $mobile) and (max-width: $tablet) {
+        padding-bottom: 0;
+    }
+}
+// .NetworkItem {
+// }
+// .NetworkLink {
+// }
+.NetworkLogo {
+    margin-inline: 6px;
+}
+.Copywriting {
+    display: none;
+    text-align: center;
+    padding-bottom: 28px;
+
+    @media (min-width: $mobile) and (max-width: $tablet) {
+        display: block;
+    }
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        display: block;
+    }
+    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+        display: block;
+    }
+    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+        display: block;
+    }
+}

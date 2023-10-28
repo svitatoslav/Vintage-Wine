@@ -9,6 +9,10 @@
 
 .LoginInput {
     padding: 16px 19px;
+
+    &:last-of-type {
+        margin-bottom: 6px;
+    }
 }
 
 .LoginTitle {

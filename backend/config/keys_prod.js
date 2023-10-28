@@ -5,3 +5,4 @@ module.exports = {
   nodemailerPassword: process.env.NODEMAILER_PASSWORD,
   nodemailerService: process.env.NODEMAILER_SERVICE
 };
+

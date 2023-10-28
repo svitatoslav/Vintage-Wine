@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import styles from './LoginForm.module.scss';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import sendPostRequest from '../../helpers/api/sendPostRequest';
+import Button from '../Button/Button';
 
 const LoginForm = () => {
   const initialValues = {
     login: '',
     email: '',
-    brad: '',
     password: ''
   }
 
@@ -16,7 +16,6 @@ const LoginForm = () => {
     sendPostRequest('http://127.0.0.1:4000/api/customers/', values)
     
     setSubmitting(false)
-    
   }
 
   return (
@@ -31,9 +30,7 @@ const LoginForm = () => {
            <ErrorMessage name="email" component="div" />
            <Field className={styles.LoginInput} type="password" name="password" placeholder="Password"/>
            <ErrorMessage name="password" component="div" />
-           <button type="submit" disabled={isSubmitting} style={{width: "218px", backgroundColor: "#BE0615"}}>
-             Sign up
-           </button>
+           <Button text="Sign up" disabled={isSubmitting}/>
          </Form>
        )}
     </Formik>

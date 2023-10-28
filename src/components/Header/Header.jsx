@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 import Container from '../Container/Container';
 import Navigation from '../Navigation/Navigation';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
@@ -14,28 +14,28 @@ import { createPortal } from 'react-dom';
 const BURGER_BREAKPOINT = 1000;
 
 const Header = () => {
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+    const [isOpenMenu, setIsOpenMenu] = useState(false);
+    const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
-  const handleMenu = () => {
-    setIsOpenMenu(!isOpenMenu);
-  }
+    const handleMenu = () => {
+        setIsOpenMenu(!isOpenMenu);
+    }
 
-  useEffect(() => {
-    // only for development
-    setViewportWidth(window.innerWidth);
+    useEffect(() => {
+        // only for development
+        setViewportWidth(window.innerWidth);
 
-    const handleResize = () => {
-      setViewportWidth(window.innerWidth);
-    };
+        const handleResize = () => {
+            setViewportWidth(window.innerWidth);
+        };
 
-    window.addEventListener('resize', handleResize);
+        window.addEventListener('resize', handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-    // only for development
-  }, []);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+        // only for development
+    }, []);
 
   return (
     <header className={styles.Header} data-testid="Header">

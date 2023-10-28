@@ -35,3 +35,4 @@ const renameFilesInDirectory = (directoryPath) => {
 
 const startDirectory = 'src/components';  // Root directory to start from
 renameFilesInDirectory(startDirectory);
+
