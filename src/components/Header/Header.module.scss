@@ -27,7 +27,7 @@
     width: 111px;
     height: 49px;
 
-    @media screen and (min-width: $mobile) {
+    @media screen and (min-width: $tablet) {
         width: 184px;
         height: 81px;
     }
@@ -42,11 +42,11 @@
     @include flex-ac;
     gap: 28px;
 
-    @media screen and (min-width: $mobile) {
+    @media screen and (min-width: $tablet) {
         padding-bottom: 16px;
     }
 
-    @media screen and (min-width: $desktop) {
+    @media screen and (min-width: $tablet) {
         padding-bottom: 30px;
     }
 }
