@@ -11,12 +11,12 @@ import Shop from './pages/Shop/Shop';
 import News from './pages/News/News';
 import DeliveryAndPayment from './pages/DeliveryAndPayment/DeliveryAndPayment';
 import Contact from './pages/Contact/Contact';
-import NoPage from './pages/NoPage/NoPage';
 import Cart from './pages/Cart/Cart';
-import Footer from './components/Footer/Footer';
+import Login from './pages/Login/Login';
+import NoPage from './pages/NoPage/NoPage';
+import SingleCatalog from './components/SingleCatalog/SingleCatalog';
 
 import './App.scss';
-import SingleCatalog from './components/SingleCatalog/SingleCatalog';
 
 
 const App = () => {
@@ -35,13 +35,13 @@ const App = () => {
                     <Route path="catalog/:slug" element={<SingleCatalog />} />
                     <Route path="shop" element={<Shop />} />
                     <Route path="news" element={<News />} />
-                    <Route path="delivery" element={<DeliveryAndPayment />} />
+                    <Route path="delivery&payment" element={<DeliveryAndPayment />} />
                     <Route path="contacts" element={<Contact />} />
                     <Route path="cart" element={<Cart />} />
+                    <Route path='/login' element={<Login />} />
                     <Route path="*" element={<NoPage />} />
                 </Route>
             </Routes>
-            <Footer />
         </>
     );
 };
