@@ -1,0 +1,33 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.breadcrumbs {
+    margin: 20px 0 40px;
+    justify-content: center;
+    font-family: $secondary-font;
+    @media screen and (min-width: $tablet-lg) {
+         margin: 40px 0 70px;
+    }
+    a {
+        &:hover {
+            @include transition;
+            color: $btn-bg;
+        }
+    }
+}
+.breadcrumbs,
+a {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: $main-color;
+    @include transition;
+    a,
+    span {
+        text-transform: capitalize;
+    }
+    span.currentPage {
+        font-weight: 700;
+        color: $btn-bg;
+    }
+}

@@ -82,31 +82,36 @@ p {
 }
 
 section {
-	margin-bottom: 150px;
+    margin-bottom: 60px;
+    @media screen and (min-width: tablet) {
+        margin-bottom: 80px;
+    }
+    @media screen and (min-width: $tablet-lg) {
+        margin-bottom: 100px;
+    }
+    @media screen and (min-width: $tablet-xlg) {
+        margin-bottom: 150px;
+    }
 }
 
 input {
-	font-family: $secondary-font;
-	outline: none;
-	color: $main-color;
-	border: 1px solid $main-color;
-	padding: 22px 0 22px 20px;
-	background: none;
-	width: 100%;
+    font-family: $secondary-font;
+    outline: none;
+    color: $main-color;
+    border: 1px solid $main-color;
+    padding: 22px 0 22px 20px;
+    background: none;
+    width: 100%;
 }
 ::placeholder {
-	color: $main-color;
-
+    color: $main-color;
 }
-
-.wrapper {
-    max-width: 100%;
-    width: 1200px;
-    margin: 0 auto;
+#root {
+    overflow-x: hidden;
 }
-
-.vvMainBtn, .vvReadBtn {
-	display: inline-block;
+.vvMainBtn,
+.vvReadBtn {
+    display: inline-block;
     font-size: 30px;
     background: $btn-bg;
     padding: 15px 80px;
@@ -114,27 +119,27 @@ input {
     @include transition;
 }
 .vvReadBtn {
-	padding: 10px 40px;
-	font-size: 20px;
+    padding: 10px 40px;
+    font-size: 20px;
 }
 .vvReadMore {
-	font-family: $secondary-font;
-	color: $btn-bg;
+    font-family: $secondary-font;
+    color: $btn-bg;
 }
 .vvPageTitle {
-	
     font-size: 70px;
-    margin-bottom: 30px;
+    margin: 70px auto 30px;
+    text-align: center;
 }
 .vvWrapperTitle {
-	@include flex-cc;
+    @include flex-cc;
     .vvSectionTitle {
         font-size: 70px;
         margin-bottom: 60px;
         .vvSubTitle {
             display: block;
             text-align: left;
-			text-transform: capitalize;
+            text-transform: capitalize;
             font-size: 40px;
             color: $btn-bg;
         }
