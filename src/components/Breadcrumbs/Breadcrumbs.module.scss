@@ -2,14 +2,17 @@
 @import '../../assets/mixins/mixins';
 
 .breadcrumbs {
-    margin: 40px 0 70px;
+    margin: 20px 0 40px;
     justify-content: center;
     font-family: $secondary-font;
-    a {
-      &:hover {
-        @include transition;
-        color: $btn-bg;
+    @media screen and (min-width: $tablet-lg) {
+         margin: 40px 0 70px;
     }
+    a {
+        &:hover {
+            @include transition;
+            color: $btn-bg;
+        }
     }
 }
 .breadcrumbs,
