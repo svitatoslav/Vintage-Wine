@@ -5,15 +5,15 @@ import LoginForm from '../../components/LoginForm/LoginForm';
 import Container from '../../components/Container/Container';
 
 const Login = () => (
-
-  <div className={styles.LoginContainer}>
-    <div className={styles.Login} data-testid="Login">
-
-      <h3>Sign up</h3>
-
-      <LoginForm />
+  <div className={styles.LoginWrapper}>
+    <h3 className={styles.LoginTitle}>Sign up</h3>
+    <div className={styles.LoginContainer}>
+      <div className={styles.Login} data-testid="Login">
+        <LoginForm />
+      </div>
     </div>
   </div>
+
 
 );
 

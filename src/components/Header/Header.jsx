@@ -9,6 +9,7 @@ import Logo from '../../assets/logo.svg?react';
 import LoginWidget from './icons/login.svg?react';
 import BurgerBtn from './icons/burger.svg?react';
 import styles from './Header.module.scss';
+import { createPortal } from 'react-dom';
 
 const BURGER_BREAKPOINT = 1000;
 
@@ -43,31 +44,34 @@ const Header = () => {
           <Link to='/'>
             <Logo className={styles.HeaderLogo} />
           </Link>
-          {
-            viewportWidth <= BURGER_BREAKPOINT ?
-              (isOpenMenu && <DropdownMenu mobile onClose={handleMenu} />) :
-              <Navigation />
-          }
-          <div className={styles.HeaderWidgets}>
-            <div className={styles.HeaderWidgetsGroup}>
-              <div className={styles.HeaderCart}>
-                <Link to='/cart'>
-                  <CartWidget />
-                </Link>
-                <span className={styles.Counter}>0</span>
+            {
+              viewportWidth <= BURGER_BREAKPOINT ?
+                (isOpenMenu && createPortal(
+                  <DropdownMenu mobile onClose={handleMenu} />,
+                  document.body
+                )) :
+                <Navigation />
+            }
+            <div className={styles.HeaderWidgets}>
+              <div className={styles.HeaderWidgetsGroup}>
+                <div className={styles.HeaderCart}>
+                  <Link to='/cart'>
+                    <CartWidget />
+                  </Link>
+                  <span className={styles.Counter}>0</span>
+                </div>
+                <SearchWidget />
               </div>
-              <SearchWidget />
+              <div className={styles.HeaderWidgetsGroup}>
+                <Link to="/login">
+                  <LoginWidget style={{ cursor: "pointer" }} />
+                </Link>
+                {
+                  viewportWidth <= BURGER_BREAKPOINT &&
+                  <BurgerBtn onClick={handleMenu} />
+                }
+              </div>
             </div>
-            <div className={styles.HeaderWidgetsGroup}>
-              <Link to="/login">
-                <LoginWidget style={{cursor: "pointer"}}/>
-              </Link>
-              {
-                viewportWidth <= BURGER_BREAKPOINT &&
-                <BurgerBtn onClick={handleMenu} />
-              }
-            </div>
-          </div>
         </div>
       </Container>
     </header>
