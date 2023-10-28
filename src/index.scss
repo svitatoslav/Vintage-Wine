@@ -106,7 +106,9 @@ input {
 ::placeholder {
     color: $main-color;
 }
-
+#root {
+    overflow-x: hidden;
+}
 .vvMainBtn,
 .vvReadBtn {
     display: inline-block;

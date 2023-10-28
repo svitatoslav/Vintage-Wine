@@ -5,16 +5,8 @@
     padding: 0 20px;
     margin: 0 auto;
 
-    @media screen and (min-width: $tablet) {
-        padding: 0 64px;
-    }
-
-    @media screen and (min-width: $tablet-lg) {
-        max-width: 960px;
-        padding: 0;
-    }
-
     @media screen and (min-width: $desktop) {
         max-width: 1162px;
+         padding: 0;
     }
 }

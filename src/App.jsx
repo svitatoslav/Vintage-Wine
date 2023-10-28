@@ -29,15 +29,15 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/catalog" element={<Catalog />} />
-                    <Route path="/catalog/:slug" element={<SingleCatalog />} />
-                    <Route path="/shop" element={<Shop />} />
-                    <Route path="/news" element={<News />} />
-                    <Route path="/delivery" element={<DeliveryAndPayment />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/cart" element={<Cart />} />
+                    <Route path="home" element={<Home />} />
+                    <Route path="about" element={<About />} />
+                    <Route path="catalog" element={<Catalog />} />
+                    <Route path="catalog/:slug" element={<SingleCatalog />} />
+                    <Route path="shop" element={<Shop />} />
+                    <Route path="news" element={<News />} />
+                    <Route path="delivery" element={<DeliveryAndPayment />} />
+                    <Route path="contacts" element={<Contact />} />
+                    <Route path="cart" element={<Cart />} />
                     <Route path="*" element={<NoPage />} />
                 </Route>
             </Routes>
