@@ -1,15 +1,10 @@
 import styles from './Title.module.scss'
 
 
-const SubTitle = ({text, type}) => {
-    let titleStyle = styles.vvSubTitle
-
-    if (type === "bigSub") {
-        titleStyle = styles.vvBigSubTitle
-    }
+const SubTitle = ({text}) => {
 
     return (
-        <h3  data-testid="subTitle" className={titleStyle}>{text}</h3>
+        <h3  data-testid="subTitle" className={styles.vvSubTitle}>{text}</h3>
     )
 }
 

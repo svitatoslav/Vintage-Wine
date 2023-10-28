@@ -19,6 +19,7 @@ const Catalog = () => {
                         <span className="vvSubTitle">Our</span>Catalog
                     </h3>
                 </div>
+
                 <CustomSlider sliderArray={catalog} type="CATALOG" toShow={4} toScroll={ 1} />
             </Container>
         </section>

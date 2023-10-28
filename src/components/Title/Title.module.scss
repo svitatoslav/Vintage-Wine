@@ -5,23 +5,25 @@
   font-size: 30px;
   font-weight: 400;
   color: $main-color;
-
+  margin-bottom: 50px;
 
   @media screen and (min-width: $tablet) {
     font-size: 50px;
   }
   @media screen and (min-width: $tablet-xlg) {
     font-size: 70px;
+    margin-bottom: 60px;
   }
 }
 
 .vvSubTitle {
   font-size: 25px;
   font-weight: 400;
-
   color: $btn-bg;
+  display: block;
   @media screen and (min-width: $tablet) {
     font-size: 40px;
+
   }
 }
 
@@ -43,18 +45,5 @@
 
 }
 
-.vvBigSubTitle {
-    font-size: 30px;
-  max-width: 220px;
 
-  @media screen and (min-width: $tablet) {
-    font-size: 50px;
-  }
-
-  @media screen and (min-width: $desktop) {
-    font-size: 100px;
-    line-height: 120px;
-  }
-
-}
 
