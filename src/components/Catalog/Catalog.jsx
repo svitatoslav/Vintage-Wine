@@ -4,6 +4,7 @@ import { fetchCatalogThunk } from '../../redux/reducers/catalog-reducer';
 
 import Container from './../Container/Container';
 import CustomSlider from '../CustomSlider/CustomSlider';
+import SectionTitle from './../Title/SectionTitle';
 
 const Catalog = () => {
     const dispatch = useDispatch();
@@ -14,13 +15,8 @@ const Catalog = () => {
     return (
         <section>
             <Container>
-                <div className="vvWrapperTitle">
-                    <h3 className="vvSectionTitle">
-                        <span className="vvSubTitle">Our</span>Catalog
-                    </h3>
-                </div>
-
-                <CustomSlider sliderArray={catalog} type="CATALOG" toShow={4} toScroll={ 1} />
+                <SectionTitle secText={'Catalog'} subText={'Our'} />
+                <CustomSlider sliderArray={catalog} type="CATALOG" toShow={4} toScroll={1} />
             </Container>
         </section>
     );
