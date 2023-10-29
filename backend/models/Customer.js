@@ -7,15 +7,15 @@ const CustomerSchema = new Schema(
   {
     customerNo: {
       type: String,
-      required: true
+      required: false //
     },
     firstName: {
       type: String,
-      required: true
+      required: false //
     },
     lastName: {
       type: String,
-      required: true
+      required: false //
     },
     login: {
       type: String,
@@ -49,7 +49,7 @@ const CustomerSchema = new Schema(
     enabled: {
       type: Boolean,
       required: true,
-      default: true
+      default: false //
     },
     date: {
       type: Date,
