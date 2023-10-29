@@ -1,0 +1,14 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.ShopFilterBarAllFilter {
+    @include flex-ac;
+    cursor: pointer;
+     p {
+        font-family: $secondary-font;
+        font-weight: 400;
+        font-size: 15px;
+        margin-right: 10px;
+        line-height: 18px;
+     }
+}
