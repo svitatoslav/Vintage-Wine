@@ -22,5 +22,15 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
+        "indent": ["error", 2],
+        "semi": ["error", "always"],
+        "quotes": ["error", "single"],
+        "max-len": ["error", { "code": 80 }],
+        "no-var": "error",
+        "max-params": ["error", 3],
+        "no-unused-vars": "error",
+        "no-eval": "error",
+        "prefer-arrow-callback": "error",
+        "prefer-destructuring": "error"
+      }
     }
-}
