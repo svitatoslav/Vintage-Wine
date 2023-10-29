@@ -14,6 +14,8 @@ import sacura from "/imageProject/shoping/sacura.png";
 import white_label from "/imageProject/shoping/white-label.png";
 import yellow_wine from "/imageProject/shoping/yellow-wine.png";
 import Filtration from "../../components/Filtaration/Filtaration";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Shop = () => {
   const links = ["Wine", "Sparkling", "Whiskey", "Strong", "Beer", "Ciders"];
@@ -21,8 +23,9 @@ const Shop = () => {
   const smallImages_two = [brandy, legis, rasteau, sacura];
   const smallImages_three = [yellow_wine, esprit, gautherot, heinken];
 
+
+
   //   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   //   useEffect(() => {
   //     async function fetchData() {
@@ -62,45 +65,31 @@ const Shop = () => {
               </li>
             ))}
           </ul>
-        <Filtration />
+          <Filtration />
       </div>
       <div className={styles.ShopImagesContainer}>
         <div className={styles.ShopImagesPortionOne}>
-          <img src={caberne} alt= "Big Image"/>
+        <LazyLoadImage img src={caberne} alt= "Big Image" effect="blur"/>
+          
           <div className={styles.ShopImagesSmall_One}>
             {smallImages_one.map((path, index) => (
-              <img
-                key={index}
-                src={path}
-                alt={`Image ${index + 1}`}
-                loading="lazy"
-              />
+              <LazyLoadImage key={index} src={path} alt={`Image ${index + 1}`} effect="blur"/>
             ))}
           </div>
         </div>
         <div className={styles.ShopImagesPortionTwo}>
-          <img src={jac} alt="Big Image"/>
+        <LazyLoadImage img src={jac} alt= "Big Image" effect="blur"/>
           <div className={styles.ShopImagesSmall_Two}>
               {smallImages_two.map((path, index) => (
-                <img
-                  key={index}
-                  src={path}
-                  alt={`Image ${index + 1}`}
-                  loading="lazy"
-                />
+                <LazyLoadImage key={index} src={path} alt={`Image ${index + 1}`} effect="blur"/>
               ))}
           </div>
         </div>
         <div className={styles.ShopImagesPortionThree}>
-          <img src={white_label} alt="Big Image"/>
+        <LazyLoadImage src={white_label} alt= "Big Image" effect="blur"/>
           <div className={styles.ShopImagesSmall_Three}>
             {smallImages_three.map((path, index) => (
-              <img
-                key={index}
-                src={path}
-                alt={`Image ${index + 1}`}
-                loading="lazy"
-              />
+              <LazyLoadImage key={index} src={path} alt={`Image ${index + 1}`} effect="blur"/>
             ))}
           </div>
         </div>
