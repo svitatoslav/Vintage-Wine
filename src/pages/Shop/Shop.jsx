@@ -47,12 +47,9 @@ const Shop = () => {
     <div className={styles.ShopContainer}>
       <h1 className={styles.ShopParagraph}>Our Shop</h1>
       <div className={styles.ShopBreadCrumbs}>
-        Home <ShopBreadCramp /> Shop (in developmnet)
+        Home <ShopBreadCramp /> Shop (will be added)
       </div>
       <div className={styles.ShopFilterBar}>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
           <ul className={styles.ShopFilterBarItems}>
             {/* {data.map((item) => (
               <li key={item.id}>
@@ -65,7 +62,6 @@ const Shop = () => {
               </li>
             ))}
           </ul>
-        )}
         <div className={styles.ShopFilterBarAllFilter}>
           <p>All filters</p>
           <ShopFilterIcon />

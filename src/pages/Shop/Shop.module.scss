@@ -1,18 +1,12 @@
 @import '../../assets/variables/variables';
 @import '../../assets/mixins/mixins';
 
-// $mobile: 340px;
-// $tablet: 460px;
-// $tablet-lg: 640px;
-// $tablet-xlg: 960px;
-// $desktop: 1160px;
-
 .ShopContainer {
+    // width: 100vh;
+    height: auto;
     @include flex-ac-col-c;
-    width: 100%;
     color: $main-color;
     font-weight: 400;
-    height: auto;
     margin-bottom: 40px;
 
     @media screen and (min-width: $mobile) {
@@ -55,12 +49,14 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            margin-bottom: 20px;
             img {
                 width: 340px;
                 height: 446px;
             }
         }
         .ShopImagesSmall_One {
+            width: 100vw;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -74,17 +70,20 @@
         }
 
         .ShopImagesPortionTwo {
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            margin-bottom: 20px;
             img {
                 width: 340px;
                 height: 446px;
             }
         }
         .ShopImagesSmall_Two {
+            width: 100vw;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -120,58 +119,61 @@
         }    
 
         .ShopImagesPortionOne {
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            margin-bottom: 20px;
             img {
                 width: 383px;
                 height: 502px;
             }
         }
         .ShopImagesSmall_One {
+            width: 100vw;
             display: flex;
-            width: 100%;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            column-gap: 4%;
-            row-gap: 2%;
+            gap: 10px;
             margin-bottom: 10px;
             img {
-                width: 240px;
-                height: 244px;
+                width: 209px;
+                height: 200px;
             }
         }
 
         .ShopImagesPortionTwo {
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            margin-bottom: 20px;
             img {
                 width: 383px;
                 height: 502px;
             }
         }
         .ShopImagesSmall_Two {
+            width: 100vw;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            column-gap: 4%;
-            row-gap: 2%;
+            gap: 10px;
             margin-bottom: 10px;
             img {
-                width: 240px;
-                height: 244px;
+                width: 209px;
+                height: 200px;
             }
         }
-       
+
         .ShopImagesPortionThree {
-             display: none;
+            display: none;
         }
          
     }
@@ -239,7 +241,7 @@
             }
         }
         .ShopImagesSmall_One {
-            width: 50em;
+            width: 37vw;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -270,7 +272,7 @@
             }
         }
         .ShopImagesSmall_Two {
-            width: 50em;
+            width: 37vw;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -300,7 +302,7 @@
             }
         }
         .ShopImagesSmall_Three {
-            width: 50em;
+            width: 37vw;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -319,67 +321,117 @@
     }
 
     @media screen and (min-width: $tablet-xlg) {
+        .ShopImagesContainer {
+            margin-top: 7%;
+        }
+        .ShopFilterBar {
+            max-width: 75%;
+        }
         .ShopImagesPortionOne {
             img {
-                width: 535px;
-                height: 680px;
+                min-width: 535px;
+                min-height: 680px;
             }
         }
         .ShopImagesSmall_One {
                 img {
-                    width: 295px;
-                    height: 335px;
+                    min-width: 295px;
+                    min-height: 335px;
                 }
             }
-        }
-
-        .ShopImagesPortionTwo {
+        .ShopImagesPortionTwo{
             img {
-                width: 535px;
-                height: 680px;
+                min-width: 535px;
+                min-height: 680px;
             }
         }
-        .ShopImagesSmall_Two {
+        .ShopImagesSmall_Two{
             img {
-                width: 295px;
-                height: 335px;
+                min-width: 295px;
+                min-height: 335px;
             }
         }
-       
-        .ShopImagesPortionThree {
+        .ShopImagesPortionThree{
             img {
-                width: 535px;
-                height: 680px;
+                min-width: 535px;
+                min-height: 680px;
             }
         }
-        .ShopImagesSmall_Three {
+        .ShopImagesSmall_Three{
             img {
-                width: 295px;
-                height: 335px;
+                min-width: 295px;
+                min-height: 335px;
             }
+        }    
         }
-    }
-
+    
     @media screen and (min-width: $desktop) {
-        .ShopFilterBar {
-            width: 46%!important;
-        }
-        .ShopImagesSmall_One {
-            :nth-last-child(n+1):nth-last-child(-n+2) {
-                display: block!important;
+            .ShopImagesContainer{
+                width: 100vw;
+                margin-top: 12%;
             }
-        }
-        .ShopImagesSmall_Two {
-            :nth-last-child(n+1):nth-last-child(-n+2) {
-                display: block!important;
+            .ShopImagesPortionOne{
+                max-width: 100vw;
+                width: 100%;
+                :nth-last-child(n+1):nth-last-child(-n+2) {
+                    display: block;
+                }
             }
-        }
-        .ShopImagesSmall_Three {
-            :nth-last-child(n+1):nth-last-child(-n+2) {
-                display: block!important;
+            .ShopImagesSmall_One{
+                min-width: 50%;
+                height: 93vh;
+                display: flex!Important;
+                column-gap: 2%;
+                row-gap: 0%;
+                flex-direction: row;
+                img {
+                    min-width: 280px;
+                    min-height: 320px;
+                }
             }
-        }
+            .ShopImagesPortionTwo{
+                display: flex;
+                flex-direction: row-reverse;
+                width: 91%;
+                :nth-last-child(n+1):nth-last-child(-n+2) {
+                    display: block;
+                }
+            }
+            .ShopImagesSmall_Two{
+                min-width: 50%;
+                height: 93vh;
+                display: flex!Important;
+                column-gap: 2%;
+                row-gap: 0%;
+                flex-direction: row-reverse;
+                img {
+                    min-width: 288px;
+                    min-height: 328px;
+                }
+            }
+            .ShopImagesPortionThree{
+                width: 100%;
+                :nth-last-child(n+1):nth-last-child(-n+2) {
+                    display: block;
+                }
+            }
+            .ShopImagesSmall_Three{
+                min-width: 50%;
+                height: 93vh;
+                display: flex!Important;
+                column-gap: 2%;
+                row-gap: 0%;
+                flex-direction: row;
+                img {
+                    min-width: 288px;
+                    min-height: 328px;
+                }
+            }
+        } 
     }
+
+           
+
 
 
 
