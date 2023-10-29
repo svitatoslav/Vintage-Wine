@@ -7,12 +7,13 @@ import Facebook from "./icon/facebook.svg?react";
 import SearchFooter from "./icon/search.svg?react";
 import { Link } from "react-router-dom";
 import Container from "./../Container/Container";
+import Navigation from "../Navigation/Navigation";
 
 const Footer = () => {
   return (
     <footer className={styles.Footer}>
       <Container>
-        <div className={styles.FooterInfo}>
+        <section className={styles.FooterInfo}>
           <div className={styles.FooterContainer}>
             <div className={styles.FooterLogo}>
               <Logo className={styles.FooterImage} />
@@ -20,46 +21,7 @@ const Footer = () => {
 
             <div className={styles.MenuLocation}>
               <div className={styles.FooterMenu}>
-                <ul className={styles.FooterNav}>
-                  <li className={styles.FooterItem}>
-                    <Link to="/home" className={styles.FooterLink}>
-                      Home
-                    </Link>
-                  </li>
-                  <li className={styles.FooterItem}>
-                    <Link to="/about_as" className={styles.FooterLink}>
-                      About us
-                    </Link>
-                  </li>
-                  <li className={styles.FooterItem}>
-                    <Link to="/our_collections" className={styles.FooterLink}>
-                      Our collections
-                    </Link>
-                  </li>
-                  <li className={styles.FooterItem}>
-                    <Link to="/shop" className={styles.FooterLink}>
-                      Shop
-                    </Link>
-                  </li>
-                  <li className={styles.FooterItem}>
-                    <Link to="/news" className={styles.FooterLink}>
-                      News
-                    </Link>
-                  </li>
-                  <li className={styles.FooterItem}>
-                    <Link
-                      to="/delivery_and_payment"
-                      className={styles.FooterLink}
-                    >
-                      Delivery and payment
-                    </Link>
-                  </li>
-                  <li className={styles.FooterItem}>
-                    <Link to="/contacts" className={styles.FooterLink}>
-                      Contacts
-                    </Link>
-                  </li>
-                </ul>
+                    <Navigation isFootNav />
               </div>
 
               <div className={styles.Location}>
@@ -122,7 +84,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-        </div>
+        </section>
         <div className={styles.Copywriting}>
           <p className={styles.CopywritingText}>All rights reserved@2023</p>
         </div>

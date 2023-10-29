@@ -4,11 +4,12 @@ import styles from './Navigation.module.scss';
 import { pages } from '../../assets/pages';
 import cn from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
+import classNames from 'classnames';
 
 
-const Navigation = ({ mobile }) => {
+
+const Navigation = ({ mobile, isFootNav }) => {
   const { pathname } = useLocation();
-
   const links = pages?.map(({text, url}, i) => {
     
     return (
@@ -31,11 +32,12 @@ const Navigation = ({ mobile }) => {
 
   return (
     <nav>
-      <ul className={cn(styles.NavigationList, { [styles.NavigationBurger]: mobile })} data-testid="Navigation">
+      <ul className={cn(styles.NavigationList,  {[styles.FooterNav]:isFootNav}, { [styles.NavigationBurger]: mobile})} data-testid="Navigation">
         {links}
       </ul>
     </nav>
   );
+  
 }
 
 Navigation.propTypes = {
