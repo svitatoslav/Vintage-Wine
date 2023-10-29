@@ -2,13 +2,14 @@
 @import '../../assets/mixins/mixins';
 
 .DropdownMenu {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
-    z-index: 5;
-    min-height: 100vh;
+    z-index: 100;
+    overflow-y: auto;
+    min-height: 100%;
 }
 
 .DropdownHidden {

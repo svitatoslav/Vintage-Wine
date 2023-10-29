@@ -106,13 +106,9 @@ input {
 ::placeholder {
     color: $main-color;
 }
-
-.wrapper {
-    max-width: 100%;
-    width: 1200px;
-    margin: 0 auto;
+#root {
+    overflow-x: hidden;
 }
-
 .vvMainBtn,
 .vvReadBtn {
     display: inline-block;
@@ -132,7 +128,8 @@ input {
 }
 .vvPageTitle {
     font-size: 70px;
-    margin-bottom: 30px;
+    margin: 70px auto 30px;
+    text-align: center;
 }
 .vvWrapperTitle {
     @include flex-cc;

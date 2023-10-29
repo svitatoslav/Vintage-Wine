@@ -1,21 +1,27 @@
 import  styles from './Button.module.scss'
- const Button = ({text, onClick, type}) => {
-    let ButtonClass = styles.Button
+import cn from "classnames";
 
-     if (type === 'readAll') {
-         ButtonClass = styles.ReadAllBtn;
-     } else if (type === 'readMore') {
-         ButtonClass = styles.ReadMoreBtn;
-     } else if (type === 'addToCart') {
-         ButtonClass = styles.AddToCartBtn;
-     } else if (type === 'WideButton') {
-         ButtonClass = styles.WideButton;
-     }
+const buttonVariant = {
+    small: styles.Small,
+    smallAdaptive: styles.SmallAdaptive,
+    medium: styles.Medium,
+    wide: styles.WideButton,
+    xSmall: styles.xSmall,
+    default: styles.Button,
+    big: styles.BigButton
+}
 
+const buttonColor = {
+    primary: styles.Primary,
+    secondary: styles.Secondary
+
+
+}
+ const Button = ({text, onClick, type = "default", color = "primary", isDisabled = false}) => {
 
     return (
-        <button data-testid="Button" className={ButtonClass} onClick={onClick}>{text}</button>
+        <button disabled={isDisabled} data-testid="Button" className={cn(buttonVariant[type], buttonColor[color] )} onClick={onClick}>{text}</button>
     )
 }
 
-export default Button
+export default Button;

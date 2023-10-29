@@ -11,7 +11,6 @@ import classNames from 'classnames';
 const Navigation = ({ mobile, isFootNav }) => {
   const { pathname } = useLocation();
   const links = pages?.map(({text, url}, i) => {
-    
     return (
       <li key={i}>
         <Link 

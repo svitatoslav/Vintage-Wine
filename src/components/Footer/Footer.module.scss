@@ -1,10 +1,12 @@
-@import "./../../assets/mixins/mixins";
-@import "./../../assets/variables/variables";
+@import './../../assets/mixins/mixins';
+@import './../../assets/variables/variables';
 
 .Footer {
   width: 100%;
   background-color: #5b0007;
   padding-top: 18px;
+  position: relative;
+  z-index: 20;
 
   @media (min-width: $tablet-xlg) and (max-width: $desktop) {
     padding-top: 50px;
@@ -96,7 +98,7 @@
   }
 }
 .FooterMenu {
-  margin-bottom: 18px;
+    margin-bottom: 18px;
 
   @media (min-width: $mobile) and (max-width: $tablet) {
     width: 100%;
@@ -146,39 +148,39 @@
   }
 }
 .LocationTitle {
-  font-size: 20px;
-  padding-bottom: 20px;
+    font-size: 20px;
+    padding-bottom: 20px;
 }
 // .LocationAddress {
 // }
 .AddressInfo {
-  display: flex;
-  padding-bottom: 20px;
+    display: flex;
+    padding-bottom: 20px;
 }
 .AddressText {
-  width: 100%;
-  padding-left: 2px;
+    width: 100%;
+    padding-left: 2px;
 }
 .SearchCopywriting {
-  @media (min-width: $tablet) and (max-width: $tablet-lg) {
-    @include flex-ac;
-    justify-content: space-evenly;
-  }
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        @include flex-ac;
+        justify-content: space-evenly;
+    }
 }
 .SearchNetwork {
-  @media (min-width: $mobile) and (max-width: $tablet) {
-    @include flex-ac;
-    justify-content: space-evenly;
-  }
-  @media (min-width: $tablet) and (max-width: $tablet-lg) {
-    @include flex-ac;
-    justify-content: space-evenly;
-  }
+    @media (min-width: $mobile) and (max-width: $tablet) {
+        @include flex-ac;
+        justify-content: space-evenly;
+    }
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        @include flex-ac;
+        justify-content: space-evenly;
+    }
 }
 .Search {
-  @include flex-ac;
-  justify-content: space-evenly;
-  margin-bottom: 30px;
+    @include flex-ac;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
 
   @media (min-width: $mobile) and (max-width: $tablet) {
     display: grid;
@@ -201,7 +203,7 @@
   }
 }
 .SearchTitle {
-  font-size: 20px;
+    font-size: 20px;
 
   @media (min-width: $mobile) and (max-width: $tablet) {
     margin-bottom: 18px;
@@ -225,15 +227,15 @@
   width: 207px;
 }
 .SearchInput {
-  padding: 16px;
-  font-size: 14px;
-  color: #c7c7c7;
+    padding: 16px;
+    font-size: 14px;
+    color: #c7c7c7;
 }
 .SearchLogo {
-  background-color: $main-color;
-  width: 49px;
-  height: 41px;
-  padding: 12px;
+    background-color: $main-color;
+    width: 49px;
+    height: 41px;
+    padding: 12px;
 }
 .Network {
   @media (min-width: $tablet) and (max-width: $tablet-lg) {
@@ -241,24 +243,24 @@
   }
 }
 .NetworkNav {
-  @include flex-cc;
-  padding-bottom: 28px;
+    @include flex-cc;
+    padding-bottom: 28px;
 
-  @media (min-width: $mobile) and (max-width: $tablet) {
-    padding-bottom: 0;
-  }
+    @media (min-width: $mobile) and (max-width: $tablet) {
+        padding-bottom: 0;
+    }
 }
 // .NetworkItem {
 // }
 // .NetworkLink {
 // }
 .NetworkLogo {
-  margin-inline: 6px;
+    margin-inline: 6px;
 }
 .Copywriting {
-  display: none;
-  text-align: center;
-  padding-bottom: 28px;
+    display: none;
+    text-align: center;
+    padding-bottom: 28px;
 
   @media (min-width: $mobile) and (max-width: $tablet) {
     display: block;
