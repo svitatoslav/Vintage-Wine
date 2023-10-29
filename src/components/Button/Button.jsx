@@ -24,4 +24,4 @@ const buttonColor = {
     )
 }
 
-export default Button
+export default Button;

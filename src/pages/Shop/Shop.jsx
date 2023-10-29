@@ -1,5 +1,4 @@
 import styles from "./Shop.module.scss";
-import ShopFilterIcon from "./icons/ShopPlus.svg?react";
 import ShopBreadCramp from "./icons/BreadCramp.svg?react";
 import { useState } from "react";
 import caberne from "/imageProject/shoping/caberne.png";
@@ -14,6 +13,7 @@ import rasteau from "/imageProject/shoping/rasteau.png";
 import sacura from "/imageProject/shoping/sacura.png";
 import white_label from "/imageProject/shoping/white-label.png";
 import yellow_wine from "/imageProject/shoping/yellow-wine.png";
+import Filtration from "../../components/Filtaration/Filtaration";
 
 const Shop = () => {
   const links = ["Wine", "Sparkling", "Whiskey", "Strong", "Beer", "Ciders"];
@@ -62,10 +62,7 @@ const Shop = () => {
               </li>
             ))}
           </ul>
-        <div className={styles.ShopFilterBarAllFilter}>
-          <p>All filters</p>
-          <ShopFilterIcon />
-        </div>
+        <Filtration />
       </div>
       <div className={styles.ShopImagesContainer}>
         <div className={styles.ShopImagesPortionOne}>
