@@ -6,6 +6,9 @@
   font-weight: 400;
   color: $main-color;
   margin-bottom: 50px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
 
   @media screen and (min-width: $tablet) {
     font-size: 50px;

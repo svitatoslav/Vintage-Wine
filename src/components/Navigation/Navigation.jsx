@@ -10,7 +10,6 @@ const Navigation = ({ mobile }) => {
   const { pathname } = useLocation();
 
   const links = pages?.map(({text, url}, i) => {
-    
     return (
       <li key={i}>
         <Link 

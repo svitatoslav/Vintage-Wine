@@ -6,9 +6,8 @@ import History from '../../components/History/History';
 const Home = () => {
     return (
         <main>
-            <Cover/>
             <Collections />
-            <History/>
+            <History />
             <Catalog />
         </main>
     );
