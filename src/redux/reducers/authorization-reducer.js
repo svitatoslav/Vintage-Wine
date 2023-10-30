@@ -1,9 +1,11 @@
 const SET_USER = 'SET_USER';
 const SET_TOKEN = 'SET_TOKEN';
+const SIGN_IN = 'SIGN_IN';
 
 const initialState = {
   user: null,
   token: null,
+  isSigned: false,
 };
 
 const authorizationReducer = (state = initialState, action) => {
@@ -18,6 +20,11 @@ const authorizationReducer = (state = initialState, action) => {
       ...state,
       token: action.payload,
     };
+  case SIGN_IN:
+    return {
+      ...state,
+      isSigned: !state.isSigned,
+    };
   default:
     return state;
   }
@@ -31,6 +38,10 @@ export const setUserAC = (user) => ({
 export const setTokenAC = (token) => ({
   type: SET_TOKEN,
   payload: token,
+});
+
+export const signInAC = () => ({
+  type: SIGN_IN,
 });
 
 export default authorizationReducer;

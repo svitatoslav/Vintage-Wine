@@ -10,6 +10,7 @@ import axios from 'axios';
 import {
   setTokenAC,
   setUserAC,
+  signInAC,
 } from '../../redux/reducers/authorization-reducer';
 import Button from '../Button/Button';
 import loginValidationSchema from '../../validation/loginValidationSchema';
@@ -18,8 +19,9 @@ import styles from './LoginForm.module.scss';
 
 function LoginForm({ isLogin, formTexts, onLogin }) {
   const isLogged = useSelector((state) => state.user.user);
+  const isSigned = useSelector((state) => state.user.isSigned);
   const dispatch = useDispatch();
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
 
   if (isLogged) {
     return <Navigate to="/" />;
@@ -45,16 +47,15 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
           dispatch(setTokenAC(res.data.token));
           dispatch(setUserAC(res.data.user));
         })
-        // .catch((err) => console.log(...Object.values(err.response.data)));
         .catch((err) => {
           setError(...Object.values(err.response.data));
           setTimeout(() => {
-            setError(null);
+            setError('');
           }, 4000);
         });
     } else {
       axios.post('http://127.0.0.1:4000/api/customers/', regValues)
-        .then((res) => console.log(res))
+        .then(() => dispatch(signInAC()))
         .catch((err) => console.log(err));
     }
     resetForm(initialValues);
@@ -71,7 +72,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
         <Form className={styles.LoginForm}>
           <h4 className={styles.LoginTitle}>{formTexts.title}</h4>
           <div className={styles.LoginFields}>
-            {isLogin ? (
+            { isLogin ? (
               <>
                 <Field
                   className={styles.LoginInput}
@@ -123,24 +124,30 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
               component="div"
             />
           </div>
-          <div className={styles.FormError}>{error}</div>
+          {(error && isLogin) && (
+            <div className={styles.FormError}>
+              {error}
+            </div>
+          )}
           <Button
             type="submit"
             text={formTexts.button}
             disabled={isSubmitting}
           />
-          <div>
-            <span className={styles.LoginOptionText}>
-              {`${formTexts.option} `}
-            </span>
-            <button
-              type="button"
-              className={styles.LoginOption}
-              onClick={onLogin}
-            >
-              {formTexts.otherButton}
-            </button>
-          </div>
+          {!isSigned && (
+            <div>
+              <span className={styles.LoginOptionText}>
+                {`${formTexts.option} `}
+              </span>
+              <button
+                type="button"
+                className={styles.LoginOption}
+                onClick={onLogin}
+              >
+                {formTexts.otherButton}
+              </button>
+            </div>
+          )}
         </Form>
       )}
     </Formik>

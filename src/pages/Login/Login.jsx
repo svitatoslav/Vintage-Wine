@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import styles from './Login.module.scss';
+import { useSelector } from 'react-redux';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import PageTitle from '../../components/Title/PageTitle';
 import Container from '../../components/Container/Container';
+import styles from './Login.module.scss';
 
 function Login() {
   const [isLogin, setIsLogin] = useState(false);
+  const isSigned = useSelector((state) => state.user.isSigned);
 
   const handleLogin = () => setIsLogin(!isLogin);
 
-  const formTexts = isLogin
+  const formTexts = isSigned || isLogin
     ? {
       title: 'Login authorization',
       option: 'Create an account ',
@@ -33,7 +35,7 @@ function Login() {
           <div className={styles.LiginImg} />
           <div className={styles.Login} data-testid="Login">
             <LoginForm
-              isLogin={isLogin}
+              isLogin={isLogin || isSigned}
               formTexts={formTexts}
               onLogin={handleLogin}
             />
