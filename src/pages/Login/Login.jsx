@@ -25,7 +25,7 @@ function Login() {
 
   return (
     <Container>
-      <div className={styles.LoginWrapper}>
+      <section className={styles.LoginWrapper}>
         <PageTitle>
           {formTexts.button}
         </PageTitle>
@@ -39,7 +39,7 @@ function Login() {
             />
           </div>
         </div>
-      </div>
+      </section>
     </Container>
   );
 }
