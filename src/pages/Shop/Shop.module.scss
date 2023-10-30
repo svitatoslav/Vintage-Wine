@@ -2,13 +2,13 @@
 @import '../../assets/mixins/mixins';
 
 .ShopContainer {
-    // width: 100vh;
+    width: 100%;
     height: auto;
     @include flex-ac-col-c;
     color: $main-color;
     font-weight: 400;
     margin-bottom: 40px;
-
+    
     @media screen and (min-width: $mobile) {
         .ShopParagraph {
             font-family: $main-font;
@@ -50,6 +50,7 @@
             justify-content: center;
             gap: 10px;
             margin-bottom: 20px;
+            padding: 1%;
             img {
                 width: 340px;
                 height: 446px;
@@ -77,6 +78,7 @@
             justify-content: center;
             gap: 10px;
             margin-bottom: 20px;
+            padding: 1%;
             img {
                 width: 340px;
                 height: 446px;
@@ -132,15 +134,15 @@
             }
         }
         .ShopImagesSmall_One {
-            width: 100vw;
+            width: 100%; 
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             margin-bottom: 10px;
             img {
-                width: 209px;
+                width: 200px;
                 height: 200px;
             }
         }
@@ -159,15 +161,15 @@
             }
         }
         .ShopImagesSmall_Two {
-            width: 100vw;
+            width: 100%; 
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             margin-bottom: 10px;
             img {
-                width: 209px;
+                width: 200px;
                 height: 200px;
             }
         }
@@ -187,7 +189,7 @@
             @include flex-cc;
         }
         .ShopFilterBar {
-            width: 97%;
+            width: 90%;
             @include flex-ac-sb;
             margin-top: 25px;
             margin-bottom: 20px;
@@ -226,35 +228,38 @@
         .ShopFilterBarAllFilter {
             margin-left: 20px;
         }
+        .ShopImagesContainer {
+            width: 92%;
+        }
         .ShopImagesPortionOne {
+            width: 100%;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
             gap: 3px;
-            margin-bottom: 20px;
             img {
-                // margin-left: 5%;
-                width: 383px;
-                height: 502px;
+                width: 351px;
+                height: 500px;
             }
         }
         .ShopImagesSmall_One {
-            width: 37vw;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
             column-gap: 7%;
             row-gap: 2%;
             margin-bottom: 10px;
             img {
                 width: 240px;
-                height: 244px;
+                height: 251px;
             }
-            :nth-last-child(n+1):nth-last-child(-n+2) {
-                display: none;
-            }
+            span {
+                &:nth-last-child(-n + 2) {
+                    img {
+                        display: none;
+                      }
+                }
+            } 
         }
 
         .ShopImagesPortionTwo {
@@ -265,167 +270,189 @@
             gap: 3px;
             margin-bottom: 20px;
             img {
-                // margin-left: 5%;
-                width: 383px;
+                width: 351px;
                 height: 502px;
             }
         }
         .ShopImagesSmall_Two {
-            width: 37vw;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
             column-gap: 7%;
             row-gap: 2%;
             margin-bottom: 10px;
             img {
                 width: 240px;
-                height: 244px;
+                height: 251px;
             }
-            :nth-last-child(n+1):nth-last-child(-n+2) {
-                display: none;
-            }
+            span {
+                &:nth-last-child(-n + 2) {
+                    img {
+                        display: none;
+                      }
+                }
+            } 
         }
-       
         .ShopImagesPortionThree {
+            width: 100%;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
             gap: 3px;
+            margin-bottom: 20px;
+            padding: 1%;
             img {
-                // margin-left: 5%;
-                width: 383px;
+                width: 351px;
                 height: 502px;
             }
         }
         .ShopImagesSmall_Three {
-            width: 37vw;
+            width: 100%;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
             align-items: center;
+            flex-direction: column;
             column-gap: 7%;
             row-gap: 2%;
             margin-bottom: 10px;
             img {
                 width: 240px;
-                height: 244px;
+                height: 251px;
             }
-            :nth-last-child(n+1):nth-last-child(-n+2) {
-                display: none;
-            }
+            span {
+                &:nth-last-child(-n + 2) {
+                    img {
+                        display: none;
+                      }
+                }
+            } 
         }
+        
     }
 
     @media screen and (min-width: $tablet-xlg) {
         .ShopImagesContainer {
             margin-top: 7%;
+            width: 700px;
         }
         .ShopFilterBar {
-            max-width: 75%;
+            width: 75%;
         }
         .ShopImagesPortionOne {
             img {
-                min-width: 535px;
-                min-height: 680px;
+                width: 383px;
+                height: 502px;
             }
         }
         .ShopImagesSmall_One {
                 img {
-                    min-width: 295px;
-                    min-height: 335px;
+                    width: 240px;
+                    height: 251px;
                 }
             }
         .ShopImagesPortionTwo{
+            flex-direction: row-reverse;
             img {
-                min-width: 535px;
-                min-height: 680px;
+                width: 383px;
+                height: 502px;
             }
         }
         .ShopImagesSmall_Two{
             img {
-                min-width: 295px;
-                min-height: 335px;
+                width: 240px;
+                height: 251px;
             }
         }
         .ShopImagesPortionThree{
             img {
-                min-width: 535px;
-                min-height: 680px;
+                width: 383px;
+                height: 502px;
             }
         }
         .ShopImagesSmall_Three{
             img {
-                min-width: 295px;
-                min-height: 335px;
+                width: 240px;
+                height: 251px;
             }
         }    
         }
     
     @media screen and (min-width: $desktop) {
             .ShopImagesContainer{
-                width: 100vw;
-                margin-top: 12%;
+                width: 1260px;
+            }
+            .ShopFilterBar {
+                width: 56%;
             }
             .ShopImagesPortionOne{
-                max-width: 100vw;
-                width: 100%;
-                :nth-last-child(n+1):nth-last-child(-n+2) {
-                    display: block;
+                img {
+                    width: 500px;
+                    height: 650px;
                 }
+                span {
+                    &:nth-last-child(-n + 2) {
+                        img {
+                            display: block;
+                          }
+                    }
+                } 
             }
             .ShopImagesSmall_One{
-                min-width: 50%;
-                height: 93vh;
-                display: flex!Important;
-                column-gap: 2%;
-                row-gap: 0%;
+                width: 1000px;
+                display: flex;
                 flex-direction: row;
+                flex-wrap: wrap;
                 img {
-                    min-width: 280px;
-                    min-height: 320px;
+                    width: 295px;
+                    height: 335px;
                 }
             }
             .ShopImagesPortionTwo{
-                display: flex;
-                flex-direction: row-reverse;
-                width: 91%;
-                :nth-last-child(n+1):nth-last-child(-n+2) {
-                    display: block;
+                img {
+                    width: 500px;
+                    height: 650px;
                 }
+                span {
+                    &:nth-last-child(-n + 2) {
+                        img {
+                            display: block;
+                          }
+                    }
+                } 
             }
             .ShopImagesSmall_Two{
-                min-width: 50%;
-                height: 93vh;
-                display: flex!Important;
-                column-gap: 2%;
-                row-gap: 0%;
-                flex-direction: row-reverse;
+                width: 1000px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
                 img {
-                    min-width: 288px;
-                    min-height: 328px;
+                    width: 295px;
+                    height: 335px;
                 }
             }
             .ShopImagesPortionThree{
-                width: 100%;
-                :nth-last-child(n+1):nth-last-child(-n+2) {
-                    display: block;
+                img {
+                    width: 500px;
+                    height: 650px;
                 }
+                span {
+                    &:nth-last-child(-n + 2) {
+                        img {
+                            display: block;
+                          }
+                    }
+                } 
             }
             .ShopImagesSmall_Three{
-                min-width: 50%;
-                height: 93vh;
-                display: flex!Important;
-                column-gap: 2%;
-                row-gap: 0%;
+                width: 1000px;
+                display: flex;
                 flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
                 img {
-                    min-width: 288px;
-                    min-height: 328px;
+                    width: 295px;
+                    height: 335px;
                 }
-            }
+            } 
         } 
     }
 

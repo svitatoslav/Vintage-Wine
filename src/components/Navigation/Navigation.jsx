@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './Navigation.module.scss';
 import pages from '../../assets/pages';
 
-function Navigation({ mobile }) {
+function Navigation({ mobile, isFootNav }) {
   const { pathname } = useLocation();
 
   const links = pages?.map(({ id, text, url }) => (
@@ -27,17 +27,12 @@ function Navigation({ mobile }) {
 
   return (
     <nav>
-      <ul
-        className={cn(
-          styles.NavigationList,
-          { [styles.NavigationBurger]: mobile },
-        )}
-        data-testid="Navigation"
-      >
+      <ul className={cn(styles.NavigationList,  {[styles.FooterNav]:isFootNav}, { [styles.NavigationBurger]: mobile})} data-testid="Navigation">
         {links}
       </ul>
     </nav>
   );
+  
 }
 
 Navigation.propTypes = {

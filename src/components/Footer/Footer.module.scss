@@ -2,49 +2,150 @@
 @import './../../assets/variables/variables';
 
 .Footer {
-    width: 100%;
-    background-color: #5b0007;
-    padding-top: 18px;
-    position: relative;
-    z-index: 20;
+  width: 100%;
+  background-color: #5b0007;
+  padding-top: 18px;
+  position: relative;
+  z-index: 20;
+
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    padding-top: 50px;
+  }
+  @media (min-width: $desktop) and (max-width: 1920px) {
+    padding-top: 50px;
+  }
 }
-// .FooterInfo {
-// }
+.FooterInfo {
+
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    display: flex;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    display: flex;
+  }
+  @media (min-width: $desktop) and (max-width: 1920px) {
+    display: flex;
+  }
+}
+.FooterContainer {
+
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    display: flex;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    display: flex;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    display: flex;
+  }
+  @media (min-width: $desktop) and (max-width: 1920px) {
+    display: flex;
+  }
+}
 .FooterLogo {
-    @include flex-cc;
-    margin-bottom: 18px;
+  @include flex-cc;
+  margin-bottom: 18px;
+
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    margin-left: 20px;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    align-items: start;
+    margin-right: 50px;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    align-items: start;
+    margin: 0 40px 0 20px;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    align-items: start;
+    margin: 0 40px 0 20px;
+  }
+  @media (min-width: $desktop) and (max-width: 1920px) {
+    align-items: start;
+    margin: 0 40px 0 20px;
+  }
 }
-// .FooterImage {
-// }
+.FooterImage {
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    width: 173px;
+    height: 50px;
+  }
+}
 .MenuLocation {
-    @media (min-width: $mobile) and (max-width: $tablet) {
-        display: flex;
-    }
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    display: flex;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+  @media (min-width: $desktop) and (max-width: 1920px) {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
 }
 .FooterMenu {
     margin-bottom: 18px;
 
-    @media (min-width: $mobile) and (max-width: $tablet) {
-        width: 100%;
-    }
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    width: 100%;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    width: 100%;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    width: 100%;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    width: 100%;
+  }
+  @media (min-width: $desktop) and (max-width: 1920px) {
+    width: 100%;
+  }
 }
-.FooterNav {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-}
-.FooterItem {
-    padding-bottom: 16px;
-    font-family: $secondary-font;
-}
-// .FooterLink {
+// .FooterNav {
+//     display: grid;
+// //   display: grid;
+// //   justify-content: center;
+// //   align-items: center;
 // }
+// .FooterItem {
+//   padding-bottom: 16px;
+//   font-family: $secondary-font;
+// }
+// // .FooterLink {
+// // }
 .Location {
-    margin-inline: 51px;
+  margin: 0 57px;
 
-    @media (min-width: $mobile) and (max-width: $tablet) {
-        margin: 0 10px 0 56px;
-    }
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    margin: 0 10px 0 56px;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    margin: 0 12px;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    margin: 0 14px;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    margin: 0 14px;
+  }
+  @media (min-width: $desktop) and (max-width: 1920px) {
+    margin: 0 78px;
+  }
 }
 .LocationTitle {
     font-size: 20px;
@@ -81,26 +182,49 @@
     justify-content: space-evenly;
     margin-bottom: 30px;
 
-    @media (min-width: $mobile) and (max-width: $tablet) {
-        display: grid;
-    }
-    @media (min-width: $tablet) and (max-width: $tablet-lg) {
-        display: grid;
-    }
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    display: grid;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    display: grid;
+    margin-right: 50px;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    display: grid;
+    margin: 0 20px 55px 0;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    display: grid;
+    margin: 0 20px 55px 0;
+  }
+  @media (min-width: $desktop) and (max-width: 1920px) {
+    display: grid;
+    margin: 0 20px 55px 0;
+  }
 }
 .SearchTitle {
     font-size: 20px;
 
-    @media (min-width: $mobile) and (max-width: $tablet) {
-        margin-bottom: 18px;
-    }
-    @media (min-width: $tablet) and (max-width: $tablet-lg) {
-        margin-bottom: 18px;
-    }
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    margin-bottom: 18px;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    margin-bottom: 18px;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    padding-bottom: 20px;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    padding-bottom: 20px;
+  }
+  @media (min-width: $desktop) and (max-width: 1920px) {
+    padding-bottom: 20px;
+  }
 }
 .SearchLabel {
-    display: flex;
-    height: 41px;
+  display: flex;
+  height: 41px;
+  width: 207px;
 }
 .SearchInput {
     padding: 16px;
@@ -113,8 +237,11 @@
     height: 41px;
     padding: 12px;
 }
-// .Network {
-// }
+.Network {
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    margin-top: 30px;
+  }
+}
 .NetworkNav {
     @include flex-cc;
     padding-bottom: 28px;
@@ -135,16 +262,19 @@
     text-align: center;
     padding-bottom: 28px;
 
-    @media (min-width: $mobile) and (max-width: $tablet) {
-        display: block;
-    }
-    @media (min-width: $tablet) and (max-width: $tablet-lg) {
-        display: block;
-    }
-    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
-        display: block;
-    }
-    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
-        display: block;
-    }
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    display: block;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    display: block;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    display: block;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    display: block;
+  }
+  @media (min-width: $desktop) and (max-width: 1920px) {
+    display: block;
+  }
 }
