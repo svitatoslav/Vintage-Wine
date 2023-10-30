@@ -12,7 +12,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll }) => {
     const CATALOG_SLIDER = 'CATALOG';
     const COLLECTIONS_SLIDER = 'COLLECTIONS';
 
-    const [currentIndex, setCurrentIndex] = useState(1);
+    const [currentIndex, setCurrentIndex] = useState(toScroll);
     const sliderRef = useRef();
 
     const SliderCatalogSettings = {
@@ -49,6 +49,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll }) => {
         },
         ref: sliderRef
     };
+
     const SliderCollectionsSettings = {
         dots: false,
         infinite: true,
@@ -81,12 +82,16 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll }) => {
             }
         ],
         afterChange: (index) => {
-            setCurrentIndex(index + 1);
+            if (toShow === 1 && toScroll === 1) {
+                setCurrentIndex(index + 1);
+            }
+            if (toShow === 2) {
+                setCurrentIndex(index + 2);
+            }
         },
         ref: sliderRef
     };
 
-    
     const handlePrevClick = () => {
         sliderRef.current.slickPrev();
     };
