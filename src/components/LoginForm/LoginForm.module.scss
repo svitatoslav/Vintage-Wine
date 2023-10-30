@@ -22,8 +22,10 @@
     gap: 5px;
 }
 
-.LoginError {
+.LoginError,
+.FormError {
     color: $btn-bg;
+    text-align: center;
 }
 
 .LoginTitle {

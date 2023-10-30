@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik';
@@ -10,14 +11,19 @@ import {
   setTokenAC,
   setUserAC,
 } from '../../redux/reducers/authorization-reducer';
-import sendPostRequest from '../../helpers/api/sendPostRequest';
 import Button from '../Button/Button';
 import loginValidationSchema from '../../validation/loginValidationSchema';
 import regValidationSchema from '../../validation/regValidationSchema';
 import styles from './LoginForm.module.scss';
 
 function LoginForm({ isLogin, formTexts, onLogin }) {
+  const isLogged = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+  const [error, setError] = useState(null);
+
+  if (isLogged) {
+    return <Navigate to="/" />;
+  }
 
   const initialValues = {
     login: '',
@@ -25,6 +31,9 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
     loginOrEmail: '',
     password: '',
   };
+
+  const validationSchema = isLogin
+    ? regValidationSchema : loginValidationSchema;
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     const { email, login, ...logValues } = values;
@@ -36,16 +45,21 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
           dispatch(setTokenAC(res.data.token));
           dispatch(setUserAC(res.data.user));
         })
-        .catch((err) => console.log(err));
+        // .catch((err) => console.log(...Object.values(err.response.data)));
+        .catch((err) => {
+          setError(...Object.values(err.response.data));
+          setTimeout(() => {
+            setError(null);
+          }, 4000);
+        });
     } else {
-      sendPostRequest('http://127.0.0.1:4000/api/customers/', regValues);
+      axios.post('http://127.0.0.1:4000/api/customers/', regValues)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
     }
     resetForm(initialValues);
     setSubmitting(false);
   };
-
-  const validationSchema = isLogin
-    ? regValidationSchema : loginValidationSchema;
 
   return (
     <Formik
@@ -109,6 +123,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
               component="div"
             />
           </div>
+          <div className={styles.FormError}>{error}</div>
           <Button
             type="submit"
             text={formTexts.button}

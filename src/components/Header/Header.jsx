@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createPortal } from 'react-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Container from '../Container/Container';
 import Navigation from '../Navigation/Navigation';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
@@ -12,16 +12,18 @@ import LoginWidget from './icons/login.svg?react';
 import PersonWidget from './icons/person.svg?react';
 import BurgerBtn from './icons/burger.svg?react';
 import styles from './Header.module.scss';
+import { openMenuAC } from '../../redux/reducers/mobMenu-reducer';
 
 const BURGER_BREAKPOINT = 1000;
 
 function Header() {
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const user = useSelector((state) => state.user.user);
+  const isMenuOpen = useSelector((state) => state.mobileMenu.isMenuOpen);
+  const dispatch = useDispatch();
 
   const handleMenu = () => {
-    setIsOpenMenu(!isOpenMenu);
+    dispatch(openMenuAC());
   };
 
   useEffect(() => {
@@ -49,7 +51,7 @@ function Header() {
           </Link>
           {
             viewportWidth <= BURGER_BREAKPOINT
-              ? (isOpenMenu && createPortal(
+              ? (isMenuOpen && createPortal(
                 <DropdownMenu mobile onClose={handleMenu} />,
                 document.body,
               ))
@@ -66,14 +68,16 @@ function Header() {
               <SearchWidget />
             </div>
             <div className={styles.HeaderWidgetsGroup}>
-              <Link to="/login">
-                {user ? (
-                  <span title={user}>
-                    <PersonWidget />
-                  </span>
-                )
-                  : <LoginWidget />}
-              </Link>
+              {user ? (
+                <span title={user}>
+                  <PersonWidget />
+                </span>
+              )
+                : (
+                  <Link to="/login">
+                    <LoginWidget />
+                  </Link>
+                )}
               {
                 viewportWidth <= BURGER_BREAKPOINT
                   && <BurgerBtn onClick={handleMenu} />
