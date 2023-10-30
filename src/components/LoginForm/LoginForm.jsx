@@ -1,16 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik';
+
 import axios from 'axios';
-import styles from './LoginForm.module.scss';
+import {
+  setTokenAC,
+  setUserAC,
+} from '../../redux/reducers/authorization-reducer';
 import sendPostRequest from '../../helpers/api/sendPostRequest';
 import Button from '../Button/Button';
 import loginValidationSchema from '../../validation/loginValidationSchema';
 import regValidationSchema from '../../validation/regValidationSchema';
+import styles from './LoginForm.module.scss';
 
 function LoginForm({ isLogin, formTexts, onLogin }) {
+  const dispatch = useDispatch();
+
   const initialValues = {
     login: '',
     email: '',
@@ -19,12 +27,15 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
   };
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    const { email, login, ...newValues } = values;
+    const { email, login, ...logValues } = values;
     const { loginOrEmail, ...regValues } = values;
 
     if (isLogin) {
-      axios.post('http://127.0.0.1:4000/api/customers/login', newValues)
-        .then((res) => console.log(res.data.token))
+      axios.post('http://127.0.0.1:4000/api/customers/login', logValues)
+        .then((res) => {
+          dispatch(setTokenAC(res.data.token));
+          dispatch(setUserAC(res.data.user));
+        })
         .catch((err) => console.log(err));
     } else {
       sendPostRequest('http://127.0.0.1:4000/api/customers/', regValues);
@@ -104,14 +115,15 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
             disabled={isSubmitting}
           />
           <div>
-            {`${formTexts.option} `}
+            <span className={styles.LoginOptionText}>
+              {`${formTexts.option} `}
+            </span>
             <button
               type="button"
               className={styles.LoginOption}
               onClick={onLogin}
             >
               {formTexts.otherButton}
-
             </button>
           </div>
         </Form>

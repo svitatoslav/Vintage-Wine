@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createPortal } from 'react-dom';
+import { useSelector } from 'react-redux';
 import Container from '../Container/Container';
 import Navigation from '../Navigation/Navigation';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
@@ -17,6 +18,7 @@ const BURGER_BREAKPOINT = 1000;
 function Header() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const user = useSelector((state) => state.user.user);
 
   const handleMenu = () => {
     setIsOpenMenu(!isOpenMenu);
@@ -65,10 +67,12 @@ function Header() {
             </div>
             <div className={styles.HeaderWidgetsGroup}>
               <Link to="/login">
-                <span title="user">
-                  <PersonWidget />
-                </span>
-                <LoginWidget />
+                {user ? (
+                  <span title={user}>
+                    <PersonWidget />
+                  </span>
+                )
+                  : <LoginWidget />}
               </Link>
               {
                 viewportWidth <= BURGER_BREAKPOINT

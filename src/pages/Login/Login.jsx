@@ -11,13 +11,13 @@ function Login() {
   const formTexts = isLogin
     ? {
       title: 'Login authorization',
-      option: 'Create account - ',
+      option: 'Create an account ',
       button: 'Sign in',
       otherButton: 'Sign up',
     }
     : {
       title: 'User registration form',
-      option: 'Have account?',
+      option: 'I have an account ',
       button: 'Sign up',
       otherButton: 'Sign in',
     };

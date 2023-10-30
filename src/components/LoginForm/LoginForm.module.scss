@@ -36,10 +36,16 @@
     }
 }
 
+.LoginOptionText {
+    font-size: 13px;
+}
+
 .LoginOption {
     cursor: pointer;
     @include transition;
+    border-bottom: 1px solid $main-color;
     &:hover {
         color: $btn-bg;
+        border-color: $btn-bg;
     }
 }
