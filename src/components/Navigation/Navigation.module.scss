@@ -12,7 +12,6 @@
         padding-bottom: 30px;
     }
 }
-
 .PageLink {
     font-size: 16px;
     font-weight: 400;
@@ -25,7 +24,9 @@
         color: $btn-bg;
     }
 }
-
+.FooterNav {
+    display: grid;
+}
 .NavigationBurger {
     flex-direction: column;
     gap: 6px;
