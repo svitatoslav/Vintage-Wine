@@ -1,9 +1,11 @@
-export const pages = [
-    {text: "Home", url: '/home'},
-    {text: "About us", url: '/about'},
-    {text: "Our Catalog", url: '/catalog'},
-    {text: "Shop", url: '/shop'},
-    {text: "News", url: '/news'},
-    {text: "Delivery and Payment", url: '/delivery&payment'},
-    {text: "Contacts", url: '/contacts'},
+const pages = [
+  { id: 1, text: 'Home', url: '/home' },
+  { id: 2, text: 'About us', url: '/about' },
+  { id: 3, text: 'Our Catalog', url: '/catalog' },
+  { id: 4, text: 'Shop', url: '/shop' },
+  { id: 5, text: 'News', url: '/news' },
+  { id: 6, text: 'Delivery and Payment', url: '/delivery&payment' },
+  { id: 7, text: 'Contacts', url: '/contacts' },
 ];
+
+export default pages;

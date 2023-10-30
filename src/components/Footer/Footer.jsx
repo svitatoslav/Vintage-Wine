@@ -8,6 +8,7 @@ import SearchFooter from "./icon/search.svg?react"
 import { Link } from "react-router-dom";
 import cn from "classnames";
 
+
 const Footer = () => {
   return (
     <footer className={styles.Footer}>

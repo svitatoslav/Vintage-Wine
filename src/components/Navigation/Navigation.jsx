@@ -1,36 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Navigation.module.scss';
-import { pages } from '../../assets/pages';
 import cn from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
+import styles from './Navigation.module.scss';
+import pages from '../../assets/pages';
 
-
-const Navigation = ({ mobile }) => {
+function Navigation({ mobile }) {
   const { pathname } = useLocation();
 
-  const links = pages?.map(({text, url}, i) => {
-    return (
-      <li key={i}>
-        <Link 
-          to={url}
-          className={
-            cn(styles.PageLink, {
-              [styles.PageLinkActive]: mobile &&
-                pathname === url ||
-                pathname === '/' && url === '/home'
-            })
-          }
-        >
-          {text}
-        </Link>
-      </li>
-    );
-  });
+  const links = pages?.map(({ id, text, url }) => (
+    <li key={id}>
+      <Link
+        to={url}
+        className={
+          cn(styles.PageLink, {
+            [styles.PageLinkActive]: mobile
+                && (pathname === url
+                || (pathname === '/' && url === '/home')),
+          })
+        }
+      >
+        {text}
+      </Link>
+    </li>
+  ));
 
   return (
     <nav>
-      <ul className={cn(styles.NavigationList, { [styles.NavigationBurger]: mobile })} data-testid="Navigation">
+      <ul
+        className={cn(
+          styles.NavigationList,
+          { [styles.NavigationBurger]: mobile },
+        )}
+        data-testid="Navigation"
+      >
         {links}
       </ul>
     </nav>
@@ -38,7 +41,11 @@ const Navigation = ({ mobile }) => {
 }
 
 Navigation.propTypes = {
-  mobile: PropTypes.bool
+  mobile: PropTypes.bool,
+};
+
+Navigation.defaultProps = {
+  mobile: false,
 };
 
 export default Navigation;
