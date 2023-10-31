@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import styles from './Catalog.module.scss';
 import useBreadcrumbs from '../../hooks/useBreadcrumbs';
 import Breadcrumbs from './../../components/Breadcrumbs/Breadcrumbs';
+
 const Catalog = () => {
     const pathParts = useBreadcrumbs();
     const dispatch = useDispatch();

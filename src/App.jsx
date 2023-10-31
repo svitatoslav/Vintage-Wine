@@ -15,8 +15,9 @@ import Cart from './pages/Cart/Cart';
 import Login from './pages/Login/Login';
 import NoPage from './pages/NoPage/NoPage';
 import SingleCatalog from './components/SingleCatalog/SingleCatalog';
-
+import Search from "./pages/Search/Search";
 import './App.scss';
+
 
 
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
                     <Route path="delivery&payment" element={<DeliveryAndPayment />} />
                     <Route path="contacts" element={<Contact />} />
                     <Route path="cart" element={<Cart />} />
+                    <Route path="/search" element={<Search />} />
                     <Route path='/login' element={<Login />} />
                     <Route path="*" element={<NoPage />} />
                 </Route>

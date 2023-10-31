@@ -14,3 +14,4 @@ const PageTitle = ({text, type}) => {
 }
 
 export default PageTitle
+

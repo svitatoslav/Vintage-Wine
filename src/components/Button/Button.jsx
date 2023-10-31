@@ -15,12 +15,11 @@ const buttonColor = {
     primary: styles.Primary,
     secondary: styles.Secondary
 
-
 }
- const Button = ({text, onClick, type = "default", color = "primary", isDisabled = false}) => {
+ const Button = ({text, onClick,type="button",  variant = "default", color = "primary", isDisabled = false}) => {
 
     return (
-        <button disabled={isDisabled} data-testid="Button" className={cn(buttonVariant[type], buttonColor[color] )} onClick={onClick}>{text}</button>
+        <button type={type} disabled={isDisabled} data-testid="Button" className={cn(buttonVariant[variant], buttonColor[color] )} onClick={onClick}>{text}</button>
     )
 }
 

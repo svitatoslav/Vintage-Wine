@@ -30,7 +30,7 @@ const LoginForm = () => {
            <ErrorMessage name="email" component="div" />
            <Field className={styles.LoginInput} type="password" name="password" placeholder="Password"/>
            <ErrorMessage name="password" component="div" />
-           <Button text="Sign up" disabled={isSubmitting}/>
+           <Button text="Sign up" isDisabled={isSubmitting}/>
          </Form>
        )}
     </Formik>
