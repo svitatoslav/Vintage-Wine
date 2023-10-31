@@ -1,31 +1,44 @@
+@import '../../assets/mixins/mixins';
+@import '../../assets/variables/variables';
+
 .Login {
     position: relative;
     width: 100%;
-    padding-top: 39px;
 
-    @media screen and (min-width: 480px) {
+    @media screen and (min-width: $tablet) {
         max-width: 347px;
     }
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $tablet-lg) {
         max-width: 419px;
     }
 
-    @media screen and (min-width: 1000px) {
+    @media screen and (min-width: $tablet-xlg) {
         max-width: 496px;
     }
 }
 
 .LoginWrapper {
     width: 100%;
-    padding-top: 39px;
+    padding-top: 40px;
     position: relative;
-    padding-bottom: 20vw;
+    
+    @media screen and (min-width: $desktop) {
+        padding-bottom: 100px;        
+    }
 }
 
 .LoginContainer {
     display: flex;
     justify-content: end;
+
+    @media screen and (min-width: $tablet-lg) {
+        padding-top: 12px;
+    }
+
+    @media screen and (min-width: $tablet-xlg) {
+        padding-top: 62px;
+    }
 
     .LiginImg {
         width: 272px;
@@ -35,29 +48,46 @@
         left: -111px;
         top: 0;
 
-        @media screen and (min-width: 480px) {
+        @media screen and (min-width: $tablet) {
             left: -34px;
             top: -16px;
         }
 
-        @media screen and (min-width: 768px) {
+        @media screen and (min-width: $tablet-lg) {
             width: 407px;
             height: 612px;
             left: -64px;
             top: -92px;
         }
 
-        @media screen and (min-width: 1000px) {
+        @media screen and (min-width: $tablet-xlg) {
             width: 456px;
             height: 685px;
             left: 0;
             top: -100px;
         }
 
-        @media screen and (min-width: 1440px) {
+        @media screen and (min-width: $desktop) {
             width: 624px;
             height: 937px;
             top: -148px;
         }
     }
+}
+
+.LoginControls {
+    cursor: default;
+    @include flex-cc;
+    gap: 10px;
+}
+
+.LoginBtn {
+    all: inherit;
+    @include transition;
+    padding: 10px 0;
+}
+
+.LoginBtnActive {
+    color: $btn-bg;
+    border-bottom: 2px solid $btn-bg;
 }
