@@ -1,20 +1,53 @@
-.LoginForm {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    text-align: center;
+@import '../../assets/mixins/mixins';
+@import '../../assets/variables/variables';
+
+.LoginForm {    
+    @include flex-ac-col-c;
+    gap: 11px;
     padding: 26px 36px 31px 40px;
-    border: 2px solid #fff;
+    border: 2px solid $main-color;
+
+    @media screen and (min-width: $tablet-lg) {
+        gap: 20px;
+    }
 }
 
 .LoginInput {
     padding: 16px 19px;
+}
 
-    &:last-of-type {
-        margin-bottom: 6px;
-    }
+.LoginFields {
+    width: 100%;
+    @include flex-ac-col-c;
+    gap: 5px;
+}
+
+.LoginError,
+.FormError {
+    color: $btn-bg;
+    text-align: center;
 }
 
 .LoginTitle {
-    margin-bottom: 12px;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 5px;
+
+    @media screen and (min-width: $tablet-lg) {
+        font-size: 30px;
+    }
+}
+
+.LoginOptionText {
+    font-size: 13px;
+}
+
+.LoginOption {
+    cursor: pointer;
+    @include transition;
+    border-bottom: 1px solid $main-color;
+    &:hover {
+        color: $btn-bg;
+        border-color: $btn-bg;
+    }
 }

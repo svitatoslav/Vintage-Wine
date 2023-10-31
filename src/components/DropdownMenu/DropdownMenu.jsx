@@ -1,31 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import styles from './DropdownMenu.module.scss';
+import { useDispatch } from 'react-redux';
+import cn from 'classnames';
 import Navigation from '../Navigation/Navigation';
 import CloseBtn from './icons/close.svg?react';
-import cn from 'classnames';
+import { openMenuAC } from '../../redux/reducers/mobMenu-reducer';
+import styles from './DropdownMenu.module.scss';
 
-const DropdownMenu = ({ onClose }) => {
+function DropdownMenu() {
   const [isVisible, setIsVisible] = useState(false);
+  const dispatch = useDispatch();
 
   const handleClose = (e) => {
-    const target = e.target;
-    if (!target.closest(`.${styles.DropdownClose}`) && target.nodeName !== 'A') return;
+    const { target } = e;
+    if (!target.closest(`.${styles.DropdownClose}`)
+    && target.nodeName !== 'A') return;
 
     setIsVisible(!isVisible);
 
-    setTimeout(onClose, 600);
-  }
+    setTimeout(() => {
+      dispatch(openMenuAC());
+    }, 600);
+  };
 
   useEffect(() => {
     setTimeout(() => {
-      setIsVisible(!isVisible)
+      setIsVisible(!isVisible);
     }, 0);
   }, []);
 
   return (
     <div className={styles.DropdownMenu} data-testid="DropdownMenu" onClick={handleClose}>
-      <div className={cn(styles.DropdownHidden, {[styles.DropdownVisible]: isVisible})}>
+      <div className={cn(
+        styles.DropdownHidden,
+        { [styles.DropdownVisible]: isVisible },
+      )}
+      >
         <CloseBtn className={styles.DropdownClose} />
         <div className={styles.DropdownBody}>
           <h2 className={styles.DropdownTitle}>
@@ -36,10 +45,10 @@ const DropdownMenu = ({ onClose }) => {
       </div>
     </div>
   );
-};
+}
 
-DropdownMenu.propTypes = {
-  onClose: PropTypes.func.isRequired
-};
+// DropdownMenu.propTypes = {
+//   onClose: PropTypes.func.isRequired,
+// };
 
 export default DropdownMenu;
