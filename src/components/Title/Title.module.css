@@ -1,0 +1,65 @@
+@font-face {
+  font-family: 'Gill Sans';
+  src: url("./assets/fonts/Gill Sans.otf");
+  font-style: regular;
+  font-weight: 400;
+}
+
+.vvSectionTitle {
+  font-size: 30px;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 50px;
+}
+
+@media screen and (min-width: 460px) {
+  .vvSectionTitle {
+    font-size: 50px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .vvSectionTitle {
+    font-size: 70px;
+    margin-bottom: 60px;
+  }
+}
+
+.vvSubTitle {
+  font-size: 25px;
+  font-weight: 400;
+  color: #BE0615;
+  display: block;
+}
+
+@media screen and (min-width: 460px) {
+  .vvSubTitle {
+    font-size: 40px;
+  }
+}
+
+.vvTitle {
+  font-size: 30px;
+  line-height: 36px;
+}
+
+@media screen and (min-width: 640px) {
+  .vvTitle {
+    font-size: 50px;
+    line-height: inherit;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .vvTitle {
+    font-size: 70px;
+    line-height: inherit;
+  }
+}
+
+@media screen and (min-width: 1160px) {
+  .vvTitle {
+    font-size: 90px;
+    line-height: inherit;
+  }
+}
