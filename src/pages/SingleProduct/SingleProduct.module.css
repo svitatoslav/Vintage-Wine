@@ -1,0 +1,66 @@
+@font-face {
+  font-family: 'GillSans';
+  src: url("./assets/fonts/GillSans.otf");
+  font-style: regular;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'GillSans';
+  src: url("./assets/fonts/GillSans.otf");
+  font-style: regular;
+  font-weight: 400;
+}
+
+.singleProduct {
+  margin-top: 45px;
+}
+
+.singleProduct .productName {
+  font-size: 40px;
+  text-align: center;
+}
+
+.singleProduct .wrapperProductData {
+  display: flex;
+  justify-content: space-between;
+  gap: 55px;
+}
+
+.singleProduct .wrapperProductData .productImg {
+  max-width: 500px;
+  width: 500px;
+}
+
+.singleProduct .wrapperProductData .productImg .mainSlider {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.singleProduct .wrapperProductData .productImg .mainSlider .mainSlide {
+  width: 100%;
+  height: 760px;
+}
+
+.singleProduct .wrapperProductData .productImg .mainSlider .mainSlide img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.singleProduct .wrapperProductData .productImg .secondarySlider .secondarySlide {
+  height: 155px;
+  padding: 0 5px;
+}
+
+.singleProduct .wrapperProductData .productImg .secondarySlider .secondarySlide img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.singleProduct .wrapperProductData .productImg .secondarySlider button::before {
+  display: none;
+}
+
+.singleProduct .wrapperProductData .productInfo {
+  width: 100%;
+}
