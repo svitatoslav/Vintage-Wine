@@ -1,0 +1,46 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+.historyContent {
+    @media screen and (min-width: $tablet) {
+        @include flex-cc;
+        width: 80%;
+        margin: 0 auto;
+    }
+    @media screen and (min-width: $tablet-xlg) {
+        align-items: flex-start;
+        gap: 15px;
+        width: 100%;
+    }
+    @media screen and (min-width: $desktop) {
+        align-items: center;
+    }
+    img {
+        display: none;
+        @media screen and (min-width: $tablet-xlg) {
+            display: block;
+            transform: translateX(-20px);
+        }
+    }
+    .historyArticle {
+        
+        .author {
+            margin-bottom: 15px;
+        }
+        .articleTitle {
+            font-size: 30px;
+            margin-bottom: 20px;
+            @media screen and (min-width: $tablet-lg) {
+                font-size: 40px;
+                margin-bottom: 40px;
+            }
+        }
+        article {
+            p {
+                margin-bottom: 35px;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

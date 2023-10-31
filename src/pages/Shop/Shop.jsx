@@ -63,14 +63,12 @@ const Shop = () => {
     return (
         <div className={styles.ShopContainer}>
             <h1 className={styles.ShopParagraph}>Our Shop</h1>
-            <div className={styles.ShopBreadCrumbs}>
-                {<Breadcrumbs pathParts={pathParts} />}
-            </div>
+            <div className={styles.ShopBreadCrumbs}>{<Breadcrumbs pathParts={pathParts} />}</div>
             <div className={styles.ShopFilterBar}>
                 <ul className={styles.ShopFilterBarItems}>
                     {links.map((link, index) => (
                         <li key={index}>
-                            <a href={"#"}>{link}</a>
+                            <a href={'#'}>{link}</a>
                         </li>
                     ))}
                 </ul>
@@ -98,51 +96,32 @@ const Shop = () => {
                     
                     <div className={styles.ShopImagesSmall_One}>
                         {smallImages_one.map((path, index) => (
-                            <LazyLoadImage
-                                key={index}
-                                src={path}
-                                alt={`Image ${index + 1}`}
-                                effect="blur"
-                            />
+                            <LazyLoadImage key={index} src={path} alt={`Image ${index + 1}`} effect="blur" />
                         ))}
                     </div>
                 </div>
                 <div className={styles.ShopImagesPortionTwo}>
-                    <div className={styles.ShopImagesPortionTwoBigImage}>
-                        <LazyLoadImage
-                            img
-                            src={heinken}
-                            alt="Big Image"
-                            effect="blur"
-                        />
-                    </div>
+                    <LazyLoadImage
+                        img
+                        src={jac}
+                        alt="Big Image"
+                        effect="blur"
+                    />
                     <div className={styles.ShopImagesSmall_Two}>
                         {smallImages_two.map((path, index) => (
-                            <LazyLoadImage
-                                key={index}
-                                src={path}
-                                alt={`Image ${index + 1}`}
-                                effect="blur"
-                            />
+                            <LazyLoadImage key={index} src={path} alt={`Image ${index + 1}`} effect="blur" />
                         ))}
                     </div>
                 </div>
                 <div className={styles.ShopImagesPortionThree}>
-                    <div className={styles.ShopImagesPortionThreeBigImage}>
-                        <LazyLoadImage
-                            src={white_label}
-                            alt="Big Image"
-                            effect="blur"
-                        />
-                    </div>
+                    <LazyLoadImage
+                        src={white_label}
+                        alt="Big Image"
+                        effect="blur"
+                    />
                     <div className={styles.ShopImagesSmall_Three}>
                         {smallImages_three.map((path, index) => (
-                            <LazyLoadImage
-                                key={index}
-                                src={path}
-                                alt={`Image ${index + 1}`}
-                                effect="blur"
-                            />
+                            <LazyLoadImage key={index} src={path} alt={`Image ${index + 1}`} effect="blur" />
                         ))}
                     </div>
                 </div>
