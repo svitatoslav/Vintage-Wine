@@ -26,7 +26,6 @@ export const getCollectionsThunk = () => {
         ;
         const response = await fetch('../../../public/collections/collectionsData.json');
         const collections = await response.json();
-console.log(collections);
         dispatch(getCollectionsAC(collections));
     };
 };

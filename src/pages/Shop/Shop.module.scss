@@ -11,27 +11,19 @@
     
     @media screen and (min-width: $mobile) {
         .ShopParagraph {
+            width: 185px;
+            height: 61px;
             font-family: $main-font;
             font-weight: 400;
-            font-size: 50px;
-            margin-bottom: 20px;
+            font-size: 48px;
+            line-height: normal;
+            text-align: center;
+            margin-top: 65px;
         }
         .ShopBreadCrumbs {
-            margin-bottom: 20px;
-        }
-        .ShopFilterBarItems  {
-            display: none;
-        }
-        
-        .ShopFilterBarAllFilter {
-            @include flex-ac;
-             p {
-                font-family: $secondary-font;
-                font-weight: 400;
-                font-size: 15px;
-                margin-right: 10px;
-                line-height: 18px;
-             }
+            width: auto;
+            height: 63px;
+            margin-bottom: 30px;
         }
         .ShopFilterBarItems  {
             display: none;
@@ -39,65 +31,84 @@
         .ShopImagesContainer {
             display: flex;
             flex-direction: column;
-            margin-top: 30px;
+            margin-top: 35px;
+            padding-left: 10px;
+            padding-right: 10px;
         }    
-
+        .ShopImagesPortionOneBigImage {
+            span {
+                width: 340px;
+                height: 446px;
+                position: relative;
+            }
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
         .ShopImagesPortionOne {
-            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            padding: 1%;
-            img {
-                width: 340px;
-                height: 446px;
-            }
         }
         .ShopImagesSmall_One {
-            width: 100vw;
+            width: 315px;
+            height: 315px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            img {
+            column-gap: 5px;
+            span {
                 width: 150px;
                 height: 150px;
+                position: relative;
+            }
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
         }
-
+        .ShopImagesPortionTwoBigImage {
+            span {
+                width: 340px;
+                height: 446px;
+                position: relative;
+            }
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
         .ShopImagesPortionTwo {
-            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            padding: 1%;
-            img {
-                width: 340px;
-                height: 446px;
-            }
         }
         .ShopImagesSmall_Two {
-            width: 100vw;
+            width: 315px;
+            height: 315px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            img {
+            column-gap: 5px;
+            span {
                 width: 150px;
                 height: 150px;
+                position: relative;
+            }
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
         }
-
         .ShopImagesPortionThree {
             display: none;
         }
@@ -105,101 +116,142 @@
     
     @media screen and (min-width: $tablet) {
         .ShopParagraph {
-            margin-top: 40px;
+            width: 195px;
+            height: 61px;
+            font-family: $main-font;
+            font-weight: 400;
+            font-size: 50px;
+            line-height: normal;
+            text-align: center;
+            margin-top: 81px;
         }
         .ShopBreadCrumbs {
-            margin-bottom: 20px;
+            width: auto;
+            height: 63px;
+            margin-bottom: 30px;
         }
         .ShopFilterBarItems  {
             display: none;
         }
-
         .ShopImagesContainer {
             display: flex;
             flex-direction: column;
-            margin-top: 30px;
+            margin-top: 35px;
+            padding-left: 48px;
+            padding-right: 48px;
         }    
-
+        .ShopImagesPortionOneBigImage {
+            span {
+                width: 383px;
+                height: 502px;
+                position: relative;
+            }
+            
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
         .ShopImagesPortionOne {
-            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            img {
-                width: 383px;
-                height: 502px;
-            }
         }
         .ShopImagesSmall_One {
-            width: 100%; 
+            width: 420px;
+            height: 420px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 10px;
-            img {
+            column-gap: 19px;
+            span {
                 width: 200px;
                 height: 200px;
+                position: relative;
+            }
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
         }
-
+        .ShopImagesPortionTwoBigImage {
+            span {
+                width: 383px;
+                height: 502px;
+                position: relative;
+            }
+            
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
         .ShopImagesPortionTwo {
-            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            img {
-                width: 383px;
-                height: 502px;
-            }
         }
         .ShopImagesSmall_Two {
-            width: 100%; 
+            width: 420px;
+            height: 420px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 10px;
-            img {
+            column-gap: 19px;
+            span {
                 width: 200px;
                 height: 200px;
+                position: relative;
+            }
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
         }
 
         .ShopImagesPortionThree {
             display: none;
         }
-         
     }
 
     @media screen and (min-width: $tablet-lg) {
         .ShopParagraph {
+            width: 280px;
+            height: 85px;
+            font-family: $main-font;
+            font-weight: 400;
             font-size: 70px;
+            line-height: normal;
+            text-align: center;
+            margin-top: 74px;
+            line-height: normal;
+            font-style: normal;
         }
 
         .ShopBreadCrumbs {
-            @include flex-cc;
+            width: auto;
+            height: 63px;
+            margin-bottom: 30px;
         }
         .ShopFilterBar {
-            width: 90%;
+            width: 95%;
+            height: auto;
             @include flex-ac-sb;
-            margin-top: 25px;
-            margin-bottom: 20px;
+            margin-bottom: 80px;
         }
 
         .ShopFilterBarItems {
-            width: 70%;
+            width: 58%;
             @include flex-ac-sb;
             padding: 1px;
-            margin-right: 20px;
             li {
                 color: $main-color;
                 font-family: $secondary-font;
@@ -225,236 +277,413 @@
                 }
             }
         }
-        .ShopFilterBarAllFilter {
-            margin-left: 20px;
-        }
         .ShopImagesContainer {
-            width: 92%;
+            width: 95%;
+            display: flex;
+            flex-direction: column;
+            padding-left: 0;
+            padding-right: 0;
+            margin-bottom: 80px;
         }
         .ShopImagesPortionOne {
             width: 100%;
             display: flex;
             flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-            img {
-                width: 351px;
-                height: 500px;
+            column-gap: 16px;
+        }
+        .ShopImagesPortionOneBigImage {
+            span {
+                width: 383px;
+                height: 502px;
+                position: relative;
+            }
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
         }
         .ShopImagesSmall_One {
             display: flex;
             flex-direction: column;
-            column-gap: 7%;
-            row-gap: 2%;
-            margin-bottom: 10px;
-            img {
-                width: 240px;
-                height: 251px;
-            }
+            row-gap: 7px;
+            width: 240px;
+            height: 520px;
+            position: relative;
             span {
+                width: 100%;
+                height: 48%;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
                 &:nth-last-child(-n + 2) {
                     img {
                         display: none;
                       }
                 }
-            } 
+            }   
         }
 
         .ShopImagesPortionTwo {
+            width: 100%;
             display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-            margin-bottom: 20px;
-            img {
-                width: 351px;
+            flex-direction: row-reverse;
+            column-gap: 16px;
+        }
+        .ShopImagesPortionTwoBigImage {
+            span {
+                width: 383px;
                 height: 502px;
+                position: relative;
+            }
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
         }
         .ShopImagesSmall_Two {
             display: flex;
             flex-direction: column;
-            column-gap: 7%;
-            row-gap: 2%;
-            margin-bottom: 10px;
-            img {
-                width: 240px;
-                height: 251px;
-            }
+            row-gap: 7px;
+            width: 240px;
+            height: 520px;
+            position: relative;
             span {
+                width: 100%;
+                height: 48%;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
                 &:nth-last-child(-n + 2) {
                     img {
                         display: none;
                       }
                 }
-            } 
+            }   
+        }
+        .ShopImagesPortionThree {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            column-gap: 16px;
+        }
+        .ShopImagesPortionThreeBigImage {
+            span {
+                width: 383px;
+                height: 502px;
+                position: relative;
+            }
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .ShopImagesSmall_Three {
+            display: flex;
+            flex-direction: column;
+            row-gap: 7px;
+            width: 240px;
+            height: 520px;
+            position: relative;
+            span {
+                width: 100%;
+                height: 48%;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+                &:nth-last-child(-n + 2) {
+                    img {
+                        display: none;
+                      }
+                }
+            }   
+        }
+    }
+
+    @media screen and (min-width: $tablet-xlg) {
+        .ShopParagraph {
+            margin-top: 100px;
+        }
+        .ShopBreadCrumbs {
+            margin-bottom: 71px;
+        }
+        .ShopFilterBar {
+            width: 70%;
+        }
+        .ShopImagesContainer {
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            padding-left: 0;
+            padding-right: 0;
+            margin-bottom: 80px;
+        }
+        .ShopImagesPortionOne {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            column-gap: 17px;
+        }
+        .ShopImagesPortionOneBigImage {
+            span {
+                width: 535px;
+                height: 680px;
+                position: relative;
+            }
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .ShopImagesSmall_One {
+            display: flex;
+            flex-direction: column;
+            row-gap: 8px;
+            width: 240px;
+            height: 683px;
+            position: relative;
+            span {
+                width: 100%;
+                height: 49%;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+                &:nth-last-child(-n + 2) {
+                    img {
+                        display: none;
+                      }
+                }
+            }   
+        }
+        .ShopImagesPortionTwo {
+
+            width: 100%;
+            display: flex;
+            flex-direction: row-reverse;
+            column-gap: 17px;
+        }
+        .ShopImagesPortionTwoBigImage {
+            span {
+                width: 535px;
+                height: 680px;
+                position: relative;
+            }
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .ShopImagesSmall_Two {
+            display: flex;
+            flex-direction: column;
+            row-gap: 8px;
+            width: 240px;
+            height: 683px;
+            position: relative;
+            span {
+                width: 100%;
+                height: 49%;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+                &:nth-last-child(-n + 2) {
+                    img {
+                        display: none;
+                      }
+                }
+            }   
         }
         .ShopImagesPortionThree {
             width: 100%;
             display: flex;
             flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-            margin-bottom: 20px;
-            padding: 1%;
-            img {
-                width: 351px;
-                height: 502px;
+            column-gap: 17px;
+        }
+        .ShopImagesPortionThreeBigImage {
+            span {
+                width: 535px;
+                height: 680px;
+                position: relative;
+            }
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
         }
         .ShopImagesSmall_Three {
-            width: 100%;
             display: flex;
-            align-items: center;
             flex-direction: column;
-            column-gap: 7%;
-            row-gap: 2%;
-            margin-bottom: 10px;
-            img {
-                width: 240px;
-                height: 251px;
-            }
+            row-gap: 8px;
+            width: 240px;
+            height: 683px;
+            position: relative;
             span {
+                width: 100%;
+                height: 49%;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
                 &:nth-last-child(-n + 2) {
                     img {
                         display: none;
                       }
                 }
-            } 
+            }   
         }
         
     }
-
-    @media screen and (min-width: $tablet-xlg) {
-        .ShopImagesContainer {
-            margin-top: 7%;
-            width: 700px;
-        }
-        .ShopFilterBar {
-            width: 75%;
-        }
-        .ShopImagesPortionOne {
-            img {
-                width: 383px;
-                height: 502px;
-            }
-        }
-        .ShopImagesSmall_One {
-                img {
-                    width: 240px;
-                    height: 251px;
-                }
-            }
-        .ShopImagesPortionTwo{
-            flex-direction: row-reverse;
-            img {
-                width: 383px;
-                height: 502px;
-            }
-        }
-        .ShopImagesSmall_Two{
-            img {
-                width: 240px;
-                height: 251px;
-            }
-        }
-        .ShopImagesPortionThree{
-            img {
-                width: 383px;
-                height: 502px;
-            }
-        }
-        .ShopImagesSmall_Three{
-            img {
-                width: 240px;
-                height: 251px;
-            }
-        }    
-        }
     
     @media screen and (min-width: $desktop) {
-            .ShopImagesContainer{
-                width: 1260px;
+        .ShopParagraph {
+            margin-top: 100px;
+        }
+        .ShopBreadCrumbs {
+            margin-bottom: 71px;
+        }
+        .ShopFilterBar {
+            width: 690px;
+            margin-bottom: 177px;
+        }   
+        .ShopImagesContainer {
+            width: 100%;
+        }    
+        .ShopImagesPortionOneBigImage {
+            span {
+                width: 535px;
+                height: 680px;
+                position: relative;
             }
-            .ShopFilterBar {
-                width: 56%;
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
-            .ShopImagesPortionOne{
+        }
+        .ShopImagesPortionOne {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            column-gap: 5px;
+        }
+        .ShopImagesSmall_One {
+            width: 704px;
+            display: flex;
+            column-gap: 5px;
+            row-gap: 6px;
+            span {
+                width: 295px;
+                height: 335px;
+                position: relative;
                 img {
-                    width: 500px;
-                    height: 650px;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
                 }
-                span {
-                    &:nth-last-child(-n + 2) {
-                        img {
-                            display: block;
-                          }
-                    }
-                } 
-            }
-            .ShopImagesSmall_One{
-                width: 1000px;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                img {
-                    width: 295px;
-                    height: 335px;
+                &:nth-last-child(-n + 2) {
+                    img {
+                        display: block;
+                      }
                 }
             }
-            .ShopImagesPortionTwo{
-                img {
-                    width: 500px;
-                    height: 650px;
-                }
-                span {
-                    &:nth-last-child(-n + 2) {
-                        img {
-                            display: block;
-                          }
-                    }
-                } 
+        }
+        .ShopImagesPortionTwoBigImage {
+            span {
+                width: 535px;
+                height: 680px;
+                position: relative;
             }
-            .ShopImagesSmall_Two{
-                width: 1000px;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .ShopImagesPortionTwo {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: center;
+            column-gap: 5px;
+        }
+        .ShopImagesSmall_Two {
+            width: 704px;
+            display: flex;
+            column-gap: 5px;
+            row-gap: 6px;
+            span {
+                width: 295px;
+                height: 335px;
+                position: relative;
                 img {
-                    width: 295px;
-                    height: 335px;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                &:nth-last-child(-n + 2) {
+                    img {
+                        display: block;
+                      }
                 }
             }
-            .ShopImagesPortionThree{
-                img {
-                    width: 500px;
-                    height: 650px;
-                }
-                span {
-                    &:nth-last-child(-n + 2) {
-                        img {
-                            display: block;
-                          }
-                    }
-                } 
+        }
+        .ShopImagesPortionThreeBigImage {
+            span {
+                width: 535px;
+                height: 680px;
+                position: relative;
             }
-            .ShopImagesSmall_Three{
-                width: 1000px;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
+            span img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .ShopImagesPortionThree {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            column-gap: 5px;
+        }
+        .ShopImagesSmall_Three {
+            width: 704px;
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 5px;
+            row-gap: 6px;
+            span {
+                width: 295px;
+                height: 335px;
+                position: relative;
                 img {
-                    width: 295px;
-                    height: 335px;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
                 }
-            } 
-        } 
-    }
+                &:nth-last-child(-n + 2) {
+                    img {
+                        display: block;
+                      }
+                }
+            }
+        }
+    } 
+     
+}
 
            
 

@@ -83,6 +83,8 @@ p {
 
 section {
     margin-bottom: 60px;
+    position: relative;
+    z-index: 10;
     @media screen and (min-width: tablet) {
         margin-bottom: 80px;
     }

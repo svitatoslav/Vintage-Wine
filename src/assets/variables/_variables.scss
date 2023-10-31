@@ -1,12 +1,12 @@
 @font-face {
-    font-family: 'Gill Sans';
-    src: url('./assets/fonts/Gill Sans.otf');
+    font-family: 'GillSans';
+    src: url('./assets/fonts/GillSans.otf');
     font-style: regular;
     font-weight: 400;
 }
 
 $main-font: 'Cormorant Infant', serif;
-$secondary-font: 'Gill Sans', serif;
+$secondary-font: 'GillSans', serif;
 
 
 $main-color: #fff;
@@ -16,8 +16,8 @@ $secondary-color: #909090;
 $main-bg: #000;
 $btn-bg: #BE0615;
 
-$mobile: 340px;
-$tablet: 460px;
-$tablet-lg: 640px;
-$tablet-xlg: 960px;
-$desktop: 1160px;
+$mobile: 360px;
+$tablet: 480px;
+$tablet-lg: 768px;
+$tablet-xlg: 1000px;
+$desktop: 1440px;
