@@ -23,16 +23,28 @@ const Filtration = React.lazy(() =>
 
 const Shop = () => {
     const links = ["Wine", "Sparkling", "Whiskey", "Strong", "Beer", "Ciders"];
-    const smallImages_one = [ft6, esprit, gautherot, heinken];
+    const smallImages_one = [ft6, esprit, gautherot, jac];
     const smallImages_two = [brandy, legis, rasteau, sacura];
     const smallImages_three = [yellow_wine, esprit, gautherot, heinken];
     const pathParts = useBreadcrumbs();
+
     // const [data, setData] = useState([]);
+
+    // useEffect(async () => {
+    //     const request = await fetch('http://127.0.0.1:4000/api/products');
+    //      if(!request.ok) throw new Error('Failed to fetch data')
+    //     const item= await request.json()
+    //     setData(item)  
+    // }, [])
+
+
+    // >>>>>>>     OR     <<<<<<<<
+
 
     // useEffect(() => {
     //   async function fetchData() {
     //     try {
-    //       const response = await fetch('http://127.0.0.1:4000/api/catalog');
+    //       const response = await fetch('http://127.0.0.1:4000/api/products');
     //       if (!response.ok) {
     //         throw new Error("Network response was not ok");
     //       }
@@ -51,17 +63,14 @@ const Shop = () => {
     return (
         <div className={styles.ShopContainer}>
             <h1 className={styles.ShopParagraph}>Our Shop</h1>
-            <div className={styles.ShopBreadCrumbs}>{<Breadcrumbs pathParts={pathParts} />}</div>
+            <div className={styles.ShopBreadCrumbs}>
+                {<Breadcrumbs pathParts={pathParts} />}
+            </div>
             <div className={styles.ShopFilterBar}>
                 <ul className={styles.ShopFilterBarItems}>
-                    {/* {data.map((item) => (
-              <li key={item.id}>
-                <a href={"#"}>{item.name}</a>
-              </li>
-            ))} */}
                     {links.map((link, index) => (
                         <li key={index}>
-                            <a href={'#'}>{link}</a>
+                            <a href={"#"}>{link}</a>
                         </li>
                     ))}
                 </ul>
@@ -71,26 +80,69 @@ const Shop = () => {
             </div>
             <div className={styles.ShopImagesContainer}>
                 <div className={styles.ShopImagesPortionOne}>
-                    <LazyLoadImage img="true" src={caberne} alt="Big Image" effect="blur" />
+                    {/* <ul>
+                            {data.map((item) => (
+                                <li key={item.id}>
+                                    <a href={"#"}>{item.name}</a>
+                                </li> 
+                        </ul>
+                    ))} */}
+                    <div className={styles.ShopImagesPortionOneBigImage}>
+                        <LazyLoadImage
+                            img
+                            src={caberne}
+                            alt="Big Image"
+                            effect="blur"
+                        />
+                    </div>
+                    
                     <div className={styles.ShopImagesSmall_One}>
                         {smallImages_one.map((path, index) => (
-                            <LazyLoadImage key={index} src={path} alt={`Image ${index + 1}`} effect="blur" />
+                            <LazyLoadImage
+                                key={index}
+                                src={path}
+                                alt={`Image ${index + 1}`}
+                                effect="blur"
+                            />
                         ))}
                     </div>
                 </div>
                 <div className={styles.ShopImagesPortionTwo}>
-                    <LazyLoadImage img="true" src={jac} alt="Big Image" effect="blur" />
+                    <div className={styles.ShopImagesPortionTwoBigImage}>
+                        <LazyLoadImage
+                            img
+                            src={heinken}
+                            alt="Big Image"
+                            effect="blur"
+                        />
+                    </div>
                     <div className={styles.ShopImagesSmall_Two}>
                         {smallImages_two.map((path, index) => (
-                            <LazyLoadImage key={index} src={path} alt={`Image ${index + 1}`} effect="blur" />
+                            <LazyLoadImage
+                                key={index}
+                                src={path}
+                                alt={`Image ${index + 1}`}
+                                effect="blur"
+                            />
                         ))}
                     </div>
                 </div>
                 <div className={styles.ShopImagesPortionThree}>
-                    <LazyLoadImage src={white_label} alt="Big Image" effect="blur" />
+                    <div className={styles.ShopImagesPortionThreeBigImage}>
+                        <LazyLoadImage
+                            src={white_label}
+                            alt="Big Image"
+                            effect="blur"
+                        />
+                    </div>
                     <div className={styles.ShopImagesSmall_Three}>
                         {smallImages_three.map((path, index) => (
-                            <LazyLoadImage key={index} src={path} alt={`Image ${index + 1}`} effect="blur" />
+                            <LazyLoadImage
+                                key={index}
+                                src={path}
+                                alt={`Image ${index + 1}`}
+                                effect="blur"
+                            />
                         ))}
                     </div>
                 </div>
