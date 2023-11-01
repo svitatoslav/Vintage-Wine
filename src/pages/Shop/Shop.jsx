@@ -39,18 +39,87 @@ const Shop = () => {
           }
           const catalogData = await response.json();
 
-          console.log(catalogData);
-
           setProducts(catalogData);
         } catch (error) {
           console.error("Error fetching data:", error);
         } 
       }
 
-      console.log("render")
-
       fetchData();
     }, []);
+
+    const elements = products.map(({productImg, _id, name}) => {
+
+        return (
+            <div key={_id} className={styles.ShopImagesContainer}> 
+                <div className={styles.ShopImagesPortionOne}>
+                    <div className={styles.ShopImagesPortionOneBigImage}>
+                        <LazyLoadImage
+                            src={productImg}
+                            alt={name}
+                            effect="blur"
+                        />
+                    </div>
+                    <div className={styles.ShopImagesSmall_One}>
+                         
+                            <LazyLoadImage
+                                src={productImg}
+                                alt={name}
+                                effect="blur"
+                            />
+                            <LazyLoadImage
+                                src={productImg}
+                                alt={name}
+                                effect="blur"
+                            />
+                            <LazyLoadImage
+                                src={productImg}
+                                alt={name}
+                                effect="blur"
+                            />
+                            <LazyLoadImage
+                                src={productImg}
+                                alt={name}
+                                effect="blur"
+                            />
+                         
+                    </div>
+                </div>
+                <div className={styles.ShopImagesPortionTwo}>
+                    <div className={styles.ShopImagesPortionTwoBigImage}>
+                        <LazyLoadImage
+                            src={productImg}
+                            alt={name}
+                            effect="blur"
+                        />
+                    </div>
+                    <div className={styles.ShopImagesSmall_Two}>
+                            <LazyLoadImage
+                                src={productImg}
+                                alt={name}
+                                effect="blur"
+                            />
+                    </div>
+                </div>
+                <div className={styles.ShopImagesPortionThree}>
+                    <div className={styles.ShopImagesPortionThreeBigImage}>
+                        <LazyLoadImage
+                            src={productImg}
+                            alt={name}
+                            effect="blur"
+                        />
+                    </div>
+                    <div className={styles.ShopImagesSmall_Three}>
+                            <LazyLoadImage
+                            src={productImg}
+                            alt={name}
+                            effect="blur"
+                            />
+                    </div>
+                </div>
+            </div>
+        )
+    });
 
     return (
         <div className={styles.ShopContainer}>
@@ -72,89 +141,7 @@ const Shop = () => {
             </div>
 
 
-
-                {products.map((productImg, vendorCode, name) => (
-                    <div className={styles.ShopImagesContainer}> 
-                        <div className={styles.ShopImagesPortionOne}>
-                            <div className={styles.ShopImagesPortionOneBigImage}>
-                                <LazyLoadImage
-                                    img
-                                    key={vendorCode}
-                                    src={productImg}
-                                    alt={name}
-                                    effect="blur"
-                                />
-                            </div>
-                            <div className={styles.ShopImagesSmall_One}>
-                                 
-                                    <LazyLoadImage
-                                        key={vendorCode}
-                                        src={productImg}
-                                        alt={name}
-                                        effect="blur"
-                                    />
-                                    <LazyLoadImage
-                                        key={vendorCode}
-                                        src={productImg}
-                                        alt={name}
-                                        effect="blur"
-                                    />
-                                    <LazyLoadImage
-                                        key={vendorCode}
-                                        src={productImg}
-                                        alt={name}
-                                        effect="blur"
-                                    />
-                                    <LazyLoadImage
-                                        key={vendorCode}
-                                        src={productImg}
-                                        alt={name}
-                                        effect="blur"
-                                    />
-                                 
-                            </div>
-                        </div>
-                        <div className={styles.ShopImagesPortionTwo}>
-                            <div className={styles.ShopImagesPortionTwoBigImage}>
-                                <LazyLoadImage
-                                    img
-                                    key={vendorCode}
-                                    src={productImg}
-                                    alt={name}
-                                    effect="blur"
-                                />
-                            </div>
-                            <div className={styles.ShopImagesSmall_Two}>
-                                    <LazyLoadImage
-                                        key={vendorCode}
-                                        src={productImg}
-                                        alt={name}
-                                        effect="blur"
-                                    />
-                            </div>
-                        </div>
-                        <div className={styles.ShopImagesPortionThree}>
-                            <div className={styles.ShopImagesPortionThreeBigImage}>
-                                <LazyLoadImage
-                                    key={vendorCode}
-                                    src={productImg}
-                                    alt={name}
-                                    effect="blur"
-                                />
-                            </div>
-                            <div className={styles.ShopImagesSmall_Three}>
-                                    <LazyLoadImage
-                                    key={vendorCode}
-                                    src={productImg}
-                                    alt={name}
-                                    effect="blur"
-                                    />
-                            </div>
-                        </div>
-                    </div>
-                ))}
-
-
+            {elements}
 
         </div>
     );
