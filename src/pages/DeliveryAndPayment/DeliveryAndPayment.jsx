@@ -1,7 +1,9 @@
+import FilterGroup from "../../components/FilterGroup/FilterGroup";
+
 const DeliveryAndPayment = () => {
     return (
         <div>
-            Delivery and Payment Page
+            <FilterGroup />
         </div>
     );
 }
