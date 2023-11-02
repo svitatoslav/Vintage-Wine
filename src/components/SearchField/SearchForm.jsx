@@ -24,14 +24,16 @@ const SearchForm = ({onSubmit}) => {
         onSubmit()
     }
 
+    const limitedProducts = products.slice(0, 6);
+
     return (
         <form onSubmit={handleSearch} className={styles.Search} data-testid="SearchForm">
             <input className={styles.Input} placeholder="Find your favorite drink" type="text" value={searchTerm} onChange={handleInputChange} onFocus={() => setIsInputActive(true)} onBlur={() => setIsInputActive(false)} />
 
             <Button type="submit" text="Search"/>
-            {true &&
+            {isInputActive > 0  &&
                 <ul className={styles.List}>
-                    {products.length > 0 ?  products.map(product => <li key={product._id}><a className={styles.Link} href="#">{product.name}</a></li>): <li className={styles.Link}>Nothing Found</li> }
+                    {limitedProducts.length > 0 ?  limitedProducts.map(product => <li key={product._id}><a className={styles.Link} href="#">{product.name}</a></li>): <li className={styles.Link}>Nothing Found</li> }
                 </ul>
             }
         </form>

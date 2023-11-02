@@ -13,13 +13,15 @@ const Search = () => {
         setShowProducts(true)
     }
     return (
+        <section className={styles.SearchImg}>
             <Container>
-                <PageTitle text="SearchForm"/>
+                <PageTitle>Search</PageTitle>
                 {<Breadcrumbs pathParts={pathParts}/>}
                 <div className={styles.SearchWrapper}>
                     <SearchForm onSubmit={handleSubmit}/>
                 </div>
             </Container>
+        </section>
     );
 }
 
