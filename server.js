@@ -5,8 +5,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
 require('dotenv').config();
-
-
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const globalConfigs = require('./backend/routes/globalConfigs');
 // ./backend/routes/globalConfigs
 const customers = require('./backend/routes/customers');
@@ -42,20 +41,49 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// DB Config
-const db = require('./backend/config/keys').mongoURI;
+const uri = require('./backend/config/keys').mongoURI;
 
-// Connect to MongoDB
-mongoose
-  .connect(db, {useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false })
-  .then(() => console.log('MongoDB Connected'))
-  .catch((err) => console.log(err));
+console.log("Uri is:", uri);
+
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+run().catch(console.dir);
+
 
 // Passport middleware
 app.use(passport.initialize());
 
 // Passport Config
-require('./backend/config/passport')(passport);
+ 
+
+
+//  >>>>>>>>>>>>>>>>>  passport was commented  below  <<<<<<<<<<<<<<<<<<<
+
+
+
+
+// require('./backend/config/passport')(passport);
+
+
+
+
 
 // Use Routes
 app.use('/api/configs', globalConfigs);
