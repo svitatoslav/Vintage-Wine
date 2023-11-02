@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './FilterGroup.module.scss';
-import FilterSelect from '../FilterSelect/FilterSelect';
+import CustomSelect from '../CustomSelect/CustomSelect';
+import {filters} from './filters/filters';
 
-const FilterGroup = () => (
-  <ul className={styles.FilterGroup} data-testid="FilterGroup">
-    <li>
-      <FilterSelect />
-    </li>
-    <li>
-      <FilterSelect />
-    </li>
-    <li>
-      <FilterSelect />
-    </li>
-  </ul>
-);
+const FilterGroup = () => {
+  return (
+    <section>
+      <ul className={styles.FilterGroup} data-testid="FilterGroup">
+        {filters.map(({name, options}) => (
+          <li key={name} >
+            <CustomSelect placeHolder={name} options={options} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
 
 FilterGroup.propTypes = {};
 

@@ -1,0 +1,56 @@
+@import '../../assets/variables/variables'; 
+
+.CustomSelect {
+    position: relative;
+    width: 245px;
+    font-family: $secondary-font;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.CustomSelectInput {
+    padding: 16px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+    border: 1px solid #fff;
+}
+
+.CustomSelectMenu {
+    position: absolute;
+    width: 100%;
+    overflow: auto;
+    background: #000;
+    z-index: 2;
+    border: 1px solid #fff;
+}
+
+.CustomSelectOption {
+    text-align: center;
+    cursor: pointer;
+    padding: 8px 10px;
+    border-bottom: 1px solid #fff;
+    transition: .3s;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:hover {
+        background: #5C5C5C;
+    }
+}
+
+.CustomSelectOptionActive {
+    color: red;
+}
+
+.CustomSelectHolder {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
