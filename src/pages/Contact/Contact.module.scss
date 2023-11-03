@@ -14,6 +14,7 @@
   }
   @media screen and (min-width: $desktop) {
     margin: 290px auto 0;
+    grid-column-gap: 60px;
   }
 }
 
@@ -38,7 +39,7 @@
     max-width: 700px;
   }
   @media screen and (min-width: $tablet-xlg) {
-    max-width: 1050px;
+    max-width: 950px;
   }
   @media screen and (min-width: $desktop) {
     max-width: 1250px;
@@ -104,7 +105,7 @@
       max-width: 235px;
     }
     @media screen and (min-width: $tablet-lg) {
-      max-width: 257px;
+      max-width: 300px;
       font-size: 16px;
     }
     @media screen and (min-width: $tablet-xlg) {
@@ -211,7 +212,7 @@
     margin: 50px auto 0;
   }
   @media screen and (min-width: $tablet-lg) {
-    margin: 90px auto 0;
+    margin: 150px auto 0;
     white-space: nowrap;
   }
   @media screen and (min-width: $tablet-xlg) {
