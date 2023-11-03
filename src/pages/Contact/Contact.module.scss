@@ -12,6 +12,10 @@
     grid-row-gap: 0;
     margin: 190px auto 0;
   }
+  @media screen and (min-width: $tablet-xlg) and (max-width: $desktop) {
+    grid-template-columns: repeat(2, minmax(480px, 535px));
+    justify-content: center;
+  }
   @media screen and (min-width: $desktop) {
     margin: 290px auto 0;
     grid-column-gap: 60px;
@@ -39,7 +43,7 @@
     max-width: 700px;
   }
   @media screen and (min-width: $tablet-xlg) {
-    max-width: 950px;
+    max-width: 1000px;
   }
   @media screen and (min-width: $desktop) {
     max-width: 1250px;
