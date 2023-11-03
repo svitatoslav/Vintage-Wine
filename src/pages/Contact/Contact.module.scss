@@ -6,14 +6,11 @@
     display: grid;
     align-items: start;
     justify-items: start;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(480px, 535px));
     grid-template-rows: 1fr;
     grid-column-gap: 20px;
     grid-row-gap: 0;
     margin: 190px auto 0;
-  }
-  @media screen and (min-width: $tablet-xlg) and (max-width: $desktop) {
-    grid-template-columns: repeat(2, minmax(480px, 535px));
     justify-content: center;
   }
   @media screen and (min-width: $desktop) {
