@@ -50,15 +50,15 @@ const Shop = () => {
      
     const ShopElements = products.map(({productImg, _id, name}) => {
         return (
-            <div className={styles.ShopImagesSection}>
+            <div key={_id} className={styles.ShopImagesSection}>
                 <div className={styles.ShopImagesSectionBigImage}>
-                    <LazyLoadImage key={_id} src={productImg} alt={name} effect="blur"/>
+                    <LazyLoadImage  src={productImg} alt={name} effect="blur"/>
                 </div>
                 <div className={styles.ShopImagesSmall}>
-                    <LazyLoadImage key={_id} src={productImg} alt={name} effect="blur"/>
-                    <LazyLoadImage key={_id} src={productImg} alt={name} effect="blur"/>
-                    <LazyLoadImage key={_id} src={productImg} alt={name} effect="blur"/>
-                    <LazyLoadImage key={_id} src={productImg} alt={name} effect="blur"/>
+                    <LazyLoadImage src={productImg} alt={name} effect="blur"/>
+                    <LazyLoadImage src={productImg} alt={name} effect="blur"/>
+                    <LazyLoadImage src={productImg} alt={name} effect="blur"/>
+                    <LazyLoadImage src={productImg} alt={name} effect="blur"/>
                 </div>
             </div>
         )
