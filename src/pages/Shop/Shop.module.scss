@@ -202,6 +202,9 @@
             padding-left: 0;
             padding-right: 0;
             margin-bottom: 80px;
+            & > :nth-child(even) {
+                flex-direction: row-reverse;
+              }
         }
         .ShopImagesSection {
             width: 100%;
