@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <footer className={styles.Footer}>
       <Container>
-        <section className={styles.FooterInfo}>
+        <div className={styles.FooterInfo}>
           <div className={styles.FooterContainer}>
             <div className={styles.FooterLogo}>
               <Logo className={styles.FooterImage} />
@@ -85,7 +85,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-        </section>
+        </div>
         <div className={styles.Copywriting}>
           <p className={styles.CopywritingText}>All rights reserved@2023</p>
         </div>
