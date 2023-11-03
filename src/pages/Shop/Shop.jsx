@@ -34,7 +34,7 @@ const Shop = () => {
     useEffect(() => {
       async function fetchData() {
         try {
-          const response = await fetch('/api/products');
+          const response = await fetch('http://127.0.0.1:4000/api/products');
           if (!response.ok) {
             throw new Error("Network response was not ok");
           }
@@ -50,15 +50,15 @@ const Shop = () => {
      
     const ShopElements = products.map(({productImg, _id, name}) => {
         return (
-            <div className={styles.ShopImagesSection}>
+            <div key={_id} className={styles.ShopImagesSection}>
                 <div className={styles.ShopImagesSectionBigImage}>
-                    <LazyLoadImage key={_id} src={productImg} alt={name} effect="blur"/>
+                    <LazyLoadImage  src={productImg} alt={name} effect="blur"/>
                 </div>
                 <div className={styles.ShopImagesSmall}>
-                    <LazyLoadImage key={_id} src={productImg} alt={name} effect="blur"/>
-                    <LazyLoadImage key={_id} src={productImg} alt={name} effect="blur"/>
-                    <LazyLoadImage key={_id} src={productImg} alt={name} effect="blur"/>
-                    <LazyLoadImage key={_id} src={productImg} alt={name} effect="blur"/>
+                    <LazyLoadImage src={productImg} alt={name} effect="blur"/>
+                    <LazyLoadImage src={productImg} alt={name} effect="blur"/>
+                    <LazyLoadImage src={productImg} alt={name} effect="blur"/>
+                    <LazyLoadImage src={productImg} alt={name} effect="blur"/>
                 </div>
             </div>
         )
