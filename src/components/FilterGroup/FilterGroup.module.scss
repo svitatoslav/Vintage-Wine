@@ -2,7 +2,22 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    padding: 5px 0;
     row-gap: 24px;
     max-width: 755px;
-    margin: 20px;
+}
+
+.FilterWrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+
+.FilterConfirm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 221px;
 }
