@@ -30,6 +30,7 @@ module.exports = {
     'max-params': ['error', 3],
     'no-unused-vars': 'error',
     'no-eval': 'error',
+    'no-console': 0,
     'prefer-arrow-callback': 'error',
     'prefer-destructuring': 'error',
   },

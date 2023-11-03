@@ -1,27 +1,37 @@
-import  styles from './Button.module.scss'
-import cn from "classnames";
+import cn from 'classnames';
+import styles from './Button.module.scss';
 
 const buttonVariant = {
-    small: styles.Small,
-    smallAdaptive: styles.SmallAdaptive,
-    medium: styles.Medium,
-    wide: styles.WideButton,
-    xSmall: styles.xSmall,
-    default: styles.Button,
-    big: styles.BigButton
-}
+  small: styles.Small,
+  smallAdaptive: styles.SmallAdaptive,
+  medium: styles.Medium,
+  wide: styles.WideButton,
+  xSmall: styles.xSmall,
+  default: styles.Button,
+  big: styles.BigButton,
+};
 
 const buttonColor = {
-    primary: styles.Primary,
-    secondary: styles.Secondary
+  primary: styles.Primary,
+  secondary: styles.Secondary,
 
+};
 
-}
- const Button = ({text, onClick, type = "default", color = "primary", isDisabled = false}) => {
+function Button({
+  text, onClick, type, typeBtn = 'default', color = 'primary', disabled = false,
+}) {
+  return (
+    <button
+      type={type}
+      disabled={disabled}
+      data-testid="Button"
+      className={cn(buttonVariant[typeBtn], buttonColor[color])}
+      onClick={onClick}
+    >
+      {text}
 
-    return (
-        <button disabled={isDisabled} data-testid="Button" className={cn(buttonVariant[type], buttonColor[color] )} onClick={onClick}>{text}</button>
-    )
+    </button>
+  );
 }
 
 export default Button;
