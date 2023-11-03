@@ -8,12 +8,19 @@
     @include flex-w;
     font-size: 14px;
     @media screen and (min-width: $tablet-lg) {
-         margin: 40px 0 70px;
+        margin: 40px 0 70px;
+        font-size: 16px;
     }
     a {
         &:hover {
             @include transition;
             color: $btn-bg;
+        }
+        svg {
+            width: 25px;
+            @media screen and (min-width: $tablet) {
+               width: auto;
+            }
         }
     }
 }
