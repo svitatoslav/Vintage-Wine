@@ -1,4 +1,5 @@
 import styles from "./Shop.module.scss";
+import Button from "../../components/Button/Button"
 import Breadcrumbs from "./../../components/Breadcrumbs/Breadcrumbs";
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
 import { useEffect, useState } from "react";
@@ -13,7 +14,16 @@ const Shop = () => {
     const pathParts = useBreadcrumbs();
     const [links, setLinks] = useState([]);
     const [products, setProducts] = useState([]);
+    const [isHovered, setIsHovered] = useState(false);
     
+    const handleMouseEnter = () => {
+      setIsHovered(true);
+    };
+  
+    const handleMouseLeave = () => {
+      setIsHovered(false);
+    };
+
     useEffect(() => {
         async function fetchDataLinks() {
             try {
@@ -47,21 +57,52 @@ const Shop = () => {
       }
       fetchData();
     }, []);
-     
-    const ShopElements = products.map(({productImg, _id, name}) => {
-        return (
-            <div key={_id} className={styles.ShopImagesSection}>
-                <div className={styles.ShopImagesSectionBigImage}>
-                    <LazyLoadImage  src={productImg} alt={name} effect="blur"/>
-                </div>
-                <div className={styles.ShopImagesSmall}>
-                    <LazyLoadImage src={productImg} alt={name} effect="blur"/>
-                    <LazyLoadImage src={productImg} alt={name} effect="blur"/>
-                    <LazyLoadImage src={productImg} alt={name} effect="blur"/>
-                    <LazyLoadImage src={productImg} alt={name} effect="blur"/>
-                </div>
-            </div>
-        )
+
+    const ShopElements = products.map(({ productImg, _id, name, currentPrice }) => {
+      return (
+        <div key={_id} className={styles.ShopImagesSection}>
+          <div
+            className={styles.ShopImagesSectionBigImage}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <LazyLoadImage src={productImg} alt={name} effect="blur" />
+            {isHovered && (
+              <div className={styles.ShopProductHover}>
+                <p className={styles.ShopProductHoverName}>{name}</p>
+                <p className={styles.ShopProductHoverPrice}>{currentPrice}</p>
+                <Button text="Add to cart" />
+              </div>
+            )}
+          </div>
+          <div className={styles.ShopImagesSmall}>
+              <LazyLoadImage
+                key={_id}
+                src={productImg}
+                alt={name}
+                effect="blur"
+              />
+              <LazyLoadImage
+                key={_id}
+                src={productImg}
+                alt={name}
+                effect="blur"
+              />
+              <LazyLoadImage
+                key={_id}
+                src={productImg}
+                alt={name}
+                effect="blur"
+              />
+              <LazyLoadImage
+                key={_id}
+                src={productImg}
+                alt={name}
+                effect="blur"
+              />
+          </div>
+        </div>
+      );
     });
 
     return (
@@ -82,7 +123,7 @@ const Shop = () => {
                     <Filtration />
                 </Suspense>
             </div>
-            <div  className={styles.ShopImagesContainer}> 
+            <div className={styles.ShopImagesContainer}> 
                 {ShopElements} 
             </div>
         </div>
