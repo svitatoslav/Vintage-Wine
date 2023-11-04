@@ -3,10 +3,6 @@ const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema(
     {
-        vendorCode: {
-            type: String,
-            required: true
-        },
         name: {
             type: String,
             required: true
@@ -36,27 +32,12 @@ const ProductSchema = new Schema(
         productUrl: {
             type: String
         },
-        grape: {
-            type: String
+        quantity: {
+            type: Number,
+            required: true,
+            default: 0
         },
-        volume: {
-            type: String
-        },
-        color: {
-            type: String
-        },
-        strength: {
-            type: String
-        },
-        sweetness: {
-            type: String
-        },
-        supplyTemperature: {
-            type: String
-        },
-        manufacturerCountry: {
-            type: String
-        },
+        characteristics: [{ vendorCode: { type: String } }, { grape: { type: String } }, { volume: { type: String } }, { color: { type: String } }, { strength: { type: String } }, { sweetness: { type: String } }, { supplyTemperature: { type: String } }, { manufacturerCountry: { type: String } }],
         productDescription: {
             aroma: { type: String },
             taste: { type: String }

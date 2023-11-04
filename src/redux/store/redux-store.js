@@ -10,8 +10,10 @@ import catalogReducer from '../reducers/catalog-reducer';
 import collectionsReducer from '../reducers/collections-reducer';
 import authorizationReducer from '../reducers/authorization-reducer';
 import mobileMenuReducer from '../reducers/mobMenu-reducer';
+import ViewedProductsReducer from '../reducers/lastViewed-products';
 
 const rootReducer = combineReducers({
+  viewedProducts: ViewedProductsReducer,
   products: productsReducer,
   catalog: catalogReducer,
   collections: collectionsReducer,
