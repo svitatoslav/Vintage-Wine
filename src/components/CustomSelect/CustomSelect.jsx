@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import styles from './CustomSelect.module.scss';
 import Arrow from './icons/arrow.svg?react';
 import cn from 'classnames';
+import { useFormikContext } from 'formik';
 
-const CustomSelect = ({ placeHolder, options }) => {
+const CustomSelect = ({ placeHolder, name, options }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
+  const { setFieldValue } = useFormikContext();
 
   useEffect(() => {
     const handler = () => setShowMenu(false);
@@ -16,6 +18,10 @@ const CustomSelect = ({ placeHolder, options }) => {
       window.removeEventListener("click", handler)
     }
   });
+
+  useEffect(() => {
+    setFieldValue(name, selectedValue?.value || '')
+  }, [selectedValue])
 
   const handleInputClick = () => {
     setTimeout(() => {

@@ -1,6 +1,7 @@
 export const filters = [
     {
-        name: 'Sort by',
+        name: 'sortBy',
+        title: 'Sort by',
         options: [
             { value: 'alphabeticallyAZ', label: 'Alphabetically A-Z' },
             { value: 'alphabeticallyZA', label: 'Alphabetically Z-A' },
@@ -8,7 +9,8 @@ export const filters = [
         ]
     },
     {
-        name: 'Color',
+        name: 'color',
+        title: 'Color',
         options: [
             { value: 'light-straw', label: 'Light straw' },
             { value: 'amber', label: 'Amber' },
@@ -16,7 +18,8 @@ export const filters = [
         ]
     },
     {
-        name: 'Сollection',
+        name: 'collection',
+        title: 'Сollection',
         options: [
             { value: 'special-edition', label: 'Special Edition' },
             { value: 'georgian-legend', label: 'Georgian Legend' },
@@ -24,7 +27,8 @@ export const filters = [
         ]
     },
     {
-        name: 'Year',
+        name: 'year',
+        title: 'Year',
         options: [
             { value: '2007', label: '2007' },
             { value: '2022', label: '2022' },
@@ -32,7 +36,8 @@ export const filters = [
         ]
     },
     {
-        name: 'Strength',
+        name: 'strength',
+        title: 'Strength',
         options: [
             { value: 'light', label: '9,0-13,0' },
             { value: 'middle', label: '10,0-13,0' },
@@ -40,7 +45,8 @@ export const filters = [
         ]
     },
     {
-        name: 'Country',
+        name: 'country',
+        title: 'Country',
         options: [
             { value: 'georgia', label: 'Georgia' },
             { value: 'italy', label: 'Italy' },
