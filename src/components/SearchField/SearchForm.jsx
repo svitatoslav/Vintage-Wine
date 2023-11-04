@@ -3,12 +3,14 @@ import Button from "../Button/Button";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {filterProducts} from "../../redux/reducers/products-reducer";
+import {logIn} from "passport/lib/http/request";
 
 const SearchForm = ({onSubmit}) => {
     const dispatch = useDispatch()
 
     const [searchTerm, setSearchTerm] = useState("");
     const [isInputActive, setIsInputActive] = useState(false)
+    // const [foundProduct, setFoundProduct] = useState(null)
 
     const products = useSelector(state => state.products.filteredProducts)
 
@@ -20,9 +22,14 @@ const SearchForm = ({onSubmit}) => {
     }
 
     const handleSearch = (e) => {
-        event.preventDefault()
+        e.preventDefault()
         onSubmit()
+
+        // const found = products.find(product => product.name.toLowerCase() === searchTerm.toLowerCase())
+        // setFoundProduct(found)
     }
+
+    console.log(products)
 
     const limitedProducts = products.slice(0, 6);
 
@@ -36,6 +43,14 @@ const SearchForm = ({onSubmit}) => {
                     {limitedProducts.length > 0 ?  limitedProducts.map(product => <li key={product._id}><a className={styles.Link} href="#">{product.name}</a></li>): <li className={styles.Link}>Nothing Found</li> }
                 </ul>
             }
+
+            {/*{foundProduct && (*/}
+            {/*    <div className={styles.FoundProduct}>*/}
+            {/*        <h2>{foundProduct.name}</h2>*/}
+            {/*        <p>{foundProduct.productDescription}</p>*/}
+            {/*        <img src={foundProduct.productImg} alt={foundProduct.name} />*/}
+            {/*    </div>*/}
+            {/*)}*/}
         </form>
     )
 };

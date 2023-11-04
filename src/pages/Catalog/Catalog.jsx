@@ -27,7 +27,7 @@ const Catalog = () => {
                         const itemLinkCatalog = item.name.toLowerCase();
                         return (
                             <Link to={`/catalog/${itemLinkCatalog}`} key={item.id} className={styles.itemCatalog}>
-                                <LazyLoadImage img="true" src={item.imageUrl} alt={item.name} effect="blur" />
+                                <img src={item.imageUrl} alt={item.name} />
                                 <h4 className={styles.itemCatalogTitle}>{item.name}</h4>
                             </Link>
                         );

@@ -1,0 +1,43 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.AboutProduct {
+    @include flex-sb;
+    gap: 45px;
+    img {
+        &:first-child {
+            display: none;
+            @media screen and (min-width: $tablet-xlg) {
+                display: block;
+            }
+        }
+        width: 100%;
+    }
+    .content {
+        width: 100%;
+        p {
+            margin-bottom: 20px;
+        }
+        ul {
+            font-family: $secondary-font;
+            margin-bottom: 40px;
+
+            h6 {
+                margin: 20px auto;
+                font-size: 16px;
+            }
+            li {
+                margin-bottom: 35px;
+                font-size: 14px;
+                @include flex-sb;
+                @media screen and (min-width: $tablet) {
+                    margin-left: 30px;
+                }
+                span {
+                    margin-right: 15px;
+                    display: block;
+                }
+            }
+        }
+    }
+}
