@@ -4,7 +4,7 @@
 .ShopContainer {
     width: 100%;
     height: auto;
-    @include flex-ac-col-c;
+    @include flex-cc-col;
     color: $main-color;
     font-weight: 400;
     margin-bottom: 40px;
@@ -169,9 +169,7 @@
             padding: 1px;
             li {
                 color: $main-color;
-                font-family: $secondary-font;
-                font-weight: 400;
-                font-size: 16px;
+                @include fonts(16px, $secondary-font);
                 position: relative;
                 
                 &:hover {

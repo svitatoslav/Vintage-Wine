@@ -33,6 +33,8 @@ export const filters = [
             { value: '2007', label: '2007' },
             { value: '2022', label: '2022' },
             { value: '2014', label: '2014' },
+            { value: '2011', label: '2011' },
+            { value: '2004', label: '2004' },
         ]
     },
     {

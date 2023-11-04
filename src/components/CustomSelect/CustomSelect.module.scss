@@ -1,38 +1,37 @@
 @import '../../assets/variables/variables'; 
+@import '../../assets/mixins/mixins'; 
 
 .CustomSelect {
     position: relative;
     width: 245px;
-    font-family: $secondary-font;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+    @include fonts(16px, $secondary-font);
 }
 
 .CustomSelectInput {
+    @include flex-ac-sb;
     padding: 16px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     user-select: none;
-    border: 1px solid #fff;
+    border: $brd-white;
 }
 
 .CustomSelectMenu {
     position: absolute;
     width: 100%;
+    height: 135px;
     overflow: auto;
-    background: #000;
+    background: $black-color;
     z-index: 2;
-    border: 1px solid #fff;
+    border: $brd-white;
+    &::-webkit-scrollbar {
+        width: 0;
+    }
 }
 
 .CustomSelectOption {
     text-align: center;
     cursor: pointer;
-    padding: 8px 10px;
-    border-bottom: 1px solid #fff;
+    padding: 14px 10px;
+    border-bottom: $brd-white;
     transition: .3s;
 
     &:last-child {
@@ -45,7 +44,7 @@
 }
 
 .CustomSelectOptionActive {
-    color: red;
+    color: $btn-bg;
 }
 
 .CustomSelectHolder {

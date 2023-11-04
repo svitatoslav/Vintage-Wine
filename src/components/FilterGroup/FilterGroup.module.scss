@@ -1,8 +1,8 @@
 @import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
 
 .FilterGroup {
-    display: flex;
-    justify-content: center;
+    @include flex-jc;
     flex-wrap: wrap;
     padding: 5px 0;
     gap: 24px 10px;
@@ -11,6 +11,10 @@
 
 .FilterBlock {
     margin-bottom: 100px;
+
+    @media screen and (min-width: $desktop) {
+        margin-bottom: 145px;
+    }
 }
 
 .FilterBody {
@@ -18,10 +22,7 @@
 }
 
 .FilterForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include flex-cc-col;
     gap: 50px;
 
     @media screen and (min-width: $desktop) {
@@ -33,9 +34,7 @@
 
 
 .FilterConfirm {
-    display: flex;
+    @include flex-ac-sb;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     width: 221px;
 }
