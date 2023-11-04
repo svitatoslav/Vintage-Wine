@@ -54,3 +54,11 @@
 @mixin transition {
     transition: all .3s ease-in-out;
 }
+
+@mixin fonts ($size, $family) {
+    font-size: $size;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-family: $family;
+}
