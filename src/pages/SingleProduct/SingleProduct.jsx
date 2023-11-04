@@ -1,4 +1,5 @@
 import Breadcrumbs from './../../components/Breadcrumbs/Breadcrumbs';
+import { useEffect } from 'react';
 import useBreadcrumbs from '../../hooks/useBreadcrumbs';
 
 import Button from './../../components/Button/Button';
@@ -8,10 +9,13 @@ import CombinationFood from './../../components/CombinationFood/CombinationFood'
 
 import styles from './SingleProduct.module.scss';
 import AboutProduct from '../../components/AboutProduct/AboutProduct';
+import LastViewed from './../../components/LastViewed/LastViewed';
+
 const SingleProduct = () => {
     const pathParts = useBreadcrumbs();
 
     const productData = {
+        _id: '654297371f0354a5f8385529',
         name: 'Silent wine SHABO Grande dry red 0.75 l.',
         currentPrice: '449',
         categories: 'wine',
@@ -29,6 +33,10 @@ const SingleProduct = () => {
     const addSpaceBeforeUppercase = (text) => {
         return text.replace(/([A-Z])/g, ' $1');
     };
+
+    useEffect(() => {
+        localStorage.setItem('viewedProducts', JSON.stringify(productData));
+    }, [productData]);
 
     return (
         <Container>
@@ -102,6 +110,7 @@ const SingleProduct = () => {
                 </div>
                 <CombinationFood />
                 <AboutProduct />
+                <LastViewed />
             </div>
         </Container>
     );

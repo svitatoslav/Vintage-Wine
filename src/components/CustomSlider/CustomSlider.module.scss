@@ -195,6 +195,9 @@
     @media screen and (min-width: $tablet) {
         width: 65%;
     }
+    @media screen and (min-width: $tablet-lg) {
+        width: 90%;
+    }
     .secondarySlide {
         height: 90px;
         padding: 0 5px;
