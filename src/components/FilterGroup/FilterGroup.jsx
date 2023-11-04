@@ -25,25 +25,27 @@ const FilterGroup = () => {
   }
 
   return (
-    <section>
+    <div className={styles.FilterBlock}>
       <Container>
-        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-          <Form className={styles.FilterWrapper}>
-            <ul className={styles.FilterGroup} data-testid="FilterGroup">
-              {filters.map(({ name, title, options }) => (
-                <li key={name} >
-                  <CustomSelect placeHolder={title} name={name} options={options} />
-                </li>
-              ))}
-            </ul>
-            <div className={styles.FilterConfirm}>
-              <RangeInput />
-              <Button type='submit' text='Save' />
-            </div>
-          </Form>
-        </Formik>
+        <div className={styles.FilterBody}>
+          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+            <Form className={styles.FilterForm}>
+              <ul className={styles.FilterGroup} data-testid="FilterGroup">
+                {filters.map(({ name, title, options }) => (
+                  <li key={name} >
+                    <CustomSelect placeHolder={title} name={name} options={options} />
+                  </li>
+                ))}
+              </ul>
+              <div className={styles.FilterConfirm}>
+                <RangeInput />
+                <Button type='submit' text='Save' />
+              </div>
+            </Form>
+          </Formik>
+        </div>
       </Container>
-    </section>
+    </div>
   );
 }
 
