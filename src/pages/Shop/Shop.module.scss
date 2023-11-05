@@ -55,44 +55,29 @@
             span img:hover {
                 opacity: 0.5;
             }
-             
-            //   .ShopProductHover {
-            //     @include flex-cc;
-            //     flex-direction: column;
-            //     width: 100%;
-            //     height: 100%;
-            //     color: #fff;
-            //     text-align: center;
-            //     top: 50%;
-            //     left: 50%;
-            //     transform: translate(-50%, -50%);
-            //     transition: 0.5s ease-in-out;
-            //     position: absolute;
-            //   }
-            //   .ShopProductHover::before {
-            //     content: "";
-            //     background: #000000;
-            //     opacity: 0.5;
-            //     position: absolute;
-            //     width: 100%;
-            //     height: 0;
-            //     transition: 0.5s ease-in-out;
-            //   }
-            //   .ShopProductHover:hover::before {
-            //     height: 100%;
-            //   }
-            //   .ShopProductHoverName {
-            //     font-family: $main-font;
-            //     font-weight: 600;
-            //     font-size: 50px;
-            //     margin-bottom: 10px;
-            //   }
-            //   .ShopProductHoverPrice {
-            //     font-family: $main-font;
-            //     font-weight: 600;
-            //     font-size: 50px;
-            //     margin-bottom: 20px;
-            //   }
+            .ProductInfoBigImage {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                width: 80%;
+                height: 35%;
+                text-align: center;
+                position: absolute;
+                top: 30%;
+                left: 11%;
+                z-index: 1000;
+                h3 {
+                    font-family: $main-font;
+                    font-size: 50px;
+                    font-weight: 600;
+                }
+                h4 {
+                    font-family: $main-font;
+                    font-size: 50px;
+                    font-weight: 600;
+                }
+            } 
         }
         .ShopImagesSection {
             display: flex;
@@ -111,7 +96,6 @@
             span {
                 width: 150px;
                 height: 150px;
-                position: relative;
             }
 
             span img {
@@ -124,6 +108,23 @@
             }
             span img:hover {
                 opacity: 0.5;
+            }
+ 
+
+            .SmallProductContainer {
+                position: relative;
+            }
+
+
+            .ProductInfoOverlay {
+                width: 100%;
+                text-align: center;
+                position: absolute;
+                top: 33%;
+                left: 0;
+                button {
+                    width: 90%;
+                }
             }
         }         
     }
