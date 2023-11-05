@@ -13,6 +13,7 @@ import DeliveryAndPayment from './pages/DeliveryAndPayment/DeliveryAndPayment';
 import Contact from './pages/Contact/Contact';
 import Cart from './pages/Cart/Cart';
 import Login from './pages/Login/Login';
+import Search from "./pages/Search/Search";
 import NoPage from './pages/NoPage/NoPage';
 import SingleCatalog from './components/SingleCatalog/SingleCatalog';
 
@@ -35,11 +36,12 @@ const App = () => {
                     <Route path="catalog" element={<Catalog />} />
                     <Route path="catalog/:slug" element={<SingleCatalog />} />
                     <Route path="shop" element={<Shop />} />
-                    <Route path="shop/catalog/single" element={<SingleProduct />} />
+                    <Route path="shop/catalog/:id" element={<SingleProduct />} />
                     <Route path="news" element={<News />} />
                     <Route path="delivery&payment" element={<DeliveryAndPayment />} />
                     <Route path="contacts" element={<Contact />} />
                     <Route path="cart" element={<Cart />} />
+                    <Route path="search" element={<Search />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="*" element={<NoPage />} />
                 </Route>

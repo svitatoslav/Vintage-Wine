@@ -10,7 +10,7 @@
   background-repeat: no-repeat;
   background-position: top right;
   max-width: 1500px;
-  margin-inline: auto ;
+  margin-inline: auto;
   min-height: 800px;
   background-size: contain;
 
@@ -18,7 +18,27 @@
     min-height: 600px;
     background-size: cover;
   }
+}
 
+.ProductWrapper {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  padding-bottom: 10px;
+
+  @media screen and (min-width: $tablet) {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    padding-bottom: 10px;
+  }
+
+  @media screen and (min-width: $tablet-lg) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding-bottom: 10px;
+  }
 }
 
 
