@@ -1,0 +1,40 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.SingleExcursionBtn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0 auto;
+    padding: 14px 21px;
+    border: $brd-white;
+    @include fonts(16px, $secondary-font);
+    margin-top: 20px;
+}
+
+.SingleExcursionCaption {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.SingleExcursionNumber {
+    font-size: 50px;
+    margin-bottom: 14px;
+}
+
+.SingleExcursionData {
+    display: flex;
+    flex-direction: column;
+
+    &Reverse {
+        flex-direction: column-reverse;
+    }
+}
+
+.SingleExcursionInfo {
+    margin-bottom: 12px;
+}
+
+.SingleExcursionImg {
+    grid-area: img;
+}
