@@ -16,6 +16,27 @@ const Shop = () => {
   const pathParts = useBreadcrumbs();
   const [links, setLinks] = useState([]);
   const [products, setProducts] = useState([]);
+  const [hoveredProduct, setHoveredProduct] = useState(null);
+
+  const handleMouseEnter = (product) => {
+    setHoveredProduct(product);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredProduct(null);
+  };
+
+  useEffect(() => {
+    async function fetchDataLinks() {
+      try {
+        const response = await fetch('http://127.0.0.1:4000/api/catalog');
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const catalogData = await response.json();
+        setLinks(catalogData);
+      } catch (error) {
+        console.error("Error fetching catalog data:", error);
   const allFilters = useSelector(state => state.filters.isAllFilters);
 
   useEffect(() => {
@@ -132,10 +153,7 @@ const Shop = () => {
       </div>
     </div>
   );
-};
+;
 
 export default Shop;
- 
-
-
  
