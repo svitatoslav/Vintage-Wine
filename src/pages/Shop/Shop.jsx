@@ -58,52 +58,39 @@ const Shop = () => {
       fetchData();
     }, []);
 
-    const ShopElements = products.map(({ productImg, _id, name, currentPrice }) => {
-      return (
-        <div key={_id} className={styles.ShopImagesSection}>
-          <div
-            className={styles.ShopImagesSectionBigImage}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <LazyLoadImage src={productImg} alt={name} effect="blur" />
-            {isHovered && (
-              <div className={styles.ShopProductHover}>
-                <p className={styles.ShopProductHoverName}>{name}</p>
-                <p className={styles.ShopProductHoverPrice}>{currentPrice}</p>
-                <Button text="Add to cart" />
-              </div>
-            )}
-          </div>
-          <div className={styles.ShopImagesSmall}>
-              <LazyLoadImage
-                key={_id}
-                src={productImg}
-                alt={name}
-                effect="blur"
-              />
-              <LazyLoadImage
-                key={_id}
-                src={productImg}
-                alt={name}
-                effect="blur"
-              />
-              <LazyLoadImage
-                key={_id}
-                src={productImg}
-                alt={name}
-                effect="blur"
-              />
-              <LazyLoadImage
-                key={_id}
-                src={productImg}
-                alt={name}
-                effect="blur"
-              />
-          </div>
+{/* <div key={_id} className={styles.ShopImagesSection}></div> */}
+    // <div className={styles.ShopImagesSectionBigImage}></div>
+    // <div className={styles.ShopImagesSmall}></div>
+  
+    const ShopElements = [];
+    const chunkSize = 5;
+    
+    for (let i = 0; i < products.length; i += chunkSize) {
+      const chunk = products.slice(i, i + chunkSize);
+    
+      const firstImage = chunk[0];  
+      const restImages = chunk.slice(1);  
+    
+      const bigImageDiv = (
+        <div className={styles.ShopImagesSectionBigImage} key={`bigImage_${i}`}>
+          <LazyLoadImage src={firstImage.productImg} alt={firstImage.name} effect="blur" />
         </div>
       );
-    });
+    
+      const smallImagesDiv = (
+        <div className={styles.ShopImagesSmall} key={`smallImages_${i}`}>
+          {restImages.map(({ productImg, _id, name }) => (
+            <LazyLoadImage key={_id} src={productImg} alt={name} effect="blur" />
+          ))}
+        </div>
+      );
+    
+      ShopElements.push(
+        <div className={styles.ShopImagesSection} key={`section_${i}`}>
+          {[bigImageDiv, smallImagesDiv]}
+        </div>
+      );
+    }
 
     return (
         <div className={styles.ShopContainer}>
