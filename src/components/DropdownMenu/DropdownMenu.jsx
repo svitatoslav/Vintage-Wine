@@ -47,8 +47,4 @@ function DropdownMenu() {
   );
 }
 
-// DropdownMenu.propTypes = {
-//   onClose: PropTypes.func.isRequired,
-// };
-
 export default DropdownMenu;

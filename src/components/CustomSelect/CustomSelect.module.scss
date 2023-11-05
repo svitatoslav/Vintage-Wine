@@ -1,0 +1,55 @@
+@import '../../assets/variables/variables'; 
+@import '../../assets/mixins/mixins'; 
+
+.CustomSelect {
+    position: relative;
+    width: 245px;
+    @include fonts(16px, $secondary-font);
+}
+
+.CustomSelectInput {
+    @include flex-ac-sb;
+    padding: 16px 10px;
+    user-select: none;
+    border: $brd-white;
+}
+
+.CustomSelectMenu {
+    position: absolute;
+    width: 100%;
+    height: 135px;
+    overflow: auto;
+    background: $black-color;
+    z-index: 2;
+    border: $brd-white;
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+.CustomSelectOption {
+    text-align: center;
+    cursor: pointer;
+    padding: 14px 10px;
+    border-bottom: $brd-white;
+    transition: .3s;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:hover {
+        background: #5C5C5C;
+    }
+}
+
+.CustomSelectOptionActive {
+    color: $btn-bg;
+}
+
+.CustomSelectHolder {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

@@ -1,0 +1,95 @@
+@import '../../assets/variables/variables';
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 170px;
+    border: none;
+    padding: 0;
+    position: relative;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background: #fff;
+    height: 1px;
+}
+
+input[type="range"]::-moz-range-track {
+    background: #fff;
+    height: 1px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 5px;
+    height: 22px;
+    background: #fff;
+    margin-top: -11px;
+    border: none;
+    border-radius: 0;
+}
+
+input[type="range"]:focus {
+    outline: none;
+}
+
+.RangeInput {
+    position: relative;
+    width: 170px;
+    margin-bottom: 20px;
+    left: -9px;
+}
+
+.RangeInputMin {
+    position: absolute;
+    left: 0;
+    padding-right: 5px;
+    font-family: $secondary-font;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.05;
+    transform: translateX(-100%);
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        border-bottom: 1px solid #fff;
+        left: 0;
+        bottom: 0;
+    }
+}
+
+.RangeInputMax {
+    position: absolute;
+    right: 0;
+    padding-left: 5px;
+    font-family: $secondary-font;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.05;
+    transform: translateX(100%);
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        border-bottom: 1px solid #fff;
+        left: 0;
+        bottom: 0;
+    }
+}
+
+.Value {
+    position: absolute;
+    left: 0;
+    top: -20px;
+    transform: translateX(-35%);
+    transition: 0.5s color ease;
+    font-family: $secondary-font;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+}

@@ -1,11 +1,12 @@
 @import '../../assets/variables/variables';
 
 .Container {
+      max-width: 1162px;
     width: 100%;
     padding: 0 20px;
     margin: 0 auto;
 
     @media screen and (min-width: $desktop) {
-        max-width: 1162px;
+       padding: 0;
     }
 }
