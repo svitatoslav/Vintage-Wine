@@ -47,7 +47,7 @@
     }
     .perfectCombination {
         width: 100%;
-        border: 1px solid $main-color;
+        border: $brd-white;
         padding: 35px 10px;
         @media screen and (min-width: $tablet-lg) {
             padding: 35px 85px;

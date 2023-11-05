@@ -11,6 +11,11 @@
     align-items: center;
 }
 
+@mixin flex-jc {
+    display: flex;
+    justify-content: center;
+}
+
 @mixin flex-ac-sb {
     display: flex;
     align-items: center;
@@ -44,7 +49,7 @@
     justify-content: center;
 }
 
-@mixin flex-ac-col-c {
+@mixin flex-cc-col {
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,7 +1,7 @@
 const DeliveryAndPayment = () => {
     return (
         <div>
-            Delivery and Payment Page
+            Delivery And Payment
         </div>
     );
 }
