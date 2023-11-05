@@ -206,7 +206,7 @@
 }
 
 .infoContainer {
-  @include flex-ac-col-c;
+  @include flex-cc-col;
   margin: 30px auto 0;
 
   @media screen and (min-width: $tablet) {

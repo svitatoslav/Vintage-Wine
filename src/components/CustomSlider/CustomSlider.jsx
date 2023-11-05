@@ -6,14 +6,44 @@ import { Link } from 'react-router-dom';
 
 import NextArrow from './icons/NextArrow';
 import PrevArrow from './icons/PrevArrow';
+
+import CustomArrowPrev from './icons/CustomArrowPrev';
+import CustomArrowNext from './icons/CustomArrowNext';
+
 import styles from './CustomSlider.module.scss';
 
-const CustomSlider = ({ sliderArray, type, toShow, toScroll }) => {
+const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination = true }) => {
     const CATALOG_SLIDER = 'CATALOG';
     const COLLECTIONS_SLIDER = 'COLLECTIONS';
+    const SINGLE_PRODUCT = 'SINGLE_PRODUCT';
 
     const [currentIndex, setCurrentIndex] = useState(toScroll);
+    const [productHeaderSlider, setProductHeaderSlider] = useState();
+    const [productBodySlider, setProductBodySlider] = useState();
+
     const sliderRef = useRef();
+    const productMainSlider = useRef(null);
+    const productSecondarySlider = useRef(null);
+
+    const handlePrevClick = () => {
+        sliderRef.current.slickPrev();
+    };
+
+    const handleNextClick = () => {
+        sliderRef.current.slickNext();
+    };
+
+    /*Arrows for single product slider */
+    const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
+        <button {...props} className={'slick-prev slick-arrow' + (currentSlide === 0 ? ' slick-disabled' : '')} aria-hidden="true" aria-disabled={currentSlide === 0 ? true : false} type="button">
+            <CustomArrowPrev />
+        </button>
+    );
+    const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
+        <button {...props} className={'slick-next slick-arrow' + (currentSlide === slideCount - 1 ? ' slick-disabled' : '')} aria-hidden="true" aria-disabled={currentSlide === slideCount - 1 ? true : false} type="button">
+            <CustomArrowNext />
+        </button>
+    );
 
     const SliderCatalogSettings = {
         dots: false,
@@ -92,13 +122,25 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll }) => {
         ref: sliderRef
     };
 
-    const handlePrevClick = () => {
-        sliderRef.current.slickPrev();
+    const SingleProductSlider = {
+        dots: false,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: false,
+        autoplaySpeed: 3000,
+        slidesToShow: 2,
+        swipeToSlide: true,
+        focusOnSelect: true,
+        prevArrow: <SlickArrowLeft />,
+        nextArrow: <SlickArrowRight />
     };
 
-    const handleNextClick = () => {
-        sliderRef.current.slickNext();
-    };
+    useEffect(() => {
+        setProductHeaderSlider(productMainSlider.current);
+        setProductBodySlider(productSecondarySlider.current);
+    }, []);
 
     return (
         <>
@@ -141,18 +183,43 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll }) => {
                     })}
                 </Slider>
             )}
-            <div className={styles.slickArrows}>
-                <button className="slick-prev slick-arrow" onClick={handlePrevClick}>
-                    <PrevArrow />
-                </button>
-                <div className={styles.sliderNavigation}>
-                    <span className={styles.currentIndex}>{currentIndex}</span>
-                    <span className={styles.lengthOfSlider}>{sliderArray.length}</span>
+            {type === SINGLE_PRODUCT && (
+                <>
+                    <Slider className={styles.singleProductMainSlider} asNavFor={productBodySlider} ref={productMainSlider} arrows={false}>
+                        {sliderArray.map((image, index) => {
+                            return (
+                                <div key={index} className={styles.mainSlide}>
+                                    <img src={image} alt="slide image" />
+                                </div>
+                            );
+                        })}
+                    </Slider>
+                    <Slider asNavFor={productHeaderSlider} ref={productSecondarySlider} {...SingleProductSlider} className={styles.singleProductSecondarySlider}>
+                        {sliderArray.map((image, index) => {
+                            return (
+                                <div key={index} className={styles.secondarySlide}>
+                                    <img src={image} alt="slide image" />
+                                </div>
+                            );
+                        })}
+                    </Slider>
+                </>
+            )}
+            
+            {isSlidePagination && (
+                <div className={styles.slickArrows}>
+                    <button className="slick-prev slick-arrow" onClick={handlePrevClick}>
+                        <PrevArrow />
+                    </button>
+                    <div className={styles.sliderNavigation}>
+                        <span className={styles.currentIndex}>{currentIndex}</span>
+                        <span className={styles.lengthOfSlider}>{sliderArray.length}</span>
+                    </div>
+                    <button className="slick-next slick-arrow" onClick={handleNextClick}>
+                        <NextArrow />
+                    </button>
                 </div>
-                <button className="slick-next slick-arrow" onClick={handleNextClick}>
-                    <NextArrow />
-                </button>
-            </div>
+            )}
         </>
     );
 };

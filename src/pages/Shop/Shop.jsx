@@ -6,7 +6,11 @@ import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import React, { Suspense } from "react";
-const Filtration = React.lazy(() => import("../../components/Filtaration/Filtaration"));
+import FilterGroup from '../../components/FilterGroup/FilterGroup';
+import { useSelector } from "react-redux";
+const Filtration = React.lazy(() =>
+  import("../../components/Filtaration/Filtaration")
+);
 
 const Shop = () => {
   const pathParts = useBreadcrumbs();
@@ -113,21 +117,23 @@ const Shop = () => {
     <div className={styles.ShopContainer}>
       <h1 className={styles.ShopParagraph}>Our Shop</h1>
       <div className={styles.ShopBreadCrumbs}>
-        <Breadcrumbs pathParts={pathParts} />
+        {<Breadcrumbs pathParts={pathParts} />}
       </div>
       <div className={styles.ShopFilterBar}>
         <ul className={styles.ShopFilterBarItems}>
           {links.map((obj) => (
             <li key={obj.id}>
-              <a href="#">{obj.name}</a>
+              <a href={"#"}>{obj.name}</a>
             </li>
           ))}
         </ul>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div>Loading...</div>} >
           <Filtration />
         </Suspense>
       </div>
-      
+
+      {allFilters && <FilterGroup />}
+
       <div className={styles.ShopImagesContainer}>
         {ShopElements}
       </div>

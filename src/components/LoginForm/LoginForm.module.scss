@@ -2,7 +2,7 @@
 @import '../../assets/variables/variables';
 
 .LoginForm {    
-    @include flex-ac-col-c;
+    @include flex-cc-col;
     gap: 11px;
     padding: 26px 36px 31px 40px;
     border: 2px solid $main-color;
@@ -18,7 +18,7 @@
 
 .LoginFields {
     width: 100%;
-    @include flex-ac-col-c;
+    @include flex-cc-col;
     gap: 5px;
 }
 
