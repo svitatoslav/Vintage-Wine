@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 const Filtration = React.lazy(() =>
   import("../../components/Filtaration/Filtaration")
 );
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
   const pathParts = useBreadcrumbs();
@@ -69,12 +70,15 @@ const Shop = () => {
     const [firstImage, ...restImages] = chunk;
 
     const bigImageDiv = ( 
-      <div className={styles.ShopImagesSectionBigImage} key={`bigImage_${i}`} onMouseEnter={() => handleMouseEnter(firstImage)}
+      <div className={styles.ShopImagesSectionBigImage} key={`bigImage_${i}`} 
+      onMouseEnter={() => handleMouseEnter(firstImage)}
       onMouseLeave={handleMouseLeave}>
         <LazyLoadImage src={firstImage?.productImg} alt={firstImage?.name} effect="blur" />
         {hoveredProduct === firstImage && (
             <span className={styles.ProductInfoBigImage} >
-                <h3>{firstImage.name}</h3>
+                <Link to={`/catalog/${firstImage._id}`}>
+                  <h3>{firstImage.name}</h3>
+                </Link>
                 <h4>{firstImage.currentPrice}$</h4>
                 <Button text={"Add to Cart"}/>
             </span>
@@ -95,7 +99,9 @@ const Shop = () => {
             />
             {hoveredProduct && hoveredProduct._id === _id && (
               <div className={styles.ProductInfoOverlay}>
-                <h3>{hoveredProduct.name}</h3>
+                <Link to={`/catalog/${hoveredProduct._id}`}>
+                      <h3>{hoveredProduct.name}</h3>
+                </Link>
                 <h3>{hoveredProduct.currentPrice}</h3>
                 <Button text={"Add to Cart"}/>
               </div>
