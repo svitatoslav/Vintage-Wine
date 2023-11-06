@@ -69,11 +69,9 @@ const Shop = () => {
     const [firstImage, ...restImages] = chunk;
 
     const bigImageDiv = ( 
-      <div className={styles.ShopImagesSectionBigImage} key={`bigImage_${i}`} >
-        <LazyLoadImage src={firstImage?.productImg} alt={firstImage?.name} effect="blur" 
-        onMouseEnter={() => handleMouseEnter(firstImage)}
-        onMouseLeave={handleMouseLeave}
-        />
+      <div className={styles.ShopImagesSectionBigImage} key={`bigImage_${i}`} onMouseEnter={() => handleMouseEnter(firstImage)}
+      onMouseLeave={handleMouseLeave}>
+        <LazyLoadImage src={firstImage?.productImg} alt={firstImage?.name} effect="blur" />
         {hoveredProduct === firstImage && (
             <span className={styles.ProductInfoBigImage} >
                 <h3>{firstImage.name}</h3>
@@ -81,22 +79,20 @@ const Shop = () => {
                 <Button text={"Add to Cart"}/>
             </span>
         )}
-        
       </div>
     );
 
     const smallImagesDiv = (
-      <div className={styles.ShopImagesSmall} key={`smallImages_${i}`}>
+      <div className={styles.ShopImagesSmall} key={`smallImages_${i}`} >
         {restImages.map(({ productImg, _id, name, currentPrice }) => (
-          <div key={_id} className={styles.SmallProductContainer}>
+          <div key={_id} className={styles.SmallProductContainer}
+          onMouseEnter={() => handleMouseEnter({ productImg, name, currentPrice, _id })}
+          onMouseLeave={handleMouseLeave}>
             <LazyLoadImage
               src={productImg}
               alt={name}
               effect="blur"
-              onMouseEnter={() => handleMouseEnter({ productImg, name, currentPrice, _id })}
-              onMouseLeave={handleMouseLeave}
             />
-    
             {hoveredProduct && hoveredProduct._id === _id && (
               <div className={styles.ProductInfoOverlay}>
                 <h3>{hoveredProduct.name}</h3>
