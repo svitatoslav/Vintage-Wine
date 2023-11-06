@@ -18,15 +18,15 @@ const SingleExcursion = ({ reverse, orderNum, data }) => {
   const alt = data.imageURL.split('/').pop().split('.')[0];
   
   return (
-    <div className={styles.SingleExcursion} data-testid="SingleExcursion">
-      <div className={cn(styles.SingleExcursionData, { [styles.SingleExcursionDataReverse]: reverse })}>
+    <div className={cn(styles.SingleExcursion, { [styles.SingleExcursionReverse]: reverse })} data-testid="SingleExcursion">
+      {/* <div className={cn(styles.SingleExcursionData, { [styles.SingleExcursionDataReverse]: reverse })}> */}
         <img src={data.imageURL} alt={alt} className={styles.SingleExcursionImg} />
         <div className={styles.SingleExcursionInfo}>
           <div className={styles.SingleExcursionNumber}>{leadingZero()}</div>
           <h6 className={styles.SingleExcursionCaption}>{data.title}</h6>
           <p>{data.description}</p>
         </div>
-      </div>
+      {/* </div> */}
       <button className={styles.SingleExcursionBtn}>
         <span>Book time</span>
         <Arrow />

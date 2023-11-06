@@ -1,15 +1,60 @@
 @import '../../assets/variables/variables';
 @import '../../assets/mixins/mixins';
 
+.SingleExcursion {
+    display: grid;
+    grid-template-areas:
+        "img"
+        "info"
+        "button";
+
+    @media screen and (min-width: $tablet) {
+        grid-template-areas:
+            "img button"
+            "info button";
+    }
+
+    @media screen and (min-width: $tablet-lg) {
+        grid-template-areas:
+            "img button info";
+    }
+
+    &Reverse {
+        grid-template-areas:
+        "info"
+        "img"
+        "button";
+
+        @media screen and (min-width: $tablet) {
+            grid-template-areas:
+                "info button"
+                "img button";
+        }
+
+        @media screen and (min-width: $tablet-lg) {
+            grid-template-areas:
+                "info button img";
+        }
+    }
+}
+
 .SingleExcursionBtn {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 15px;
     margin: 0 auto;
     padding: 14px 21px;
+    width: 187px;
     border: $brd-white;
     @include fonts(16px, $secondary-font);
     margin-top: 20px;
+    grid-area: button;
+    align-self: center;
+
+    @media screen and (min-width: $tablet) {
+        transform: translate(-20%, -50%) rotate(90deg);
+    }
 }
 
 .SingleExcursionCaption {
@@ -23,16 +68,17 @@
 }
 
 .SingleExcursionData {
-    display: flex;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
 
-    &Reverse {
-        flex-direction: column-reverse;
-    }
+    // &Reverse {
+    //     flex-direction: column-reverse;
+    // }
 }
 
 .SingleExcursionInfo {
     margin-bottom: 12px;
+    grid-area: info;
 }
 
 .SingleExcursionImg {
