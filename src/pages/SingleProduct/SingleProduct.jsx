@@ -2,6 +2,8 @@ import Breadcrumbs from './../../components/Breadcrumbs/Breadcrumbs';
 import { useEffect } from 'react';
 import useBreadcrumbs from '../../hooks/useBreadcrumbs';
 
+import { useParams } from 'react-router-dom';
+
 import Button from './../../components/Button/Button';
 import CustomSlider from '../../components/CustomSlider/CustomSlider';
 import Container from './../../components/Container/Container';
@@ -13,9 +15,11 @@ import LastViewed from './../../components/LastViewed/LastViewed';
 
 const SingleProduct = () => {
     const pathParts = useBreadcrumbs();
+    
+    const { id } = useParams();
 
     const productData = {
-        _id: '654297371f0354a5f8385529',
+        _id: '654297371f0354a5f8385528',
         name: 'Silent wine SHABO Grande dry red 0.75 l.',
         currentPrice: '449',
         categories: 'wine',
