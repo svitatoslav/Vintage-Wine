@@ -7,14 +7,18 @@
         "img"
         "info"
         "button";
+    padding: 0 12px;
 
     @media screen and (min-width: $tablet) {
+        padding: 0 41px;
+        grid-template-columns: auto 17%;
         grid-template-areas:
             "img button"
             "info button";
     }
 
     @media screen and (min-width: $tablet-lg) {
+        grid-template-columns: 1fr 74px 1fr;
         grid-template-areas:
             "img button info";
     }
@@ -51,9 +55,14 @@
     margin-top: 20px;
     grid-area: button;
     align-self: center;
+    cursor: pointer;
 
     @media screen and (min-width: $tablet) {
         transform: translate(-20%, -50%) rotate(90deg);
+    }
+
+    @media screen and (min-width: $tablet-lg) {
+        transform: translate(-30%, -30%) rotate(90deg);
     }
 }
 
@@ -65,15 +74,10 @@
 .SingleExcursionNumber {
     font-size: 50px;
     margin-bottom: 14px;
-}
 
-.SingleExcursionData {
-    // display: flex;
-    // flex-direction: column;
-
-    // &Reverse {
-    //     flex-direction: column-reverse;
-    // }
+    @media screen and (min-width: $tablet-xlg) {
+        font-size: 70px;
+    }
 }
 
 .SingleExcursionInfo {
@@ -82,5 +86,15 @@
 }
 
 .SingleExcursionImg {
+    display: flex;
+    align-items: center;
     grid-area: img;
+    
+    @media screen and (min-width: $tablet-xlg) {
+        width: 521px;
+    }
+
+    img {
+        object-fit: cover;
+    }
 }

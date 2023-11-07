@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import styles from './Excursions.module.scss';
 import Container from '../Container/Container';
 import SectionTitle from './../Title/SectionTitle';
 import SingleExcursion from '../SingleExcursion/SingleExcursion';
+import Button from '../Button/Button';
 import axios from 'axios';
 
 const Excursions = () => {
   const [excursions, setExcursions] = useState([]);
+  const [readMore, setReadMore] = useState(false);
 
-  const renderedExcursions = excursions?.map((excursion, i) => {
+  const handleReadMore = () => {
+    setReadMore(!readMore);
+  }
+
+  const mapedExcursions = excursions?.map((excursion, i) => {
     const isReverse = i % 2 === 0 ? false : true;
-    return <SingleExcursion key={excursion._id} orderNum={i + 1} data={excursion} reverse={isReverse}/>
+    return <SingleExcursion key={excursion._id} orderNum={i + 1} data={excursion} reverse={isReverse} />
   });
+
+  const renderedExcursions = readMore ? mapedExcursions : mapedExcursions.slice(0, 2);
 
   useEffect(() => {
     axios.get('http://127.0.0.1:4000/api/excursions/')
@@ -26,14 +33,18 @@ const Excursions = () => {
         <SectionTitle secText={'Excursions'} subText={'Our'} />
         <div className={styles.ExcursionsWrapper}>
           {renderedExcursions}
-
-          {/* <SingleExcursion reverse/> */}
+          <div className={styles.ExcursionsBtn}>
+            {!readMore &&
+              (<Button
+                text='Read more'
+                variant='small'
+                onClick={handleReadMore} />)
+            }
+          </div>
         </div>
       </Container>
     </section>
   );
 }
-
-Excursions.propTypes = {};
 
 export default Excursions;

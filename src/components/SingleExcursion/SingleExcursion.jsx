@@ -15,18 +15,18 @@ const SingleExcursion = ({ reverse, orderNum, data }) => {
     }
   };
 
-  const alt = data.imageURL.split('/').pop().split('.')[0];
-  
+  const alt = data.imageURL?.split('/').pop().split('.')[0];
+
   return (
     <div className={cn(styles.SingleExcursion, { [styles.SingleExcursionReverse]: reverse })} data-testid="SingleExcursion">
-      {/* <div className={cn(styles.SingleExcursionData, { [styles.SingleExcursionDataReverse]: reverse })}> */}
-        <img src={data.imageURL} alt={alt} className={styles.SingleExcursionImg} />
-        <div className={styles.SingleExcursionInfo}>
-          <div className={styles.SingleExcursionNumber}>{leadingZero()}</div>
-          <h6 className={styles.SingleExcursionCaption}>{data.title}</h6>
-          <p>{data.description}</p>
-        </div>
-      {/* </div> */}
+      <div className={styles.SingleExcursionImg} >
+        <img src={data.imageURL} alt={alt} />
+      </div>
+      <div className={styles.SingleExcursionInfo}>
+        <div className={styles.SingleExcursionNumber}>{leadingZero()}</div>
+        <h6 className={styles.SingleExcursionCaption}>{data.title}</h6>
+        <p>{data.description}</p>
+      </div>
       <button className={styles.SingleExcursionBtn}>
         <span>Book time</span>
         <Arrow />
@@ -36,8 +36,14 @@ const SingleExcursion = ({ reverse, orderNum, data }) => {
   );
 }
 
-SingleExcursion.propTypes = {};
-
-SingleExcursion.defaultProps = {};
+SingleExcursion.propTypes = {
+  orderNum: PropTypes.number.isRequired,
+  data: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    imageURL: PropTypes.string,
+    imageURL: PropTypes.string,
+  }),
+  reverse: PropTypes.bool,
+};
 
 export default SingleExcursion;
