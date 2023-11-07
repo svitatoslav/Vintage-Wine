@@ -3,6 +3,7 @@ import Catalog from '../../components/Catalog/Catalog';
 import Collections from '../../components/Collections/Collections';
 import Cover from '../../components/Cover/Cover';
 import History from '../../components/History/History';
+import Excursions from '../../components/Excursions/Excursions';
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <Collections />
       <History />
       <Catalog />
+      <Excursions />
     </>
   );
 }
