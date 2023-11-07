@@ -1,23 +1,38 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PageTitle from '../../components/Title/PageTitle';
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
-import SearchForm from "../../components/SearchField/SearchForm";
+import SearchForm from "../../components/SearchForm/SearchForm";
 import styles from "./Search.module.scss"
 import Container from "../../components/Container/Container";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import {useSearchParams} from "react-router-dom";
+import {filterProducts} from "../../redux/reducers/products-reducer";
 
 const Search = () => {
-    const [showedProducts, setShowedProducts] = useState([])
     const pathParts = useBreadcrumbs();
+    const [searchParams] = useSearchParams()
+    const dispatch = useDispatch()
 
-    const products = useSelector(state => state.products.filteredProducts)
+    const searchQuery =  searchParams.get("query") ?? ""
 
+    const {filteredProducts, products} = useSelector(state =>  state.products )
 
-    const handleSubmit = () => {
-        setShowedProducts(products)
-    }
+    useEffect(() => {
+        if (searchQuery !== "" && products.length > 0) {
+            dispatch(filterProducts(searchQuery))
+            // setShowedProducts(filteredProducts)
+        }
+
+    }, [products.length]);
+
+    // const handleSubmit = () => {
+        // setShowedProducts(filteredProducts)
+    // onSubmit={handleSubmit} searchForm
+    // }
+
+    const shouldShowProducts = filteredProducts.length > 0 && searchQuery !== ""
 
     return (
         <section className={styles.SearchImg}>
@@ -25,10 +40,10 @@ const Search = () => {
                 <PageTitle>Search</PageTitle>
                 {<Breadcrumbs pathParts={pathParts}/>}
                 <div className={styles.SearchWrapper}>
-                    <SearchForm onSubmit={handleSubmit}/>
+                    <SearchForm/>
                 </div>
                 <div className={styles.ProductWrapper}>
-                    {showedProducts.length > 0 && showedProducts.map(product => (
+                    {shouldShowProducts && filteredProducts.map(product => (
                         <ProductCard key={product._id} name={product.name} price={product.currentPrice}
                                      img={product.productImg} id={product._id}/>
                     ))}

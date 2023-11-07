@@ -1,14 +1,18 @@
 import styles from './SearchForm.module.scss';
 import Button from "../Button/Button";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {filterProducts} from "../../redux/reducers/products-reducer";
 import {logIn} from "passport/lib/http/request";
+import {useSearchParams} from "react-router-dom";
+import useDebounce from "../../hooks/useDebounce";
 
 const SearchForm = ({onSubmit}) => {
     const dispatch = useDispatch()
+    const [searchParams, setSearchParams] = useSearchParams()
 
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState(searchParams.get("query") ?? "");
+    const debouncedValue = useDebounce(searchTerm, 300)
     const [isInputActive, setIsInputActive] = useState(false)
 
     const products = useSelector(state => state.products.filteredProducts)
@@ -17,12 +21,22 @@ const SearchForm = ({onSubmit}) => {
 
     const handleInputChange = (e) => {
         setSearchTerm(e.target.value)
-        dispatch(filterProducts(e.target.value))
     }
+
+    useEffect(() => {
+        dispatch(filterProducts(debouncedValue))
+
+        setSearchParams({
+            query: debouncedValue
+        })
+    }, [debouncedValue]);
 
     const handleSearch = (e) => {
         e.preventDefault()
-        onSubmit()
+        // onSubmit()
+        // setSearchParams({
+        //     query: searchTerm
+        // })
     }
 
     const limitedProducts = products.slice(0, 5);
@@ -32,9 +46,7 @@ const SearchForm = ({onSubmit}) => {
             <input className={styles.Input} placeholder="Find your favorite drink" type="text" value={searchTerm}
                    onChange={handleInputChange} onFocus={() => setIsInputActive(true)}
                    onBlur={() => setIsInputActive(false)}/>
-
-            <Button type="submit" text="Search"/>
-            {isInputActive > 0 &&
+            {isDropDownOpen > 0 &&
                 <ul className={styles.List}>
                     {limitedProducts.length > 0 ? limitedProducts.map(product => <li key={product._id}><a
                             className={styles.Link} href="#">{product.name}</a></li>) :
