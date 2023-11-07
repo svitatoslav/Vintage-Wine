@@ -83,7 +83,7 @@ const Shop = () => {
         <LazyLoadImage src={firstImage?.productImg} alt={firstImage?.name} effect="blur" />
         {hoveredProduct === firstImage && (
             <span className={styles.ProductInfoBigImage} >
-                <Link to={`/shop/${firstImage.name.replace(/ /g, '-')}`} onClick={() => handleAddProduct(firstImage._id)}>
+                <Link to={`/shop/${firstImage.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(firstImage._id)}>
                   <h3>{firstImage.name}</h3>
                 </Link>
                 <h4>{firstImage.currentPrice}$</h4>
@@ -106,7 +106,7 @@ const Shop = () => {
             />
             {hoveredProduct && hoveredProduct._id === _id && (
               <div className={styles.ProductInfoOverlay}>
-                <Link to={`/shop/${hoveredProduct.name.replace(/ /g, '-')}`} onClick={() => handleAddProduct(hoveredProduct._id)}>
+                <Link to={`/shop/${hoveredProduct.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(hoveredProduct._id)}>
                       <h3>{hoveredProduct.name}</h3>
                 </Link>
                 <h3>{hoveredProduct.currentPrice}</h3>
