@@ -16,9 +16,9 @@ import Login from './pages/Login/Login';
 import Search from "./pages/Search/Search";
 import NoPage from './pages/NoPage/NoPage';
 import SingleCatalog from './components/SingleCatalog/SingleCatalog';
+import SingleProduct from './pages/SingleProduct/SingleProduct';
 
 import './App.scss';
-import SingleProduct from './pages/SingleProduct/SingleProduct';
 
 
 const App = () => {

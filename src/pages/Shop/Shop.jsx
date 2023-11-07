@@ -1,17 +1,20 @@
-import styles from "./Shop.module.scss";
+import React, { Suspense } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 import Button from "../../components/Button/Button";
 import Breadcrumbs from "./../../components/Breadcrumbs/Breadcrumbs";
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
-import { useEffect, useState } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import React, { Suspense } from "react";
 import FilterGroup from '../../components/FilterGroup/FilterGroup';
-import { useSelector } from "react-redux";
+
+import "react-lazy-load-image-component/src/effects/blur.css";
+import styles from "./Shop.module.scss";
+
 const Filtration = React.lazy(() =>
   import("../../components/Filtaration/Filtaration")
 );
-import { Link } from 'react-router-dom';
 
 const Shop = () => {
   const pathParts = useBreadcrumbs();
@@ -25,6 +28,10 @@ const Shop = () => {
 
   const handleMouseLeave = () => {
     setHoveredProduct(null);
+  };
+
+  const handleAddProduct = (id) => {
+    localStorage.setItem('viewedProducts', id);
   };
 
   const allFilters = useSelector(state => state.filters.isAllFilters);
@@ -76,7 +83,7 @@ const Shop = () => {
         <LazyLoadImage src={firstImage?.productImg} alt={firstImage?.name} effect="blur" />
         {hoveredProduct === firstImage && (
             <span className={styles.ProductInfoBigImage} >
-                <Link to={`/catalog/${firstImage._id}`}>
+                <Link to={`/shop/catalog/${firstImage._id}`} onClick={() => handleAddProduct(firstImage._id)}>
                   <h3>{firstImage.name}</h3>
                 </Link>
                 <h4>{firstImage.currentPrice}$</h4>
@@ -99,7 +106,7 @@ const Shop = () => {
             />
             {hoveredProduct && hoveredProduct._id === _id && (
               <div className={styles.ProductInfoOverlay}>
-                <Link to={`/catalog/${hoveredProduct._id}`}>
+                <Link to={`/shop/catalog/${hoveredProduct._id}`} onClick={() => handleAddProduct(hoveredProduct._id)}>
                       <h3>{hoveredProduct.name}</h3>
                 </Link>
                 <h3>{hoveredProduct.currentPrice}</h3>
