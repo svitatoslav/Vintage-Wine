@@ -2,7 +2,7 @@
 @import '../../assets/mixins/mixins';
 
 .Button {
-  padding: 4px 34px;
+  padding: 4px 35px;
   font-size: 15px;
   line-height: 36px;
   cursor: pointer;
@@ -19,8 +19,9 @@
   }
 
   @media screen and (min-width: $tablet-xlg) {
-    padding: 14px 79px;
+    padding: 14px 68px;
     font-size: 30px;
+    min-width: 218px;
   }
 }
 

@@ -146,7 +146,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
         <>
             {type === CATALOG_SLIDER && (
                 <Slider {...SliderCatalogSettings} className={styles.wrapperSlider}>
-                    {sliderArray.map((slide) => {
+                    {sliderArray?.map((slide) => {
                         const itemLinkCatalog = slide.name.toLowerCase();
                         return (
                             <div className={`${styles.itemSlide} `} key={slide.id}>
@@ -161,7 +161,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
             )}
             {type === COLLECTIONS_SLIDER && (
                 <Slider {...SliderCollectionsSettings} className={`${styles.wrapperSlider} ${styles.collectionsWrapperSlider}`}>
-                    {sliderArray.map((slide, index) => {
+                    {sliderArray?.map((slide, index) => {
                         const itemLinkCatalog = slide.name.toLowerCase();
                         const slideClasses = `${styles.itemSlide} ${styles.collectionsSlide} ${index % 2 === 0 ? styles.evenSlide : styles.oddSlide}`;
 
@@ -186,7 +186,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
             {type === SINGLE_PRODUCT && (
                 <>
                     <Slider className={styles.singleProductMainSlider} asNavFor={productBodySlider} ref={productMainSlider} arrows={false}>
-                        {sliderArray.map((image, index) => {
+                        {sliderArray?.map((image, index) => {
                             return (
                                 <div key={index} className={styles.mainSlide}>
                                     <img src={image} alt="slide image" />
@@ -195,7 +195,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                         })}
                     </Slider>
                     <Slider asNavFor={productHeaderSlider} ref={productSecondarySlider} {...SingleProductSlider} className={styles.singleProductSecondarySlider}>
-                        {sliderArray.map((image, index) => {
+                        {sliderArray?.map((image, index) => {
                             return (
                                 <div key={index} className={styles.secondarySlide}>
                                     <img src={image} alt="slide image" />

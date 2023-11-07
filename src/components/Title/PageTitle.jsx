@@ -12,3 +12,4 @@ const PageTitle = ({children, type}) => {
 }
 
 export default PageTitle
+

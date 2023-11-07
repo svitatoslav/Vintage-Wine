@@ -65,7 +65,9 @@ function Header() {
                 </Link>
                 <span className={styles.Counter}>0</span>
               </div>
-              <SearchWidget />
+              <Link to="/search">
+                  <SearchWidget />
+              </Link>
             </div>
             <div className={styles.HeaderWidgetsGroup}>
               {user ? (
