@@ -2,7 +2,7 @@ import Breadcrumbs from './../../components/Breadcrumbs/Breadcrumbs';
 import { useEffect, useState } from 'react';
 import useBreadcrumbs from '../../hooks/useBreadcrumbs';
 
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 import Button from './../../components/Button/Button';
 import CustomSlider from '../../components/CustomSlider/CustomSlider';
@@ -18,6 +18,10 @@ const SingleProduct = () => {
     const [singleItem, setSingleItem] = useState({});
     const { id } = useParams();
     const pathParts = useBreadcrumbs();
+
+    if (!localStorage.getItem('viewedProducts')) {
+        return <Navigate to='*' />
+    }
 
     useEffect(() => {
         async function fetchData() {
