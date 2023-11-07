@@ -45,7 +45,7 @@
             span img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: inherit;
             }
 
             .ProductInfoBigImage {
@@ -99,7 +99,7 @@
             span img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: inherit;
             }
 
             .SmallProductContainer {
@@ -122,7 +122,7 @@
                 left: 0;
                 z-index: 1000;
                 button {
-                    width: 90%;
+                    width: 100%;
                 }
             }
         }         
@@ -163,7 +163,7 @@
             span img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: inherit;
             }
         }
         .ShopImagesSection {
@@ -188,7 +188,12 @@
             span img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: inherit;
+            }
+        }
+        .ProductInfoOverlay {
+            button {
+                width: 101%;
             }
         }
     }
@@ -247,7 +252,7 @@
             }
         }
         .ShopImagesContainer {
-            width: 95%;
+            width: 100%;
             display: flex;
             flex-direction: column;
             padding-left: 0;
@@ -262,6 +267,7 @@
             display: flex;
             flex-direction: row;
             column-gap: 16px;
+            margin-bottom: 10px;
         }
         .ShopImagesSectionBigImage {
             span {
@@ -272,29 +278,41 @@
             span img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: inherit;
             }
         }
         .ShopImagesSmall {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             row-gap: 7px;
-            width: 240px;
-            height: 520px;
+            width: 32%;
+            height: 504px;
             position: relative;
-            span {
-                width: 100%;
-                height: 48%;
-                img {
+            
+            .SmallProductContainer {
+                width: 95%;
+                height: 49%;
+                &:nth-last-child(-n + 2) {
+                    display: none;
+                  }
+                
+                span {
+                    width: 100%;
+                    height: 100%;     
+                }
+                span img {
                     width: 100%;
                     height: 100%;
+                    overflow: hidden;
                 }
-                &:nth-last-child(-n + 2) {
-                    img {
-                        display: none;
-                      }
-                }
-            }   
+            }
+ 
+        }
+        .ProductInfoOverlay {
+ 
+            button {
+                width: 75%;
+            }
         }
     }
 
@@ -315,12 +333,16 @@
             padding-left: 0;
             padding-right: 0;
             margin-bottom: 80px;
+            & > :nth-child(even) {
+                flex-direction: row-reverse;
+              }
         }
         .ShopImagesSection {
             width: 100%;
             display: flex;
             flex-direction: row;
             column-gap: 17px;
+            margin-bottom: 5px;
         }
         .ShopImagesSectionBigImage {
             span {
@@ -331,29 +353,35 @@
             span img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: inherit;
             }
         }
         .ShopImagesSmall {
             display: flex;
-            flex-direction: column;
-            row-gap: 8px;
-            width: 240px;
-            height: 683px;
+            flex-direction: row;
+            row-gap: 7px;
+            width: 32%;
+            height: 682px;
             position: relative;
-            span {
-                width: 100%;
+            
+            .SmallProductContainer {
+                width: 95%;
                 height: 49%;
-                img {
+                &:nth-last-child(-n + 2) {
+                    display: none;
+                  }
+                
+                span {
+                    width: 100%;
+                    height: 100%; 
+                    overflow: hidden;   
+                }
+                 img {
                     width: 100%;
                     height: 100%;
+                    object-fit: inherit;
                 }
-                &:nth-last-child(-n + 2) {
-                    img {
-                        display: none;
-                      }
-                }
-            }   
+            }
         }
     }
     
@@ -368,7 +396,7 @@
             width: 690px;
         }   
         .ShopImagesContainer {
-            width: 100%;
+            width: 98%;
         }    
         .ShopImagesSectionBigImage {
             span {
@@ -379,34 +407,28 @@
             span img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: inherit;
             }
         }
         .ShopImagesSection {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            column-gap: 5px;
+            column-gap: 3px;
         }
         .ShopImagesSmall {
-            width: 704px;
-            display: flex;
-            column-gap: 5px;
-            row-gap: 6px;
-            span {
-                width: 295px;
-                height: 335px;
-                position: relative;
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
+            flex-direction: column;
+            position: relative;
+            width: 46%;
+            
+            .SmallProductContainer {
+                width: 48%;
                 &:nth-last-child(-n + 2) {
-                    img {
-                        display: block;
-                      }
+                    display: block;
+                  }
+                
+                span {
+                    width: 100%;
+                }
+                 img {
+                    width: 100%;
                 }
             }
         }
