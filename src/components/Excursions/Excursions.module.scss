@@ -23,13 +23,11 @@
         }
 
         @media screen and (min-width: $desktop) {
-            top: -15%;
             height: 839px;
             width: 493px;
         }
 
         @media screen and (min-width: $desktop-lg) {
-            top: 0;
             width: 743px;
             height: 1265px;
         }
@@ -52,8 +50,57 @@
     z-index: 1;
 
     @media screen and (min-width: $tablet-lg) {
-
+        padding: 0 40px;
         margin-top: 25px;
         text-align: end;
+    }
+}
+
+.ExcursionsInfo {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.ExcursionsText {
+    margin: 0 auto;
+    @include fonts(25px, $main-font);
+    margin-bottom: 30px;
+
+    @media screen and (min-width: $tablet-lg) {
+        max-width: 75%;
+        font-size: 45px;
+    }
+}
+
+.ExcursionsLinkHolder {
+    position: relative;
+    @include fonts(25px, $main-font);
+    @include transition;
+    cursor: pointer;
+
+    @media screen and (min-width: $tablet-lg) {
+        font-size: 45px;
+    }
+
+    &:hover {
+        color: $btn-bg;
+    }
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 7px;
+        background: url('../DropdownMenu/icons/symbol.svg');
+        top: 50%;
+        transform: translateY(-50%);
+        left: -44px;
+    }
+
+    &::after {
+        left: unset;
+        right: -44px;
     }
 }
