@@ -17,6 +17,7 @@ import Search from "./pages/Search/Search";
 import NoPage from './pages/NoPage/NoPage';
 import SingleCatalog from './components/SingleCatalog/SingleCatalog';
 import SingleProduct from './pages/SingleProduct/SingleProduct';
+import Checkout from './pages/Checkout/Checkout';
 
 import './App.scss';
 
@@ -44,6 +45,8 @@ const App = () => {
                     <Route path="search" element={<Search />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="*" element={<NoPage />} />
+
+                    <Route path="/checkout" element={<Checkout />} />
                 </Route>
             </Routes>
         </>

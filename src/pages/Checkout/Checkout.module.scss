@@ -1,0 +1,39 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+ 
+    @media screen and (min-width: $mobile) {
+        .ProductInfo {
+            border: 2px solid #D9D9D9;
+        }
+        .ClientInfo {
+            border: 2px solid #D9D9D9;
+       }
+    }
+    
+    @media screen and (min-width: $tablet) {
+ 
+    }
+
+    @media screen and (min-width: $tablet-lg) {
+ 
+    }
+
+    @media screen and (min-width: $tablet-xlg) {
+ 
+    }
+    
+    @media screen and (min-width: $desktop) {
+ 
+    } 
+     
+ 
+
+           
+
+
+
+
+
+
+
