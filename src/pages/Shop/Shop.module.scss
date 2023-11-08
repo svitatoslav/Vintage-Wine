@@ -396,12 +396,19 @@
             width: 690px;
         }   
         .ShopImagesContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             width: 98%;
+            & > :nth-child(even) {
+                flex-direction: row-reverse;
+                max-width: 1200px;
+              }
         }    
         .ShopImagesSectionBigImage {
             span {
-                width: 535px;
-                height: 680px;
+                width: 595px;
+                height: 755px;
                 position: relative;
             }
             span img {
@@ -411,15 +418,20 @@
             }
         }
         .ShopImagesSection {
-            column-gap: 3px;
+            display: flex;
+            justify-content: flex-start;
+            max-width: 1200px;
+            column-gap: 5px;
         }
         .ShopImagesSmall {
             flex-direction: column;
             position: relative;
-            width: 46%;
-            
+            width: 50%;
+            column-gap: 1px;
+            height: 760px;
             .SmallProductContainer {
-                width: 48%;
+                width: 295px;
+                height: 374px;
                 &:nth-last-child(-n + 2) {
                     display: block;
                   }
