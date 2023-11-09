@@ -1,0 +1,100 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.SingleExcursion {
+    display: grid;
+    grid-template-areas:
+        "img"
+        "info"
+        "button";
+    padding: 0 12px;
+
+    @media screen and (min-width: $tablet) {
+        padding: 0 41px;
+        grid-template-columns: auto 17%;
+        grid-template-areas:
+            "img button"
+            "info button";
+    }
+
+    @media screen and (min-width: $tablet-lg) {
+        grid-template-columns: 1fr 74px 1fr;
+        grid-template-areas:
+            "img button info";
+    }
+
+    &Reverse {
+        grid-template-areas:
+        "info"
+        "img"
+        "button";
+
+        @media screen and (min-width: $tablet) {
+            grid-template-areas:
+                "info button"
+                "img button";
+        }
+
+        @media screen and (min-width: $tablet-lg) {
+            grid-template-areas:
+                "info button img";
+        }
+    }
+}
+
+.SingleExcursionBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin: 0 auto;
+    padding: 14px 21px;
+    width: 187px;
+    border: $brd-white;
+    @include fonts(16px, $secondary-font);
+    margin-top: 20px;
+    grid-area: button;
+    align-self: center;
+    cursor: pointer;
+
+    @media screen and (min-width: $tablet) {
+        transform: translate(-20%, -50%) rotate(90deg);
+    }
+
+    @media screen and (min-width: $tablet-lg) {
+        transform: translate(-30%, -30%) rotate(90deg);
+    }
+}
+
+.SingleExcursionCaption {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.SingleExcursionNumber {
+    font-size: 50px;
+    margin-bottom: 14px;
+
+    @media screen and (min-width: $tablet-xlg) {
+        font-size: 70px;
+    }
+}
+
+.SingleExcursionInfo {
+    margin-bottom: 12px;
+    grid-area: info;
+}
+
+.SingleExcursionImg {
+    display: flex;
+    align-items: center;
+    grid-area: img;
+    
+    @media screen and (min-width: $tablet-xlg) {
+        width: 521px;
+    }
+
+    img {
+        object-fit: cover;
+    }
+}

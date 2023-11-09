@@ -34,16 +34,48 @@
             padding-right: 10px;
         }    
         .ShopImagesSectionBigImage {
+            position: relative;
             span {
                 width: 340px;
                 height: 446px;
                 position: relative;
+                
             }
+            
             span img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: inherit;
             }
+
+            .ProductInfoBigImage {
+                background: #000000;
+                opacity: .5;
+                transition: opacity 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                h3 {
+                    font-family: $main-font;
+                    font-size: 50px;
+                    font-weight: 600;
+                    opacity: 1;
+                }
+                h4 {
+                    font-family: $main-font;
+                    font-size: 50px;
+                    font-weight: 600;
+                    opacity: 1;
+                }
+            } 
         }
         .ShopImagesSection {
             display: flex;
@@ -62,12 +94,36 @@
             span {
                 width: 150px;
                 height: 150px;
-                position: relative;
             }
+
             span img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: inherit;
+            }
+
+            .SmallProductContainer {
+                position: relative;
+            }
+
+            .ProductInfoOverlay {
+                background: #000000;
+                opacity: .5;
+                transition: opacity 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                button {
+                    width: 100%;
+                }
             }
         }         
     }
@@ -107,7 +163,7 @@
             span img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: inherit;
             }
         }
         .ShopImagesSection {
@@ -132,7 +188,12 @@
             span img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: inherit;
+            }
+        }
+        .ProductInfoOverlay {
+            button {
+                width: 101%;
             }
         }
     }
@@ -191,7 +252,7 @@
             }
         }
         .ShopImagesContainer {
-            width: 95%;
+            width: 100%;
             display: flex;
             flex-direction: column;
             padding-left: 0;
@@ -206,6 +267,7 @@
             display: flex;
             flex-direction: row;
             column-gap: 16px;
+            margin-bottom: 10px;
         }
         .ShopImagesSectionBigImage {
             span {
@@ -216,29 +278,41 @@
             span img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: inherit;
             }
         }
         .ShopImagesSmall {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             row-gap: 7px;
-            width: 240px;
-            height: 520px;
+            width: 32%;
+            height: 504px;
             position: relative;
-            span {
-                width: 100%;
-                height: 48%;
-                img {
+            
+            .SmallProductContainer {
+                width: 95%;
+                height: 49%;
+                &:nth-last-child(-n + 2) {
+                    display: none;
+                  }
+                
+                span {
+                    width: 100%;
+                    height: 100%;     
+                }
+                span img {
                     width: 100%;
                     height: 100%;
+                    overflow: hidden;
                 }
-                &:nth-last-child(-n + 2) {
-                    img {
-                        display: none;
-                      }
-                }
-            }   
+            }
+ 
+        }
+        .ProductInfoOverlay {
+ 
+            button {
+                width: 75%;
+            }
         }
     }
 
@@ -259,12 +333,16 @@
             padding-left: 0;
             padding-right: 0;
             margin-bottom: 80px;
+            & > :nth-child(even) {
+                flex-direction: row-reverse;
+              }
         }
         .ShopImagesSection {
             width: 100%;
             display: flex;
             flex-direction: row;
             column-gap: 17px;
+            margin-bottom: 5px;
         }
         .ShopImagesSectionBigImage {
             span {
@@ -275,29 +353,35 @@
             span img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: inherit;
             }
         }
         .ShopImagesSmall {
             display: flex;
-            flex-direction: column;
-            row-gap: 8px;
-            width: 240px;
-            height: 683px;
+            flex-direction: row;
+            row-gap: 7px;
+            width: 32%;
+            height: 682px;
             position: relative;
-            span {
-                width: 100%;
+            
+            .SmallProductContainer {
+                width: 95%;
                 height: 49%;
-                img {
+                &:nth-last-child(-n + 2) {
+                    display: none;
+                  }
+                
+                span {
+                    width: 100%;
+                    height: 100%; 
+                    overflow: hidden;   
+                }
+                 img {
                     width: 100%;
                     height: 100%;
+                    object-fit: inherit;
                 }
-                &:nth-last-child(-n + 2) {
-                    img {
-                        display: none;
-                      }
-                }
-            }   
+            }
         }
     }
     
@@ -312,45 +396,51 @@
             width: 690px;
         }   
         .ShopImagesContainer {
-            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 98%;
+            & > :nth-child(even) {
+                flex-direction: row-reverse;
+                max-width: 1200px;
+              }
         }    
         .ShopImagesSectionBigImage {
             span {
-                width: 535px;
-                height: 680px;
+                width: 595px;
+                height: 755px;
                 position: relative;
             }
             span img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: inherit;
             }
         }
         .ShopImagesSection {
             display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
+            max-width: 1200px;
             column-gap: 5px;
         }
         .ShopImagesSmall {
-            width: 704px;
-            display: flex;
-            column-gap: 5px;
-            row-gap: 6px;
-            span {
+            flex-direction: column;
+            position: relative;
+            width: 50%;
+            column-gap: 1px;
+            height: 760px;
+            .SmallProductContainer {
                 width: 295px;
-                height: 335px;
-                position: relative;
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
+                height: 374px;
                 &:nth-last-child(-n + 2) {
-                    img {
-                        display: block;
-                      }
+                    display: block;
+                  }
+                
+                span {
+                    width: 100%;
+                }
+                 img {
+                    width: 100%;
                 }
             }
         }

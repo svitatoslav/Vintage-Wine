@@ -1,6 +1,6 @@
 const FETCH_VIEWED_PRODUCTS = 'FETCH_VIEWED_PRODUCTS';
 
-const viewedProducts = JSON.parse(localStorage.getItem('viewedProducts'));
+const viewedProducts = localStorage.getItem('viewedProducts');
 
 
 const initialState = {

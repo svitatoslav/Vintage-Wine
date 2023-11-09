@@ -26,6 +26,7 @@ const comments = require('./backend/routes/comments');
 const shippingMethods = require('./backend/routes/shippingMethods');
 const paymentMethods = require('./backend/routes/paymentMethods');
 const partners = require('./backend/routes/partners');
+const excursions = require('./backend/routes/excursions');
 const news = require('./backend/routes/news');
 // const mainRoute = require('./routes/index');
 
@@ -77,6 +78,7 @@ app.use('/api/comments', comments);
 app.use('/api/shipping-methods', shippingMethods);
 app.use('/api/payment-methods', paymentMethods);
 app.use('/api/partners', partners);
+app.use('/api/excursions', excursions);
 app.use('/api/news', news);
 // app.use('/', mainRoute);
 
