@@ -28,124 +28,123 @@ const Checkout = () => {
             <Container>
                 <h3 className="vvPageTitle">Checkout </h3>
                 {<Breadcrumbs pathParts={pathParts} />}
-                <Formik
-                    initialValues={{
-                        toggle: false,
-                        checked: [],
-                        name: '',
-                        lastName: '',
-                        email: '',
-                        phone: '',
-                        country: '',
-                        city: '',
-                        address: '',
-                        comment: '',
-                    }}
-                    validationSchema={validationSchema}
-                    onSubmit={(values, actions) => {
-                        console.log(values);
-                        setDisplayClientInfo(false);
-                        actions.setSubmitting(false);
+                    <Formik
+                        initialValues={{
+                            toggle: false,
+                            checked: [],
+                            name: '',
+                            lastName: '',
+                            email: '',
+                            phone: '',
+                            country: '',
+                            city: '',
+                            address: '',
+                            comment: '',
                         }}
-                    >
-                    <Form>
-                        <div className={styles.ProductInfo}>
-                            <div className={styles.AddedProducts}>
-                                Products from Cart
-                            </div>
-                            <div className={styles.Total}>
-                                <h3>Subtotal:</h3>
-                                <h3>Shipping:</h3>
-                                <h3>Total:</h3>
-                            </div>
-                            <label>
-                                <Field type="checkbox" name="toggle" />
-                                By clicking the "Place order" button, you agree to the Privacy Policy
-                            </label>
-                            {displayClientInfo && (<Button text="Continue" type="submit" />)}
-                        </div>
-
-                        {displayClientInfo ? (
-                            <div className={styles.ClientInfo}>
-                            <title>Your order</title>
-                            <div className={styles.PersonalData}>
-                                <title>
-                                    <h3>Personal data</h3>
-                                </title>
-                                <div>
-                                    <label>Name</label>
-                                    <Field type="text" name="name" />
-                                    <ErrorMessage name="name" component="div" />
+                        validationSchema={validationSchema}
+                        onSubmit={(values, actions) => {
+                            console.log(values);
+                            setDisplayClientInfo(false);
+                            actions.setSubmitting(false);
+                            }}
+                        >
+                        <Form>
+                            <div className={styles.ProductInfo}>
+                                <div className={styles.AddedProducts}>
+                                    Products from Cart
                                 </div>
-                                <div>
-                                    <label>Last Name</label>
-                                    <Field type="text" name="lastName" />
-                                    <ErrorMessage name="lastName" component="div" />
-                                </div>
-                                <div>
-                                    <label>Email</label>
-                                    <Field type="email" name="email" />
-                                    <ErrorMessage name="email" component="div" />
-                                </div>
-                                <div>
-                                    <label>Phone</label>
-                                    <Field type="text" name="phone" />
-                                    <ErrorMessage name="phone" component="div" />
-                                </div>
-                            </div>
-                            <div className={styles.Delivery}>    
-                                <div>
-                                    <label>Country</label>
-                                    <Field type="text" name="country" />
-                                    <ErrorMessage name="country" component="div" />
-                                </div>
-                                <div>
-                                    <label>City</label>
-                                    <Field type="text" name="city" />
-                                    <ErrorMessage name="city" component="div" />
-                                </div>
-                                <div>
-                                    <label>Address</label>
-                                    <Field type="text" name="address" />
-                                    <ErrorMessage name="address" component="div" />
-                                </div>
-                            </div>
-                            <div className={styles.PaymentMethods}>
-                                <title>
-                                    <h3>Payment methods</h3>
-                                </title>
-                                <div className={styles.CardsImages}>
-                                    <img src="public\imageProject\checkout\six-cards.png" alt="smallCards" />
-                                </div>
-                                <div className={styles.MobilePay}>
-                                    <img src="public\imageProject\checkout\mobile-pay.png" alt="mobile-pay" />
-                                </div>
-                                <div className={styles.CardsImagesBig}>
-                                    <img src="public\imageProject\checkout\nine-cards.png" alt="BigCards" />
-                                </div>
-                            </div>
-                            <div>
-                                <button type="button" onClick={() => setShowComment(!showComment)}>
-                                    <label>Comment on the order</label>
-                                    <img src="src\pages\Checkout\icons\Checkout_plus_icon.svg" alt="plus" />
-                                </button>
-                            </div>
-                            {showComment && (
-                                <div>
-                                    <div>
-                                        <Field as="textarea" name="comment" />
-                                        <ErrorMessage name="comment" component="div" />
+                                <div className={styles.Total}>
+                                    <div className={styles.TotalTitlels}>
+                                        <h3>Subtotal:</h3>
+                                        <h3>Shipping:</h3>
+                                        <h3>Total:</h3>
+                                    </div>
+                                    <div className={styles.TotalValues}>
+                                        <h3>1796uan</h3>
+                                        <h3>50uan</h3>
+                                        <h3>1846uan</h3>    
                                     </div>
                                 </div>
+                                <label className={styles.Checkbox}>
+                                    <Field type="checkbox" name="toggle" />
+                                    <p>By clicking the "Place order" button, you agree to the Privacy Policy</p>
+                                </label>
+                                {displayClientInfo && (<Button text="Continue" type="submit" />)}
+                            </div>
+
+                            {displayClientInfo ? (
+                                <div className={styles.ClientInfo}>
+                                    <div className={styles.YourOrder}>
+                                        <h2>Your order</h2>
+                                    </div>
+                                    <div className={styles.PersonalData}>
+                                        <p>Personal data</p>
+                                        <div>
+                                            <Field type="text" name="name" placeholder="Name" />
+                                            <ErrorMessage name="name" component="div" />
+                                        </div>
+                                        <div>
+                                            <Field type="text" name="lastName" placeholder="Last Name" />
+                                            <ErrorMessage name="lastName" component="div" />
+                                        </div>
+                                        <div>
+                                            <Field type="email" name="email" placeholder="Email"/>
+                                            <ErrorMessage name="email" component="div" />
+                                        </div>
+                                        <div>
+                                            <Field type="text" name="phone" placeholder="Phone"/>
+                                            <ErrorMessage name="phone" component="div" />
+                                        </div>
+                                    </div>
+                                    <div className={styles.Delivery}>  
+                                        <p>Delivery</p>  
+                                        <div>
+                                            <Field type="text" name="country" placeholder="Country"/>
+                                            <ErrorMessage name="country" component="div" />
+                                        </div>
+                                        <div>
+                                            <Field type="text" name="city" placeholder="city"/>
+                                            <ErrorMessage name="city" component="div" />
+                                        </div>
+                                        <div>
+                                            <Field type="text" name="address" placeholder="Address"/>
+                                            <ErrorMessage name="address" component="div" />
+                                        </div>
+                                    </div>
+                                    <div className={styles.PaymentMethods}>
+                                        <p>Payment methods</p>
+                                        <div className={styles.CardsImagesContainer}>
+                                            <div className={styles.CardsImages}>
+                                                <img src="public\imageProject\checkout\six-cards.png" alt="smallCards" />
+                                            </div>
+                                            <div className={styles.MobilePay}>
+                                                <img src="public\imageProject\checkout\mobile-pay.png" alt="mobile-pay" />
+                                            </div>
+                                        </div>
+                                        <div className={styles.CardsImagesBig}>
+                                            <img src="public\imageProject\checkout\nine-cards.png" alt="BigCards" />
+                                        </div>
+                                    </div>
+                                    <div className={styles.AddComment}>
+                                        <button type="button" onClick={() => setShowComment(!showComment)}>
+                                            <img src="src\pages\Checkout\icons\Checkout_plus_icon.svg" alt="plus" />
+                                            <label>Comment on the order</label>
+                                        </button>
+                                    </div>
+                                    {showComment && (
+                                        <div className={styles.Textarea}>
+                                            <Field as="textarea" name="comment" />
+                                            <ErrorMessage name="comment" component="div" />
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <div className={styles.ImageAfterSubmite}>
+                                    <img src="public\imageProject\checkout\checkout.png" alt="after submite" />
+                                </div>
                             )}
-                            </div>
-                        ) : (
-                            <div className={styles.ImageAfterSubmite}>
-                                <img src="public\imageProject\checkout\checkout.png" alt="after submite" />
-                            </div>
-                        )}
-                    </Form>
-                </Formik>
+                        </Form>
+                    </Formik>
             </Container>
         </section>
     )
