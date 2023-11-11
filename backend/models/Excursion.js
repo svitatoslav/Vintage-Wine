@@ -13,6 +13,9 @@ const ExcursionSchema = new Schema(
     },
     imageUrl: {
       type: String,
+    },
+    reservations: {
+      type: Array,
     }
   },
   { strict: false }
