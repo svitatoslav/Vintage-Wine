@@ -41,7 +41,8 @@ const ProductSchema = new Schema(
         productDescription: {
             aroma: { type: String },
             taste: { type: String }
-        }
+        },
+        cartDescription: { type: String }
     },
     { strict: false }
 );
