@@ -22,15 +22,9 @@ const Search = () => {
     useEffect(() => {
         if (searchQuery !== "" && products.length > 0) {
             dispatch(filterProducts(searchQuery))
-            // setShowedProducts(filteredProducts)
         }
 
     }, [products.length]);
-
-    // const handleSubmit = () => {
-        // setShowedProducts(filteredProducts)
-    // onSubmit={handleSubmit} searchForm
-    // }
 
     const shouldShowProducts = filteredProducts.length > 0 && searchQuery !== ""
 
