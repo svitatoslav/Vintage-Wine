@@ -1,4 +1,7 @@
-.ModalWindow {
+@import '../../../assets/mixins/mixins';
+@import '../../../assets/variables/variables';
+
+.ReservationModal {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -10,12 +13,21 @@
         width: 0;
     }
 
-    .ModalWindowTitle {
+    .ReservationModalTitle {
         padding-top: 0;
     }
 }
 
-.ModalWindoWContent {
+.ReservationModalTop {
+    position: relative;
+}
+
+.ReservationModalClose {
+    @include abs-t5;
+    right: -30px;
+}
+
+.ReservationModalContent {
     padding: 0 50px;
     max-width: 640px;
     margin: 0 auto;
@@ -28,9 +40,8 @@
     padding: 0 0 20px;
 }
 
-.ModalWindowForm {
+.ReservationModalForm {
     padding: 0 10px;
-    // height: 100%;
     width: 100%;
     text-align: center;
 }

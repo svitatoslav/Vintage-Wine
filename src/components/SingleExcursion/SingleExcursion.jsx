@@ -5,7 +5,7 @@ import Arrow from './icons/arrow.svg?react';
 import Calendar from './icons/calendar.svg?react';
 import cn from 'classnames';
 import { useDispatch } from 'react-redux';
-import { toggleModalAC } from '../../redux/reducers/modalWindow-reducer';
+import { selectTourAC, toggleModalAC } from '../../redux/reducers/modalWindow-reducer';
 
 const SingleExcursion = ({ reverse, orderNum, data }) => {
   const dispatch = useDispatch();
@@ -20,7 +20,8 @@ const SingleExcursion = ({ reverse, orderNum, data }) => {
 
   const alt = data.imageURL?.split('/').pop().split('.')[0];
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (title) => {
+    dispatch(selectTourAC(title));
     dispatch(toggleModalAC());
   }
 
@@ -34,7 +35,7 @@ const SingleExcursion = ({ reverse, orderNum, data }) => {
         <h6 className={styles.SingleExcursionCaption}>{data.title}</h6>
         <p>{data.description}</p>
       </div>
-      <button className={styles.SingleExcursionBtn} onClick={handleOpenModal}>
+      <button className={styles.SingleExcursionBtn} onClick={() => handleOpenModal(data.title)}>
         <span>Book time</span>
         <Arrow />
         <Calendar />

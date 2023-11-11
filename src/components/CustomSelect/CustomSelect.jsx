@@ -20,7 +20,9 @@ const CustomSelect = ({ placeHolder, name, options, style }) => {
   });
 
   useEffect(() => {
-    setFieldValue(name, selectedValue?.value || '')
+    if (selectedValue) {
+      setFieldValue(name, selectedValue?.value)
+    }
   }, [selectedValue])
 
   const handleInputClick = () => {
@@ -65,6 +67,14 @@ const CustomSelect = ({ placeHolder, name, options, style }) => {
       )}
     </div>
   );
+};
+
+
+CustomSelect.propTypes = {
+  placeHolder: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  style: PropTypes.object
 };
 
 export default CustomSelect;

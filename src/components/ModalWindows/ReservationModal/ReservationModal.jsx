@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import styles from './ModalWindow.module.scss';
-import PageTitle from '../Title/PageTitle';
-import CustomSelect from '../CustomSelect/CustomSelect';
+import styles from './ReservationModal.module.scss';
+import PageTitle from '../../Title/PageTitle';
+import CustomSelect from '../../CustomSelect/CustomSelect';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import axios from 'axios';
-import Button from '../Button/Button';
-import Datepicker from '../Datepicker/Datepicker';
-import { useDispatch } from 'react-redux';
-import { switchModalAC } from '../../redux/reducers/modalWindow-reducer';
+import Button from '../../Button/Button';
+import Datepicker from '../../Datepicker/Datepicker';
+import { useDispatch, useSelector } from 'react-redux';
+import { AiOutlineClose } from 'react-icons/ai';
+import reservationValidationSchema from '../../../validation/reservationValidationSchema';
+import { switchModalAC } from '../../../redux/reducers/modalWindow-reducer';
 
-const ModalWindow = () => {
+const ReservationModal = ({ onClose }) => {
   const [options, setOptions] = useState([]);
+  const selectedTour = useSelector(state => state.modal.selectedTour);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,7 +32,7 @@ const ModalWindow = () => {
   }, []);
 
   const initialValues = {
-    title: '',
+    title: selectedTour,
     firstName: '',
     lastName: '',
     email: '',
@@ -49,59 +52,58 @@ const ModalWindow = () => {
   };
 
   return (
-    <div className={styles.ModalWindow} data-testid="ModalWindow">
-      {/* close */}
-      <div className={styles.ModalWindoWContent}>
-        <PageTitle extraClass={styles.ModalWindowTitle}>Book an excursion</PageTitle>
+    <div className={styles.ReservationModal} data-testid="ReservationModal">
+      <div className={styles.ReservationModalContent}>
+        <div className={styles.ReservationModalTop}>
+          <AiOutlineClose size={25} className={styles.ReservationModalClose} onClick={onClose}/>
+          <PageTitle text="Book an excursion" extraClass={styles.ReservationModalTitle} />
+        </div>
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
+          validationSchema={reservationValidationSchema}
         >
           {({ isSubmitting }) => (
-            <Form className={styles.ModalWindowForm}>
+            <Form className={styles.ReservationModalForm}>
               <div className={styles.FormBody}>
-                <CustomSelect placeHolder='Choose an excursion' style={{ width: "100%" }} name="title" options={options} />
+                <CustomSelect placeHolder={selectedTour} style={{ width: "100%" }} name="title" options={options} defVal={selectedTour} />
                 <Field
-                  className={styles.LoginInput}
                   type="text"
                   name="firstName"
                   placeholder="Name"
                 />
                 <ErrorMessage
-                  className={styles.LoginError}
+                  className="vvErrorMsg"
                   name="firstName"
                   component="div"
                 />
                 <Field
-                  className={styles.LoginInput}
                   type="text"
                   name="lastName"
                   placeholder="Last name"
                 />
                 <ErrorMessage
-                  className={styles.LoginError}
+                  className="vvErrorMsg"
                   name="lastName"
                   component="div"
                 />
                 <Field
-                  className={styles.LoginInput}
                   type="email"
                   name="email"
                   placeholder="E-mail"
                 />
                 <ErrorMessage
-                  className={styles.LoginError}
+                  className="vvErrorMsg"
                   name="email"
                   component="div"
                 />
                 <Field
-                  className={styles.LoginInput}
-                  type="text"
+                  type="tel"
                   name="phone"
                   placeholder="Phone"
                 />
                 <ErrorMessage
-                  className={styles.LoginError}
+                  className="vvErrorMsg"
                   name="phone"
                   component="div"
                 />
@@ -116,6 +118,8 @@ const ModalWindow = () => {
   );
 }
 
-ModalWindow.propTypes = {};
+ReservationModal.propTypes = {
+  onClose: PropTypes.func.isRequired
+};
 
-export default ModalWindow;
+export default ReservationModal;
