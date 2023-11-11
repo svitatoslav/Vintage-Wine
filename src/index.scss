@@ -100,7 +100,7 @@ input {
     font-family: $secondary-font;
     outline: none;
     color: $main-color;
-    border: 1px solid $main-color;
+    border: $brd-white;
     padding: 22px 0 22px 20px;
     background: none;
     width: 100%;
@@ -111,6 +111,7 @@ input {
 #root {
     overflow-x: hidden;
 }
+
 .vvMainBtn,
 .vvReadBtn {
     display: inline-block;

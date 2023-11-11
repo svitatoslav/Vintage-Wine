@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'GillSans';
-    src: url('./assets/fonts/GillSans.otf');
+    src: url('./src/assets/fonts/GillSans.otf');
     font-style: regular;
     font-weight: 400;
 }
@@ -16,8 +16,11 @@ $secondary-color: #909090;
 $main-bg: #000;
 $btn-bg: #BE0615;
 
+$brd-white: 1px solid $main-color;
+
 $mobile: 360px;
 $tablet: 480px;
 $tablet-lg: 768px;
 $tablet-xlg: 1000px;
 $desktop: 1160px;
+$desktop-lg: 1500px;

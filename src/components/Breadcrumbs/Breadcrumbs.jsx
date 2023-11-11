@@ -11,13 +11,13 @@ const Breadcrumbs = ({ pathParts }) => {
                 if (index === pathParts.length - 1) {
                     return (
                         <span className={styles.currentPage} key={index}>
-                            Our {item}
+                            Our {item.replace(/-/g, ' ').replace(/\+/g, '.')}
                         </span>
                     );
                 }
                 return (
                     <Link to=".." relative="path" key={index}>
-                        Our {item} <BreadcrumbsIcon />
+                        Our {item.replace(/-/g, ' ').replace(/\+/g, '.')} <BreadcrumbsIcon />
                     </Link>
                 );
             })}

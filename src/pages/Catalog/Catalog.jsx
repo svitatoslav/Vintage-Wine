@@ -9,6 +9,7 @@ import useBreadcrumbs from '../../hooks/useBreadcrumbs';
 import Container from './../../components/Container/Container';
 import styles from './Catalog.module.scss';
 import Breadcrumbs from './../../components/Breadcrumbs/Breadcrumbs';
+
 const Catalog = () => {
     const pathParts = useBreadcrumbs();
     const dispatch = useDispatch();

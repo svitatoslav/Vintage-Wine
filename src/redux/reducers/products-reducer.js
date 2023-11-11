@@ -1,7 +1,9 @@
 const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
+const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
 
 const initialState = {
-    products: []
+    products: [],
+    filteredProducts:[]
 };
 
 const productsReducer = (state = initialState, action) => {
@@ -11,6 +13,16 @@ const productsReducer = (state = initialState, action) => {
                 ...state,
                 products: [...action.payload]
             };
+        case FILTER_PRODUCTS:
+            const searchTerm = action.payload
+            const filteredProducts = state.products.filter(product => {
+                return product.name.toLowerCase().includes(searchTerm.toLowerCase()) || Object.values(product.productDescription).some(desc => desc.toLowerCase().includes(searchTerm.toLowerCase()))
+            })
+
+            return  {
+                ...state,
+                filteredProducts
+            }
         default:
             return state;
     }
@@ -20,6 +32,11 @@ const fetchProductsAC = (products) => ({
     type: FETCH_PRODUCTS,
     payload: products
 });
+
+export const filterProducts = (searchTerm) => ({
+    type: FILTER_PRODUCTS,
+    payload: searchTerm
+})
 
 export const fetchProductsThunk = () => {
   return async (dispatch) => {
