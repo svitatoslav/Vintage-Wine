@@ -112,17 +112,21 @@ const Checkout = () => {
                                         </div>
                                     </div>
                                     <div className={styles.PaymentMethods}>
-                                        <p>Payment methods</p>
-                                        <div className={styles.CardsImagesContainer}>
-                                            <div className={styles.CardsImages}>
-                                                <img src="public\imageProject\checkout\six-cards.png" alt="smallCards" />
-                                            </div>
-                                            <div className={styles.MobilePay}>
-                                                <img src="public\imageProject\checkout\mobile-pay.png" alt="mobile-pay" />
-                                            </div>
+                                        <div className={styles.PaymentMethodsTitle}>
+                                            <p>Payment methods</p>
                                         </div>
-                                        <div className={styles.CardsImagesBig}>
-                                            <img src="public\imageProject\checkout\nine-cards.png" alt="BigCards" />
+                                        <div className={styles.PaymentMethodsImages}>
+                                            <div className={styles.CardsImagesContainer}>
+                                                <div className={styles.CardsImages}>
+                                                    <img src="public\imageProject\checkout\six-cards.png" alt="smallCards" />
+                                                </div>
+                                                <div className={styles.MobilePay}>
+                                                    <img src="public\imageProject\checkout\mobile-pay.png" alt="mobile-pay" />
+                                                </div>
+                                            </div>
+                                            <div className={styles.CardsImagesBig}>
+                                                <img src="public\imageProject\checkout\nine-cards.png" alt="BigCards" />
+                                            </div>
                                         </div>
                                     </div>
                                     <div className={styles.AddComment}>

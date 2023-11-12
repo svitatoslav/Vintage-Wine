@@ -2,7 +2,7 @@
 @import '../../assets/mixins/mixins';
 
  
-    @media screen and (min-width: $mobile) {
+    @media screen and (min-width : $mobile  ) {
         .ProductInfo {
             border: 2px solid #D9D9D9;
             margin-bottom: 30px;
@@ -19,6 +19,9 @@
                 margin-bottom: 25px;
             }
             .TotalTitlels {
+                font-size: 16px;
+                font-weight: 400;
+                font-family: $main-font;
                 width: 30%;
                 h3:nth-child(-n + 2) {
                     margin-bottom: 10px;
@@ -26,6 +29,10 @@
             }
             .TotalValues {
                 width: 27%;
+                h3:last-child {
+                    font-size: 20px;
+                    font-weight: 600;
+                  }
                 h3:nth-child(-n + 2) {
                     margin-bottom: 10px;
                   }
@@ -36,7 +43,7 @@
                 justify-content: space-around;
                 margin-bottom: 35px;
                 input {
-                    width: 8%;
+                    width: 20px;
                 }
                 p{
                     width: 77%;
@@ -81,17 +88,21 @@
                     }
             }
             .PaymentMethods {
-                width: 95%;
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-                margin-bottom: 35px;
-                p {
+                .PaymentMethodsTitle {
+                    width: 100%;
                     margin-bottom: 15px;
                     font-size: 19px;
                     font-weight: 400;
                     font-family: $secondary-font;
                 }
+            }
+            .PaymentMethodsImages {
+                width: 95%;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                margin-bottom: 35px;
+                
                 .CardsImagesContainer{
                     width: 100%;
                     display: flex;
@@ -133,21 +144,108 @@
     }
     
     @media screen and (min-width: $tablet) {
- 
+        .ProductInfo {
+            .Total {
+                width: 91.5%;
+                padding: 6%;
+                .TotalTitlels {
+                    font-size: 20px;
+                }
+                .TotalValues {
+                    font-size: 20px;
+                    h3:last-child {
+                        font-size: 30px;
+                        font-weight: 600;
+                      }
+                }
+            }
+            .Checkbox {
+                justify-content: space-evenly
+            }
+        }
+        .ClientInfo {
+            .PersonalData {
+                width: 91%;
+            }
+            .Delivery {
+                width: 91%;
+            }
+            .PaymentMethods {
+                width: 91%;
+                .PaymentMethodsImages {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    .CardsImagesContainer {
+                        width: 54.5%;
+                        margin-right: 30px;
+                    }
+                    .CardsImagesBig {
+                        width: 25.5%;
+                    }
+                }
+                
+            }
+            .AddComment {
+                width: 91%;
+                button img {
+                    width: 14px;
+                    margin-right: 10px;
+                }
+                button label {
+                    text-align: left;
+                }
+            }
+        }
     }
 
     @media screen and (min-width: $tablet-lg) {
- 
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .ProductInfo {
+            width: 62%;
+        }
+        .ClientInfo {
+            width: 70.5%;
+        }
     }
 
     @media screen and (min-width: $tablet-xlg) {
- 
+        form {
+            flex-direction: row-reverse;
+            justify-content: space-around;
+        }
+        .ProductInfo {
+            width: 47.5%;
+        }
+        .ClientInfo {
+            width: 38%;
+        }
     }
     
     @media screen and (min-width: $desktop) {
- 
+        .ProductInfo {
+            width: 39%;
+        }
+        .ClientInfo {
+            width: 53.5%;
+        }
     } 
-     
+
+    @media screen and (min-width: $desktop-lg) {
+        .ProductInfo {
+            width: 42.5%;
+            margin-left: 10px;
+        }
+        .ClientInfo {
+            margin-right: 10px;
+            width: 65.5%;
+        }
+    }  
  
 
            
