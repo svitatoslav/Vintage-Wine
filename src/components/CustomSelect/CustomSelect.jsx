@@ -5,7 +5,7 @@ import Arrow from './icons/arrow.svg?react';
 import cn from 'classnames';
 import { useFormikContext } from 'formik';
 
-const CustomSelect = ({ placeHolder, name, options }) => {
+const CustomSelect = ({ placeHolder, name, options, style }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
   const { setFieldValue } = useFormikContext();
@@ -20,7 +20,9 @@ const CustomSelect = ({ placeHolder, name, options }) => {
   });
 
   useEffect(() => {
-    setFieldValue(name, selectedValue?.value || '')
+    if (selectedValue) {
+      setFieldValue(name, selectedValue?.value)
+    }
   }, [selectedValue])
 
   const handleInputClick = () => {
@@ -45,7 +47,7 @@ const CustomSelect = ({ placeHolder, name, options }) => {
   };
 
   return (
-    <div className={styles.CustomSelect}>
+    <div className={styles.CustomSelect} style={style}>
       <div className={styles.CustomSelectInput} title={selectedValue && placeHolder} onClick={handleInputClick}>
         <span>{getDisplay()}</span>
         <span>
@@ -65,6 +67,14 @@ const CustomSelect = ({ placeHolder, name, options }) => {
       )}
     </div>
   );
+};
+
+
+CustomSelect.propTypes = {
+  placeHolder: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  style: PropTypes.object
 };
 
 export default CustomSelect;

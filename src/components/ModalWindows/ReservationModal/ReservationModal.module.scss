@@ -1,0 +1,47 @@
+@import '../../../assets/mixins/mixins';
+@import '../../../assets/variables/variables';
+
+.ReservationModal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-height: 90vh;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+
+    .ReservationModalTitle {
+        padding-top: 0;
+    }
+}
+
+.ReservationModalTop {
+    position: relative;
+}
+
+.ReservationModalClose {
+    @include abs-t5;
+    right: -30px;
+}
+
+.ReservationModalContent {
+    padding: 0 50px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.FormBody {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 0 20px;
+}
+
+.ReservationModalForm {
+    padding: 0 10px;
+    width: 100%;
+    text-align: center;
+}

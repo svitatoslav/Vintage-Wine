@@ -1,0 +1,60 @@
+@import '../../../assets/mixins/mixins';
+@import '../../../assets/variables/variables';
+
+.ThanksModal {
+    @include flex-ac;
+    justify-content: end;
+    height: 80vh;
+    width: 100%;
+    max-width: 1028px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.ThanksModalImg {
+    display: flex;
+    width: 50%;
+    height: 100%;
+
+    img {
+        object-fit: contain;
+    }
+}
+
+.ThanksModalText {
+    @include flex-col-ac;
+    position: absolute;
+    left: 0;
+    max-width: 60%;
+    text-align: center;
+}
+
+.ThanksModalInfo {
+    display: inline-block;
+    padding: 0 16px;
+    margin-bottom: 15px;
+    @include fonts(14px, $secondary-font);
+
+    @media screen and (min-width: $tablet) {
+        padding: 0;
+        font-size: 16px;
+    }
+}
+
+.ThanksModalMainText {
+    text-align: center;
+    @include fonts(30px, $main-font);
+    margin-bottom: 10px;
+
+    @media screen and (min-width: $tablet) {
+        font-size: 50px;
+    }
+
+    @media screen and (min-width: $tablet-lg) {
+        font-size: 70px;
+    }
+
+    @media screen and (min-width: $tablet-xlg) {
+        font-size: 100px;
+    }
+}

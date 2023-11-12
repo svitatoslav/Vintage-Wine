@@ -65,9 +65,7 @@ const Excursions = () => {
             <p className={styles.ExcursionsText}>
               There are no available excurtions at the moment. Follow the information on our news page.
             </p>
-            {/* <span className={styles.ExcursionsLinkHolder}> */}
-              <button className={styles.ExcursionsLinkHolder} onClick={handleRedirect}>News</button>
-            {/* </span> */}
+            <button className={styles.ExcursionsLinkHolder} onClick={handleRedirect}>News</button>
           </div>
         )}
       </Container>
