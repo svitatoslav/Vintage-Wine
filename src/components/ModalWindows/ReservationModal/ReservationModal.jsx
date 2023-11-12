@@ -41,21 +41,25 @@ const ReservationModal = ({ onClose }) => {
   }
 
   const handleSubmit = (values, { resetForm }) => {
-    axios.put(`http://127.0.0.1:4000/api/excursions/${values.title}`, values)
-      .then(response => {
-        if (response.status == 200) {
-          dispatch(switchModalAC());
-        }
-      })
-      .catch(err => console.log(err))
-      .finally(() => resetForm());
+    try {
+      axios.put(`http://127.0.0.1:4000/api/excursions/${values.title}`, values)
+        .then(response => {
+          if (response.status == 200) {
+            dispatch(switchModalAC());
+          }
+        })
+        .catch(err => console.log(err))
+        .finally(() => resetForm());
+    } catch (err) {
+      console.log(err)
+    }
   };
 
   return (
     <div className={styles.ReservationModal} data-testid="ReservationModal">
       <div className={styles.ReservationModalContent}>
         <div className={styles.ReservationModalTop}>
-          <AiOutlineClose size={25} className={styles.ReservationModalClose} onClick={onClose}/>
+          <AiOutlineClose size={25} className={styles.ReservationModalClose} onClick={onClose} />
           <PageTitle text="Book an excursion" extraClass={styles.ReservationModalTitle} />
         </div>
         <Formik

@@ -16,7 +16,7 @@ const Datepicker = ({ name }) => {
 
           return (
             <div className={styles.DatePicker}>
-              <DatePicker dateFormat="dd.MM.yyyy" placeholderText="Choose a date" style={{ width: "100%" }} {...field} selected={value} onChange={(val) => setFieldValue(name, val)} />
+              <DatePicker dateFormat="dd.MM.yyyy" placeholderText="Choose a date" style={{ width: "100%" }} {...field} autoComplete="off" selected={value} onChange={(val) => setFieldValue(name, val)} />
               <LuCalendarDays size={24} className={styles.DatePickerIcon}/>
             </div>
           )
