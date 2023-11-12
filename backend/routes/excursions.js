@@ -3,7 +3,8 @@ const router = express.Router();
 
 //Import controllers
 const {
-    getExcursions
+    getExcursions,
+    reserveExcursion,
 } = require("../controllers/excursions");
 
 
@@ -11,5 +12,10 @@ const {
 // @desc    GET existing excursions
 // @access  Public
 router.get("/", getExcursions);
+
+// @route   PUT /customers
+// @desc    Register customer
+// @access  Public
+router.put("/:title", reserveExcursion);
 
 module.exports = router;

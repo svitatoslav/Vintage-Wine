@@ -4,8 +4,8 @@ import BreadcrumbsIcon from './icons/BreadcrumbsIcon';
 const Breadcrumbs = ({ pathParts }) => {
     return (
         <div className={styles.breadcrumbs}>
-            <Link to="/">
-                Home <BreadcrumbsIcon/>
+            <Link to="/" className={styles.breadcrumbsLink}>
+                Home <BreadcrumbsIcon />
             </Link>
             {pathParts.map((item, index) => {
                 if (index === pathParts.length - 1) {
@@ -16,7 +16,7 @@ const Breadcrumbs = ({ pathParts }) => {
                     );
                 }
                 return (
-                    <Link to=".." relative="path" key={index}>
+                    <Link to=".." relative="path" key={index} className={styles.breadcrumbsLink}>
                         Our {item.replace(/-/g, ' ').replace(/\+/g, '.')} <BreadcrumbsIcon />
                     </Link>
                 );
