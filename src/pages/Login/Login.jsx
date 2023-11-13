@@ -28,9 +28,7 @@ function Login() {
   return (
     <Container>
       <section className={styles.LoginWrapper}>
-        <PageTitle>
-          {formTexts.button}
-        </PageTitle>
+        <PageTitle text={formTexts.button} />
         <div className={styles.LoginContainer}>
           <div className={styles.LiginImg} />
           <div className={styles.Login} data-testid="Login">

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from "react-lazy-load-image-component";
-
 import Button from "../../components/Button/Button";
 import Breadcrumbs from "./../../components/Breadcrumbs/Breadcrumbs";
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
@@ -126,29 +125,27 @@ const Shop = () => {
   }
 
   return (
-    <div className={styles.ShopContainer}>
-      <h1 className={styles.ShopParagraph}>Our Shop</h1>
-      <div className={styles.ShopBreadCrumbs}>
-        {<Breadcrumbs pathParts={pathParts} />}
-      </div>
-      <div className={styles.ShopFilterBar}>
-        <ul className={styles.ShopFilterBarItems}>
-          {links.map((obj) => (
-            <li key={obj.id}>
-              <a href={"#"}>{obj.name}</a>
-            </li>
-          ))}
-        </ul>
-        <Suspense fallback={<div>Loading...</div>} >
-          <Filtration />
-        </Suspense>
-      </div>
-
-      {allFilters && <FilterGroup />}
-
-      <div className={styles.ShopImagesContainer}>
-        {ShopElements}
-      </div>
+      <div className={styles.ShopContainer}>  
+        <h1 className={styles.ShopParagraph}>Our Shop</h1>
+        <div className={styles.ShopBreadCrumbs}>
+          {<Breadcrumbs pathParts={pathParts} />}
+        </div>
+        <div className={styles.ShopFilterBar}>
+          <ul className={styles.ShopFilterBarItems}>
+            {links.map((obj) => (
+              <li key={obj.id}>
+                <a href={"#"}>{obj.name}</a>
+              </li>
+            ))}
+          </ul>
+          <Suspense fallback={<div>Loading...</div>} >
+            <Filtration />
+          </Suspense>
+        </div>
+        {allFilters && <FilterGroup />}
+        <div className={styles.ShopImagesContainer}>
+          {ShopElements}
+        </div>
     </div>
   );
 }

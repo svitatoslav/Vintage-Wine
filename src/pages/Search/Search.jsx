@@ -22,7 +22,7 @@ const Search = () => {
     return (
         <section className={styles.SearchImg}>
             <Container>
-                <PageTitle>Search</PageTitle>
+                <PageTitle text="Search"/>
                 {<Breadcrumbs pathParts={pathParts}/>}
                 <div className={styles.SearchWrapper}>
                     <SearchForm onSubmit={handleSubmit}/>
