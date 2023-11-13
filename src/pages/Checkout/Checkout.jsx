@@ -48,7 +48,7 @@ const Checkout = () => {
                             actions.setSubmitting(false);
                             }}
                         >
-                        <Form>
+                        <Form className={styles.CheckourForm}>
                             <div className={styles.ProductInfo}>
                                 <div className={styles.AddedProducts}>
                                     Products from Cart
