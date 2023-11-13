@@ -47,6 +47,7 @@ const App = () => {
                     <Route path="*" element={<NoPage />} />
 
                     <Route path="/checkout" element={<Checkout />} />
+                    
                 </Route>
             </Routes>
         </>
