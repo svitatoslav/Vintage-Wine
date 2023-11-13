@@ -16,7 +16,6 @@ import axios from 'axios';
 
 const SingleProduct = () => {
     const [singleItem, setSingleItem] = useState({});
-    const { id } = useParams();
     const pathParts = useBreadcrumbs();
 
     if (!localStorage.getItem('viewedProducts')) {
@@ -37,8 +36,7 @@ const SingleProduct = () => {
         fetchData();
     }, []);
 
-    const sliderImages = singleItem?.slidesImageUrls?.map(item => `../../.${item}`); // temporarily solution ralated with path issues
-
+    const sliderImages = singleItem?.slidesImageUrls?.map((item) => `http://localhost:5173/${item}`); // temporarily solution ralated with path issues
     const addSpaceBeforeUppercase = (text) => {
         return text.replace(/([A-Z])/g, ' $1');
     };

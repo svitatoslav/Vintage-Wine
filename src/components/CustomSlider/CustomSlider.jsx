@@ -124,10 +124,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
 
     const SingleProductSlider = {
         dots: false,
-        infinite: true,
         speed: 1000,
-        slidesToShow: 1,
-        slidesToScroll: 1,
         autoplay: false,
         autoplaySpeed: 3000,
         slidesToShow: 2,
@@ -136,11 +133,20 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
         prevArrow: <SlickArrowLeft />,
         nextArrow: <SlickArrowRight />
     };
+    const SingleProductMain = {
+        dots: false,
+        speed: 1000,
+        slidesToShow: 1,
+        autoplay: false,
+        autoplaySpeed: 3000,
+        swipeToSlide: true,
+        arrows: false
+    };
 
-    useEffect(() => {
-        setProductHeaderSlider(productMainSlider.current);
-        setProductBodySlider(productSecondarySlider.current);
-    }, []);
+    // useEffect(() => {
+    //     setProductHeaderSlider(productMainSlider.current);
+    //     setProductBodySlider(productSecondarySlider.current);
+    // }, []);
 
     return (
         <>
@@ -185,7 +191,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
             )}
             {type === SINGLE_PRODUCT && (
                 <>
-                    <Slider className={styles.singleProductMainSlider} asNavFor={productBodySlider} ref={productMainSlider} arrows={false}>
+                    <Slider className={styles.singleProductMainSlider} asNavFor={productBodySlider} ref={productMainSlider} {...SingleProductMain}>
                         {sliderArray?.map((image, index) => {
                             return (
                                 <div key={index} className={styles.mainSlide}>
@@ -205,7 +211,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                     </Slider>
                 </>
             )}
-            
+
             {isSlidePagination && (
                 <div className={styles.slickArrows}>
                     <button className="slick-prev slick-arrow" onClick={handlePrevClick}>
