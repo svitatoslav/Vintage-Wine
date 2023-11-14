@@ -1,5 +1,6 @@
 const News = require('../models/News');
 const _ = require("lodash");
+const Product = require("../models/Product");
 
 
 exports.getNews = (req, res, next) => {
@@ -25,3 +26,23 @@ exports.addNews = (req, res, next) => {
             })
         );
 }
+
+exports.getNewstById = (req, res, next) => {
+    News.findOne({
+        _id: req.params.id
+    })
+        .then(article => {
+            if (!article) {
+                res.status(400).json({
+                    message: `Article with id ${req.params.id} is not found`
+                });
+            } else {
+                res.json(article);
+            }
+        })
+        .catch(err =>
+            res.status(400).json({
+                message: `Error happened on server: "${err}" `
+            })
+        );
+};

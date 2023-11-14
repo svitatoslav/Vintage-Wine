@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const {getNews, addNews} = require("../controllers/news");
+const {getNews, addNews, getNewstById} = require("../controllers/news");
 
 // @route   GET /news
 // @desc    GET existing news
@@ -12,5 +12,10 @@ router.get("/", getNews)
 // @desc    POST new article
 // @access  Public
 router.post("/", addNews)
+
+// @route   GET /news/:id
+// @desc    GET existing article by id
+// @access  Public
+router.get("/:id", getNewstById)
 
 module.exports = router;

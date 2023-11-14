@@ -9,6 +9,7 @@ import {Link} from "react-router-dom";
 import Facebook from "/public/imageProject/news/icons/facebook.svg?react"
 import Twitter from "/public/imageProject/news/icons/twitter.svg?react"
 import Linkedin from "/public/imageProject/news/icons/linkedin.svg?react"
+import NewsItemTags from "./NewsItemTags";
 
 const NewsItem = ({img, name, desc, date, tags}) => {
 
@@ -23,14 +24,14 @@ const NewsItem = ({img, name, desc, date, tags}) => {
     return (
         <div className={styles.Wrapper} data-testid="News">
             {news.map(item => (
-                <div className={styles.Item} key={item._id}>
+                <Link to={`/news/${item._id}`} className={styles.Item} key={item._id}>
                     <div className={styles.DateWrapper}>
                         <DateBox date={item.createdAt}/>
                     </div>
                     <img className={styles.Image} src={item.image} alt={item.name}/>
-                    <a href="/" target="_blank" className={styles.Tags}>{item.tags[0]} <span>{item.tags[1]}</span></a>
+                    <NewsItemTags tags={item.tags}/>
                     <h3 className={styles.Title}>{item.title}</h3>
-                    <p className={styles.Desc}>{item.description}</p>
+                    <p className={styles.Desc}>{item.description[0]}</p>
                     <div className={styles.ButtonSvgWrapper}>
                         <Button onClick={() => console.log(item.createdAt)} variant="small" text="Read more"/>
                         <div className={styles.SvgWrapper}>
@@ -45,7 +46,7 @@ const NewsItem = ({img, name, desc, date, tags}) => {
                             </a>
                         </div>
                     </div>
-                </div>
+                </Link>
             ))}
         </div>
     );
