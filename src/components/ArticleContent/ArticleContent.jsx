@@ -6,8 +6,6 @@ import Linkedin from "/public/imageProject/news/icons/linkedin.svg?react"
 import NewsItemTags from "../NewsItem/NewsItemTags";
 
 const ArticleContent = ({article}) => {
-
-    console.log(article.image)
     return (
         <Container>
             <div className={styles.ArticleContent} data-testid="ArticleContent">

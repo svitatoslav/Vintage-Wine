@@ -46,11 +46,9 @@ const SearchForm = ({onSubmit}) => {
             {isDropDownOpen > 0 &&
 
                 <ul className={styles.List}>
-                    <Link onClick={handleAddProduct} to={formatProductLink(product.name)}>
                     {limitedProducts.length > 0 ? limitedProducts.map(product => <li key={product._id}><a
                             className={styles.Link} href="#">{product.name}</a></li>) :
                         <li className={styles.Link}>Nothing Found</li>}
-                    </Link>
                 </ul>
 
             }

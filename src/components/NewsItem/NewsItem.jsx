@@ -33,7 +33,7 @@ const NewsItem = ({img, name, desc, date, tags}) => {
                     <h3 className={styles.Title}>{item.title}</h3>
                     <p className={styles.Desc}>{item.description[0]}</p>
                     <div className={styles.ButtonSvgWrapper}>
-                        <Button onClick={() => console.log(item.createdAt)} variant="small" text="Read more"/>
+                        <Button variant="small" text="Read more"/>
                         <div className={styles.SvgWrapper}>
                             <a target="_blank" href="https://twitter.com/?lang=en">
                                 <Linkedin className={styles.Svg}/>
