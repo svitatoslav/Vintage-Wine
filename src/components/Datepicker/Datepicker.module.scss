@@ -1,0 +1,10 @@
+@import '../../assets/mixins/mixins';
+
+.DatePicker {
+    position: relative;
+}
+
+.DatePickerIcon {
+    @include abs-t5;
+    right: 20px;
+}

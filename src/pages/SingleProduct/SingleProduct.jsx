@@ -38,7 +38,7 @@ const SingleProduct = () => {
     }, []);
 
     const sliderImages = singleItem?.slidesImageUrls?.map(item => `../../.${item}`); // temporarily solution ralated with path issues
-
+    console.log(sliderImages);
     const addSpaceBeforeUppercase = (text) => {
         return text.replace(/([A-Z])/g, ' $1');
     };
@@ -57,11 +57,11 @@ const SingleProduct = () => {
                         <div className={styles.collectionsData}>
                             <p>
                                 {singleItem?.characteristics?.map((item, index) => {
-                                    if (singleItem?.grape) {
-                                        return <span key={index}>{singleItem?.grape}. </span>;
+                                    if (item?.grape) {
+                                        return <span key={index}>{item?.grape}. </span>;
                                     }
-                                    if (singleItem?.color) {
-                                        return <span key={index}>{singleItem?.color}</span>;
+                                    if (item?.color) {
+                                        return <span key={index}>{item?.color}</span>;
                                     }
                                 })}
                             </p>

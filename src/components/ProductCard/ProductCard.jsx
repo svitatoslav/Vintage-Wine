@@ -2,10 +2,11 @@ import React from 'react';
 import styles from './ProductCard.module.scss';
 import Button from "../Button/Button";
 import {Link} from "react-router-dom"
+import {formatProductLink} from "../../helpers/formatProductLink";
 
 
 const ProductCard = ({price, name, img, id}) => (
-    <Link to={`/shop/${id}`} className={styles.ProductCard} data-testid="ProductCard">
+    <Link to={formatProductLink(name)} className={styles.ProductCard} data-testid="ProductCard">
         <img className={styles.Img} src={img} alt={`Image of ${name}`}/>
         <div>
             <p className={styles.Text}>{name}</p>
