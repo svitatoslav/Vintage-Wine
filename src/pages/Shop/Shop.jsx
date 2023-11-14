@@ -7,7 +7,7 @@ import Button from "../../components/Button/Button";
 import Breadcrumbs from "./../../components/Breadcrumbs/Breadcrumbs";
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
 import FilterGroup from '../../components/FilterGroup/FilterGroup';
-
+import axios from 'axios';
 import "react-lazy-load-image-component/src/effects/blur.css";
 import styles from "./Shop.module.scss";
 
@@ -31,6 +31,19 @@ const Shop = () => {
 
   const handleAddProduct = (id) => {
     localStorage.setItem('viewedProducts', id);
+  };
+
+  const handleAddToCart = async (id) => {
+    try {
+      
+      await axios.post('http://127.0.0.1:4000/api/add-to-cart', { productId: id });
+
+      
+      console.log('Product added to the cart successfully!');
+    } catch (error) {
+      console.error('Error adding product to cart:', error);
+      
+    }
   };
 
   const allFilters = useSelector(state => state.filters.isAllFilters);
@@ -86,7 +99,9 @@ const Shop = () => {
                   <h3>{firstImage.name}</h3>
                 </Link>
                 <h4>{firstImage.currentPrice}$</h4>
-                <Button text={"Add to Cart"}/>
+                <Button text={"Add to Cart"} onClick={() => {
+                  handleAddToCart()
+                }}/>
             </span>
         )}
       </div>
@@ -109,7 +124,9 @@ const Shop = () => {
                       <h3>{hoveredProduct.name}</h3>
                 </Link>
                 <h3>{hoveredProduct.currentPrice}</h3>
-                <Button text={"Add to Cart"}/>
+                <Button text={"Add to Cart"} onClick={() => {
+                  handleAddToCart()
+                }}/>
               </div>
             )}
           </div>
