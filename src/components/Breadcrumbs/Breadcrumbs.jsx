@@ -9,9 +9,11 @@ const Breadcrumbs = ({ pathParts }) => {
             </Link>
             {pathParts.map((item, index) => {
                 if (index === pathParts.length - 1) {
+                    const decodedPath = decodeURI(item)
+
                     return (
                         <span className={styles.currentPage} key={index}>
-                            Our {item.replace(/-/g, ' ').replace(/\+/g, '.')}
+                            Our {decodedPath.replace(/-/g, ' ').replace(/\+/g, '.')}
                         </span>
                     );
                 }
