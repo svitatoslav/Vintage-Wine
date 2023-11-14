@@ -12,8 +12,8 @@ import authorizationReducer from '../reducers/authorization-reducer';
 import mobileMenuReducer from '../reducers/mobMenu-reducer';
 import ViewedProductsReducer from '../reducers/lastViewed-products';
 import filtersReducer from '../reducers/filters-reducer';
-import modalWindowReducer from '../reducers/modalWindow-reducer';
-import newsReducer from "../reducers/news-reducer";
+// import modalWindowReducer from '../reducers/modalWindow-reducer';
+// import newsReducer from "../reducers/news-reducer";
 
 const rootReducer = combineReducers({
   viewedProducts: ViewedProductsReducer,

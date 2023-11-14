@@ -19,6 +19,8 @@ import SingleCatalog from './components/SingleCatalog/SingleCatalog';
 import SingleProduct from './pages/SingleProduct/SingleProduct';
 import Checkout from './pages/Checkout/Checkout';
 import SingleNews from "./pages/SingleNews/SingleNews";
+
+
 import './App.scss';
 
 const App = () => {
