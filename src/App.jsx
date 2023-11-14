@@ -18,9 +18,10 @@ import NoPage from './pages/NoPage/NoPage';
 import SingleCatalog from './components/SingleCatalog/SingleCatalog';
 import SingleProduct from './pages/SingleProduct/SingleProduct';
 import Checkout from './pages/Checkout/Checkout';
+import SingleNews from "./pages/SingleNews/SingleNews";
+
 
 import './App.scss';
-
 
 const App = () => {
     const dispatch = useDispatch();
@@ -47,7 +48,7 @@ const App = () => {
                     <Route path="*" element={<NoPage />} />
 
                     <Route path="/checkout" element={<Checkout />} />
-                    
+                    <Route path="/news/:id" element={<SingleNews/>}/>
                 </Route>
             </Routes>
         </>
