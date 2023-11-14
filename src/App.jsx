@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { fetchProductsThunk } from './redux/reducers/products-reducer';
 import { useEffect } from 'react';
 
-// import Layout from './pages/Layout/Layout';
+import Layout from './pages/Layout/Layout';
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Catalog from './pages/Catalog/Catalog';
