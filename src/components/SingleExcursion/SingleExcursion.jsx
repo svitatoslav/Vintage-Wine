@@ -49,7 +49,6 @@ SingleExcursion.propTypes = {
   data: PropTypes.shape({
     title: PropTypes.string.isRequired,
     imageURL: PropTypes.string,
-    imageURL: PropTypes.string,
   }),
   reverse: PropTypes.bool,
 };
