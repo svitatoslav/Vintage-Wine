@@ -23,8 +23,8 @@ const rootReducer = combineReducers({
   user: authorizationReducer,
   mobileMenu: mobileMenuReducer,
   filters: filtersReducer,
-  // modal: modalWindowReducer,
-  // news: newsReducer,
+  modal: modalWindowReducer,
+  news: newsReducer,
 });
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
