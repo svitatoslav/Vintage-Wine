@@ -1,8 +1,7 @@
 import Breadcrumbs from './../../components/Breadcrumbs/Breadcrumbs';
 import { useEffect, useState } from 'react';
 import useBreadcrumbs from '../../hooks/useBreadcrumbs';
-
-import { Navigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 import Button from './../../components/Button/Button';
 import CustomSlider from '../../components/CustomSlider/CustomSlider';
@@ -12,34 +11,45 @@ import CombinationFood from './../../components/CombinationFood/CombinationFood'
 import styles from './SingleProduct.module.scss';
 import AboutProduct from '../../components/AboutProduct/AboutProduct';
 import LastViewed from './../../components/LastViewed/LastViewed';
-import axios from 'axios';
 
 const SingleProduct = () => {
-    const [singleItem, setSingleItem] = useState({});
-    const pathParts = useBreadcrumbs();
+const [singleItem, setSingleItem] = useState({});
+const pathParts = useBreadcrumbs();
 
-    if (!localStorage.getItem('viewedProducts')) {
-        return <Navigate to='*' />
+useEffect(() => {
+    async function fetchData() {
+        try {
+            const response = await axios.get(`http://127.0.0.1:4000/api/products/${localStorage.getItem('viewedProducts')}`);
+            setSingleItem(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     }
 
-    useEffect(() => {
-        async function fetchData() {
+    fetchData();
+}, []);
+
+const sliderImages = singleItem?.slidesImageUrls?.map((item) => `http://localhost:5173/${item}`);
+
+const addSpaceBeforeUppercase = (text) => {
+    return text.replace(/([A-Z])/g, ' $1');
+};
+
+useEffect(() => {
+    if (singleItem) {
+        const dataToSend = singleItem._id;
+       
+        const addViewedProduct = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:4000/api/products/${localStorage.getItem('viewedProducts')}`);
-                const singleItem = response.data;
-                setSingleItem(singleItem);
-            } catch (error) {
-                console.error('Error fetching data:', error);
+                await axios.post(`http://127.0.0.1:4000/api/last-viewed-products`, dataToSend);
+            } catch (err) {
+                console.log(err.response.data);
             }
-        }
+        };
+        addViewedProduct();
+    }
+}, [singleItem]);
 
-        fetchData();
-    }, []);
-
-    const sliderImages = singleItem?.slidesImageUrls?.map((item) => `http://localhost:5173/${item}`); // temporarily solution ralated with path issues
-    const addSpaceBeforeUppercase = (text) => {
-        return text.replace(/([A-Z])/g, ' $1');
-    };
 
     return (
         <Container>
@@ -65,7 +75,7 @@ const SingleProduct = () => {
                             </p>
                             <p>
                                 Collection
-                                <span className={styles.collectionSpan}>{singleItem?.collection}</span>
+                                <span className={styles.collectionSpan}>{singleItem?.collectionOfProduct}</span>
                             </p>
                         </div>
                         <div className={styles.cartData}>
