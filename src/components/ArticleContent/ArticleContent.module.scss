@@ -1,1 +1,50 @@
-.ArticleContent {}
+@import "src/assets/variables/variables";
+@import "src/assets/mixins/mixins";
+
+
+
+.ArticleContent {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 70px;
+}
+
+.Image {
+  margin-bottom: 30px;
+  z-index: 0;
+}
+
+.DateWrapper {
+  position: absolute;
+  z-index: 1;
+  top: 15px;
+  left: -27px;
+}
+
+.TagsWrapper {
+  margin-bottom: 10px;
+}
+
+.TitleWrapper {
+  @include flex-ac-sb;
+  margin-bottom: 35px;
+}
+
+.Title {
+  font-size: 30px;
+  line-height: 36px;
+}
+
+.TagsWrapper, .TitleWrapper {
+  margin-left: 20px;
+}
+
+.Svg {
+  margin-left: 10px;
+}
+
+.Description {
+  margin-bottom: 20px;
+}
+
