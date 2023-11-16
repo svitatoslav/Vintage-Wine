@@ -7,6 +7,7 @@ import FilterGroup from '../../components/FilterGroup/FilterGroup';
 import UniProduct from "../../components/ProductCard/UniProduct";
 import useResize from "../../hooks/useResize";
 import styles from "./Shop.module.scss";
+import PageTitle from "../../components/Title/PageTitle";
 
 const Filtration = React.lazy(() =>
   import("../../components/Filtaration/Filtaration")
@@ -49,7 +50,7 @@ const Shop = () => {
       const [firstImage, ...restImages] = chunk;
 
       const bigImageDiv = (
-        <div className={styles.ShopImagesSectionBigImage} key={`bigImage_${i}`}>
+        <div key={`bigImage_${i}`}>
           <UniProduct key={firstImage._id} price={firstImage.currentPrice} id={firstImage._id} name={firstImage.name} img={firstImage.productImg} />
         </div>
       );
@@ -58,7 +59,7 @@ const Shop = () => {
         <div className={styles.ShopImagesSmall} key={`smallImages_${i}`} >
           {restImages.map(({ productImg, _id, name, currentPrice }) => (
             <div key={_id} className={styles.SmallProductContainer}>
-              <UniProduct key={_id} price={currentPrice} id={_id} name={name} img={productImg} />
+              <UniProduct key={_id} price={currentPrice} id={_id} name={name} img={productImg} isSmall />
             </div>
           ))}
         </div>
@@ -81,18 +82,17 @@ const Shop = () => {
 
   return (
     <div className={styles.ShopContainer}>
-      <h1 className={styles.ShopParagraph}>Our Shop</h1>
-      <div className={styles.ShopBreadCrumbs}>
-        {<Breadcrumbs pathParts={pathParts} />}
-      </div>
+      <PageTitle text="Our Shop" />
+      <Breadcrumbs pathParts={pathParts} />
       <div className={styles.ShopFilterBar}>
-        <ul className={styles.ShopFilterBarItems}>
-          {links.map(link => (
-            <li key={link.id}>
-              <span data-link={link.id} onClick={() => handleSetCurrentLink(link)}>{link.name}</span>
-            </li>
-          ))}
-        </ul>
+        {viewportWidth >= 768 &&
+          (<ul className={styles.ShopFilterBarItems}>
+            {links.map(link => (
+              <li key={link.id}>
+                <span data-link={link.id} >{link.name}</span>
+              </li>
+            ))}
+          </ul>)}
         <Suspense fallback={<div>Loading...</div>} >
           <Filtration />
         </Suspense>

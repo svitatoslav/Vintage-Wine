@@ -20,16 +20,6 @@
             line-height: normal;
             text-align: center;
         }
-
-        .ShopBreadCrumbs {
-            width: auto;
-            height: 63px;
-            margin-bottom: 30px;
-        }
-
-        .ShopFilterBarItems {
-            display: none;
-        }
     }
 
     @media screen and (min-width: $tablet) {
@@ -42,16 +32,6 @@
             line-height: normal;
             text-align: center;
             margin-top: 81px;
-        }
-
-        .ShopBreadCrumbs {
-            width: auto;
-            height: 63px;
-            margin-bottom: 30px;
-        }
-
-        .ShopFilterBarItems {
-            display: none;
         }
     }
 
@@ -69,61 +49,11 @@
             font-style: normal;
         }
 
-        .ShopBreadCrumbs {
-            width: auto;
-            height: 63px;
-            margin-bottom: 30px;
-        }
-
-        .ShopFilterBar {
-            width: 95%;
-            height: auto;
-            @include flex-ac-sb;
-            margin-bottom: 75px;
-        }
-
-        .ShopFilterBarItems {
-            width: 58%;
-            @include flex-ac-sb;
-            padding: 1px;
-
-            li {
-                color: $main-color;
-                @include fonts(16px, $secondary-font);
-                position: relative;
-
-                &:hover {
-                    &::after {
-                        content: url("./icons/Shophover.svg");
-                        position: absolute;
-                        bottom: 90%;
-                        left: 14%;
-                        display: inline-block;
-                    }
-
-                    &::before {
-                        content: url("./icons/Shophover.svg");
-                        position: absolute;
-                        top: 90%;
-                        left: 14%;
-                        display: inline-block;
-                    }
-                }
-            }
-        }
     }
 
     @media screen and (min-width: $tablet-xlg) {
         .ShopParagraph {
             margin-top: 100px;
-        }
-
-        .ShopBreadCrumbs {
-            margin-bottom: 71px;
-        }
-
-        .ShopFilterBar {
-            width: 70%;
         }
     }
 
@@ -131,14 +61,48 @@
         .ShopParagraph {
             margin-top: 100px;
         }
+    }
+}
 
-        .ShopBreadCrumbs {
-            margin-bottom: 71px;
-        }
+.ShopFilterBarItems {
+    width: 58%;
+    @include flex-ac-sb;
+    padding: 1px;
 
-        .ShopFilterBar {
-            width: 690px;
+    li {
+        color: $main-color;
+        @include fonts(16px, $secondary-font);
+        position: relative;
+
+        &:hover {
+            &::after {
+                content: url("./icons/Shophover.svg");
+                position: absolute;
+                bottom: 90%;
+                left: 14%;
+                display: inline-block;
+            }
+
+            &::before {
+                content: url("./icons/Shophover.svg");
+                position: absolute;
+                top: 90%;
+                left: 14%;
+                display: inline-block;
+            }
         }
+    }
+}
+
+.ShopFilterBar {
+    max-width: 580px;
+    width: 100%;
+    height: auto;
+    @include flex-ac-sb;
+    margin-bottom: 75px;
+
+    @media screen and (min-width: $tablet-xlg) {
+        max-width: 710px;
     }
 }
 
@@ -149,49 +113,56 @@
     gap: 5px;
     padding: 0 10px;
     max-width: 1200px;
+
+    @media screen and (min-width: $tablet) {
+        gap: 10px;
+    }
 }
 
 .ShopImagesSection {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: 445px 310px;
     gap: 5px;
 
+    @media screen and (min-width: $tablet) {
+        grid-template-rows: 502px 410px;
+        gap: 10px;
+    }
+
     @media screen and (min-width: $tablet-lg) {
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 385px auto;
 
         grid-template-rows: 502px;
     }
 
     @media screen and (min-width: $tablet-xlg) {
+        grid-template-columns: 535px auto;
         grid-template-rows: 680px;
     }
 
-    @media screen and (min-width: $desktop) {
-        grid-template-columns: 3fr 2fr;
+    @media screen and (min-width: $desktop-lg) {
+        grid-template-columns: repeat(2, 1fr);
         grid-template-rows: 755px;
-    }
-}
-
-.ShopImagesSectionBigImage {
-    grid-column: 1 / 3;
-
-    @media screen and (min-width: $tablet-lg) {
-        grid-column: unset
     }
 }
 
 .ShopImagesSmall {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 50% 49%;
+    grid-template-rows: repeat(2, calc(50% - 2px));
     gap: 5px;
+
+    @media screen and (min-width: $tablet) {
+        grid-template-rows: repeat(2, calc(50% - 5px));
+        gap: 10px;
+    }
 
     @media screen and (min-width: $tablet-lg) {
         grid-template-columns: 1fr;
     }
 
-    
     @media screen and (min-width: $desktop) {
         grid-template-columns: 1fr 1fr;
     }

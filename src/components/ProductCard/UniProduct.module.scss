@@ -42,18 +42,30 @@
 }
 
 .UniProductText {
+    max-width: 80%;
     font-family: $main-font;
-    font-size: 18px;
+    font-size: 30px;
     font-weight: 600;
     opacity: 1;
-
-    @media screen and (min-width: $tablet) {
-        font-size: 20px;
-    }
+    margin-bottom: 5px;
 }
+
 .UniProductPrice {
     font-family: $main-font;
     font-size: 50px;
     font-weight: 600;
     opacity: 1;
+    text-shadow: 0 0 15px #000;
+}
+
+.UniProductBtn {
+    margin-top: 25px;
+}
+
+.SmallText {
+    font-size: 16px;
+}
+
+.SmallPrice {
+    font-size: 30px;
 }
