@@ -9,59 +9,6 @@
     font-weight: 400;
     margin-bottom: 40px;
     padding: 0 10px;
-
-    @media screen and (min-width: $mobile) {
-        .ShopParagraph {
-            width: 185px;
-            height: 61px;
-            font-family: $main-font;
-            font-weight: 400;
-            font-size: 48px;
-            line-height: normal;
-            text-align: center;
-        }
-    }
-
-    @media screen and (min-width: $tablet) {
-        .ShopParagraph {
-            width: 195px;
-            height: 61px;
-            font-family: $main-font;
-            font-weight: 400;
-            font-size: 50px;
-            line-height: normal;
-            text-align: center;
-            margin-top: 81px;
-        }
-    }
-
-    @media screen and (min-width: $tablet-lg) {
-        .ShopParagraph {
-            width: 280px;
-            height: 85px;
-            font-family: $main-font;
-            font-weight: 400;
-            font-size: 70px;
-            line-height: normal;
-            text-align: center;
-            margin-top: 74px;
-            line-height: normal;
-            font-style: normal;
-        }
-
-    }
-
-    @media screen and (min-width: $tablet-xlg) {
-        .ShopParagraph {
-            margin-top: 100px;
-        }
-    }
-
-    @media screen and (min-width: $desktop) {
-        .ShopParagraph {
-            margin-top: 100px;
-        }
-    }
 }
 
 .ShopFilterBarItems {
