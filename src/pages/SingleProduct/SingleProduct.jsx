@@ -38,7 +38,7 @@ const SingleProduct = () => {
     }, []);
 
     const sliderImages = singleItem?.slidesImageUrls?.map(item => `../../.${item}`); // temporarily solution ralated with path issues
-    console.log(sliderImages);
+
     const addSpaceBeforeUppercase = (text) => {
         return text.replace(/([A-Z])/g, ' $1');
     };

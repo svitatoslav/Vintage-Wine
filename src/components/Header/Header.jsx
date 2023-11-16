@@ -13,11 +13,12 @@ import PersonWidget from './icons/person.svg?react';
 import BurgerBtn from './icons/burger.svg?react';
 import styles from './Header.module.scss';
 import { openMenuAC } from '../../redux/reducers/mobMenu-reducer';
+import useResize from '../../hooks/useResize';
 
 const BURGER_BREAKPOINT = 1000;
 
 function Header() {
-  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const viewportWidth = useResize();
   const user = useSelector((state) => state.user.user);
   const isMenuOpen = useSelector((state) => state.mobileMenu.isMenuOpen);
   const dispatch = useDispatch();
@@ -25,22 +26,6 @@ function Header() {
   const handleMenu = () => {
     dispatch(openMenuAC());
   };
-
-  useEffect(() => {
-    // only for development
-    setViewportWidth(window.innerWidth);
-
-    const handleResize = () => {
-      setViewportWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-    // only for development
-  }, []);
 
   return (
     <header className={styles.Header} data-testid="Header">
@@ -66,7 +51,7 @@ function Header() {
                 <span className={styles.Counter}>0</span>
               </div>
               <Link to="/search">
-                  <SearchWidget />
+                <SearchWidget />
               </Link>
             </div>
             <div className={styles.HeaderWidgetsGroup}>
@@ -82,7 +67,7 @@ function Header() {
                 )}
               {
                 viewportWidth <= BURGER_BREAKPOINT
-                  && <BurgerBtn onClick={handleMenu} />
+                && <BurgerBtn onClick={handleMenu} />
               }
             </div>
           </div>
