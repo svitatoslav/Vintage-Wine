@@ -200,7 +200,7 @@
     }
 
     @media screen and (min-width: $tablet-lg) {
-        form {
+        .CheckourForm {
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -215,7 +215,7 @@
     }
 
     @media screen and (min-width: $tablet-xlg) {
-        form {
+        .CheckourForm {
             flex-direction: row-reverse;
             justify-content: space-around;
         }

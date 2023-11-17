@@ -3,19 +3,18 @@
 
 .ShopFilterBarAllFilter {
    @include flex-ac;
-   margin-bottom: 35px;
+   margin: 0 auto 35px;
    cursor: pointer;
-    p {
-       font-family: $secondary-font;
-       font-weight: 400;
-       font-size: 15px;
-       margin-right: 10px;
-       line-height: normal;
-    }
-}
 
-@media screen and (min-width: $tablet-lg) {
-  .ShopFilterBarAllFilter {
-     margin-bottom: 0;
-  }
+   @media screen and (min-width: $tablet-lg) {
+         margin-bottom: 0;
+   }
+
+   p {
+      font-family: $secondary-font;
+      font-weight: 400;
+      font-size: 15px;
+      margin-right: 10px;
+      line-height: normal;
+   }
 }

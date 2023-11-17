@@ -27,6 +27,7 @@ const shippingMethods = require('./backend/routes/shippingMethods');
 const paymentMethods = require('./backend/routes/paymentMethods');
 const partners = require('./backend/routes/partners');
 const excursions = require('./backend/routes/excursions');
+const news = require('./backend/routes/news');
 const lastViewedProducts = require('./backend/routes/lastViewedProducts');
 // const mainRoute = require('./routes/index');
 
@@ -79,8 +80,10 @@ app.use('/api/shipping-methods', shippingMethods);
 app.use('/api/payment-methods', paymentMethods);
 app.use('/api/partners', partners);
 app.use('/api/excursions', excursions);
+app.use('/api/news', news);
 app.use('/api/last-viewed-products', lastViewedProducts);
 // app.use('/', mainRoute);
+
 
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {
@@ -91,6 +94,37 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
+
+// ????????????????????????????????????????????
+
+const cartSchema = new mongoose.Schema({
+  productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+  quantity: { type: Number, default: 1 },
+});
+
+const Cart = mongoose.model('Cart', cartSchema);
+
+app.post('/api/add-to-cart', async (req, res) => {
+  try {
+    const { productId } = req.body;
+    const existingCartItem = await Cart.findOne({ productId });
+
+    if (existingCartItem) {
+      existingCartItem.quantity += 1;
+      await existingCartItem.save();
+    } else {
+      const newCartItem = new Cart({ productId });
+      await newCartItem.save();
+    }
+
+    res.status(201).json({ message: 'Product added to the cart successfully' });
+  } catch (error) {
+    console.error('Error adding product to cart:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+// ????????????????????????????????????????????
 
 const port = process.env.PORT || 4000;
 

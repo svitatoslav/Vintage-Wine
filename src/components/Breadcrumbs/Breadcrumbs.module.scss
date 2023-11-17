@@ -2,13 +2,13 @@
 @import '../../assets/mixins/mixins';
 
 .breadcrumbs {
-    margin: 20px 0 40px;
+    margin-bottom: 40px;
     justify-content: center;
     font-family: $secondary-font;
     @include flex-w;
     font-size: 14px;
     @media screen and (min-width: $tablet-lg) {
-        margin: 40px 0 70px;
+        margin-bottom: 70px;
         font-size: 16px;
     }
     a {

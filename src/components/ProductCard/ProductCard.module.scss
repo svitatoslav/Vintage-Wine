@@ -3,7 +3,7 @@
 .ProductCard {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  gap: 15px;
 }
 
 .Img {
@@ -21,7 +21,7 @@
   text-align: center;
   line-height: 36px;
   font-family: $main-font;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 
 }
 
@@ -31,11 +31,10 @@
   line-height: 24px;
   font-family: $main-font;
 
-  @media screen and (max-width: $tablet) {
-    margin-bottom: 75px;
-  }
 }
 
 .Wrapper {
-  min-height: 110px;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
 }
