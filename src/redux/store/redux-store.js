@@ -13,16 +13,18 @@ import mobileMenuReducer from '../reducers/mobMenu-reducer';
 import ViewedProductsReducer from '../reducers/lastViewed-products';
 import filtersReducer from '../reducers/filters-reducer';
 import modalWindowReducer from '../reducers/modalWindow-reducer';
+import fetchViewedProductsReducer from '../reducers/fetchViewedProducts-reducer';
 
 const rootReducer = combineReducers({
-  viewedProducts: ViewedProductsReducer,
-  products: productsReducer,
-  catalog: catalogReducer,
-  collections: collectionsReducer,
-  user: authorizationReducer,
-  mobileMenu: mobileMenuReducer,
-  filters: filtersReducer,
-  modal: modalWindowReducer,
+    fetchViewedProducts: fetchViewedProductsReducer,
+    viewedProducts: ViewedProductsReducer,
+    products: productsReducer,
+    catalog: catalogReducer,
+    collections: collectionsReducer,
+    user: authorizationReducer,
+    mobileMenu: mobileMenuReducer,
+    filters: filtersReducer,
+    modal: modalWindowReducer
 });
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

@@ -27,6 +27,8 @@ const App = () => {
     useEffect(() => {
         dispatch(fetchProductsThunk());
     }, [dispatch]);
+
+
     return (
         <>
             <Routes>
