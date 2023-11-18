@@ -19,10 +19,8 @@ const ArticleContent = ({article}) => {
                 <div>
                     <div className={styles.DateWrapper}>
                         <DateBox date={article.createdAt}/>
-
                     </div>
                     <img className={styles.Image} src={article.image} alt={article.title}/>
-
                     <div>
                         <div className={styles.TagsWrapper}>
                             <NewsItemTags tags={article.tags}/>

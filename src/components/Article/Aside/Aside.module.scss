@@ -2,30 +2,34 @@
 @import "src/assets/mixins/mixins";
 
 .Wrapper {
-  //max-width: 300px;
   margin-bottom: 100px;
   display: grid;
   grid-template-columns: 1fr;
   justify-content: space-between;
+  margin-left: 10px;
 
   @media screen and (min-width: $tablet) {
     grid-template-columns: 1fr 1fr;
     margin-bottom: 150px;
+    margin-left: 0;
+    //justify-content: center;
+    //justify-items: center;
+    //justify-self: center;
+    justify-items: center;
+    //justify-content: center;
+    //justify-content: space-between;
+    //align-self: center;
   }
 
-
-
-  @media screen and (min-width: $tablet-lg) {
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-bottom: 150px;
-  }
+  //@media screen and (min-width: $tablet-lg) {
+  //  grid-template-columns: 1fr 1fr 1fr;
+  //  margin-bottom: 150px;
+  //}
 
   @media screen and (min-width: $desktop) {
     display: block;
   }
 
-  @media screen and (min-width: $desktop-lg) {
-  }
 }
 
 .ItemWrapper {

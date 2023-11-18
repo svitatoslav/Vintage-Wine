@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import NewsItemTags from "../../NewsItem/NewsItemTags";
 import {Link} from "react-router-dom"
 import styles from "./Aside.module.scss"
+import Container from "../../Container/Container";
 
 
 const Aside = ({article}) => {
@@ -22,17 +23,19 @@ const Aside = ({article}) => {
     }, [article]);
 
     return (
-        <aside className={styles.Wrapper}>
-            {articles.map((article) => (
-                <div className={styles.ItemWrapper} key={article._id}>
-                    <img className={styles.Img} src={article.image} alt=""/>
-                    <NewsItemTags tags={article.tags}/>
-                    <h2 className={styles.Title}>{article.title}</h2>
-                    <p className={styles.Description}>{article.description[0].split(" ").slice(0, 26).join(" ")}</p>
-                    <Link className={styles.Link} to={`/news/${article._id}`}>Read more...</Link>
-                </div>
-            ))}
-        </aside>
+        <Container>
+            <aside className={styles.Wrapper}>
+                {articles.map((article) => (
+                    <div className={styles.ItemWrapper} key={article._id}>
+                        <img className={styles.Img} src={article.image} alt=""/>
+                        <NewsItemTags tags={article.tags}/>
+                        <h2 className={styles.Title}>{article.title}</h2>
+                        <p className={styles.Description}>{article.description[0].split(" ").slice(0, 26).join(" ")}</p>
+                        <Link className={styles.Link} to={`/news/${article._id}`}>Read more...</Link>
+                    </div>
+                ))}
+            </aside>
+        </Container>
     )
 }
 

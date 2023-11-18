@@ -10,11 +10,11 @@
 
   @media screen and (min-width: $desktop) {
     grid-template-columns: 1fr 300px;
-    gap: 30px;
+    gap: 10px;
   }
 
   @media screen and (min-width: $desktop-lg) {
-    gap: 70px;
+    gap: 40px;
   }
 }
 
