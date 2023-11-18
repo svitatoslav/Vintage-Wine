@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './CustomSelect.module.scss';
 import Arrow from './icons/arrow.svg?react';
 import cn from 'classnames';
 import { useFormikContext } from 'formik';
+import { FilterContext } from '../../contexts/FilterContext';
 
 const CustomSelect = ({ placeHolder, name, options, style }) => {
+  const { resetFilters, setResetFilters } = useContext(FilterContext);
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
   const { setFieldValue } = useFormikContext();
@@ -25,13 +27,23 @@ const CustomSelect = ({ placeHolder, name, options, style }) => {
     }
   }, [selectedValue])
 
+  useEffect(() => {
+    if (resetFilters) {
+      setSelectedValue(null);
+    }
+  }, [resetFilters])
+
   const handleInputClick = () => {
     setTimeout(() => {
       setShowMenu(!showMenu);
     }, 0);
   }
 
-  const onOptionClick = (option) => setSelectedValue(option);
+  const onOptionClick = (option) => {
+    setSelectedValue(option);
+    setResetFilters(false);
+  };
+
 
   const isSelected = (option) => {
     if (!selectedValue) return false;

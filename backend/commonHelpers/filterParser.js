@@ -2,28 +2,19 @@ const excludedParams = ["perPage", "startPage", "minPrice", "maxPrice", "sort"];
 
 module.exports = function filterParser(filtersQueryString) {
 
-  const mongooseQuery = {};
+  const mongooseQuery = filtersQueryString.category ? { category: query.category } : {};
 
   if (filtersQueryString.color) {
-    mongooseQuery.characteristics = {
-      $elemMatch: {
-        color: filtersQueryString.color
-      }
-    }
+    mongooseQuery["characteristics.color"] = filtersQueryString.color;
   }
 
   if (filtersQueryString.country) {
-    mongooseQuery.characteristics = {
-      $elemMatch: {
-        manufacturerCountry: filtersQueryString.country
-      }
-    }
+    mongooseQuery["characteristics.manufacturerCountry"] = filtersQueryString.country;
   }
 
   return Object.keys(filtersQueryString).reduce(
     (mongooseQuery, filterParam) => {
       if (filterParam === "color" || filterParam === "country") {
-        // Already handled color separately
         return mongooseQuery;
       }
 

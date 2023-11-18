@@ -11,65 +11,6 @@
     padding: 0 10px;
 }
 
-.ShopFilterBarItems {
-    width: 58%;
-    @include flex-ac-sb;
-    padding: 1px;
-
-    li {
-        color: $main-color;
-        @include fonts(16px, $secondary-font);
-        position: relative;
-        cursor: default;
-
-        &:hover {
-            &::after {
-                content: url("./icons/Shophover.svg");
-                position: absolute;
-                bottom: 90%;
-                left: 14%;
-                display: inline-block;
-            }
-
-            &::before {
-                content: url("./icons/Shophover.svg");
-                position: absolute;
-                top: 90%;
-                left: 14%;
-                display: inline-block;
-            }
-        }
-    }
-
-    .Active {
-        color: $btn-bg;
-
-        &:hover {
-            &::after {
-                display: none;
-            }
-
-            &::before {
-                display: none;
-            }
-        }
-    }
-}
-
-
-.ShopFilterBar {
-    max-width: 580px;
-    width: 100%;
-    height: auto;
-    @include flex-ac-sb;
-    margin-bottom: 75px;
-
-    @media screen and (min-width: $tablet-xlg) {
-        max-width: 710px;
-    }
-}
-
-
 .ShopImagesContainer {
     display: flex;
     flex-direction: column;

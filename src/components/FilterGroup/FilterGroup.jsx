@@ -6,10 +6,10 @@ import { filters } from './filters/filters';
 import Button from '../Button/Button';
 import RangeInput from '../RangeInput/RangeInput';
 import { Form, Formik } from 'formik';
-import { FilterContex } from '../../contexts/FilterContext';
+import { FilterContext } from '../../contexts/FilterContext';
 
 const FilterGroup = () => {
-  const { setFilter } = useContext(FilterContex);
+  const { setFilter } = useContext(FilterContext);
 
   const initialValues = {
     sortBy: '',
@@ -21,9 +21,17 @@ const FilterGroup = () => {
     price: 0,
   }
 
-  const handleSubmit = (values) => {
-    const filter = Object.entries(values).filter(([key, value]) => value !== '' && value !== 0);
-    setFilter(...filter)
+  const handleSubmit = (values, {resetForm}) => {
+    const filters = Object.entries(values).filter(([key, value]) => value !== '' && value !== 0);
+
+    let resultObject = {};
+
+    filters.forEach(subArray => {
+      resultObject[subArray[0]] = subArray[1];
+    });
+
+    setFilter(prev => ({...prev, ...resultObject}));
+    resetForm(initialValues);
   }
 
   return (
