@@ -47,18 +47,15 @@ const SearchForm = ({onSubmit}) => {
             <input className={styles.Input} placeholder="Find your favorite drink" type="text" value={searchTerm}
                    onChange={handleInputChange} onFocus={() => setIsInputActive(true)}
                    onBlur={() => setIsInputActive(false)}/>
-            {/*{isDropDownOpen > 0 &&*/}
-
+            {isDropDownOpen > 0 &&
                 <ul className={styles.List}>
-
                     {limitedProducts.length > 0 ? limitedProducts.map(product =>
 
-                            <li key={product._id}><Link className={styles.Link} key={product._id} onClick={handleAddProduct} to={formatProductLink(product.name) }> {product.name} </Link></li>) :
+                            <li key={product._id}><Link className={styles.Link} key={product._id} onClick={handleAddProduct}
+                                                        to={formatProductLink(product.name)}> {product.name} </Link></li>) :
                         <li className={styles.Link}>Nothing Found</li>}
-
                 </ul>
-
-            {/*}*/}
+            }
 
         </form>
     )
