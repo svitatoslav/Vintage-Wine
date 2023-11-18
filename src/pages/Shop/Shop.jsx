@@ -8,6 +8,7 @@ import UniProduct from "../../components/ProductCard/UniProduct";
 import useResize from "../../hooks/useResize";
 import styles from "./Shop.module.scss";
 import PageTitle from "../../components/Title/PageTitle";
+import { useSearchParams } from "react-router-dom";
 
 const Filtration = React.lazy(() =>
   import("../../components/Filtaration/Filtaration")
@@ -23,6 +24,34 @@ const Shop = () => {
   const [productCards, setProductCards] = useState([]);
   const allFilters = useSelector(state => state.filters.isAllFilters);
   const viewportWidth = useResize();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [currentLink, setCurrentLinks] = useState(null);
+
+  useEffect(() => {
+    if (!currentLink) return;
+
+    async function fetchFilteredData() {
+      try {
+        const response = await fetch(`http://127.0.0.1:4000/api/products/filter?categories=${currentLink}`);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+
+        setProductCards(createCards(data.products));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    fetchFilteredData();
+  }, [currentLink]);
+
+  const handleSetCurrentLink = (link) => {
+    setCurrentLinks(link);
+    setSearchParams({
+      query: link
+    });
+  };
 
   useEffect(() => {
     async function fetchDataLinks() {
@@ -89,7 +118,7 @@ const Shop = () => {
           (<ul className={styles.ShopFilterBarItems}>
             {links.map(link => (
               <li key={link.id}>
-                <span data-link={link.id} >{link.name}</span>
+                <span data-link={link.id} onClick={() => handleSetCurrentLink(link.name.toLowerCase())}>{link.name}</span>
               </li>
             ))}
           </ul>)}
