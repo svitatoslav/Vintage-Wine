@@ -5,14 +5,12 @@
 
 .ArticleContent {
   position: relative;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 70px;
 }
 
 .Image {
   margin-bottom: 30px;
   z-index: 0;
+  max-height: 600px;
 }
 
 .DateWrapper {
@@ -41,7 +39,12 @@
 }
 
 .Svg {
-  margin-left: 10px;
+  display: none;
+
+  @media screen and (min-width: $tablet-lg) {
+    margin-left: 10px;
+    display: inline;
+  }
 }
 
 .Description {

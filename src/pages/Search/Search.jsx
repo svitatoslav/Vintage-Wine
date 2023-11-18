@@ -15,9 +15,9 @@ const Search = () => {
     const [searchParams] = useSearchParams()
     const dispatch = useDispatch()
 
-    const searchQuery =  searchParams.get("query") ?? ""
+    const searchQuery = searchParams.get("query") ?? ""
 
-    const {filteredProducts, products} = useSelector(state =>  state.products )
+    const {filteredProducts, products} = useSelector(state => state.products)
 
     useEffect(() => {
         if (searchQuery !== "" && products.length > 0) {

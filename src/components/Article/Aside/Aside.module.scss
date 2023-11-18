@@ -1,0 +1,63 @@
+@import "src/assets/variables/variables";
+@import "src/assets/mixins/mixins";
+
+.Wrapper {
+  //max-width: 300px;
+  margin-bottom: 100px;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: space-between;
+
+  @media screen and (min-width: $tablet) {
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 150px;
+  }
+
+
+
+  @media screen and (min-width: $tablet-lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 150px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    display: block;
+  }
+
+  @media screen and (min-width: $desktop-lg) {
+  }
+}
+
+.ItemWrapper {
+  margin-bottom: 50px;
+  max-width: 300px;
+  padding: 10px;
+}
+
+.Img {
+  max-width: 300px;
+  margin-bottom: 15px;
+  max-height: 200px;
+}
+
+.Title {
+  margin: 10px 0 15px;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.Description {
+  line-height: 18px;
+  margin-bottom: 5px;
+}
+
+.Link {
+  margin-top: 5px;
+  font-size: 20px;
+  line-height: 24px;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #e1dede;
+  }
+}
