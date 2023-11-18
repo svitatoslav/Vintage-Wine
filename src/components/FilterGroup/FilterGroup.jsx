@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './FilterGroup.module.scss';
 import Container from '../Container/Container';
 import CustomSelect from '../CustomSelect/CustomSelect';
@@ -7,8 +6,10 @@ import { filters } from './filters/filters';
 import Button from '../Button/Button';
 import RangeInput from '../RangeInput/RangeInput';
 import { Form, Formik } from 'formik';
+import { FilterContex } from '../../contexts/FilterContext';
 
 const FilterGroup = () => {
+  const { setFilter } = useContext(FilterContex);
 
   const initialValues = {
     sortBy: '',
@@ -21,7 +22,8 @@ const FilterGroup = () => {
   }
 
   const handleSubmit = (values) => {
-    console.log(values);
+    const filter = Object.entries(values).filter(([key, value]) => value !== '' && value !== 0);
+    setFilter(...filter)
   }
 
   return (

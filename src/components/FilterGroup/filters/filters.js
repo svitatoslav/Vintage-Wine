@@ -12,9 +12,9 @@ export const filters = [
         name: 'color',
         title: 'Color',
         options: [
-            { value: 'light-straw', label: 'Light straw' },
-            { value: 'amber', label: 'Amber' },
-            { value: 'deep-ruby-red', label: 'Deep Ruby Red' },
+            { value: 'white', label: 'White' },
+            { value: 'red', label: 'Red' },
+            { value: 'deep-ruby-red', label: 'Deep ruby red' },
         ]
     },
     {
@@ -53,6 +53,9 @@ export const filters = [
             { value: 'georgia', label: 'Georgia' },
             { value: 'italy', label: 'Italy' },
             { value: 'spain', label: 'Spain' },
+            { value: 'scotland', label: 'Scotland' },
+            { value: 'south africa', label: 'South Africa' },
+            { value: 'ukraine', label: 'Ukraine'},
         ]
     }
 ];

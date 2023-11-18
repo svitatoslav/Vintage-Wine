@@ -40,7 +40,22 @@
             }
         }
     }
+
+    .Active {
+        color: $btn-bg;
+
+        &:hover {
+            &::after {
+                display: none;
+            }
+
+            &::before {
+                display: none;
+            }
+        }
+    }
 }
+
 
 .ShopFilterBar {
     max-width: 580px;

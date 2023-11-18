@@ -9,6 +9,9 @@ import useResize from "../../hooks/useResize";
 import styles from "./Shop.module.scss";
 import PageTitle from "../../components/Title/PageTitle";
 import { useSearchParams } from "react-router-dom";
+import { sendGetRequest } from "../../helpers/api/sendGetRequest";
+import cn from "classnames";
+import { FilterContex } from "../../contexts/FilterContext";
 
 const Filtration = React.lazy(() =>
   import("../../components/Filtaration/Filtaration")
@@ -18,57 +21,46 @@ const MIN_VALUE = 768;
 const MAX_VALUE = 1160;
 
 const Shop = () => {
-  const pathParts = useBreadcrumbs();
-  const products = useSelector(state => state.products.products);
+  const allFilters = useSelector(state => state.filters.isAllFilters);
   const [links, setLinks] = useState([]);
   const [productCards, setProductCards] = useState([]);
-  const allFilters = useSelector(state => state.filters.isAllFilters);
-  const viewportWidth = useResize();
-  const [searchParams, setSearchParams] = useSearchParams();
   const [currentLink, setCurrentLinks] = useState(null);
+  const [filter, setFilter] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const pathParts = useBreadcrumbs();
+  const viewportWidth = useResize();
+
+  console.log(filter);
 
   useEffect(() => {
-    if (!currentLink) return;
+    (async () => {
+      const catalogLinks = await sendGetRequest('http://127.0.0.1:4000/api/catalog');
+      setLinks(catalogLinks);
+    })();
+  }, []);
 
-    async function fetchFilteredData() {
-      try {
-        const response = await fetch(`http://127.0.0.1:4000/api/products/filter?categories=${currentLink}`);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
 
-        setProductCards(createCards(data.products));
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-    fetchFilteredData();
-  }, [currentLink]);
+  useEffect(() => {
+
+    // setSearchParams({
+    //   query: filter[1],
+    // });
+
+    const url = filter.length ? `http://127.0.0.1:4000/api/products/filter?${filter[0]}=${filter[1]}` : 'http://127.0.0.1:4000/api/products/';
+
+    (async () =>  {
+      const data = await sendGetRequest(url);
+      setProductCards(createCards(data.products || data));
+    })();
+  }, [filter, viewportWidth]);
 
   const handleSetCurrentLink = (link) => {
     setCurrentLinks(link);
-    setSearchParams({
-      query: link
-    });
+    setFilter(['categories', link]);
+    // setSearchParams({
+    //   query: link
+    // });
   };
-
-  useEffect(() => {
-    async function fetchDataLinks() {
-      try {
-        const response = await fetch('http://127.0.0.1:4000/api/catalog');
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const catalogData = await response.json();
-
-        setLinks(catalogData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-    fetchDataLinks();
-  }, []);
 
   function createCards(array) {
     const shopElements = [];
@@ -104,29 +96,26 @@ const Shop = () => {
     return shopElements;
   }
 
-  useEffect(() => {
-    const productsQ = createCards(products);
-    setProductCards(productsQ);
-  }, [products, viewportWidth]);
-
   return (
     <div className={styles.ShopContainer}>
       <PageTitle text="Our Shop" />
       <Breadcrumbs pathParts={pathParts} />
-      <div className={styles.ShopFilterBar}>
-        {viewportWidth >= 768 &&
-          (<ul className={styles.ShopFilterBarItems}>
-            {links.map(link => (
-              <li key={link.id}>
-                <span data-link={link.id} onClick={() => handleSetCurrentLink(link.name.toLowerCase())}>{link.name}</span>
-              </li>
-            ))}
-          </ul>)}
-        <Suspense fallback={<div>Loading...</div>} >
-          <Filtration />
-        </Suspense>
-      </div>
-      {allFilters && <FilterGroup />}
+      <FilterContex.Provider value={{filter, setFilter}}>
+        <div className={styles.ShopFilterBar}>
+          {viewportWidth >= 768 &&
+            (<ul className={styles.ShopFilterBarItems}>
+              {links.map(tab => (
+                <li key={tab.id} className={cn({ [styles.Active]: currentLink === tab.name.toLowerCase() })}>
+                  <span data-tab={tab.id} onClick={() => handleSetCurrentLink(tab.name.toLowerCase())}>{tab.name}</span>
+                </li>
+              ))}
+            </ul>)}
+          <Suspense fallback={<div>Loading...</div>} >
+            <Filtration />
+          </Suspense>
+        </div>
+        {allFilters && <FilterGroup />}
+      </FilterContex.Provider>
       <div className={styles.ShopImagesContainer}>
         {productCards}
       </div>
