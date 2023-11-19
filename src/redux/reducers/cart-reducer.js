@@ -60,17 +60,6 @@ export const removeFromCarts = (id) => ({
     payload: object,
  })
 
-export const fetchCarts = (cart) => ({
-    type: FETCH_NEWS,
-    payload: cart
-})
 
-export const fetchNewsThunk = () => {
-    return async (dispatch) => {
-        const response = await fetch('http://127.0.0.1:4000/api/carts')
-        const news = await response.json();
-        dispatch(fetchCarts(cart))
-    }
-}
 
 export default cartsReducer;
