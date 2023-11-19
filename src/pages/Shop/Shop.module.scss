@@ -53,10 +53,8 @@
     }
 }
 
-
 .ShopImagesContainer {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     gap: 5px;
     padding: 0 10px;
     max-width: 1200px;

@@ -31,6 +31,11 @@
     flex-wrap: wrap;
 }
 
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
 @mixin flex-col {
     display: flex;
     flex-direction: column;
@@ -40,6 +45,13 @@
 @mixin flex-col-c {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+
+@mixin flex-col-c-c {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 

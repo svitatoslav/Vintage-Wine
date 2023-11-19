@@ -8,9 +8,11 @@ import styles from './UniProduct.module.scss';
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import ModalProdAddedToCart from '../ModalProdAddedToCart/ModalProdAddedToCart';
 
 
 const UniProduct = ({ price, name, img, id, isSmall }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
   const handleAddProduct = () => {
@@ -21,15 +23,20 @@ const UniProduct = ({ price, name, img, id, isSmall }) => {
     e.preventDefault();
     try {
       await axios.post('http://127.0.0.1:4000/api/add-to-cart', { productId: id });
-
+      setModalOpen(true);
       console.log('Product added to the cart successfully!');
+    
     } catch (error) {
       console.error('Error adding product to cart:', error);
     }
   };
 
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   const handleMouseMove = () => {
-    setIsHovered(!isHovered);
+      setIsHovered(!isHovered);
   };
 
   return (
@@ -38,7 +45,7 @@ const UniProduct = ({ price, name, img, id, isSmall }) => {
         {/* <img src={img} alt={`Image of ${name}`} loading='lazy' /> */}
         <LazyLoadImage src={img} alt={`Image of ${name}`} effect='blur' />
         {(isHovered && window.innerWidth > 1024) && (
-          <div className={styles.UniProductCover}>
+          <div className={styles.UniProductCover }>
             <p className={cn(styles.UniProductText, {[styles.SmallText] : isSmall})}>{name}</p>
             <p className={cn(styles.UniProductPrice, {[styles.SmallPrice] : isSmall})}>{price} UAH</p>
             <div className={styles.UniProductBtn}>
@@ -47,9 +54,15 @@ const UniProduct = ({ price, name, img, id, isSmall }) => {
           </div>
         )}
       </Link>
+      {isModalOpen && (
+        <ModalProdAddedToCart onClose={closeModal}>
+          <p>Product added to the cart successfully</p>
+        </ModalProdAddedToCart>
+      )}
     </div>
   );
 };
+
 
 
 export default UniProduct;
