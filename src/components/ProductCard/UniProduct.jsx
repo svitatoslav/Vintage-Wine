@@ -25,7 +25,9 @@ const UniProduct = ({ price, name, img, id, isSmall }) => {
       await axios.post('http://127.0.0.1:4000/api/add-to-cart', { productId: id });
       setModalOpen(true);
       console.log('Product added to the cart successfully!');
-    
+      setTimeout(() => {
+        closeModal();
+      }, 7000);
     } catch (error) {
       console.error('Error adding product to cart:', error);
     }
