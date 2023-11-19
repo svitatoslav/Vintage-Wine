@@ -11,9 +11,9 @@ import collectionsReducer from '../reducers/collections-reducer';
 import authorizationReducer from '../reducers/authorization-reducer';
 import mobileMenuReducer from '../reducers/mobMenu-reducer';
 import ViewedProductsReducer from '../reducers/lastViewed-products';
-import filtersReducer from '../reducers/filters-reducer';
 import modalWindowReducer from '../reducers/modalWindow-reducer';
 import newsReducer from "../reducers/news-reducer";
+import filtersReducer from '../reducers/filters-reducer';
 
 const rootReducer = combineReducers({
   viewedProducts: ViewedProductsReducer,
@@ -22,9 +22,9 @@ const rootReducer = combineReducers({
   collections: collectionsReducer,
   user: authorizationReducer,
   mobileMenu: mobileMenuReducer,
-  filters: filtersReducer,
   modal: modalWindowReducer,
   news: newsReducer,
+  filters: filtersReducer,
 });
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

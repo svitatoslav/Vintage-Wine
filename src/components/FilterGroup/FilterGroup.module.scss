@@ -19,6 +19,7 @@
 
 .FilterBody {
     margin: 0 auto;
+    text-align: right;
 }
 
 .FilterForm {
@@ -32,9 +33,26 @@
     }
 }
 
-
 .FilterConfirm {
     @include flex-ac-sb;
     flex-direction: column;
     width: 221px;
+}
+
+.FilterClearBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    border: 1px solid transparent;
+    margin: 0 auto 20px;
+    @include transition;
+
+    @media screen and (min-width: $tablet-xlg) {
+        margin: 0 0 20px 0;
+    }
+
+    &:hover {
+        border: $brd-white;
+    }
 }
