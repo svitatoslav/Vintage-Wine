@@ -9,7 +9,7 @@ module.exports = function filterParser(filtersQueryString) {
   }
 
   if (filtersQueryString.country) {
-    mongooseQuery["characteristics.manufacturerCountry"] = filtersQueryString.country;
+    mongooseQuery["characteristics.country"] = filtersQueryString.country;
   }
 
   return Object.keys(filtersQueryString).reduce(

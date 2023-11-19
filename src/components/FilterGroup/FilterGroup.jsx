@@ -1,15 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import styles from './FilterGroup.module.scss';
 import Container from '../Container/Container';
 import CustomSelect from '../CustomSelect/CustomSelect';
-import { filters } from './filters/filters';
 import Button from '../Button/Button';
 import RangeInput from '../RangeInput/RangeInput';
 import { Form, Formik } from 'formik';
 import { FilterContext } from '../../contexts/FilterContext';
+import { useSelector } from 'react-redux';
+import createOptions from '../../helpers/getOptions';
 
 const FilterGroup = () => {
   const { setFilter } = useContext(FilterContext);
+  const products = useSelector(state => state.products.products);
+  const options = Object.values(createOptions(products));
 
   const initialValues = {
     sortBy: '',
@@ -21,7 +24,7 @@ const FilterGroup = () => {
     price: 0,
   }
 
-  const handleSubmit = (values, {resetForm}) => {
+  const handleSubmit = (values, { resetForm }) => {
     const filters = Object.entries(values).filter(([key, value]) => value !== '' && value !== 0);
 
     let resultObject = {};
@@ -30,7 +33,7 @@ const FilterGroup = () => {
       resultObject[subArray[0]] = subArray[1];
     });
 
-    setFilter(prev => ({...prev, ...resultObject}));
+    setFilter(prev => ({ ...prev, ...resultObject }));
     resetForm(initialValues);
   }
 
@@ -41,9 +44,9 @@ const FilterGroup = () => {
           <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             <Form className={styles.FilterForm}>
               <ul className={styles.FilterGroup} data-testid="FilterGroup">
-                {filters.map(({ name, title, options }) => (
+                {options.map(({ name, label, options }) => (
                   <li key={name} >
-                    <CustomSelect placeHolder={title} name={name} options={options} />
+                    <CustomSelect placeHolder={label} name={name} options={options} />
                   </li>
                 ))}
               </ul>

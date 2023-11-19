@@ -44,7 +44,6 @@ const CustomSelect = ({ placeHolder, name, options, style }) => {
     setResetFilters(false);
   };
 
-
   const isSelected = (option) => {
     if (!selectedValue) return false;
 
@@ -53,7 +52,7 @@ const CustomSelect = ({ placeHolder, name, options, style }) => {
 
   const getDisplay = () => {
     if (selectedValue) {
-      return selectedValue.label;
+      return selectedValue.value;
     }
     return placeHolder;
   };
@@ -69,9 +68,9 @@ const CustomSelect = ({ placeHolder, name, options, style }) => {
       {showMenu && (
         <div className={styles.CustomSelectHolder}>
           <div className={styles.CustomSelectMenu}>
-            {options.map((option) => (
-              <div key={option.value} className={cn(styles.CustomSelectOption, { [styles.CustomSelectOptionActive]: isSelected(option) })} onClick={() => onOptionClick(option)}>
-                {option.label}
+            {options.map((option, i) => (
+              <div key={option.id} className={cn(styles.CustomSelectOption, { [styles.CustomSelectOptionActive]: isSelected(option) })} onClick={() => onOptionClick(option)}>
+                {option.value}
               </div>
             ))}
           </div>
