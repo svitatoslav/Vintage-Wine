@@ -12,28 +12,16 @@
     grid-template-columns: 1fr 1fr;
     margin-bottom: 150px;
     margin-left: 0;
-    //justify-content: center;
-    //justify-items: center;
-    //justify-self: center;
     justify-items: center;
-    //justify-content: center;
-    //justify-content: space-between;
-    //align-self: center;
   }
-
-  //@media screen and (min-width: $tablet-lg) {
-  //  grid-template-columns: 1fr 1fr 1fr;
-  //  margin-bottom: 150px;
-  //}
 
   @media screen and (min-width: $desktop) {
     display: block;
   }
-
 }
 
 .ItemWrapper {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   max-width: 300px;
   padding: 10px;
 }
@@ -41,6 +29,7 @@
 .Img {
   max-width: 300px;
   margin-bottom: 15px;
+  min-height: 190px;
   max-height: 200px;
 }
 
