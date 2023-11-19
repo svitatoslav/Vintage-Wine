@@ -18,7 +18,7 @@ const CartItem = (props) => {
     productDescription,
     productUrl,
     slidesImageUrls,
-    count,
+    cartQuantity,
     cartDescription,
     text
   } = props;
@@ -40,11 +40,11 @@ const CartItem = (props) => {
         <div className={styles.CartContent}>
           <div className={styles.PriceInfo}>
             
-            <p className={styles.Price}>{(currentPrice * count).toFixed(2)}</p>
+            <p className={styles.Price}>{(currentPrice * cartQuantity).toFixed(2)}</p>
             <p className={styles.Currency}>UAH</p>
           </div>
 
-          <Counter id={id} count={count} />
+          <Counter id={id} count={cartQuantity} />
           <button
             typeBtn="smallBasket"
             color="transparent"

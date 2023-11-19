@@ -3,6 +3,7 @@ import { object } from "prop-types";
 const ADD_PRODUCT = 'ADD_PRODUCT';
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 const CHANGE_COUNT = 'CHANGE_COUNT';
+const FETCH_CARTS = 'FETCH_CARTS';
 
 const initialState = {
     carts: []
@@ -41,6 +42,11 @@ console.log(newCarts);
                 ...state,
                 carts : newCarts
             }
+        case FETCH_CARTS:
+            return {
+                ...state,
+                carts : action.payload.products
+            }
         default:
             return state;
     }
@@ -60,6 +66,19 @@ export const removeFromCarts = (id) => ({
     payload: object,
  })
 
+export const fetchCarts = (cart) => ({
+    type: FETCH_CARTS,
+    payload: cart
+})
 
+export const fetchNewsThunk = () => {
+    return async (dispatch, getState) => {
+        const curentState = getState()
+        const response = await fetch('http://127.0.0.1:4000/api/cart', {method: 'GET', headers:{'Authorization': curentState.user.token}})
+        const carts = await response.json();
+        dispatch(fetchCarts(carts))
+        
+    }
+}
 
 export default cartsReducer;

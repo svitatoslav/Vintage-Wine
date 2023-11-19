@@ -10,7 +10,8 @@ const Counter = ({id, count}) => {
     <div className={styles.Counter}>
         <Button typeBtn="smallBasket" color="transparent" text={"-"} onClick={() => {
             if(count === 1){
-                dispatch(removeFromCarts(id))
+              color = "gray"
+                // dispatch(removeFromCarts(id))
             } else {
                 dispatch(changeCount({id, operator : "-"}));
             }

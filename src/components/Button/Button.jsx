@@ -15,8 +15,8 @@ const buttonVariant = {
 const buttonColor = {
     primary: styles.Primary,
     secondary: styles.Secondary,
-    transparent: styles.Transparent
-
+    transparent: styles.Transparent,
+    gray: styles.GrayBtn
 }
  const Button = ({text, onClick,type="button",  variant = "default", color = "primary", isDisabled = false}) => {
 
