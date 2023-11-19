@@ -17,7 +17,6 @@ const ProductCard = ({price, name, img, id}) => {
             </Link>
             <div>
                 <p className={styles.Text}>{name}</p>
-
                 <p className={styles.Price}>{price} Uah</p>
             </div>
             <div className={styles.Wrapper}>

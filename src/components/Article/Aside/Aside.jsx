@@ -24,7 +24,7 @@ const Aside = ({article}) => {
 
     return (
         <Container>
-            <aside className={styles.Wrapper}>
+            <aside className={styles.Wrapper} data-testid="Aside">
                 {articles.map((article) => (
                     <div className={styles.ItemWrapper} key={article._id}>
                         <img className={styles.Img} src={article.image} alt=""/>
