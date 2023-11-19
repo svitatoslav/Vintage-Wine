@@ -1,15 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import styles from './RangeInput.module.scss';
+import React, { useContext, useEffect, useState } from 'react';
 import { useFormikContext } from 'formik';
+import { FilterContext } from '../../contexts/FilterContext';
+import styles from './RangeInput.module.scss';
 
 const RangeInput = () => {
+  const { filter } = useContext(FilterContext);
   const [value, setValue] = useState(0);
   const { setFieldValue } = useFormikContext();
 
   useEffect(() => {
-    setFieldValue("price", value);
+    setFieldValue("price", parseInt(value));
   }, [value]);
+
+  useEffect(() => {
+    if (!Object.keys(filter).length) {
+      setValue(0)
+    }
+  }, [filter]);
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -24,7 +31,5 @@ const RangeInput = () => {
     </div>
   );
 }
-
-RangeInput.propTypes = {};
 
 export default RangeInput;

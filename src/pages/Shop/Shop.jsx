@@ -1,14 +1,20 @@
 import React, { Suspense } from "react";
 import { useEffect, useState } from "react";
-import Breadcrumbs from "./../../components/Breadcrumbs/Breadcrumbs";
-import useBreadcrumbs from "../../hooks/useBreadcrumbs";
-import UniProduct from "../../components/ProductCard/UniProduct";
-import useResize from "../../hooks/useResize";
-import styles from "./Shop.module.scss";
-import PageTitle from "../../components/Title/PageTitle";
 import { useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import useBreadcrumbs from "../../hooks/useBreadcrumbs";
+import useResize from "../../hooks/useResize";
+
 import { sendGetRequest } from "../../helpers/api/sendGetRequest";
 import { FilterContext } from "../../contexts/FilterContext";
+import { updateFilteredProductsAC } from "../../redux/reducers/filters-reducer";
+
+import Breadcrumbs from "./../../components/Breadcrumbs/Breadcrumbs";
+import UniProduct from "../../components/ProductCard/UniProduct";
+import PageTitle from "../../components/Title/PageTitle";
+
+import styles from "./Shop.module.scss";
+
 
 const Filtration = React.lazy(() =>
   import("../../components/Filtaration/Filtaration")
@@ -24,8 +30,7 @@ const Shop = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const pathParts = useBreadcrumbs();
   const viewportWidth = useResize();
-
-  // console.log(filter);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const createUrlQuery = (filterConfigs) => {
@@ -49,6 +54,7 @@ const Shop = () => {
     (async () => {
       const data = await sendGetRequest(url);
       setProductCards(createCards(data.products));
+      dispatch(updateFilteredProductsAC((data.products)));
     })();
   }, [filter, viewportWidth]);
 
@@ -97,7 +103,11 @@ const Shop = () => {
         </Suspense>
       </FilterContext.Provider>
       <div className={styles.ShopImagesContainer}>
-        {productCards}
+      {
+        productCards.length ?
+          productCards :
+          "Products not found"
+      }
       </div>
     </div>
   );

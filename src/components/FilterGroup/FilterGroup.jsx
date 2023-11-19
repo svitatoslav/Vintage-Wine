@@ -1,18 +1,32 @@
 import React, { useContext } from 'react';
-import styles from './FilterGroup.module.scss';
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Form, Formik } from 'formik';
+import createOptions from '../../helpers/getOptions';
+import { FilterContext } from '../../contexts/FilterContext';
+
 import Container from '../Container/Container';
 import CustomSelect from '../CustomSelect/CustomSelect';
 import Button from '../Button/Button';
 import RangeInput from '../RangeInput/RangeInput';
-import { Form, Formik } from 'formik';
-import { FilterContext } from '../../contexts/FilterContext';
-import { useSelector } from 'react-redux';
-import createOptions from '../../helpers/getOptions';
 
-const FilterGroup = () => {
-  const { setFilter } = useContext(FilterContext);
-  const products = useSelector(state => state.products.products);
-  const options = Object.values(createOptions(products));
+import Clear from './icons/clear.svg?react';
+import styles from './FilterGroup.module.scss';
+
+
+const FilterGroup = ({onClear}) => {
+  const { filter, setFilter, setResetFilters } = useContext(FilterContext);
+  const filteredProducts = useSelector(state => state.filters.filteredProducts);
+
+  const options = Object.values(createOptions(filteredProducts));
+  const lastOptions = useSelector(state => state.filters.lastOptions);
+  const updatedOptions = options.map(item => {
+    if (item.name === lastOptions?.name) {
+      return (lastOptions);
+    }
+
+    return item;
+  });
 
   const initialValues = {
     sortBy: '',
@@ -37,19 +51,34 @@ const FilterGroup = () => {
     resetForm(initialValues);
   }
 
+  const clearFilters = () => {
+    setFilter({});
+    setResetFilters(prev => !prev);
+    onClear();
+  }
+
   return (
     <div className={styles.FilterBlock}>
       <Container>
         <div className={styles.FilterBody}>
           <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             <Form className={styles.FilterForm}>
-              <ul className={styles.FilterGroup} data-testid="FilterGroup">
-                {options.map(({ name, label, options }) => (
-                  <li key={name} >
-                    <CustomSelect placeHolder={label} name={name} options={options} />
-                  </li>
-                ))}
-              </ul>
+              <div>
+                {
+                  Object.keys(filter).length ? (
+                    <button className={styles.FilterClearBtn} onClick={clearFilters}>
+                      Clear <Clear />
+                    </button>) : null
+                }
+                <ul className={styles.FilterGroup} data-testid="FilterGroup">
+
+                  {updatedOptions.map((option) => (
+                    <li key={option.name} >
+                      <CustomSelect option={option} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <div className={styles.FilterConfirm}>
                 <RangeInput />
                 <Button type='submit' text='Save' />
@@ -62,6 +91,8 @@ const FilterGroup = () => {
   );
 }
 
-FilterGroup.propTypes = {};
+FilterGroup.propTypes = {
+  onClear: PropTypes.func.isRequired,
+};
 
 export default FilterGroup;

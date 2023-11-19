@@ -5,12 +5,16 @@ import Arrow from './icons/arrow.svg?react';
 import cn from 'classnames';
 import { useFormikContext } from 'formik';
 import { FilterContext } from '../../contexts/FilterContext';
+import { useDispatch } from 'react-redux';
+import { updateLastOptionsAC } from '../../redux/reducers/filters-reducer';
 
-const CustomSelect = ({ placeHolder, name, options, style }) => {
+const CustomSelect = ({ option }) => {
   const { resetFilters, setResetFilters } = useContext(FilterContext);
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
   const { setFieldValue } = useFormikContext();
+  const dispatch = useDispatch();
+  const { label, name, options } = option;
 
   useEffect(() => {
     const handler = () => setShowMenu(false);
@@ -25,23 +29,29 @@ const CustomSelect = ({ placeHolder, name, options, style }) => {
     if (selectedValue) {
       setFieldValue(name, selectedValue?.value)
     }
-  }, [selectedValue])
+  }, [selectedValue]);
 
   useEffect(() => {
     if (resetFilters) {
       setSelectedValue(null);
     }
-  }, [resetFilters])
+  }, [resetFilters]);
 
   const handleInputClick = () => {
+    if (!options.length) return;
+
     setTimeout(() => {
       setShowMenu(!showMenu);
     }, 0);
   }
 
-  const onOptionClick = (option) => {
-    setSelectedValue(option);
+  const onOptionClick = (currentOption) => {
+    setSelectedValue(currentOption);
     setResetFilters(false);
+
+    if (option.options.length <= 1) return;
+
+    dispatch(updateLastOptionsAC(option));
   };
 
   const isSelected = (option) => {
@@ -54,26 +64,24 @@ const CustomSelect = ({ placeHolder, name, options, style }) => {
     if (selectedValue) {
       return selectedValue.value;
     }
-    return placeHolder;
+    return label;
   };
 
   return (
-    <div className={styles.CustomSelect} style={style}>
-      <div className={styles.CustomSelectInput} title={selectedValue && placeHolder} onClick={handleInputClick}>
+    <div className={styles.CustomSelect}>
+      <div className={cn(styles.CustomSelectInput, { [styles.Disabled]: !options.length })} title={selectedValue && label} onClick={handleInputClick}>
         <span>{getDisplay()}</span>
         <span>
           <Arrow />
         </span>
       </div>
       {showMenu && (
-        <div className={styles.CustomSelectHolder}>
-          <div className={styles.CustomSelectMenu}>
-            {options.map((option, i) => (
-              <div key={option.id} className={cn(styles.CustomSelectOption, { [styles.CustomSelectOptionActive]: isSelected(option) })} onClick={() => onOptionClick(option)}>
-                {option.value}
-              </div>
-            ))}
-          </div>
+        <div className={styles.CustomSelectMenu}>
+          {options.map((option, i) => (
+            <div key={option.id} className={cn(styles.CustomSelectOption, { [styles.CustomSelectOptionActive]: isSelected(option) })} onClick={() => onOptionClick(option)}>
+              {option.value}
+            </div>
+          ))}
         </div>
       )}
     </div>
@@ -82,10 +90,11 @@ const CustomSelect = ({ placeHolder, name, options, style }) => {
 
 
 CustomSelect.propTypes = {
-  placeHolder: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  options: PropTypes.array.isRequired,
-  style: PropTypes.object
+  option: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    options: PropTypes.array.isRequired,
+  })
 };
 
 export default CustomSelect;

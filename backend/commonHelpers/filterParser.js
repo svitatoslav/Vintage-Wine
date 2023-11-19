@@ -1,4 +1,4 @@
-const excludedParams = ["perPage", "startPage", "minPrice", "maxPrice", "sort"];
+const excludedParams = ["perPage", "startPage", "minPrice", "maxPrice", "sortBy"];
 
 module.exports = function filterParser(filtersQueryString) {
 
@@ -12,9 +12,23 @@ module.exports = function filterParser(filtersQueryString) {
     mongooseQuery["characteristics.country"] = filtersQueryString.country;
   }
 
+  if (filtersQueryString.year) {
+    mongooseQuery["characteristics.year"] = filtersQueryString.year;
+  }
+
+  if (filtersQueryString.strength) {
+    mongooseQuery["characteristics.strength"] = filtersQueryString.strength;
+  }
+
+  if (filtersQueryString.price) {
+    mongooseQuery.currentPrice = {
+      $lt: Number(filtersQueryString.price)
+    }
+  }
+
   return Object.keys(filtersQueryString).reduce(
     (mongooseQuery, filterParam) => {
-      if (filterParam === "color" || filterParam === "country") {
+      if (filterParam === "color" || filterParam === "country" || filterParam === "year" || filterParam === "strength" || filterParam === "price") {
         return mongooseQuery;
       }
 
