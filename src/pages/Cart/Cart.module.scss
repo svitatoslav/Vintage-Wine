@@ -1,0 +1,125 @@
+@import "./../../assets/mixins/mixins";
+@import "./../../assets/variables/variables";
+
+.CartContainer {
+    margin-top: 28px;
+}
+.TitleShoping {
+    font-size: 50px;
+    color: $main-color;
+    text-align: center;
+    margin-bottom: 26px;
+
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        margin-bottom: 30px;
+    }
+    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+        margin-bottom: 30px;
+    }
+    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+        margin-bottom: 30px;
+    }
+    @media screen and (min-width: $desktop-lg) {
+        margin-bottom: 30px;
+    }
+    
+}
+.List {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 50px;
+
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        margin-bottom: 0;
+    }
+    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+        margin-bottom: 0;
+    }
+    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+        margin-bottom: 0;
+    }
+    @media screen and (min-width: $desktop-lg) {
+        margin-bottom: 0;
+    }
+}
+.FinalInfo {
+    display: none;
+
+
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: 60px;
+    }
+    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 60px;
+    }
+    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 60px;
+    }
+    @media screen and (min-width: $desktop-lg) {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 60px;
+    }
+}
+.FinalCost {
+    border: 1px solid #FFFFFF;
+    width: 243px;
+    padding: 28px;
+    line-height: 24px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.FinalBtn {
+    display: grid;
+    gap: 16px;
+    font-family: $main-font;
+
+    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+        margin-left: 50px;
+    }
+    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+        margin-left: 50px;
+    }
+    @media screen and (min-width: $desktop-lg) {
+        margin-left: 50px;
+    }
+}
+.Continue {
+    background-color: $btn-bg;
+    padding: 16px;
+    font-size: 30px;
+    @include flex-cc;
+    cursor: pointer;
+}
+.Arrow {
+    padding-left: 10px;
+}
+
+
+
+// @media (min-width: $tablet) and (max-width: $tablet-lg) {
+//     display: flex;
+//     align-items: flex-start;
+// }
+//   @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+//     display: block;
+//   }
+//   @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+//     display: block;
+//   }
+//   @media screen and (min-width: $desktop) {
+//     display: block;
+//   }

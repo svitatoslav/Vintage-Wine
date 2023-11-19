@@ -14,6 +14,7 @@ import ViewedProductsReducer from '../reducers/lastViewed-products';
 import filtersReducer from '../reducers/filters-reducer';
 import modalWindowReducer from '../reducers/modalWindow-reducer';
 import newsReducer from "../reducers/news-reducer";
+import cartsReducer from '../reducers/cart-reducer';
 
 const rootReducer = combineReducers({
   viewedProducts: ViewedProductsReducer,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   filters: filtersReducer,
   modal: modalWindowReducer,
   news: newsReducer,
+  carts: cartsReducer
 });
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

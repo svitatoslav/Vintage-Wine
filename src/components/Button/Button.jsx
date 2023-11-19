@@ -8,12 +8,14 @@ const buttonVariant = {
     wide: styles.WideButton,
     xSmall: styles.xSmall,
     default: styles.Button,
-    big: styles.BigButton
+    big: styles.BigButton,
+    smallBasket: styles.SmallBasket
 }
 
 const buttonColor = {
     primary: styles.Primary,
-    secondary: styles.Secondary
+    secondary: styles.Secondary,
+    transparent: styles.Transparent
 
 }
  const Button = ({text, onClick,type="button",  variant = "default", color = "primary", isDisabled = false}) => {
