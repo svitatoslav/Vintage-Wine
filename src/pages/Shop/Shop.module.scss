@@ -11,50 +11,9 @@
     padding: 0 10px;
 }
 
-.ShopFilterBarItems {
-    width: 58%;
-    @include flex-ac-sb;
-    padding: 1px;
-
-    li {
-        color: $main-color;
-        @include fonts(16px, $secondary-font);
-        position: relative;
-
-        &:hover {
-            &::after {
-                content: url("./icons/Shophover.svg");
-                position: absolute;
-                bottom: 90%;
-                left: 14%;
-                display: inline-block;
-            }
-
-            &::before {
-                content: url("./icons/Shophover.svg");
-                position: absolute;
-                top: 90%;
-                left: 14%;
-                display: inline-block;
-            }
-        }
-    }
-}
-
-.ShopFilterBar {
-    max-width: 580px;
-    width: 100%;
-    height: auto;
-    @include flex-ac-sb;
-    margin-bottom: 75px;
-
-    @media screen and (min-width: $tablet-xlg) {
-        max-width: 710px;
-    }
-}
-
 .ShopImagesContainer {
-    @include flex-column;
+    display: flex;
+    flex-direction: column;
     gap: 5px;
     padding: 0 10px;
     max-width: 1200px;

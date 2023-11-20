@@ -1,11 +1,10 @@
 import { useDispatch } from "react-redux";
-import { removeAll, removeFromCarts } from "../../redux/reducers/cart-reducer";
+import { removeAll } from "../../redux/reducers/cart-reducer";
 import Counter from "../Counter/Counter";
 import styles from "./CartItem.module.scss";
 import Basket from "./img/delete.svg?react";
 
 const CartItem = ({count, product}) => {
-  
   const {
     name,
     productImg,
@@ -17,9 +16,6 @@ const CartItem = ({count, product}) => {
   const dispatch = useDispatch();
 
   const removeAllProducts = () => {
-
-    const newCartState = JSON.parse(localStorage.getItem('cart')).filter(cartId => cartId !== _id);
-    localStorage.setItem('cart', JSON.stringify([...newCartState]));
     dispatch(removeAll(_id));
   }
 

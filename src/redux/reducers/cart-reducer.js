@@ -16,8 +16,7 @@ const cartsReducer = (state = initialState, action) => {
         case ADD_PRODUCTS:
             return {
                 ...state,
-                carts: action.payload
-                // action.payload - продукти, який ми хочемо записати в масив carts
+                carts: [...state.carts, action.payload]
             };
         case REMOVE_PRODUCT:
             return {
@@ -40,7 +39,7 @@ const cartsReducer = (state = initialState, action) => {
         case ADD_ONE_TO_CART:
             return {
                 ...state,
-                carts: state.carts.map(({quantity, instance}) => {
+                carts: state.carts?.map(({quantity, instance}) => {
                     if (instance._id === action.payload) {
                         return {
                             quantity: quantity + 1,
@@ -75,7 +74,7 @@ export const removeAll = (id) => ({
     payload: id
 });
 
-export const addOneToCarts = (id) => ({
+export const addOneToExistedProduct = (id) => ({
     type: ADD_ONE_TO_CART,
     payload: id,
 })

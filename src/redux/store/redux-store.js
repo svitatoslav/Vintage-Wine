@@ -1,10 +1,13 @@
-import { composeWithDevTools } from '@redux-devtools/extension';
 import {
   applyMiddleware,
   combineReducers,
   legacy_createStore as createStore,
 } from 'redux';
+import { composeWithDevTools } from '@redux-devtools/extension';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
+
 import productsReducer from '../reducers/products-reducer';
 import catalogReducer from '../reducers/catalog-reducer';
 import collectionsReducer from '../reducers/collections-reducer';
@@ -29,4 +32,16 @@ const rootReducer = combineReducers({
   filters: filtersReducer,
 });
 
-export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const persistConfig = {
+    key: 'root',
+    storage,
+    blacklist: [],
+    whitelist: ['carts'],
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(thunk)));
+const persistor = persistStore(store);
+
+export { store, persistor };
