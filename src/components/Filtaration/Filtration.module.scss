@@ -1,0 +1,79 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+
+.FilterBarItems {
+    width: 58%;
+    @include flex-ac-sb;
+    padding: 1px;
+
+    li {
+        color: $main-color;
+        @include fonts(16px, $secondary-font);
+        position: relative;
+        cursor: default;
+
+        &:hover {
+            &::after,
+            &::before {
+                content: url("./icons/Shophover.svg");
+                position: absolute;
+                bottom: 90%;
+                left: 50%;
+                transform: translateX(-50%);
+                display: inline-block;
+            }
+
+            &::before {
+                bottom: unset;
+                top: 90%;
+            }
+        }
+    }
+
+    .Active {
+        color: $btn-bg;
+
+        &:hover {
+            &::after {
+                display: none;
+            }
+
+            &::before {
+                display: none;
+            }
+        }
+    }
+}
+
+
+.FilterBar {
+    max-width: 580px;
+    width: 100%;
+    height: auto;
+    @include flex-ac-sb;
+    margin-bottom: 75px;
+
+    @media screen and (min-width: $tablet-xlg) {
+        max-width: 710px;
+    }
+}
+
+
+.FilterBarAllFilters {
+    @include flex-ac;
+    margin: 0 auto 35px;
+    cursor: pointer;
+
+    @media screen and (min-width: $tablet-lg) {
+        margin-bottom: 0;
+    }
+
+    p {
+        font-family: $secondary-font;
+        font-weight: 400;
+        font-size: 15px;
+        margin-right: 10px;
+        line-height: normal;
+    }
+}

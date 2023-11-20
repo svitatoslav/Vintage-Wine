@@ -99,6 +99,8 @@
 }
 .FooterMenu {
     margin-bottom: 18px;
+    display: flex;
+    justify-content: center;
 
   @media (min-width: $mobile) and (max-width: $tablet) {
     width: 100%;

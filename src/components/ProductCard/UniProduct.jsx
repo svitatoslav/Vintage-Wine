@@ -4,33 +4,35 @@ import { Link } from "react-router-dom"
 import { formatProductLink } from "../../helpers/formatProductLink";
 import axios from 'axios';
 import cn from 'classnames';
-import styles from './UniProduct.module.scss';
 
+import { useSelector } from 'react-redux';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import ModalProdAddedToCart from '../ModalProdAddedToCart/ModalProdAddedToCart';
+import styles from './UniProduct.module.scss';
 
 
 const UniProduct = ({ price, name, img, id, isSmall }) => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const token = useSelector((state) => state.user.token);
   const [isHovered, setIsHovered] = useState(false);
 
   const handleAddProduct = () => {
     localStorage.setItem('viewedProducts', id);
   };
 
-  const handleAddToCart = async (e) => {
+  const handleAddToCart = (e) => {
     e.preventDefault();
-    try {
-      await axios.post('http://127.0.0.1:4000/api/add-to-cart', { productId: id });
-      setModalOpen(true);
-      console.log('Product added to the cart successfully!');
-      setTimeout(() => {
-        closeModal();
-      }, 7000);
-    } catch (error) {
-      console.error('Error adding product to cart:', error);
-    }
+    const prevCart = JSON.parse(localStorage.getItem('cart')) || [];
+    localStorage.setItem('cart', JSON.stringify([...prevCart, id]));
+
+    // try {
+    //   await axios.post('http://127.0.0.1:4000/api/add-to-cart', { productId: id });
+
+    //   console.log('Product added to the cart successfully!');
+    // } catch (error) {
+    //   console.error('Error adding product to cart:', error);
+    // }
   };
 
   const closeModal = () => {
@@ -44,7 +46,6 @@ const UniProduct = ({ price, name, img, id, isSmall }) => {
   return (
     <div className={styles.UniProduct} onMouseEnter={handleMouseMove} onMouseLeave={handleMouseMove}>
       <Link onClick={handleAddProduct} to={formatProductLink(name)} className={styles.UniProductLink} >
-        {/* <img src={img} alt={`Image of ${name}`} loading='lazy' /> */}
         <LazyLoadImage src={img} alt={`Image of ${name}`} effect='blur' />
         {(isHovered && window.innerWidth > 1024) && (
           <div className={styles.UniProductCover }>

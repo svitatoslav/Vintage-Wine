@@ -16,9 +16,7 @@ const DateBox = ({date}) => {
     return (
 
         <div className={styles.DateBox} data-testid="DateBox">
-            <div>
-                <p className={styles.Date}>Date <span className={styles.Month}>{day}</span> <span> {month} </span></p>
-            </div>
+            <p className={styles.Date}>Date <span className={styles.Month}>{day}</span> <span> {month} </span></p>
         </div>
     )
 };
