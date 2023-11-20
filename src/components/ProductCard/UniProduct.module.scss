@@ -7,12 +7,6 @@
     width: 100%;
 }
 
-.Image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 .UniProductCover {
     background-color: rgba(62, 58, 58, 0.5);
     transition: opacity 0.3s ease;
@@ -35,9 +29,9 @@
     width: 100%;
 
     span {
-        display: flex;
         width: 100%;
         height: 100%;
+        display: flex !important;
     }
 }
 

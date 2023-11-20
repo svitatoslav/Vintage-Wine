@@ -16,11 +16,9 @@
     grid-template-columns: repeat(3, 1fr);
     column-gap: 20px;
   }
-
 }
 
 .Item {
-  display: block;
   margin-bottom: 70px;
   max-width: 350px;
   position: relative;
@@ -37,6 +35,8 @@
   max-height: 350px;
   height: 100%;
   margin-bottom: 10px;
+  position: relative;
+  z-index: 0;
 }
 
 .TagsWrapper {
@@ -71,6 +71,7 @@
   position: absolute;
   top: 10px;
   left: -28px;
+  z-index: 1;
 }
 
 .ButtonSvgWrapper {

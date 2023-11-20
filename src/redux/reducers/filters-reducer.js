@@ -1,24 +1,36 @@
-const SWITCH_FILTERS = 'SWITCH_FILTERS';
+const UPDATE_FILTERED_PRODUCTS = 'UPDATE_FILTERED_PRODUCTS';
+const UPDATE_LAST_OPTIONS = 'UPDATE_LAST_OPTIONS';
 
 const initialState = {
-  isAllFilters: false
+    filteredProducts: [],
+    lastOptions: null
 };
 
 const filtersReducer = (state = initialState, action) => {
-  switch (action.type) {
-  case SWITCH_FILTERS:
-    return {
-      ...state,
-      isAllFilters: !state.isAllFilters,
-    };
-  default:
-    return state;
-  }
+    switch (action.type) {
+        case UPDATE_FILTERED_PRODUCTS:
+            return {
+                ...state,
+                filteredProducts: action.payload
+            };
+        case UPDATE_LAST_OPTIONS:
+            return {
+                ...state,
+                lastOptions: action.payload
+            };
+        default:
+            return state;
+    }
 };
 
+export const updateFilteredProductsAC = (products) => ({
+    type: UPDATE_FILTERED_PRODUCTS,
+    payload: products
+});
 
-export const switchFiltersAC = () => ({
-  type: SWITCH_FILTERS,
+export const updateLastOptionsAC = (options) => ({
+    type: UPDATE_LAST_OPTIONS,
+    payload: options
 });
 
 export default filtersReducer;

@@ -35,7 +35,7 @@ const UniProduct = ({ price, name, img, id, isSmall }) => {
   return (
     <div className={styles.UniProduct} onMouseEnter={handleMouseMove} onMouseLeave={handleMouseMove}>
       <Link onClick={handleAddProduct} to={formatProductLink(name)} className={styles.UniProductLink} >
-        <LazyLoadImage className={styles.Image} src={img} alt={`Image of ${name}`} effect="blur" />
+        <LazyLoadImage src={img} alt={`Image of ${name}`} effect='blur' />
         {(isHovered && window.innerWidth > 1024) && (
           <div className={styles.UniProductCover}>
             <p className={cn(styles.UniProductText, {[styles.SmallText] : isSmall})}>{name}</p>

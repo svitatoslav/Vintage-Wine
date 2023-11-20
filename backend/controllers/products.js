@@ -140,7 +140,19 @@ exports.getProductsFilterParams = async (req, res, next) => {
   const mongooseQuery = filterParser(req.query);
   const perPage = Number(req.query.perPage);
   const startPage = Number(req.query.startPage);
-  const sort = req.query.sort;
+  const sort = {};
+
+  switch (req.query.sortBy) {
+    case "Alphabetically A-Z":
+      sort.name = "asc";
+      break;
+  
+    case "Alphabetically Z-A":
+      sort.name = "desc";
+      break;
+    default:
+      break;
+  }
 
   try {
     const products = await Product.find(mongooseQuery)
