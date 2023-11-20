@@ -8,10 +8,12 @@ import cn from 'classnames';
 import { useSelector } from 'react-redux';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import ModalProdAddedToCart from '../ModalProdAddedToCart/ModalProdAddedToCart';
 import styles from './UniProduct.module.scss';
 
 
 const UniProduct = ({ price, name, img, id, isSmall }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
   const token = useSelector((state) => state.user.token);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -33,8 +35,12 @@ const UniProduct = ({ price, name, img, id, isSmall }) => {
     // }
   };
 
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   const handleMouseMove = () => {
-    setIsHovered(!isHovered);
+      setIsHovered(!isHovered);
   };
 
   return (
@@ -42,7 +48,7 @@ const UniProduct = ({ price, name, img, id, isSmall }) => {
       <Link onClick={handleAddProduct} to={formatProductLink(name)} className={styles.UniProductLink} >
         <LazyLoadImage src={img} alt={`Image of ${name}`} effect='blur' />
         {(isHovered && window.innerWidth > 1024) && (
-          <div className={styles.UniProductCover}>
+          <div className={styles.UniProductCover }>
             <p className={cn(styles.UniProductText, {[styles.SmallText] : isSmall})}>{name}</p>
             <p className={cn(styles.UniProductPrice, {[styles.SmallPrice] : isSmall})}>{price} UAH</p>
             <div className={styles.UniProductBtn}>
@@ -51,9 +57,15 @@ const UniProduct = ({ price, name, img, id, isSmall }) => {
           </div>
         )}
       </Link>
+      {isModalOpen && (
+        <ModalProdAddedToCart onClose={closeModal}>
+          <p>Product added to the cart successfully</p>
+        </ModalProdAddedToCart>
+      )}
     </div>
   );
 };
+
 
 
 export default UniProduct;
