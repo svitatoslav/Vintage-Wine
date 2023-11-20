@@ -69,15 +69,15 @@ const Shop = () => {
 
       const bigImageDiv = (
         <div key={`bigImage_${i}`}>
-          <UniProduct key={firstImage._id} price={firstImage.currentPrice} id={firstImage._id} name={firstImage.name} img={firstImage.productImg} />
+          <UniProduct key={firstImage._id} data={firstImage} />
         </div>
       );
 
       const smallImagesDiv = (
         <div className={styles.ShopImagesSmall} key={`smallImages_${i}`} >
-          {restImages.map(({ productImg, _id, name, currentPrice }) => (
-            <div key={_id} className={styles.SmallProductContainer}>
-              <UniProduct key={_id} price={currentPrice} id={_id} name={name} img={productImg} isSmall />
+          {restImages.map((product) => (
+            <div key={product._id} className={styles.SmallProductContainer}>
+              <UniProduct key={product._id} data={product} isSmall />
             </div>
           ))}
         </div>
