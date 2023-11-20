@@ -4,28 +4,33 @@ import { Link } from "react-router-dom"
 import { formatProductLink } from "../../helpers/formatProductLink";
 import axios from 'axios';
 import cn from 'classnames';
-import styles from './UniProduct.module.scss';
 
+import { useSelector } from 'react-redux';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import styles from './UniProduct.module.scss';
 
 
 const UniProduct = ({ price, name, img, id, isSmall }) => {
+  const token = useSelector((state) => state.user.token);
   const [isHovered, setIsHovered] = useState(false);
 
   const handleAddProduct = () => {
     localStorage.setItem('viewedProducts', id);
   };
 
-  const handleAddToCart = async (e) => {
+  const handleAddToCart = (e) => {
     e.preventDefault();
-    try {
-      await axios.post('http://127.0.0.1:4000/api/add-to-cart', { productId: id });
+    const prevCart = JSON.parse(localStorage.getItem('cart')) || [];
+    localStorage.setItem('cart', JSON.stringify([...prevCart, id]));
 
-      console.log('Product added to the cart successfully!');
-    } catch (error) {
-      console.error('Error adding product to cart:', error);
-    }
+    // try {
+    //   await axios.post('http://127.0.0.1:4000/api/add-to-cart', { productId: id });
+
+    //   console.log('Product added to the cart successfully!');
+    // } catch (error) {
+    //   console.error('Error adding product to cart:', error);
+    // }
   };
 
   const handleMouseMove = () => {

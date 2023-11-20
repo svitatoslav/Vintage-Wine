@@ -1,51 +1,59 @@
 import { object } from "prop-types";
 
-const ADD_PRODUCT = 'ADD_PRODUCT';
+const ADD_PRODUCTS = 'ADD_PRODUCTS';
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
-const CHANGE_COUNT = 'CHANGE_COUNT';
+const REMOVE_ALL = 'REMOVE_ALL';
+const ADD_ONE_TO_CART = 'ADD_ONE_TO_CART';
 const FETCH_CARTS = 'FETCH_CARTS';
 
 const initialState = {
-    carts: []
+    carts: [],
 };
 
 
 const cartsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_PRODUCT:
+        case ADD_PRODUCTS:
             return {
                 ...state,
-                carts: [...state.carts, {...action.payload, count:1}]
+                carts: action.payload
                 // action.payload - продукти, який ми хочемо записати в масив carts
             };
         case REMOVE_PRODUCT:
             return {
                 ...state,
-                carts: state.carts.filter((product)=>{
-                    return product._id !== action.payload
-                    // action.payload - id продукту, який хочемо видалити з масива carts
+                carts: state.carts.map(({quantity, instance}) => {
+                    if (instance._id === action.payload) {
+                        return {
+                            quantity: quantity - 1,
+                            instance
+                        }
+                    }
+                    return {quantity, instance}
                 })
             };
-        case CHANGE_COUNT:
-            const {id, operator} = action.payload;
-            const {carts} = state
-            const newCarts = carts.map((elem)=>{
-                if (elem._id === id) {
-                    elem.count = operator === "+" ? elem.count + 1 : elem.count - 1
-                    return elem
-                } else {
-                  return elem  
-                }
-                })
-console.log(newCarts);
+        case REMOVE_ALL:
             return {
                 ...state,
-                carts : newCarts
-            }
+                carts: state.carts.filter((item) => item.instance._id !== action.payload)
+            };
+        case ADD_ONE_TO_CART:
+            return {
+                ...state,
+                carts: state.carts.map(({quantity, instance}) => {
+                    if (instance._id === action.payload) {
+                        return {
+                            quantity: quantity + 1,
+                            instance
+                        }
+                    }
+                    return {quantity, instance}
+                })
+            };
         case FETCH_CARTS:
             return {
                 ...state,
-                carts : action.payload.products
+                carts: action.payload.products
             }
         default:
             return state;
@@ -53,7 +61,7 @@ console.log(newCarts);
 };
 
 export const addToCarts = (product) => ({
-    type: ADD_PRODUCT,
+    type: ADD_PRODUCTS,
     payload: product
 });
 
@@ -61,10 +69,16 @@ export const removeFromCarts = (id) => ({
     type: REMOVE_PRODUCT,
     payload: id
 });
- export const changeCount = (object)=>({
-    type: CHANGE_COUNT,
-    payload: object,
- })
+
+export const removeAll = (id) => ({
+    type: REMOVE_ALL,
+    payload: id
+});
+
+export const addOneToCarts = (id) => ({
+    type: ADD_ONE_TO_CART,
+    payload: id,
+})
 
 export const fetchCarts = (cart) => ({
     type: FETCH_CARTS,
@@ -74,10 +88,10 @@ export const fetchCarts = (cart) => ({
 export const fetchNewsThunk = () => {
     return async (dispatch, getState) => {
         const curentState = getState()
-        const response = await fetch('http://127.0.0.1:4000/api/cart', {method: 'GET', headers:{'Authorization': curentState.user.token}})
+        const response = await fetch('http://127.0.0.1:4000/api/cart', { method: 'GET', headers: { 'Authorization': curentState.user.token } })
         const carts = await response.json();
         dispatch(fetchCarts(carts))
-        
+
     }
 }
 

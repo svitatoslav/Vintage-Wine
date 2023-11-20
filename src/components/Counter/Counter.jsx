@@ -1,24 +1,32 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
-import { changeCount, removeFromCarts } from '../../redux/reducers/cart-reducer'
+import { addOneToCarts, removeFromCarts } from '../../redux/reducers/cart-reducer'
 import Button from '../Button/Button'
 import styles from "./Counter.module.scss"
 
 const Counter = ({id, count}) => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    const removeOne = () => {
+      if (count <= 1) return;
+
+      const selectedId = JSON.parse(localStorage.getItem('cart')).filter(cartId => cartId === id);
+      selectedId.pop();
+      const selectedOther = JSON.parse(localStorage.getItem('cart')).filter(cartId => cartId !== id);
+
+      localStorage.setItem('cart', JSON.stringify([...selectedId, ...selectedOther]));
+      dispatch(removeFromCarts(id));
+    }
+
+    const addOne = () => {
+      localStorage.setItem('cart', JSON.stringify([...JSON.parse(localStorage.getItem('cart')), id]));
+      dispatch(addOneToCarts(id));
+    }
   return (
     <div className={styles.Counter}>
-        <Button typeBtn="smallBasket" color="transparent" text={"-"} onClick={() => {
-            if(count === 1){
-                // dispatch(removeFromCarts(id))
-            } else {
-                dispatch(changeCount({id, operator : "-"}));
-            }
-          }}/>
+        <Button variant="smallBasket" color="transparent" text="-" onClick={removeOne}/>
         <p className={styles.Count}>{count}</p>
-        <Button typeBtn="smallBasket" color="transparent" text={"+"} onClick={() => {
-            dispatch(changeCount({id, operator : "+"}));
-          }}/>
+        <Button variant="smallBasket" color="transparent" text="+" onClick={addOne}/>
     </div>
   )
 }

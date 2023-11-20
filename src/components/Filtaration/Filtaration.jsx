@@ -21,7 +21,6 @@ const Filtration = () => {
     const [allFilters, setAallFilters] = useState(false);
     const dispatch = useDispatch();
 
-    console.log(filter);
     useEffect(() => {
         (async () => {
             const catalogLinks = await sendGetRequest('http://127.0.0.1:4000/api/catalog');
