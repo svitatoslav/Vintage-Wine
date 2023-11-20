@@ -1,0 +1,161 @@
+@import "./../../assets/mixins/mixins";
+@import "./../../assets/variables/variables";
+
+.Cart {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    margin-bottom: 20px;
+
+    @media (min-width: $mobile) and (max-width: $tablet) {
+        display: flex;
+        align-items: flex-start;
+    }
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        display: flex;
+        align-items: flex-start;
+    }
+    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+        display: flex;
+        align-items: flex-start;
+    }
+    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+        display: flex;
+        align-items: flex-start;
+    }
+    @media (min-width: $desktop) and (max-width: $desktop-lg) {
+        display: flex;
+        align-items: flex-start;
+    }
+    @media screen and (min-width: $desktop-lg) {
+        display: flex;
+        align-items: flex-start;
+    }
+    //   @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    //     display: block;
+    //   }
+    //   @media screen and (min-width: $desktop) {
+    //     display: block;
+    //   }
+}
+.Img {
+    width: 172px;
+    height: 199px;
+    margin-bottom: 20px;
+
+    @media (min-width: $mobile) and (max-width: $tablet) {
+        margin-right: 10px;
+    }
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        margin-right: 10px;
+        width: 225px;
+        height: 260px;
+    }
+    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+        margin-right: 10px;
+        width: 225px;
+        height: 260px;
+    }
+    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+        margin-right: 10px;
+        width: 285px;
+        height: 332px;
+    }
+    @media (min-width: $desktop) and (max-width: $desktop-lg) {
+        margin-right: 10px;
+        width: 285px;
+        height: 332px;
+    }
+    @media screen and (min-width: $desktop-lg) {
+        margin-right: 10px;
+        width: 285px;
+        height: 332px;
+    }
+}
+.CartInfo {
+    text-align: center;
+
+    @media (min-width: $mobile) and (max-width: $tablet) {
+        text-align: left;
+    }
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        text-align: left;
+    }
+    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+        text-align: left;
+        display: flex;
+    }
+    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+        text-align: left;
+        display: flex;
+    }
+    @media (min-width: $desktop) and (max-width: $desktop-lg) {
+        text-align: left;
+        display: flex;
+    }
+    @media screen and (min-width: $desktop-lg) {
+        text-align: left;
+        display: flex;
+    }
+}
+.CartTitle{
+    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+        margin-right: 20px;
+    }
+    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+        margin-right: 20px;
+    }
+    @media (min-width: $desktop) and (max-width: $desktop-lg) {
+        margin-right: 20px;
+    }
+    @media screen and (min-width: $desktop-lg) {
+        margin-right: 20px;
+    }
+}
+.TitleName{
+    margin-bottom: 20px;
+}
+.Text {
+    margin-bottom: 20px;
+}
+.CartContent {
+    @include flex-ac;
+    justify-content: space-evenly;
+
+    @media (min-width: $mobile) and (max-width: $tablet) {
+    }
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+        display: grid;
+        justify-items: flex-end;
+    }
+    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+        display: grid;
+        justify-items: flex-end;
+    }
+    @media (min-width: $desktop) and (max-width: $desktop-lg) {
+        display: grid;
+        justify-items: flex-end;
+    }
+    @media screen and (min-width: $desktop-lg) {
+        display: grid;
+        justify-items: flex-end;
+    }
+}
+.PriceInfo {
+    display: flex;
+    align-items: flex-end;
+}
+.Price {
+    font-size: 30px;
+    font-family: $main-font;
+    padding-right: 4px;
+}
+.BasketSvg {
+    width: 14px;
+    height: 16px;
+}
