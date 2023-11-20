@@ -25,6 +25,10 @@ const UniProduct = ({ price, name, img, id, isSmall }) => {
     e.preventDefault();
     const prevCart = JSON.parse(localStorage.getItem('cart')) || [];
     localStorage.setItem('cart', JSON.stringify([...prevCart, id]));
+    setModalOpen(true);
+    setTimeout(() => {
+      closeModal();
+    }, 7000);
 
     // try {
     //   await axios.post('http://127.0.0.1:4000/api/add-to-cart', { productId: id });
@@ -65,7 +69,5 @@ const UniProduct = ({ price, name, img, id, isSmall }) => {
     </div>
   );
 };
-
-
 
 export default UniProduct;
