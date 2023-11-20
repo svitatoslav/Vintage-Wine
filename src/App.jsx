@@ -46,7 +46,7 @@ const App = () => {
                     <Route path="search" element={<Search />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="*" element={<NoPage />} />
-
+                    
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/news/:id" element={<SingleNews/>}/>
                 </Route>

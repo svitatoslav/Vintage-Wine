@@ -9,6 +9,7 @@ import useBreadcrumbs from "../../hooks/useBreadcrumbs";
 import Button from "../../components/Button/Button";
 import Arrow from "./img/arrow.svg?react";
 import calcTotalPrice from "../../helpers/calcTotalPrice";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const products = useSelector((state) => state.products.products);
@@ -24,7 +25,7 @@ const Cart = () => {
       const prods = cart.map(c => {
         return products?.find(({ _id }) => _id === c);
       });
-
+      console.log(prods);
       const idCount = {};
 
       const newArr = prods.reduce((acc, obj) => {
@@ -77,9 +78,11 @@ const Cart = () => {
             {/* <Button text={"Continue" } >
                 {<Arrow />}
             </Button> */}
-            <button className={styles.Continue} type={"button"}>
-              Continue {<Arrow className={styles.Arrow} />}
-            </button>
+            <Link to="/checkout">
+              <button className={styles.Continue} type={"button"}>
+                Continue {<Arrow className={styles.Arrow} />}
+              </button>
+            </Link>
           </div>
         </div>
       </Container>
