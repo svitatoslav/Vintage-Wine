@@ -8,10 +8,14 @@ const LastViewed = () => {
     const viewedProducts = useSelector((state) => state.fetchViewedProducts.viewedProducts);
 
     return (
-        <div className={styles.LastViewed} data-testid="LastViewed">
-            <SectionTitle secText="You have viewed" />
-            <CustomSlider toShow={3} toScroll={1} type="VIEWED_PRODUCTS" sliderArray={viewedProducts} />
-        </div>
+        <>
+            {viewedProducts > 0 && (
+                <div className={styles.LastViewed} data-testid="LastViewed">
+                    <SectionTitle secText="You have viewed" />
+                    <CustomSlider toShow={3} toScroll={1} type="VIEWED_PRODUCTS" sliderArray={viewedProducts} />
+                </div>
+            )}
+        </>
     );
 };
 

@@ -172,7 +172,11 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                     slidesToShow: 1
                 }
             }
-        ]
+        ],
+        afterChange: (index) => {
+            setCurrentIndex(index + 1);
+        },
+        ref: sliderRef
     };
 
      const handleAddProduct = (id) => {

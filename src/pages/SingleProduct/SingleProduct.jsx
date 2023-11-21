@@ -39,7 +39,7 @@ const SingleProduct = () => {
         }
 
         fetchData();
-    }, []);
+    }, [singleItem]);
 
     useEffect(() => {
         if (localStorage.getItem('viewedProducts')) {
