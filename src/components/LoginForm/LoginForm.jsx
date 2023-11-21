@@ -71,7 +71,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
         <Form className={styles.LoginForm}>
           <h4 className={styles.LoginTitle}>{formTexts.title}</h4>
           <div className={styles.LoginFields}>
-            { isLogin ? (
+            {isLogin ? (
               <>
                 <Field
                   className={styles.LoginInput}

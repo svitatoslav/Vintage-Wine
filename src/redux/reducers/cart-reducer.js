@@ -1,9 +1,8 @@
-import { object } from "prop-types";
-
 const ADD_PRODUCTS = 'ADD_PRODUCTS';
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 const REMOVE_ALL = 'REMOVE_ALL';
 const ADD_ONE_TO_CART = 'ADD_ONE_TO_CART';
+const CLEAR_CART = 'CLEAR_CART';
 const FETCH_CARTS = 'FETCH_CARTS';
 
 const initialState = {
@@ -35,6 +34,11 @@ const cartsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 carts: state.carts.filter((item) => item.instance._id !== action.payload)
+            };
+        case CLEAR_CART:
+            return {
+                ...state,
+                carts: []
             };
         case ADD_ONE_TO_CART:
             return {
@@ -77,6 +81,10 @@ export const removeAll = (id) => ({
 export const addOneToExistedProduct = (id) => ({
     type: ADD_ONE_TO_CART,
     payload: id,
+})
+
+export const clearCartAC = () => ({
+    type: CLEAR_CART,
 })
 
 export const fetchCarts = (cart) => ({

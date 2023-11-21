@@ -306,7 +306,7 @@ exports.deleteProductFromCart = async (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-  Cart.findOne({ customerId: req.user.id })
+  Cart.findOne({ customerId: req.user._id })
     .populate('products.product')
     .populate('customerId')
     .then((cart) => res.json(cart))

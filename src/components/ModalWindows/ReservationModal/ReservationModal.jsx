@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ReservationModal.module.scss';
 import PageTitle from '../../Title/PageTitle';
-import CustomSelect from '../../CustomSelect/CustomSelect';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import axios from 'axios';
 import Button from '../../Button/Button';
@@ -11,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
 import reservationValidationSchema from '../../../validation/reservationValidationSchema';
 import { switchModalAC } from '../../../redux/reducers/modalWindow-reducer';
+import CustomTourSelect from '../../CustomSelect/CustomTourSelect';
 
 const ReservationModal = ({ onClose }) => {
   const [options, setOptions] = useState([]);
@@ -45,7 +45,7 @@ const ReservationModal = ({ onClose }) => {
       axios.put(`http://127.0.0.1:4000/api/excursions/${values.title}`, values)
         .then(response => {
           if (response.status == 200) {
-            dispatch(switchModalAC());
+            dispatch(switchModalAC('thanks'));
           }
         })
         .catch(err => console.log(err))
@@ -70,7 +70,7 @@ const ReservationModal = ({ onClose }) => {
           {({ isSubmitting }) => (
             <Form className={styles.ReservationModalForm}>
               <div className={styles.FormBody}>
-                <CustomSelect placeHolder={selectedTour} style={{ width: "100%" }} name="title" options={options} defVal={selectedTour} />
+                <CustomTourSelect placeHolder={selectedTour} style={{ width: "100%" }} name="title" options={options} defVal={selectedTour} />
                 <Field
                   type="text"
                   name="firstName"

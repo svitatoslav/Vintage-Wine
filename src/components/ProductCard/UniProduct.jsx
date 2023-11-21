@@ -22,8 +22,23 @@ const UniProduct = ({ data, isSmall }) => {
     localStorage.setItem('viewedProducts', _id);
   };
 
-  const handleAddToCart = (e) => {
+  const handleAddToCart = async (e) => {
     e.preventDefault();
+
+    // if (token) {
+    //   const response = await fetch('http://127.0.0.1:4000/api/cart', {
+    //     method: 'GET',
+    //     headers: {
+    //       'Authorization': token,
+    //       'Content-Type': 'application/json',
+    //     },
+    //   });
+
+    //   const result = await response.json();
+
+    //   console.log(result.products);
+    //   return;
+    // }
 
     const itemInCart = cart?.find(({instance}) => instance._id === _id);
 
