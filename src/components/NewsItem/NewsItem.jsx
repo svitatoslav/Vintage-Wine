@@ -24,7 +24,7 @@ const NewsItem = ({img, name, desc, date, tags}) => {
     return (
         <div className={styles.Wrapper} data-testid="News">
             {news.map(item => (
-                <Link to={`/news/${item._id}`} className={styles.Item} key={item._id}>
+                <div className={styles.Item} key={item._id}>
                     <div className={styles.DateWrapper}>
                         <DateBox date={item.createdAt}/>
                     </div>
@@ -33,7 +33,9 @@ const NewsItem = ({img, name, desc, date, tags}) => {
                     <h3 className={styles.Title}>{item.title}</h3>
                     <p className={styles.Desc}>{item.description[0]}</p>
                     <div className={styles.ButtonSvgWrapper}>
-                        <Button variant="small" text="Read more"/>
+                        <Link to={`/news/${item._id}`}>
+                            <Button variant="small" text="Read more"/>
+                        </Link>
                         <div className={styles.SvgWrapper}>
                             <a target="_blank" href="https://twitter.com/?lang=en">
                                 <Linkedin className={styles.Svg}/>
@@ -46,7 +48,7 @@ const NewsItem = ({img, name, desc, date, tags}) => {
                             </a>
                         </div>
                     </div>
-                </Link>
+                </div>
             ))}
         </div>
     );

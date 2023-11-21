@@ -15,9 +15,9 @@ const Search = () => {
     const [searchParams] = useSearchParams()
     const dispatch = useDispatch()
 
-    const searchQuery =  searchParams.get("query") ?? ""
+    const searchQuery = searchParams.get("query") ?? ""
 
-    const {filteredProducts, products} = useSelector(state =>  state.products )
+    const {filteredProducts, products} = useSelector(state => state.products)
 
     useEffect(() => {
         if (searchQuery !== "" && products.length > 0) {
@@ -34,12 +34,13 @@ const Search = () => {
                 <PageTitle text="Search"/>
                 {<Breadcrumbs pathParts={pathParts}/>}
                 <div className={styles.SearchWrapper}>
-                    <SearchForm/>
+                    <SearchForm />
                 </div>
                 <div className={styles.ProductWrapper}>
                     {shouldShowProducts && filteredProducts.map(product => (
                         <ProductCard key={product._id} name={product.name} price={product.currentPrice}
                                      img={product.productImg} id={product._id}/>
+
                     ))}
                 </div>
             </Container>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,7 +21,10 @@ function Header() {
   const viewportWidth = useResize();
   const user = useSelector((state) => state.user.user);
   const isMenuOpen = useSelector((state) => state.mobileMenu.isMenuOpen);
+  const productsInCart = useSelector((state) => state.carts.carts);
   const dispatch = useDispatch();
+
+  const quantity = productsInCart?.reduce((acc, curr) => acc + curr.quantity, 0) || 0;
 
   const handleMenu = () => {
     dispatch(openMenuAC());
@@ -48,7 +51,7 @@ function Header() {
                 <Link to="/cart">
                   <CartWidget />
                 </Link>
-                <span className={styles.Counter}>0</span>
+                <span className={styles.Counter}>{quantity}</span>
               </div>
               <Link to="/search">
                 <SearchWidget />

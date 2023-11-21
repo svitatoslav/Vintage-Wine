@@ -1,13 +1,20 @@
 import React, { Suspense } from "react";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import Breadcrumbs from "./../../components/Breadcrumbs/Breadcrumbs";
+import { useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
-import FilterGroup from '../../components/FilterGroup/FilterGroup';
-import UniProduct from "../../components/ProductCard/UniProduct";
 import useResize from "../../hooks/useResize";
-import styles from "./Shop.module.scss";
+
+import { sendGetRequest } from "../../helpers/api/sendGetRequest";
+import { FilterContext } from "../../contexts/FilterContext";
+import { updateFilteredProductsAC } from "../../redux/reducers/filters-reducer";
+
+import Breadcrumbs from "./../../components/Breadcrumbs/Breadcrumbs";
+import UniProduct from "../../components/ProductCard/UniProduct";
 import PageTitle from "../../components/Title/PageTitle";
+
+import styles from "./Shop.module.scss";
+
 
 const Filtration = React.lazy(() =>
   import("../../components/Filtaration/Filtaration")
@@ -17,29 +24,40 @@ const MIN_VALUE = 768;
 const MAX_VALUE = 1160;
 
 const Shop = () => {
-  const pathParts = useBreadcrumbs();
-  const products = useSelector(state => state.products.products);
-  const [links, setLinks] = useState([]);
   const [productCards, setProductCards] = useState([]);
-  const allFilters = useSelector(state => state.filters.isAllFilters);
+  const [filter, setFilter] = useState({});
+  const [resetFilters, setResetFilters] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const pathParts = useBreadcrumbs();
   const viewportWidth = useResize();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    async function fetchDataLinks() {
-      try {
-        const response = await fetch('http://127.0.0.1:4000/api/catalog');
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const catalogData = await response.json();
+    const createUrlQuery = (filterConfigs) => {
+      let urlQuery = '';
 
-        setLinks(catalogData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+      if (!Object.keys(filterConfigs).length) return urlQuery;
+
+      Object.entries(filterConfigs).forEach(([name, value]) => {
+        urlQuery += `${name}=${value}&`;
+      });
+
+      return urlQuery.slice(0, urlQuery.length - 1);
     }
-    fetchDataLinks();
-  }, []);
+
+    // setSearchParams({
+    //   query: filter[1],
+    // });
+
+    const url = 'http://127.0.0.1:4000/api/products/filter?' + createUrlQuery(filter);
+
+    (async () => {
+      const data = await sendGetRequest(url);
+      setProductCards(createCards(data.products));
+      dispatch(updateFilteredProductsAC((data.products)));
+    })();
+  }, [filter, viewportWidth]);
+
 
   function createCards(array) {
     const shopElements = [];
@@ -51,15 +69,15 @@ const Shop = () => {
 
       const bigImageDiv = (
         <div key={`bigImage_${i}`}>
-          <UniProduct key={firstImage._id} price={firstImage.currentPrice} id={firstImage._id} name={firstImage.name} img={firstImage.productImg} />
+          <UniProduct key={firstImage._id} data={firstImage} />
         </div>
       );
 
       const smallImagesDiv = (
         <div className={styles.ShopImagesSmall} key={`smallImages_${i}`} >
-          {restImages.map(({ productImg, _id, name, currentPrice }) => (
-            <div key={_id} className={styles.SmallProductContainer}>
-              <UniProduct key={_id} price={currentPrice} id={_id} name={name} img={productImg} isSmall />
+          {restImages.map((product) => (
+            <div key={product._id} className={styles.SmallProductContainer}>
+              <UniProduct key={product._id} data={product} isSmall />
             </div>
           ))}
         </div>
@@ -75,31 +93,21 @@ const Shop = () => {
     return shopElements;
   }
 
-  useEffect(() => {
-    const productsQ = createCards(products);
-    setProductCards(productsQ);
-  }, [products, viewportWidth]);
-
   return (
     <div className={styles.ShopContainer}>
       <PageTitle text="Our Shop" />
       <Breadcrumbs pathParts={pathParts} />
-      <div className={styles.ShopFilterBar}>
-        {viewportWidth >= 768 &&
-          (<ul className={styles.ShopFilterBarItems}>
-            {links.map(link => (
-              <li key={link.id}>
-                <span data-link={link.id} >{link.name}</span>
-              </li>
-            ))}
-          </ul>)}
+      <FilterContext.Provider value={{ filter, setFilter, resetFilters, setResetFilters }}>
         <Suspense fallback={<div>Loading...</div>} >
           <Filtration />
         </Suspense>
-      </div>
-      {allFilters && <FilterGroup />}
+      </FilterContext.Provider>
       <div className={styles.ShopImagesContainer}>
-        {productCards}
+      {
+        productCards.length ?
+          productCards :
+          "Products not found"
+      }
       </div>
     </div>
   );
