@@ -24,7 +24,7 @@ const CartItem = ({count, product}) => {
           "Authorization": token,
         }
       })
-        .then((res) => console.log(res))
+        .then((res) => console.log(res.statusText))
         .catch((err) => console.log(err));
     }
   }

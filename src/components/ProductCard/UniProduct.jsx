@@ -39,7 +39,7 @@ const UniProduct = ({ data, isSmall }) => {
           "Authorization": token,
         }
       })
-        .then((res) => console.log(res))
+        .then((res) => console.log(res.statusText))
         .catch((err) => console.log(err));
     }
   };

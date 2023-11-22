@@ -66,7 +66,6 @@ const CartMergeModal = () => {
     let body;
     if (cartState) {
       body = { products: cartState };
-      console.log(cartState);
       dispatch(addToCarts(cartState));
     } else {
       body = { products: currentCart };
@@ -77,7 +76,7 @@ const CartMergeModal = () => {
         "Authorization": token,
       }
     })
-      .then((res) => console.log(res))
+      .then((res) => console.log(res.statusText))
       .catch((err) => console.log(err));
 
     dispatch(toggleModalAC());

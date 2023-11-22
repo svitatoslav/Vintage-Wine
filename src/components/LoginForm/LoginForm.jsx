@@ -59,9 +59,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
               "Authorization": res.data.token,
             }
           })
-            .then(() => {
-              console.log('ok');
-            })
+            .then((res) => console.log(res.statusText))
             .catch((err) => console.log(err))
             .finally(() => {
               axios.get('http://127.0.0.1:4000/api/cart/', {
@@ -82,9 +80,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
                         "Authorization": res.data.token,
                       }
                     })
-                    .then((res) => {
-                      console.log(currentCart[0])
-                    })
+                    .then((res) => console.log(res.statusText))
                     .catch((err) => console.log(err))
                   }
                 })

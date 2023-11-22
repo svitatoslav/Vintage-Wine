@@ -11,7 +11,7 @@
     text-align: center;
     margin: 0 auto 30px;
     max-width: 80%;
-    font-size: 22px;
+    @include fonts(25px, $secondary-font);
 }
 
 .CartModalLabel {
@@ -24,8 +24,7 @@
 }
 
 .CartModalItem {
-    display: flex;
-    justify-content: space-between;
+    @include flex-sb;
     padding: 10px 40px;
 }
 
@@ -42,7 +41,6 @@
 .CartModalContent {
     margin-bottom: 40px;
 }
-
 
 .CartModalTable {
     border: $brd-white;
