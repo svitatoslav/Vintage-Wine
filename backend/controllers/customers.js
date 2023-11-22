@@ -122,6 +122,7 @@ exports.loginCustomer = async (req, res, next) => {
             (err, token) => {
               res.json({
                 success: true,
+                id: customer.id,
                 user: customer.login,
                 token: "Bearer " + token
               });

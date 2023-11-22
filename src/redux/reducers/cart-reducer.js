@@ -1,3 +1,4 @@
+const UPDATE_PRODUCTS = 'UPDATE_PRODUCTS';
 const ADD_PRODUCTS = 'ADD_PRODUCTS';
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 const REMOVE_ALL = 'REMOVE_ALL';
@@ -15,7 +16,12 @@ const cartsReducer = (state = initialState, action) => {
         case ADD_PRODUCTS:
             return {
                 ...state,
-                carts: [...state.carts, action.payload]
+                carts: action.payload
+            };
+        case UPDATE_PRODUCTS:
+            return {
+                ...state,
+                carts: [...state.carts, ...action.payload]
             };
         case REMOVE_PRODUCT:
             return {
@@ -65,6 +71,11 @@ const cartsReducer = (state = initialState, action) => {
 
 export const addToCarts = (product) => ({
     type: ADD_PRODUCTS,
+    payload: product
+});
+
+export const updateCarts = (product) => ({
+    type: UPDATE_PRODUCTS,
     payload: product
 });
 

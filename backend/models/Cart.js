@@ -10,19 +10,19 @@ const CartSchema = new Schema(
     },
     products: [
       {
-        product: {
-          type: Schema.Types.ObjectId,
+        instance: {
+          type: Object,
           ref: "products"
         },
-        cartQuantity: {
+        quantity: {
           type: Number
         }
       }
     ],
-    date: {
-      type: Date,
-      default: Date.now
-    }
+    // date: {
+    //   type: Date,
+    //   default: Date.now
+    // }
   },
   { strict: false }
 );

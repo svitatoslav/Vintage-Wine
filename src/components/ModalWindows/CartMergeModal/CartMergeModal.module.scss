@@ -1,3 +1,6 @@
+@import '../../../assets/mixins/mixins';
+@import '../../../assets/variables/variables';
+
 .CartModal {
     max-width: 70%;
     background: rgba(0, 0, 0, 0.8);
@@ -6,7 +9,14 @@
 
 .CartModalText {
     text-align: center;
-    margin-bottom: 30px;
+    margin: 0 auto 30px;
+    max-width: 80%;
+    font-size: 22px;
+}
+
+.CartModalLabel {
+    margin-bottom: 10px;
+    @include fonts(21px, $secondary-font);
 }
 
 .CartModalList {
@@ -23,4 +33,19 @@
     display: flex;
     justify-content: center;
     gap: 30px;
+}
+
+.CartModalHeader {
+    @include fonts(18px, $secondary-font);
+}
+
+.CartModalContent {
+    margin-bottom: 40px;
+}
+
+
+.CartModalTable {
+    border: $brd-white;
+    max-width: 80%;
+    margin: 0 auto;
 }

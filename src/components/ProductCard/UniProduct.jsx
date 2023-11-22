@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import styles from './UniProduct.module.scss';
-import { addOneToExistedProduct, addToCarts } from '../../redux/reducers/cart-reducer';
+import { addOneToExistedProduct, addToCarts, updateCarts } from '../../redux/reducers/cart-reducer';
+import axios from 'axios';
 
 
 const UniProduct = ({ data, isSmall }) => {
@@ -24,27 +25,23 @@ const UniProduct = ({ data, isSmall }) => {
 
   const handleAddToCart = async (e) => {
     e.preventDefault();
-    // if (token) {
-    //   const response = await fetch('http://127.0.0.1:4000/api/cart', {
-    //     method: 'GET',
-    //     headers: {
-    //       'Authorization': token,
-    //       'Content-Type': 'application/json',
-    //     },
-    //   });
 
-    //   const result = await response.json();
-
-    //   console.log(result.products);
-    //   return;
-    // }
-
-    const itemInCart = cart?.find(({instance}) => instance._id === _id);
-
+    const itemInCart = cart?.find(({ instance }) => instance._id === _id);
+    // console.log(data);
     if (itemInCart) {
       dispatch(addOneToExistedProduct(_id));
     } else {
-      dispatch(addToCarts({quantity: 1, instance: data}));
+      dispatch(updateCarts([{ quantity: 1, instance: data }]));
+    }
+
+    if (token) {
+      axios.put(`http://127.0.0.1:4000/api/cart/${_id}`, data, {
+      headers: {
+        "Authorization": token,
+      }
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
     }
   };
 
