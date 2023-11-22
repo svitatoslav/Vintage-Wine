@@ -24,7 +24,6 @@ const UniProduct = ({ data, isSmall }) => {
 
   const handleAddToCart = async (e) => {
     e.preventDefault();
-
     // if (token) {
     //   const response = await fetch('http://127.0.0.1:4000/api/cart', {
     //     method: 'GET',

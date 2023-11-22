@@ -33,11 +33,11 @@ exports.createCart = (req, res, next) => {
 };
 
 exports.updateCart = (req, res, next) => {
-  Cart.findOne({ customerId: req.user.id })
+  Cart.findOne({ customerId: req.user._id })
     .then((cart) => {
       if (!cart) {
         const initialQuery = _.cloneDeep(req.body);
-        initialQuery.customerId = req.user.id;
+        initialQuery.customerId = req.user._id;
 
         const newCart = new Cart(queryCreator(initialQuery));
 
@@ -57,10 +57,12 @@ exports.updateCart = (req, res, next) => {
       } else {
         const initialQuery = _.cloneDeep(req.body);
         const updatedCart = queryCreator(initialQuery);
+        
+      console.log(updatedCart);
 
         Cart.findOneAndUpdate(
-          { customerId: req.user.id },
-          { $set: updatedCart },
+          { customerId: req.user._id },
+          { $set: { products: updatedCart } },
           { new: true }
         )
           .populate('products.product')

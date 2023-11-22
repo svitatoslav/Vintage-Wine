@@ -1,3 +1,26 @@
-.CartMergeModal {
-    width: 100%;
+.CartModal {
+    max-width: 70%;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+}
+
+.CartModalText {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.CartModalList {
+    margin-bottom: 20px;
+}
+
+.CartModalItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 40px;
+}
+
+.CartModalBtns {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
 }
