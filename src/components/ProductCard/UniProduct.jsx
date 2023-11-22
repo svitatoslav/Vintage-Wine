@@ -27,7 +27,6 @@ const UniProduct = ({ data, isSmall }) => {
     e.preventDefault();
 
     const itemInCart = cart?.find(({ instance }) => instance._id === _id);
-    // console.log(data);
     if (itemInCart) {
       dispatch(addOneToExistedProduct(_id));
     } else {
@@ -36,12 +35,12 @@ const UniProduct = ({ data, isSmall }) => {
 
     if (token) {
       axios.put(`http://127.0.0.1:4000/api/cart/${_id}`, data, {
-      headers: {
-        "Authorization": token,
-      }
-    })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+        headers: {
+          "Authorization": token,
+        }
+      })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
     }
   };
 

@@ -48,7 +48,7 @@ const CartItem = ({count, product}) => {
             <p className={styles.Currency}>UAH</p>
           </div>
 
-          <Counter id={_id} count={count} />
+          <Counter id={_id} count={count} data={product}/>
           <button
             variant="smallBasket"
             color="transparent"

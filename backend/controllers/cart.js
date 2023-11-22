@@ -168,7 +168,7 @@ exports.addProductToCart = async (req, res, next) => {
 };
 
 exports.decreaseCartProductQuantity = async (req, res, next) => {
-  Cart.findOne({ customerId: req.user.id })
+  Cart.findOne({ customerId: req.user._id })
     .then((cart) => {
       if (!cart) {
         res.status(400).json({ message: 'Cart does not exists' });
@@ -176,20 +176,20 @@ exports.decreaseCartProductQuantity = async (req, res, next) => {
         const cartData = {};
 
         const isProductExistInCart = cart.products.some(
-          (item) => item.product.toString() === req.params.productId
+          (item) => item.instance._id === req.params.productId
         );
 
         if (isProductExistInCart) {
           cartData.products = cart.products.map((item) => {
-            if (item.product.toString() === req.params.productId) {
-              item.cartQuantity -= 1;
+            if (item.instance._id === req.params.productId) {
+              item.quantity -= 1;
             }
 
             return item;
           });
 
           cartData.products = cart.products.filter(
-            (item) => item.cartQuantity > 0
+            (item) => item.quantity > 0
           );
         } else {
           res.status(400).json({
@@ -198,7 +198,7 @@ exports.decreaseCartProductQuantity = async (req, res, next) => {
         }
 
         Cart.findOneAndUpdate(
-          { customerId: req.user.id },
+          { customerId: req.user._id },
           { $set: cartData },
           { new: true }
         )
