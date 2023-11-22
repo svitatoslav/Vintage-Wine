@@ -1,8 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeAll } from "../../redux/reducers/cart-reducer";
 import Counter from "../Counter/Counter";
 import styles from "./CartItem.module.scss";
 import Basket from "./img/delete.svg?react";
+import axios from "axios";
 
 const CartItem = ({count, product}) => {
   const {
@@ -12,11 +13,20 @@ const CartItem = ({count, product}) => {
     currentPrice,
     cartDescription,
   } = product;
-  
+  const token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
 
-  const removeAllProducts = () => {
+  const removeProduct = () => {
     dispatch(removeAll(_id));
+    if (token) {
+      axios.delete(`http://127.0.0.1:4000/api/cart/${_id}`, {
+        headers: {
+          "Authorization": token,
+        }
+      })
+        .then((res) => console.log(res.statusText))
+        .catch((err) => console.log(err));
+    }
   }
 
   return (
@@ -38,11 +48,11 @@ const CartItem = ({count, product}) => {
             <p className={styles.Currency}>UAH</p>
           </div>
 
-          <Counter id={_id} count={count} />
+          <Counter id={_id} count={count} data={product}/>
           <button
             variant="smallBasket"
             color="transparent"
-            onClick={removeAllProducts}
+            onClick={removeProduct}
           >
             {<Basket className={styles.BasketSvg} />}
           </button>

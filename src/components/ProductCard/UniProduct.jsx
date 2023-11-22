@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import styles from './UniProduct.module.scss';
-import { addOneToExistedProduct, addToCarts } from '../../redux/reducers/cart-reducer';
+import { addOneToExistedProduct, addToCarts, updateCarts } from '../../redux/reducers/cart-reducer';
+import axios from 'axios';
 
 
 const UniProduct = ({ data, isSmall }) => {
@@ -22,15 +23,24 @@ const UniProduct = ({ data, isSmall }) => {
     localStorage.setItem('viewedProducts', _id);
   };
 
-  const handleAddToCart = (e) => {
+  const handleAddToCart = async (e) => {
     e.preventDefault();
 
-    const itemInCart = cart?.find(({instance}) => instance._id === _id);
-
+    const itemInCart = cart?.find(({ instance }) => instance._id === _id);
     if (itemInCart) {
       dispatch(addOneToExistedProduct(_id));
     } else {
-      dispatch(addToCarts({quantity: 1, instance: data}));
+      dispatch(updateCarts([{ quantity: 1, instance: data }]));
+    }
+
+    if (token) {
+      axios.put(`http://127.0.0.1:4000/api/cart/${_id}`, data, {
+        headers: {
+          "Authorization": token,
+        }
+      })
+        .then((res) => console.log(res.statusText))
+        .catch((err) => console.log(err));
     }
   };
 
