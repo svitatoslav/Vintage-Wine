@@ -1,8 +1,8 @@
 import Breadcrumbs from './../../components/Breadcrumbs/Breadcrumbs';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import useBreadcrumbs from '../../hooks/useBreadcrumbs';
-import axios from 'axios';
+
+import { Navigate, useParams } from 'react-router-dom';
 
 import Button from './../../components/Button/Button';
 import CustomSlider from '../../components/CustomSlider/CustomSlider';
@@ -12,84 +12,34 @@ import CombinationFood from './../../components/CombinationFood/CombinationFood'
 import styles from './SingleProduct.module.scss';
 import AboutProduct from '../../components/AboutProduct/AboutProduct';
 import LastViewed from './../../components/LastViewed/LastViewed';
-import { fetchViewedProductsThunk } from '../../redux/reducers/fetchViewedProducts-reducer';
-import { addOneToExistedProduct, addToCarts, updateCarts } from '../../redux/reducers/cart-reducer';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const SingleProduct = () => {
-    const dispatch = useDispatch();
     const [singleItem, setSingleItem] = useState({});
+    const { id } = useParams();
     const pathParts = useBreadcrumbs();
-    const cart = useSelector((state) => state.carts.carts);
-    
-    const viewedProducts = useSelector((state) => state.fetchViewedProducts.viewedProducts);
-    const viewedProductsStorage = JSON.stringify(viewedProducts);
-    
-    localStorage.setItem('viewedProductsDB', viewedProductsStorage);
-    
-    const currentProductPage = localStorage.getItem('viewedProducts');
-
-    const addSpaceBeforeUppercase = (text) => {
-        return text.replace(/([A-Z])/g, ' $1');
-    };
-
-    const sliderImages = singleItem?.slidesImageUrls?.map((item) => `http://localhost:5173/${item}`);
-
-
-      const handleAddToCart =  (e) => {
-          e.preventDefault();
-
-          const itemInCart = cart?.find(({ instance }) => instance._id === singleItem._id);
-          if (itemInCart) {
-              dispatch(addOneToExistedProduct(singleItem._id));
-          } else {
-              dispatch(updateCarts([{ quantity: 1, instance: singleItem }]));
-          }
-
-      };
-
-    const scrollToTop = () => {
-        window.scrollTo(0, 0);
-    };
-
-    let isInCart = false;
-
-    cart.find(product => {
-        if (product.instance._id === singleItem._id) {
-            isInCart = true;
-        }
-    })
-
     useEffect(() => {
         async function fetchData() {
             try {
                 const response = await axios.get(`http://127.0.0.1:4000/api/products/${localStorage.getItem('viewedProducts')}`);
-                setSingleItem(response.data);
+                const singleItem = response.data;
+                setSingleItem(singleItem);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         }
-
         fetchData();
-        scrollToTop();
-    }, [currentProductPage]);
-
-    useEffect(() => {
-        if (localStorage.getItem('viewedProducts')) {
-            const dataToSend = localStorage.getItem('viewedProducts');
-
-            const addViewedProduct = async () => {
-                try {
-                    await axios.post(`http://127.0.0.1:4000/api/last-viewed-products`, { productId: dataToSend });
-                } catch (err) {}
-            };
-            addViewedProduct();
-        }
     }, []);
 
-    useEffect(() => {
-        dispatch(fetchViewedProductsThunk());
-    }, [dispatch]);
+    if (!localStorage.getItem('viewedProducts')) {
+        return <Navigate to='*' />
+    }
+
+    const sliderImages = singleItem?.slidesImageUrls?.map(item => `../../.${item}`); // temporarily solution ralated with path issues
+
+    const addSpaceBeforeUppercase = (text) => {
+        return text.replace(/([A-Z])/g, ' $1');
+    };
 
     return (
         <Container>
@@ -115,7 +65,7 @@ const SingleProduct = () => {
                             </p>
                             <p>
                                 Collection
-                                <span className={styles.collectionSpan}>{singleItem?.collectionOfProduct}</span>
+                                <span className={styles.collectionSpan}>{singleItem?.collection}</span>
                             </p>
                         </div>
                         <div className={styles.cartData}>
@@ -123,19 +73,13 @@ const SingleProduct = () => {
                                 <span className={styles.price}>
                                     {singleItem?.currentPrice} <span className={styles.valuta}>UAH</span>
                                 </span>
-                                {/* <div className={styles.quantityWrapper}>
+                                <div className={styles.quantityWrapper}>
                                     <span className={styles.minus}>-</span>
                                     <span className={styles.quantity}>1</span>
                                     <span className={styles.plus}>+</span>
-                                </div> */}
+                                </div>
                             </div>
-                            {isInCart ? (
-                                <Link to="/cart" className={ styles.cartLinkProduct}> 
-                                    <Button text="In cart" type="xSmall" />
-                                </Link>
-                            ) : (
-                                <Button text="Add to cart" type="xSmall" onClick={handleAddToCart} className="foo" />
-                            )}
+                            <Button text="Add to cart" type="xSmall" />
                         </div>
                         <div className={styles.shortDescription}>
                             <div className={styles.titles}>

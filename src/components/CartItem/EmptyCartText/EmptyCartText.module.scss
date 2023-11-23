@@ -1,0 +1,27 @@
+@import "./../../../assets/variables/variables";
+
+.TextWrapper {
+  display: flex;
+
+  @media screen and (min-width: $mobile ) and (max-width: $tablet-xlg) {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  @media screen and (min-width: $tablet-xlg) {
+    max-width: 400px;
+    transform: translateY(100%);
+    justify-content: start;
+  }
+  @media screen and (min-width: $desktop) {
+    justify-content: center;
+  }
+}
+
+.EmptyCartText {
+  font-size: 35px;
+  @media screen and (min-width: $desktop) {
+    font-size: 50px;
+
+  }
+}

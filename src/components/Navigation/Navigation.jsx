@@ -16,7 +16,7 @@ function Navigation({ mobile, isFootNav }) {
           cn(styles.PageLink, {
             [styles.PageLinkActive]: mobile
                 && (pathname === url
-                || (pathname === '/' && url === '/home')),
+                || (pathname === '/')),
           })
         }
       >
