@@ -13,16 +13,19 @@ import styles from './SingleProduct.module.scss';
 import AboutProduct from '../../components/AboutProduct/AboutProduct';
 import LastViewed from './../../components/LastViewed/LastViewed';
 import { fetchViewedProductsThunk } from '../../redux/reducers/fetchViewedProducts-reducer';
-import { addOneToExistedProduct, addToCarts } from '../../redux/reducers/cart-reducer';
+import { addOneToExistedProduct, addToCarts, updateCarts } from '../../redux/reducers/cart-reducer';
+import { Link } from 'react-router-dom';
 
 const SingleProduct = () => {
     const [singleItem, setSingleItem] = useState({});
     const pathParts = useBreadcrumbs();
     const cart = useSelector((state) => state.carts.carts);
-
+    
     const viewedProducts = useSelector((state) => state.fetchViewedProducts.viewedProducts);
     const viewedProductsStorage = JSON.stringify(viewedProducts);
+    
     localStorage.setItem('viewedProductsDB', viewedProductsStorage);
+    
     const currentProductPage = localStorage.getItem('viewedProducts');
 
     const addSpaceBeforeUppercase = (text) => {
@@ -31,20 +34,31 @@ const SingleProduct = () => {
 
     const sliderImages = singleItem?.slidesImageUrls?.map((item) => `http://localhost:5173/${item}`);
 
-    const handleAddToCart = (e) => {
-        e.preventDefault();
 
-        const itemInCart = cart?.find(({ instance }) => instance._id === singleItem._id);
+      const handleAddToCart =  (e) => {
+          e.preventDefault();
 
-        if (itemInCart) {
-            dispatch(addOneToExistedProduct(_id));
-        } else {
-            dispatch(addToCarts({ quantity: 1, instance: singleItem }));
-        }
-    };
+          const itemInCart = cart?.find(({ instance }) => instance._id === singleItem._id);
+          if (itemInCart) {
+              dispatch(addOneToExistedProduct(singleItem._id));
+          } else {
+              dispatch(updateCarts([{ quantity: 1, instance: singleItem }]));
+          }
+
+      };
+
     const scrollToTop = () => {
         window.scrollTo(0, 0);
     };
+
+    let isInCart = false;
+
+    cart.find(product => {
+        if (product.instance._id === singleItem._id) {
+            isInCart = true;
+        }
+    })
+
     useEffect(() => {
         async function fetchData() {
             try {
@@ -109,13 +123,19 @@ const SingleProduct = () => {
                                 <span className={styles.price}>
                                     {singleItem?.currentPrice} <span className={styles.valuta}>UAH</span>
                                 </span>
-                                <div className={styles.quantityWrapper}>
+                                {/* <div className={styles.quantityWrapper}>
                                     <span className={styles.minus}>-</span>
                                     <span className={styles.quantity}>1</span>
                                     <span className={styles.plus}>+</span>
-                                </div>
+                                </div> */}
                             </div>
-                            <Button text="Add to cart" type="xSmall" onClick={handleAddToCart} />
+                            {isInCart ? (
+                                <Link to="/cart" className={ styles.cartLinkProduct}> 
+                                    <Button text="In cart" type="xSmall" />
+                                </Link>
+                            ) : (
+                                <Button text="Add to cart" type="xSmall" onClick={handleAddToCart} className="foo" />
+                            )}
                         </div>
                         <div className={styles.shortDescription}>
                             <div className={styles.titles}>

@@ -138,6 +138,13 @@
                         padding: 14px 35px;
                     }
                 }
+                .cartLinkProduct {
+                    button {
+                        background-color: transparent;
+                        border: 1px solid #fff;
+                        color: $btn-bg;
+                    }
+                }
             }
             .shortDescription {
                 @include flex-ac-sb;
