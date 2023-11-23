@@ -18,18 +18,20 @@ import modalWindowReducer from '../reducers/modalWindow-reducer';
 import newsReducer from "../reducers/news-reducer";
 import cartsReducer from '../reducers/cart-reducer';
 import filtersReducer from '../reducers/filters-reducer';
+import fetchViewedProductsReducer from '../reducers/fetchViewedProducts-reducer';
 
 const rootReducer = combineReducers({
-  viewedProducts: ViewedProductsReducer,
-  products: productsReducer,
-  catalog: catalogReducer,
-  collections: collectionsReducer,
-  user: authorizationReducer,
-  mobileMenu: mobileMenuReducer,
-  modal: modalWindowReducer,
-  news: newsReducer,
-  carts: cartsReducer,
-  filters: filtersReducer,
+    fetchViewedProducts: fetchViewedProductsReducer,
+    viewedProducts: ViewedProductsReducer,
+    products: productsReducer,
+    catalog: catalogReducer,
+    collections: collectionsReducer,
+    user: authorizationReducer,
+    mobileMenu: mobileMenuReducer,
+    modal: modalWindowReducer,
+    news: newsReducer,
+    carts: cartsReducer,
+    filters: filtersReducer
 });
 
 const persistConfig = {

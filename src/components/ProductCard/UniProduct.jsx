@@ -17,11 +17,10 @@ const UniProduct = ({ data, isSmall }) => {
   const cart = useSelector((state) => state.carts.carts);
   const [isHovered, setIsHovered] = useState(false);
   const dispatch = useDispatch();
-
   const handleAddProduct = () => {
     localStorage.setItem('viewedProducts', _id);
   };
-
+  
   const handleAddToCart = (e) => {
     e.preventDefault();
 
