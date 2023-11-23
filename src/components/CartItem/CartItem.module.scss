@@ -114,6 +114,33 @@
 }
 .TitleName{
     margin-bottom: 20px;
+
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        font-family: $secondary-font;
+        font-size: 26px;
+    }
+    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+        font-family: $secondary-font;
+        font-size: 26px;
+    }
+    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+        font-family: $secondary-font;
+        font-size: 26px;
+    }
+    @media (min-width: $desktop) and (max-width: $desktop-lg) {
+        font-family: $secondary-font;
+        font-size: 26px;
+    }
+    @media screen and (min-width: $desktop-lg) {
+        font-family: $secondary-font;
+        font-size: 26px;
+    }
+}
+.TitleSubname{
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: $secondary-font;
+    color: #BFBFBF;
 }
 .Text {
     margin-bottom: 20px;

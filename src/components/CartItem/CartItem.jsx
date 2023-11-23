@@ -38,6 +38,7 @@ const CartItem = ({count, product}) => {
       <div className={styles.CartInfo}>
         <div className={styles.CartTitle}>
           <h2 className={styles.TitleName}>{name}</h2>
+          <h3 className={styles.TitleSubname}>Telti-Kuruk, Light-straw</h3>
           <p className={styles.Text}>{cartDescription}</p>
         </div>
 
