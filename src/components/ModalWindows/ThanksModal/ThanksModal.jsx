@@ -8,6 +8,7 @@ const ThanksModal = ({ onClose }) => {
   return (
     <Container>
       <div className={styles.ThanksModal} data-testid="ThanksModal">
+
         <div className={styles.ThanksModalText}>
           <p className={styles.ThanksModalMainText}>Thank you for booking</p>
           <p className={styles.ThanksModalInfo}>All booking information on your e-mail</p>

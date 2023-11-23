@@ -11,7 +11,7 @@ const Cover = () => {
             <Container>
                 <div className={styles.wrapperContent}>
                     <PageTitle text="Savor the Essence of True Excellence" type="main" className={styles.title} />
-                    <Link to='shop'><Button text="Shop" /></Link>
+                    <Link to='/shop'><Button text="Shop" /></Link>
                 </div>
             </Container>
         </section>

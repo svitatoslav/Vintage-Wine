@@ -5,7 +5,7 @@ import Arrow from './icons/arrow.svg?react';
 import Calendar from './icons/calendar.svg?react';
 import cn from 'classnames';
 import { useDispatch } from 'react-redux';
-import { selectTourAC, switchModalAC, toggleModalAC } from '../../redux/reducers/modalWindow-reducer';
+import { selectTourAC, toggleModalAC } from '../../redux/reducers/modalWindow-reducer';
 
 const SingleExcursion = ({ reverse, orderNum, data }) => {
   const dispatch = useDispatch();
@@ -22,7 +22,6 @@ const SingleExcursion = ({ reverse, orderNum, data }) => {
 
   const handleOpenModal = (title) => {
     dispatch(selectTourAC(title));
-    dispatch(switchModalAC('reservation'));
     dispatch(toggleModalAC());
   }
 
