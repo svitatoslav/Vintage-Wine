@@ -17,6 +17,7 @@ import { addOneToExistedProduct, addToCarts, updateCarts } from '../../redux/red
 import { Link } from 'react-router-dom';
 
 const SingleProduct = () => {
+    const dispatch = useDispatch();
     const [singleItem, setSingleItem] = useState({});
     const pathParts = useBreadcrumbs();
     const cart = useSelector((state) => state.carts.carts);
@@ -86,7 +87,6 @@ const SingleProduct = () => {
         }
     }, []);
 
-    const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchViewedProductsThunk());
     }, [dispatch]);
