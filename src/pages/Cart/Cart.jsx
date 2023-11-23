@@ -1,6 +1,6 @@
-import Container from "./../../components/Container/Container";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import Container from "./../../components/Container/Container";
+import { useSelector } from "react-redux";
 import CartItem from "../../components/CartItem/CartItem";
 import styles from "./Cart.module.scss";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
@@ -11,9 +11,8 @@ import calcTotalPrice from "../../helpers/calcTotalPrice";
 
 const Cart = () => {
   const carts = useSelector((state) => state.carts.carts);
-  const dispatch = useDispatch();
   const pathParts = useBreadcrumbs();
-  const SHIPPING_PRICE = 50.00;
+  const SHIPPING_PRICE = 50;
 
   return (
     <div className={styles.CartContainer}>
@@ -39,7 +38,7 @@ const Cart = () => {
             </div>
             <div>
               <p>{calcTotalPrice(carts).toFixed(2)} uah</p>
-              <p> {SHIPPING_PRICE} uah</p>
+              <p> {(SHIPPING_PRICE).toFixed(2)} uah</p>
               <p>{(calcTotalPrice(carts) + SHIPPING_PRICE).toFixed(2)} uah</p>
             </div>
           </div>

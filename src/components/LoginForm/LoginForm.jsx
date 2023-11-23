@@ -15,10 +15,13 @@ import Button from '../Button/Button';
 import loginValidationSchema from '../../validation/loginValidationSchema';
 import regValidationSchema from '../../validation/regValidationSchema';
 import styles from './LoginForm.module.scss';
+import { switchModalAC, toggleModalAC } from '../../redux/reducers/modalWindow-reducer';
 
 function LoginForm({ isLogin, formTexts, onLogin }) {
   const isLogged = useSelector((state) => state.user.user);
   const isSigned = useSelector((state) => state.user.isSigned);
+  const token = useSelector((state) => state.user.token);
+  const currentCart = useSelector((state) => state.carts.carts);
   const dispatch = useDispatch();
   const [error, setError] = useState('');
 
@@ -45,6 +48,44 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
         .then((res) => {
           dispatch(setTokenAC(res.data.token));
           dispatch(setUserAC(res.data.user));
+
+          const newCart = {
+            customerId: res.data.id,
+            products: [],
+          }
+
+          axios.post('http://127.0.0.1:4000/api/cart/', newCart, {
+            headers: {
+              "Authorization": res.data.token,
+            }
+          })
+            .then((res) => console.log(res.statusText))
+            .catch((err) => console.log(err))
+            .finally(() => {
+              axios.get('http://127.0.0.1:4000/api/cart/', {
+                headers: {
+                  "Authorization": res.data.token,
+                }
+              })
+                .then((result) => {
+                  if (result.data.products.length) {
+                    dispatch(switchModalAC('cart'));
+                    dispatch(toggleModalAC());
+                    return;
+                  }
+
+                  if (currentCart.length) {
+                    axios.put('http://127.0.0.1:4000/api/cart/', {products: currentCart}, {
+                      headers: {
+                        "Authorization": res.data.token,
+                      }
+                    })
+                    .then((res) => console.log(res.statusText))
+                    .catch((err) => console.log(err))
+                  }
+                })
+                .catch((err) => console.log(err))
+            })
         })
         .catch((err) => {
           setError(...Object.values(err.response.data));
@@ -54,9 +95,12 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
         });
     } else {
       axios.post('http://127.0.0.1:4000/api/customers/', regValues)
-        .then(() => dispatch(signInAC()))
+        .then(() => {
+          dispatch(signInAC());
+        })
         .catch((err) => console.log(err));
     }
+
     resetForm(initialValues);
     setSubmitting(false);
   };
@@ -71,7 +115,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
         <Form className={styles.LoginForm}>
           <h4 className={styles.LoginTitle}>{formTexts.title}</h4>
           <div className={styles.LoginFields}>
-            { isLogin ? (
+            {isLogin ? (
               <>
                 <Field
                   className={styles.LoginInput}
