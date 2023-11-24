@@ -9,7 +9,7 @@ const History = () => {
            <Container>
                <SectionTitle secText={'History'} subText={'Our'} />
                <div className={styles.historyContent}>
-                   <img src="../../../public/imageProject/history/history.png" alt="glass" />
+                   <img src="../../imageProject/history/history.png" alt="glass" />
                    <div className={styles.historyArticle}>
                        <div className={styles.author}>Victoria Markina</div>
                        <div className={styles.articleTitle}>From Dreaming to Tasting</div>

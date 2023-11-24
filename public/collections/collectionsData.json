@@ -3,24 +3,24 @@
         "id": 1,
         "name": "Terroir Collection",
         "shortDescription": "Wines that transport you to the magical territories of the vineyards. Each glass is a part of this fabulous journey.",
-        "imageUrl": "./public/imageProject/collections/terroir.png"
+        "imageUrl": "/imageProject/collections/terroir.png"
     },
     {
         "id": 2,
         "name": "Limited Edition",
         "shortDescription": "Wines that transport you to the magical territories of the vineyards. Each glass is a part of this fabulous journey.",
-        "imageUrl": "./public/imageProject/collections/limited.png"
+        "imageUrl": "/imageProject/collections/limited.png"
     },
     {
         "id": 3,
         "name": "History Collection",
         "shortDescription": "Each glass is a part of this fabulous journey.Wines that transport you to the magical territories of the vineyards. ",
-        "imageUrl": "./public/imageProject/collections/glass.png"
+        "imageUrl": "/imageProject/collections/glass.png"
     },
     {
         "id": 4,
         "name": "Terroir Collection",
         "shortDescription": "Wines that transport you to the magical territories of the vineyards. Each glass is a part of this fabulous journey.",
-        "imageUrl": "./public/imageProject/collections/terroir.png"
+        "imageUrl": "/imageProject/collections/terroir.png"
     }
 ]
