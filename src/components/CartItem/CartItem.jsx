@@ -23,15 +23,16 @@ const CartItem = ({ count, product }) => {
   const removeProduct = () => {
     dispatch(removeAll(_id));
     if (token) {
-      axios.delete(`http://127.0.0.1:4000/api/cart/${_id}`, {
-        headers: {
-          "Authorization": token,
-        }
-      })
+      axios
+        .delete(`http://127.0.0.1:4000/api/cart/${_id}`, {
+          headers: {
+            Authorization: token,
+          },
+        })
         .then((res) => console.log(res.statusText))
         .catch((err) => console.log(err));
     }
-  }
+  };
 
   return (
     <div className={styles.Cart}>

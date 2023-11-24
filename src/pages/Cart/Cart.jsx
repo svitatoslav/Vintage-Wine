@@ -11,6 +11,7 @@ import calcTotalPrice from "../../helpers/calcTotalPrice";
 import EmptyCartText from "../../components/CartItem/EmptyCartText/EmptyCartText";
 import { Link } from "react-router-dom";
 import TotalPrice from "../../components/TotalPrice/TotalPrice";
+import cn from 'classnames';
 
 const Cart = () => {
     const carts = useSelector((state) => state.carts.carts);
@@ -21,37 +22,39 @@ const Cart = () => {
         <div className={styles.CartContainer}>
             <Container>
                 <h2 className={styles.TitleShoping}>Shopping bag</h2>
-                <Breadcrumbs pathParts={pathParts} />
-                {carts.length > 0 ? (
-                    <>
-                        <ul className={styles.List}>
-                            {carts?.map(({ quantity, instance }) => (
-                                <CartItem
-                                    key={instance._id}
-                                    count={quantity}
-                                    product={instance}
-                                />
-                            ))}
-                        </ul>
-                        <div className={styles.FinalInfo}>
-                            <TotalPrice />
-                            <div className={styles.FinalBtn}>
-                                <Link to="/shop" >
-                                    <Button text={"Continue shopping"} />
+                <Breadcrumbs pathParts={pathParts}/>
+                <ul className={styles.List}>
+                    {carts.length > 0 ? (
+                        carts?.map(({quantity, instance}, index) => (
+                            <CartItem
+                                key={instance._id}
+                                count={quantity}
+                                product={instance}
+                            />
+                        ))
+                    ) : (
+                        <EmptyCartText text="The cart is empty"/>
+                    )}
+                </ul>
+                <div className={cn(styles.FinalInfo, {[styles.FinalInfoCenter]: carts.length === 0})}>
+                    <TotalPrice />
+                    <div className={styles.FinalBtn}>
+                        <Link to={"/shop"}>
+                            <Button text={"Continue shopping"}/>
+                        </Link>
+                        {carts.length > 0 ? (
+                            <button className={styles.Continue} type={"button"}>
+                                <Link to={"/checkout"}>
+                                    Continue {<Arrow className={styles.Arrow}/>}
                                 </Link>
-
-                                <button className={styles.Continue} type={"button"}>
-                                    <Link to={"/checkout"}>
-                                        Continue {<Arrow className={styles.Arrow} />}
-                                    </Link>
-                                </button>
-
-                            </div>
-                        </div>
-                    </>
-                ) : (
-                    <EmptyCartText text="The cart is empty" />
-                )}
+                            </button>
+                        ) : (
+                            <button disabled={true} className={styles.Continue} type={"button"}>
+                                Continue {<Arrow className={styles.Arrow}/>}
+                            </button>
+                        )}
+                    </div>
+                </div>
             </Container>
         </div>
     );
