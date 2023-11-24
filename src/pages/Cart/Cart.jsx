@@ -15,38 +15,43 @@ import TotalPrice from "../../components/TotalPrice/TotalPrice";
 const Cart = () => {
     const carts = useSelector((state) => state.carts.carts);
     const pathParts = useBreadcrumbs();
-    const SHIPPING_PRICE = 50;
+    console.log(carts);
 
     return (
         <div className={styles.CartContainer}>
             <Container>
                 <h2 className={styles.TitleShoping}>Shopping bag</h2>
                 <Breadcrumbs pathParts={pathParts} />
-                <ul className={styles.List}>
-                    {carts.length ?
-                        (carts?.map(({ quantity, instance }) => (
-                            <CartItem
-                                key={instance._id}
-                                count={quantity}
-                                product={instance}
-                            />
-                        ))) : <EmptyCartText text="The cart is empty" />}
-                </ul>
-                <div className={styles.FinalInfo}>
-                    <TotalPrice />
-                    <div className={styles.FinalBtn}>
-                        <Link to="/shop" >
-                            <Button text={"Continue shopping"} />
-                        </Link>
+                {carts.length > 0 ? (
+                    <>
+                        <ul className={styles.List}>
+                            {carts?.map(({ quantity, instance }) => (
+                                <CartItem
+                                    key={instance._id}
+                                    count={quantity}
+                                    product={instance}
+                                />
+                            ))}
+                        </ul>
+                        <div className={styles.FinalInfo}>
+                            <TotalPrice />
+                            <div className={styles.FinalBtn}>
+                                <Link to="/shop" >
+                                    <Button text={"Continue shopping"} />
+                                </Link>
 
-                        <button className={styles.Continue} type={"button"}>
-                            <Link to={"/checkout"}>
-                                Continue {<Arrow className={styles.Arrow} />}
-                            </Link>
-                        </button>
+                                <button className={styles.Continue} type={"button"}>
+                                    <Link to={"/checkout"}>
+                                        Continue {<Arrow className={styles.Arrow} />}
+                                    </Link>
+                                </button>
 
-                    </div>
-                </div>
+                            </div>
+                        </div>
+                    </>
+                ) : (
+                    <EmptyCartText text="The cart is empty" />
+                )}
             </Container>
         </div>
     );
