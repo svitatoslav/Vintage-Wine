@@ -1,0 +1,34 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.TotalPrice {
+    display: flex;
+    justify-content: space-between;
+    padding: 35px;
+    border: $brd-white;
+    width: 245px;
+}
+
+.TotalPriceWide {
+    width: 100%;
+    padding: 19px 32px;
+
+    @media screen and (min-width: $tablet) {
+        padding: 39px 49px;
+    }
+    
+    p {
+        @include fonts(16px, $main-font);
+    }
+
+    .Bold {
+        font-weight: 600;
+        font-size: 20px;
+    }
+}
+
+.TotalPriceColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

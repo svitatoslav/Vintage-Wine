@@ -3,23 +3,20 @@
 
 .Counter {
     @include flex-cc;
-
-    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
-        margin-right: 150px;
-    }
-    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
-        margin-right: 150px;
-    }
-    @media (min-width: $desktop) and (max-width: $desktop-lg) {
-        margin-right: 150px;
-        margin-top: -65px;
-    }
-    @media screen and (min-width: $desktop-lg) {
-        margin-right: 150px;
-        margin-top: -65px;
-    }
-}
-.Count {
     font-size: 20px;
     font-family: $main-font;
+    gap: 12px;
+
+    @media (min-width: $tablet-lg) {
+        font-size: 40px;
+    }
 }
+
+    .CountElem {
+        font-size: 20px;
+        font-family: $main-font;
+
+        @media (min-width: $tablet-lg) {
+            font-size: 40px;
+        }
+    }
