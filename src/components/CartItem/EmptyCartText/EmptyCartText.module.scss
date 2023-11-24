@@ -2,19 +2,13 @@
 
 .TextWrapper {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  margin-bottom: 40px;
 
-  @media screen and (min-width: $mobile ) and (max-width: $tablet-xlg) {
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-
-  @media screen and (min-width: $tablet-xlg) {
-    max-width: 400px;
-    transform: translateY(100%);
-    justify-content: start;
-  }
-  @media screen and (min-width: $desktop) {
-    justify-content: center;
+  @media screen and (min-width: $tablet-lg) {
+    margin-bottom: 70px;
   }
 }
 
@@ -22,6 +16,5 @@
   font-size: 35px;
   @media screen and (min-width: $desktop) {
     font-size: 50px;
-
   }
 }

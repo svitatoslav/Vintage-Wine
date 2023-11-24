@@ -6,7 +6,17 @@ import Basket from "./img/delete.svg?react";
 import axios from "axios";
 
 const CartItem = ({ count, product }) => {
-  const { name, productImg, _id, currentPrice, cartDescription } = product;
+  const {
+    name,
+    productImg,
+    _id,
+    currentPrice,
+    cartDescription,
+    characteristics,
+  } = product;
+
+  const [code, grape, volume, color] = characteristics;
+
   const token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
 
@@ -33,6 +43,10 @@ const CartItem = ({ count, product }) => {
       <div className={styles.CartInfo}>
         <div className={styles.CartTitle}>
           <h2 className={styles.TitleName}>{name}</h2>
+          {grape.grape && (
+            <p className={styles.SubText}>{grape.grape}, {color.color}</p>
+          )}
+
           <p className={styles.Text}>{cartDescription}</p>
         </div>
 
@@ -42,11 +56,13 @@ const CartItem = ({ count, product }) => {
             <p className={styles.Currency}>UAH</p>
           </div>
 
-          <Counter id={_id} count={count} data={product} />
+          <div className={styles.Counter}>
+            <Counter id={_id} count={count} data={product} />
+          </div>
+          
           <button
-            variant="smallBasket"
-            color="transparent"
             onClick={removeProduct}
+            className={styles.Trash}
           >
             {<Basket className={styles.BasketSvg} />}
           </button>

@@ -1,6 +1,8 @@
 @import '../../assets/variables/variables';
 
 .SingleCatalog {
+    padding: 40px 0 70px;
+
     .ProductWrapper {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
