@@ -23,14 +23,17 @@ const Cart = () => {
                 <h2 className={styles.TitleShoping}>Shopping bag</h2>
                 <Breadcrumbs pathParts={pathParts}/>
                 <ul className={styles.List}>
-                    {carts.length ?
-                        (carts?.map(({quantity, instance}) => (
+                    {carts.length > 0 ? (
+                        carts?.map(({quantity, instance}, index) => (
                             <CartItem
                                 key={instance._id}
                                 count={quantity}
                                 product={instance}
                             />
-                        ))) : <EmptyCartText text="The cart is empty"/>}
+                        ))
+                    ) : (
+                        <EmptyCartText text="The cart is empty"/>
+                    )}
                 </ul>
                 <div className={styles.FinalInfo}>
                     <div className={styles.FinalCost}>
@@ -41,19 +44,25 @@ const Cart = () => {
                         </div>
                         <div>
                             <p>{calcTotalPrice(carts).toFixed(2)} uah</p>
-                            <p> {(SHIPPING_PRICE).toFixed(2)} uah</p>
+                            <p> {SHIPPING_PRICE.toFixed(2)} uah</p>
                             <p>{(calcTotalPrice(carts) + SHIPPING_PRICE).toFixed(2)} uah</p>
                         </div>
                     </div>
                     <div className={styles.FinalBtn}>
-                        <Button text={"Continue shopping"}/>
-
-                        <button className={styles.Continue} type={"button"}>
-                            <Link to={"/checkout"}>
+                        <Link to={"/shop"}>
+                            <Button text={"Continue shopping"}/>
+                        </Link>
+                        {carts.length > 0 ? (
+                            <button className={styles.Continue} type={"button"}>
+                                <Link to={"/checkout"}>
+                                    Continue {<Arrow className={styles.Arrow}/>}
+                                </Link>
+                            </button>
+                        ) : (
+                            <button disabled={true} className={styles.Continue} type={"button"}>
                                 Continue {<Arrow className={styles.Arrow}/>}
-                            </Link>
-                        </button>
-
+                            </button>
+                        )}
                     </div>
                 </div>
             </Container>

@@ -81,6 +81,7 @@
         margin-bottom: 60px;
     }
 }
+
 .FinalCost {
     border: 1px solid #FFFFFF;
     width: 243px;
@@ -115,7 +116,12 @@
     font-size: 30px;
     @include flex-cc;
     cursor: pointer;
+    &:disabled {
+        background-color: #909090;
+        cursor: default;
+    }
 }
+
 .Arrow {
     padding-left: 10px;
 }
