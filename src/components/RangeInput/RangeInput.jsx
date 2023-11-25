@@ -24,10 +24,10 @@ const RangeInput = () => {
 
   return (
     <div className={styles.RangeInput} data-testid="RangeInput">
-      <label htmlFor="range" className={styles.Value} style={{ left: `${value / 50}%` }}><span>{value}</span>$</label>
+      <label htmlFor="range" className={styles.Value} style={{ left: `${value / 50}%` }}><span>{value}</span>₴</label>
       <input id="range" type="range" min="0" max="5000" value={value} onChange={handleChange} />
-      <span className={styles.RangeInputMin}>0$</span>
-      <span className={styles.RangeInputMax}>5000$</span>
+      <span className={styles.RangeInputMin}>0₴</span>
+      <span className={styles.RangeInputMax}>5000₴</span>
     </div>
   );
 }

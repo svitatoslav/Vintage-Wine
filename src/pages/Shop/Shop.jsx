@@ -2,8 +2,11 @@ import React, { Suspense } from "react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import ReactPaginate from 'react-paginate';
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
 import useResize from "../../hooks/useResize";
+import { FaLessThan } from "react-icons/fa6";
+import { FaGreaterThan } from "react-icons/fa6";
 
 import { sendGetRequest } from "../../helpers/api/sendGetRequest";
 import { FilterContext } from "../../contexts/FilterContext";
@@ -12,9 +15,9 @@ import { updateFilteredProductsAC } from "../../redux/reducers/filters-reducer";
 import Breadcrumbs from "./../../components/Breadcrumbs/Breadcrumbs";
 import UniProduct from "../../components/ProductCard/UniProduct";
 import PageTitle from "../../components/Title/PageTitle";
+import EmptyCartText from "../../components/CartItem/EmptyCartText/EmptyCartText";
 
 import styles from "./Shop.module.scss";
-import EmptyCartText from "../../components/CartItem/EmptyCartText/EmptyCartText";
 
 
 const Filtration = React.lazy(() =>
@@ -26,6 +29,8 @@ const MAX_VALUE = 1160;
 
 const Shop = () => {
   const [productCards, setProductCards] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [numberOfPages, setNumberOfPages] = useState(null);
   const [filter, setFilter] = useState({});
   const [resetFilters, setResetFilters] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -35,7 +40,9 @@ const Shop = () => {
 
   useEffect(() => {
     const createUrlQuery = (filterConfigs) => {
-      let urlQuery = '';
+      // console.log(searchParams.get("query"));
+      // let urlQuery = searchParams.get("query") || `perPage=10&startPage=${currentPage}&`;
+      let urlQuery = `perPage=10&startPage=${currentPage}&`;
 
       if (!Object.keys(filterConfigs).length) return urlQuery;
 
@@ -43,22 +50,34 @@ const Shop = () => {
         urlQuery += `${name}=${value}&`;
       });
 
-      return urlQuery.slice(0, urlQuery.length - 1);
+      return urlQuery;
     }
 
-    // setSearchParams({
-    //   query: filter[1],
-    // });
+    setSearchParams({
+      query: createUrlQuery(filter),
+    });
 
     const url = 'http://127.0.0.1:4000/api/products/filter?' + createUrlQuery(filter);
 
     (async () => {
       const data = await sendGetRequest(url);
       setProductCards(createCards(data.products));
-      dispatch(updateFilteredProductsAC((data.products)));
+      setNumberOfPages(Math.ceil(data.productsQuantity / 10));
+      dispatch(updateFilteredProductsAC((data.allProducts)));
     })();
-  }, [filter, viewportWidth]);
+  }, [filter, viewportWidth, currentPage]);
 
+  useEffect(() => {
+    if (currentPage > 1 && numberOfPages === 1) {
+      setCurrentPage(1);
+    }
+
+  }, [numberOfPages])
+
+  const handlePageClick = (data) => {
+    const selectedPage = data.selected;
+    setCurrentPage(selectedPage + 1);
+  };
 
   function createCards(array) {
     const shopElements = [];
@@ -110,6 +129,24 @@ const Shop = () => {
             (<EmptyCartText text="Products not found" />)
         }
       </div>
+      {numberOfPages > 1 && (
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel={<FaGreaterThan />}
+          previousLabel={<FaLessThan />}
+          onPageChange={handlePageClick}
+          pageCount={numberOfPages}
+          pageRangeDisplayed={2}
+          renderOnZeroPageCount={null}
+          containerClassName={styles.Pagination}
+          activeLinkClassName={styles.ActiveBtn}
+          nextClassName={styles.ControleBtn}
+          nextLinkClassName={styles.ControleBtn}
+          previousClassName={styles.ControleBtn}
+          previousLinkClassName={styles.ControleBtn}
+          pageLinkClassName={styles.PageBtn}
+        />
+      )}
     </div>
   );
 }

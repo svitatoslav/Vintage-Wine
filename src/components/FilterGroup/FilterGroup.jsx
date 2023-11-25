@@ -28,8 +28,6 @@ const FilterGroup = ({onClear}) => {
     return item;
   });
 
-  console.log(updatedOptions);
-
   const initialValues = {
     sortBy: '',
     color: '',
