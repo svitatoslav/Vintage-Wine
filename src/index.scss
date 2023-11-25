@@ -97,16 +97,16 @@ section {
     position: relative;
     z-index: 10;
 
-    @media screen and (min-width: tablet) {
-        margin-bottom: 80px;
+    @media screen and (min-width: $tablet) {
+        margin-bottom: 50px;
     }
 
     @media screen and (min-width: $tablet-lg) {
-        margin-bottom: 100px;
+        margin-bottom: 70px;
     }
 
     @media screen and (min-width: $tablet-xlg) {
-        margin-bottom: 150px;
+        margin-bottom: 100px;
     }
 }
 
