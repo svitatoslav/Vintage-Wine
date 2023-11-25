@@ -39,23 +39,27 @@ const Shop = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const createUrlQuery = (filterConfigs) => {
-      // console.log(searchParams.get("query"));
-      // let urlQuery = searchParams.get("query") || `perPage=10&startPage=${currentPage}&`;
-      let urlQuery = `perPage=10&startPage=${currentPage}&`;
+    if (resetFilters) {
+      while (searchParams.keys().next().value) {
+        searchParams.delete(searchParams.keys().next().value);
+      }
+    }
+  }, [resetFilters]);
 
-      if (!Object.keys(filterConfigs).length) return urlQuery;
+  useEffect(() => {
+    const createUrlQuery = (filterConfigs) => {
+
+      searchParams.set("perPage", "10");
+      searchParams.set("startPage", currentPage);
 
       Object.entries(filterConfigs).forEach(([name, value]) => {
-        urlQuery += `${name}=${value}&`;
+        searchParams.set(name, value);
       });
 
-      return urlQuery;
-    }
+      setSearchParams(Object.fromEntries(searchParams.entries()));
 
-    setSearchParams({
-      query: createUrlQuery(filter),
-    });
+      return searchParams.toString();
+    }
 
     const url = 'http://127.0.0.1:4000/api/products/filter?' + createUrlQuery(filter);
 
@@ -64,14 +68,14 @@ const Shop = () => {
       setProductCards(createCards(data.products));
       setNumberOfPages(Math.ceil(data.productsQuantity / 10));
       dispatch(updateFilteredProductsAC((data.allProducts)));
+      setResetFilters(false);
     })();
   }, [filter, viewportWidth, currentPage]);
 
   useEffect(() => {
-    if (currentPage > 1 && numberOfPages === 1) {
+    if (currentPage > 1 && numberOfPages < currentPage) {
       setCurrentPage(1);
     }
-
   }, [numberOfPages])
 
   const handlePageClick = (data) => {
@@ -136,7 +140,8 @@ const Shop = () => {
           previousLabel={<FaLessThan />}
           onPageChange={handlePageClick}
           pageCount={numberOfPages}
-          pageRangeDisplayed={2}
+          pageRangeDisplayed={3}
+          marginPagesDisplayed={2}
           renderOnZeroPageCount={null}
           containerClassName={styles.Pagination}
           activeLinkClassName={styles.ActiveBtn}

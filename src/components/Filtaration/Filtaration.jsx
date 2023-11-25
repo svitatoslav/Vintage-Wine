@@ -14,7 +14,7 @@ import styles from './Filtration.module.scss';
 
 
 const Filtration = () => {
-    const { filter, setFilter, setResetFilters } = useContext(FilterContext);
+    const { setFilter, setResetFilters } = useContext(FilterContext);
     const viewportWidth = useResize();
     const [links, setLinks] = useState([]);
     const [currentLink, setCurrentLinks] = useState(null);
@@ -34,7 +34,7 @@ const Filtration = () => {
         if (currentLink === link) return;
         setCurrentLinks(link);
         setFilter({ categories: link });
-        setResetFilters(prev => !prev);
+        setResetFilters(true);
         dispatch(updateLastOptionsAC(null));
     };
 

@@ -12,11 +12,13 @@ import RangeInput from '../RangeInput/RangeInput';
 
 import Clear from './icons/clear.svg?react';
 import styles from './FilterGroup.module.scss';
+import { useSearchParams } from 'react-router-dom';
 
 
-const FilterGroup = ({onClear}) => {
+const FilterGroup = ({ onClear }) => {
   const { filter, setFilter, setResetFilters } = useContext(FilterContext);
   const filteredProducts = useSelector(state => state.filters.filteredProducts);
+  const [searchParams] = useSearchParams();
 
   const options = Object.values(createOptions(filteredProducts));
   const lastOptions = useSelector(state => state.filters.lastOptions);
@@ -53,7 +55,7 @@ const FilterGroup = ({onClear}) => {
 
   const clearFilters = () => {
     setFilter({});
-    setResetFilters(prev => !prev);
+    setResetFilters(true);
     onClear();
   }
 
