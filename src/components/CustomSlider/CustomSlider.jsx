@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import NextArrow from './icons/NextArrow';
 import PrevArrow from './icons/PrevArrow';
@@ -12,10 +12,11 @@ import CustomArrowNext from './icons/CustomArrowNext';
 
 import styles from './CustomSlider.module.scss';
 
-const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination = true }) => {
+const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = true}) => {
     const CATALOG_SLIDER = 'CATALOG';
     const COLLECTIONS_SLIDER = 'COLLECTIONS';
     const SINGLE_PRODUCT = 'SINGLE_PRODUCT';
+    const SHARES_PRODUCT = 'SHARES';
 
     const [currentIndex, setCurrentIndex] = useState(toScroll);
     const [productHeaderSlider, setProductHeaderSlider] = useState();
@@ -34,14 +35,14 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
     };
 
     /*Arrows for single product slider */
-    const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
+    const SlickArrowLeft = ({currentSlide, slideCount, ...props}) => (
         <button {...props} className={'slick-prev slick-arrow' + (currentSlide === 0 ? ' slick-disabled' : '')} aria-hidden="true" aria-disabled={currentSlide === 0 ? true : false} type="button">
-            <CustomArrowPrev />
+            <CustomArrowPrev/>
         </button>
     );
-    const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
+    const SlickArrowRight = ({currentSlide, slideCount, ...props}) => (
         <button {...props} className={'slick-next slick-arrow' + (currentSlide === slideCount - 1 ? ' slick-disabled' : '')} aria-hidden="true" aria-disabled={currentSlide === slideCount - 1 ? true : false} type="button">
-            <CustomArrowNext />
+            <CustomArrowNext/>
         </button>
     );
 
@@ -133,8 +134,43 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
         slidesToShow: 2,
         swipeToSlide: true,
         focusOnSelect: true,
-        prevArrow: <SlickArrowLeft />,
-        nextArrow: <SlickArrowRight />
+        prevArrow: <SlickArrowLeft/>,
+        nextArrow: <SlickArrowRight/>
+    };
+
+    const SliderSharesSettings = {
+        dots: false,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: toShow,
+        slidesToScroll: toScroll,
+        autoplay: false,
+        autoplaySpeed: 3000,
+        arrows: false,
+        responsive: [
+            {
+                breakpoint: 960,
+                settings: {
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 640,
+                settings: {
+                    slidesToShow: 1
+                }
+            },
+            {
+                breakpoint: 460,
+                settings: {
+                    slidesToShow: 1
+                }
+            }
+        ],
+        afterChange: (index) => {
+            setCurrentIndex(index + 1);
+        },
+        ref: sliderRef
     };
 
     useEffect(() => {
@@ -151,7 +187,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                         return (
                             <div className={`${styles.itemSlide} `} key={slide.id}>
                                 <Link to={`catalog/${itemLinkCatalog}`}>
-                                    <img src={slide.imageUrl} alt={slide.name} />
+                                    <img src={slide.imageUrl} alt={slide.name}/>
                                     <h4 className={styles.catalogName}>{slide.name}</h4>
                                 </Link>
                             </div>
@@ -167,7 +203,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
 
                         return (
                             <div className={`${slideClasses} ${index === sliderArray.length - 1 ? styles.oddSlide : ''}`} key={slide.id}>
-                                <img src={slide.imageUrl} alt={slide.name} />
+                                <img src={slide.imageUrl} alt={slide.name}/>
 
                                 <div className={styles.collectionData}>
                                     <h4 className={styles.catalogName}>{slide.name}</h4>
@@ -189,7 +225,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                         {sliderArray?.map((image, index) => {
                             return (
                                 <div key={index} className={styles.mainSlide}>
-                                    <img src={image} alt="slide image" />
+                                    <img src={image} alt="slide image"/>
                                 </div>
                             );
                         })}
@@ -198,25 +234,56 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                         {sliderArray?.map((image, index) => {
                             return (
                                 <div key={index} className={styles.secondarySlide}>
-                                    <img src={image} alt="slide image" />
+                                    <img src={image} alt="slide image"/>
                                 </div>
                             );
                         })}
                     </Slider>
                 </>
             )}
-            
+            {type === SHARES_PRODUCT && (
+                <Slider {...SliderSharesSettings} className={` ${styles.collectionsSharesSlider}`}>
+                    {sliderArray?.map((slide) => {
+                        const words = slide.name.split(' ');
+                        const formattedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+                        const itemLinkShares = formattedWords.join('');
+
+                        return (
+                            <div className={`${styles.itemSharesSlide}`} key={slide.id}>
+                                <div className={`${styles.imgSharesContainer}`}>
+                                    <Link to={`/${itemLinkShares}`}>
+                                        <div className={`${styles.imgHideContainer}`}>
+                                            <img src={slide.imageUrl} alt={slide.name}/>
+                                        </div>
+                                    </Link>
+                                    <div className={`${styles.imgTextContainer}`}>
+                                        <p> -{slide.discount}%</p>
+                                        <img src={"../public/imageProject/shares/v1028-051.png"} alt={slide.name}/>
+                                    </div>
+                                </div>
+                                <div className={`${styles.textSharesContainer}`}>
+                                    <h4 className={styles.sharesName}>{slide.name}</h4>
+                                    <Link to={`/${itemLinkShares}`} className={`${styles.vvSeeMore}`}>
+                                        See more...
+                                    </Link>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </Slider>
+            )}
+
             {isSlidePagination && (
                 <div className={styles.slickArrows}>
                     <button className="slick-prev slick-arrow" onClick={handlePrevClick}>
-                        <PrevArrow />
+                        <PrevArrow/>
                     </button>
                     <div className={styles.sliderNavigation}>
                         <span className={styles.currentIndex}>{currentIndex}</span>
                         <span className={styles.lengthOfSlider}>{sliderArray.length}</span>
                     </div>
                     <button className="slick-next slick-arrow" onClick={handleNextClick}>
-                        <NextArrow />
+                        <NextArrow/>
                     </button>
                 </div>
             )}

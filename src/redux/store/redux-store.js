@@ -18,6 +18,7 @@ import modalWindowReducer from '../reducers/modalWindow-reducer';
 import newsReducer from "../reducers/news-reducer";
 import cartsReducer from '../reducers/cart-reducer';
 import filtersReducer from '../reducers/filters-reducer';
+import sharesReducer from "../reducers/shares-reducer";
 
 const rootReducer = combineReducers({
   viewedProducts: ViewedProductsReducer,
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   news: newsReducer,
   carts: cartsReducer,
   filters: filtersReducer,
+  shares: sharesReducer,
 });
 
 const persistConfig = {

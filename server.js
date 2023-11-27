@@ -28,6 +28,7 @@ const paymentMethods = require('./backend/routes/paymentMethods');
 const partners = require('./backend/routes/partners');
 const excursions = require('./backend/routes/excursions');
 const news = require('./backend/routes/news');
+const shares = require('./backend/routes/shares');
 // const mainRoute = require('./routes/index');
 
 const app = express();
@@ -80,6 +81,7 @@ app.use('/api/payment-methods', paymentMethods);
 app.use('/api/partners', partners);
 app.use('/api/excursions', excursions);
 app.use('/api/news', news);
+app.use('/api/shares', shares);
 // app.use('/', mainRoute);
 
 // Server static assets if in production

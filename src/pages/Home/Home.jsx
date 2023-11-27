@@ -4,6 +4,7 @@ import Collections from '../../components/Collections/Collections';
 import Cover from '../../components/Cover/Cover';
 import History from '../../components/History/History';
 import Excursions from '../../components/Excursions/Excursions';
+import Shares from "../../components/Shares/Shares";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <History />
       <Catalog />
       <Excursions />
+      <Shares />
     </>
   );
 }
