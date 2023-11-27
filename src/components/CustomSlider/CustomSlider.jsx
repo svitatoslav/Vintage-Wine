@@ -255,10 +255,12 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                                     <div className={`${styles.itemSlide} `} key={slide._id}>
                                         <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
                                             <img src={`http://localhost:5173${slide.productImg}`} alt={slide.name} />
-                                            <h4 className={styles.name}>{slide.name}</h4>
                                         </Link>
-                                        <p className={styles.price}>{slide.currentPrice}uah</p>
-                                        <Button text="Add to cart" />
+                                        <div className={styles.productNav}>
+                                            <h4 className={styles.name}>{slide.name}</h4>
+                                            <p className={styles.price}>{slide.currentPrice}uah</p>
+                                            <Button text="Add to cart" />
+                                        </div>
                                     </div>
                                 );
                             })}
@@ -270,10 +272,12 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                                     <div className={`${styles.itemSlide} `} key={slide._id}>
                                         <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
                                             <img src={`http://localhost:5173${slide.productImg}`} alt={slide.name} />
-                                            <h4 className={styles.name}>{slide.name}</h4>
                                         </Link>
-                                        <p className={styles.price}>{slide.currentPrice}uah</p>
-                                        <Button text="Add to cart" />
+                                        <div className={styles.productNav}>
+                                            <h4 className={styles.name}>{slide.name}</h4>
+                                            <p className={styles.price}>{slide.currentPrice}uah</p>
+                                            <Button text="Add to cart" />
+                                        </div>
                                     </div>
                                 );
                             })}
