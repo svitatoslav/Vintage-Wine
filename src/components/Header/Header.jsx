@@ -59,9 +59,9 @@ function Header() {
             </div>
             <div className={styles.HeaderWidgetsGroup}>
               {user ? (
-                <span title={user}>
-                  <PersonWidget />
-                </span>
+                  <Link title={user} to="/customer">
+                      <PersonWidget />
+                  </Link>
               )
                 : (
                   <Link to="/login">
