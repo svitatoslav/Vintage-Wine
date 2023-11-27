@@ -58,6 +58,7 @@ a {
 img {
     width: 100%;
     height: auto;
+    object-fit: cover;
 }
 
 h1,
@@ -93,7 +94,7 @@ p {
 }
 
 section {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     position: relative;
     z-index: 10;
 
