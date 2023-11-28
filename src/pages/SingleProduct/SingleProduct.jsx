@@ -17,15 +17,16 @@ import { addOneToExistedProduct, addToCarts, updateCarts } from '../../redux/red
 import { Link } from 'react-router-dom';
 
 const SingleProduct = () => {
+    const dispatch = useDispatch();
     const [singleItem, setSingleItem] = useState({});
     const pathParts = useBreadcrumbs();
     const cart = useSelector((state) => state.carts.carts);
-    
+
     const viewedProducts = useSelector((state) => state.fetchViewedProducts.viewedProducts);
     const viewedProductsStorage = JSON.stringify(viewedProducts);
-    
+
     localStorage.setItem('viewedProductsDB', viewedProductsStorage);
-    
+
     const currentProductPage = localStorage.getItem('viewedProducts');
 
     const addSpaceBeforeUppercase = (text) => {
@@ -34,18 +35,16 @@ const SingleProduct = () => {
 
     const sliderImages = singleItem?.slidesImageUrls?.map((item) => `http://localhost:5173/${item}`);
 
+    const handleAddToCart = (e) => {
+        e.preventDefault();
 
-      const handleAddToCart =  (e) => {
-          e.preventDefault();
-
-          const itemInCart = cart?.find(({ instance }) => instance._id === singleItem._id);
-          if (itemInCart) {
-              dispatch(addOneToExistedProduct(singleItem._id));
-          } else {
-              dispatch(updateCarts([{ quantity: 1, instance: singleItem }]));
-          }
-
-      };
+        const itemInCart = cart?.find(({ instance }) => instance._id === singleItem._id);
+        if (itemInCart) {
+            dispatch(addOneToExistedProduct(singleItem._id));
+        } else {
+            dispatch(updateCarts([{ quantity: 1, instance: singleItem }]));
+        }
+    };
 
     const scrollToTop = () => {
         window.scrollTo(0, 0);
@@ -53,11 +52,11 @@ const SingleProduct = () => {
 
     let isInCart = false;
 
-    cart.find(product => {
+    cart.find((product) => {
         if (product.instance._id === singleItem._id) {
             isInCart = true;
         }
-    })
+    });
 
     useEffect(() => {
         async function fetchData() {
@@ -86,7 +85,6 @@ const SingleProduct = () => {
         }
     }, []);
 
-    const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchViewedProductsThunk());
     }, [dispatch]);
@@ -115,7 +113,7 @@ const SingleProduct = () => {
                             </p>
                             <p>
                                 Collection
-                                <span className={styles.collectionSpan}>{singleItem?.collectionOfProduct}</span>
+                                <span className={styles.collectionSpan}>{singleItem?.collection}</span>
                             </p>
                         </div>
                         <div className={styles.cartData}>
@@ -130,7 +128,7 @@ const SingleProduct = () => {
                                 </div> */}
                             </div>
                             {isInCart ? (
-                                <Link to="/cart" className={ styles.cartLinkProduct}> 
+                                <Link to="/cart" className={styles.cartLinkProduct}>
                                     <Button text="In cart" type="xSmall" />
                                 </Link>
                             ) : (

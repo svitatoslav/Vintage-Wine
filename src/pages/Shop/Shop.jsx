@@ -14,6 +14,7 @@ import UniProduct from "../../components/ProductCard/UniProduct";
 import PageTitle from "../../components/Title/PageTitle";
 
 import styles from "./Shop.module.scss";
+import EmptyCartText from "../../components/CartItem/EmptyCartText/EmptyCartText";
 
 
 const Filtration = React.lazy(() =>
@@ -103,11 +104,11 @@ const Shop = () => {
         </Suspense>
       </FilterContext.Provider>
       <div className={styles.ShopImagesContainer}>
-      {
-        productCards.length ?
-          productCards :
-          "Products not found"
-      }
+        {
+          productCards.length ?
+            productCards :
+            (<EmptyCartText text="Products not found" />)
+        }
       </div>
     </div>
   );

@@ -6,6 +6,9 @@
   "testLibrary": "Testing Library",
   "component": {
     "default": {
+      "customTemplates": {
+        "component": "src/templates/component/TemplateName.jsx"
+      },
       "path": "src/components",
       "withStyle": true,
       "withTest": true,

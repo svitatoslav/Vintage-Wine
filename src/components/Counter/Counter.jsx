@@ -40,9 +40,10 @@ const Counter = ({ id, count, data }) => {
 
   return (
     <div className={styles.Counter}>
-      <Button variant="smallBasket" color="transparent" text="-" onClick={removeOne} />
-      <p className={styles.Count}>{count}</p>
-      <Button variant="smallBasket" color="transparent" text="+" onClick={addOne} />
+      <button className={styles.CountElem} onClick={removeOne}>-</button>
+      <p className={styles.CountElem}>{count}</p>
+      
+      <button className={styles.CountElem} onClick={addOne}>+</button>
     </div>
   )
 }

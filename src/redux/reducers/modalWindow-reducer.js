@@ -2,7 +2,6 @@ const TOGGLE_OPEN_MODAL = 'TOGGLE_MODAL';
 const SWITCH_MODAL = 'SWITCH_MODAL';
 const CANCEL_RESERVED = 'CANCEL_RESERVED';
 const SELECT_TOUR = 'SELECT_TOUR';
-const GET_MODAL = 'GET_MODAL';
 
 const initialState = {
   isModalOpen: false,

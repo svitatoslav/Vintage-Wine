@@ -20,8 +20,9 @@ const TitleContact = () => {
                 <div className={styles.imgContainer}>
                     <div className={cn(styles.divBorder, styles.divBorderFirst)}></div>
                     <div className={cn(styles.divBorder, styles.divBorderSecond)}></div>
+                    {/* <img className={styles.img} src="/imageProject/contact/contact.png" alt="grape"/> */}
                     <img className={styles.img} src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006032/vjzxoqoqp4trsgpoyqvl.png" alt=""/>
-                    {/* <img className={styles.img} src="/public/imageProject/contact/contact.png" alt=""/> */}
+                    
                 </div>
             </div>
         </>

@@ -5,29 +5,34 @@ import styles from "./CartItem.module.scss";
 import Basket from "./img/delete.svg?react";
 import axios from "axios";
 
-const CartItem = ({count, product}) => {
+const CartItem = ({ count, product }) => {
   const {
     name,
     productImg,
     _id,
     currentPrice,
     cartDescription,
+    characteristics,
   } = product;
+
+  const [code, grape, volume, color] = characteristics;
+
   const token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
 
   const removeProduct = () => {
     dispatch(removeAll(_id));
     if (token) {
-      axios.delete(`http://127.0.0.1:4000/api/cart/${_id}`, {
-        headers: {
-          "Authorization": token,
-        }
-      })
+      axios
+        .delete(`http://127.0.0.1:4000/api/cart/${_id}`, {
+          headers: {
+            Authorization: token,
+          },
+        })
         .then((res) => console.log(res.statusText))
         .catch((err) => console.log(err));
     }
-  }
+  };
 
   return (
     <div className={styles.Cart}>
@@ -38,22 +43,27 @@ const CartItem = ({count, product}) => {
       <div className={styles.CartInfo}>
         <div className={styles.CartTitle}>
           <h2 className={styles.TitleName}>{name}</h2>
-          <h3 className={styles.TitleSubname}>Telti-Kuruk, Light-straw</h3>
+          {grape.grape && (
+            <p className={styles.SubText}>{grape.grape}, {color.color}</p>
+          )}
+          {/* <h3 className={styles.TitleSubname}>Telti-Kuruk, Light-straw</h3> */}
+
           <p className={styles.Text}>{cartDescription}</p>
         </div>
 
         <div className={styles.CartContent}>
           <div className={styles.PriceInfo}>
-            
             <p className={styles.Price}>{(currentPrice * count).toFixed(2)}</p>
             <p className={styles.Currency}>UAH</p>
           </div>
 
-          <Counter id={_id} count={count} data={product}/>
+          <div className={styles.Counter}>
+            <Counter id={_id} count={count} data={product} />
+          </div>
+          
           <button
-            variant="smallBasket"
-            color="transparent"
             onClick={removeProduct}
+            className={styles.Trash}
           >
             {<Basket className={styles.BasketSvg} />}
           </button>

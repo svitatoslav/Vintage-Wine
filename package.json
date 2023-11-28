@@ -11,7 +11,8 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "preview": "vite preview",
         "server": "nodemon server.js",
-        "port": "checkPorts.js"
+        "port": "checkPorts.js",
+        "generate:component": "npx generate-react-cli component"
     },
     "repository": {
         "type": "git",

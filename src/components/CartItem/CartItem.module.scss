@@ -2,140 +2,64 @@
 @import "./../../assets/variables/variables";
 
 .Cart {
-    display: grid;
-    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-
-    @media (min-width: $mobile) and (max-width: $tablet) {
-        display: flex;
-        align-items: flex-start;
-    }
-    @media (min-width: $tablet) and (max-width: $tablet-lg) {
-        display: flex;
-        align-items: flex-start;
-    }
-    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
-        display: flex;
-        align-items: flex-start;
-    }
-    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
-        display: flex;
-        align-items: flex-start;
-    }
-    @media (min-width: $desktop) and (max-width: $desktop-lg) {
-        display: flex;
-        align-items: flex-start;
-    }
-    @media screen and (min-width: $desktop-lg) {
-        display: flex;
-        align-items: flex-start;
-    }
-    //   @media (min-width: $tablet-xlg) and (max-width: $desktop) {
-    //     display: block;
-    //   }
-    //   @media screen and (min-width: $desktop) {
-    //     display: block;
-    //   }
-}
-.Img {
-    width: 172px;
-    height: 199px;
-    margin-bottom: 20px;
-
-    @media (min-width: $mobile) and (max-width: $tablet) {
-        margin-right: 10px;
-    }
-    @media (min-width: $tablet) and (max-width: $tablet-lg) {
-        margin-right: 10px;
-        width: 225px;
-        height: 260px;
-    }
-    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
-        margin-right: 10px;
-        width: 225px;
-        height: 260px;
-    }
-    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
-        margin-right: 10px;
-        width: 285px;
-        height: 332px;
-    }
-    @media (min-width: $desktop) and (max-width: $desktop-lg) {
-        margin-right: 10px;
-        width: 285px;
-        height: 332px;
-    }
-    @media screen and (min-width: $desktop-lg) {
-        margin-right: 10px;
-        width: 285px;
-        height: 332px;
-    }
-}
-.CartInfo {
     text-align: center;
 
-    @media (min-width: $mobile) and (max-width: $tablet) {
-        text-align: left;
-    }
-    @media (min-width: $tablet) and (max-width: $tablet-lg) {
-        text-align: left;
-    }
-    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
-        text-align: left;
-        display: flex;
-    }
-    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
-        text-align: left;
-        display: flex;
-    }
-    @media (min-width: $desktop) and (max-width: $desktop-lg) {
-        text-align: left;
-        display: flex;
-    }
-    @media screen and (min-width: $desktop-lg) {
-        text-align: left;
-        display: flex;
-    }
-}
-.CartTitle{
-    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
-        margin-right: 20px;
-    }
-    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
-        margin-right: 20px;
-    }
-    @media (min-width: $desktop) and (max-width: $desktop-lg) {
-        margin-right: 20px;
-    }
-    @media screen and (min-width: $desktop-lg) {
-        margin-right: 20px;
-    }
-}
-.TitleName{
-    margin-bottom: 20px;
 
-    @media (min-width: $tablet) and (max-width: $tablet-lg) {
-        font-family: $secondary-font;
-        font-size: 26px;
+    @media (min-width: $tablet) {
+        flex-direction: row;
+        align-items: start;
+        justify-content: unset;
+        text-align: left;
+        gap: 12px;
     }
-    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
-        font-family: $secondary-font;
-        font-size: 26px;
-    }
-    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
-        font-family: $secondary-font;
-        font-size: 26px;
-    }
-    @media (min-width: $desktop) and (max-width: $desktop-lg) {
-        font-family: $secondary-font;
-        font-size: 26px;
-    }
-    @media screen and (min-width: $desktop-lg) {
-        font-family: $secondary-font;
-        font-size: 26px;
+
+    @media (min-width: $desktop) {
+        gap: 20px;
     }
 }
+// .CartTitle{
+//     @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+//         margin-right: 20px;
+//     }
+//     @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+//         margin-right: 20px;
+//     }
+//     @media (min-width: $desktop) and (max-width: $desktop-lg) {
+//         margin-right: 20px;
+//     }
+//     @media screen and (min-width: $desktop-lg) {
+//         margin-right: 20px;
+//     }
+// }
+// .TitleName{
+//     margin-bottom: 20px;
+
+//     @media (min-width: $tablet) and (max-width: $tablet-lg) {
+//         font-family: $secondary-font;
+//         font-size: 26px;
+//     }
+//     @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+//         font-family: $secondary-font;
+//         font-size: 26px;
+//     }
+//     @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+//         font-family: $secondary-font;
+//         font-size: 26px;
+//     }
+//     @media (min-width: $desktop) and (max-width: $desktop-lg) {
+//         font-family: $secondary-font;
+//         font-size: 26px;
+//     }
+//     @media screen and (min-width: $desktop-lg) {
+//         font-family: $secondary-font;
+//         font-size: 26px;
+//     }
+// }
 .TitleSubname{
     margin-bottom: 20px;
     font-size: 14px;
@@ -148,41 +72,152 @@
 .CartContent {
     @include flex-ac;
     justify-content: space-evenly;
+}
 
-    @media (min-width: $mobile) and (max-width: $tablet) {
+.CartImg {
+    img {
+        width: 172px;
+        height: 199px;
+
+
+        @media (min-width: $tablet-lg) {
+
+            width: 225px;
+            height: 260px;
+        }
+
+        @media (min-width: $desktop) {
+            width: 285px;
+            height: 332px;
+        }
     }
-    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+
+
+
+}
+
+.Counter {
+    grid-area: counter;
+    align-self: center;
+
+    @media (min-width: $desktop) {
+
+        align-self: flex-start;
+    }
+}
+
+.Trash {
+    grid-area: trash;
+    justify-self: end;
+
+    @media (min-width: $desktop) {
+        align-self: end;
+    }
+}
+
+.CartInfo {
+    width: 100%;
+
+
+    @media (min-width: $tablet) {
         display: flex;
-        align-items: center;
+        flex-direction: column;
         justify-content: space-between;
     }
-    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
-        display: grid;
-        justify-items: flex-end;
+
+    @media screen and (min-width: $tablet-lg) {
+        min-height: 200px;
     }
-    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
-        display: grid;
-        justify-items: flex-end;
-    }
-    @media (min-width: $desktop) and (max-width: $desktop-lg) {
-        display: grid;
-        justify-items: flex-end;
-    }
-    @media screen and (min-width: $desktop-lg) {
-        display: grid;
-        justify-items: flex-end;
+
+    @media screen and (min-width: $tablet-xlg) {
+        flex-direction: row;
     }
 }
+
+.CartTitle {
+
+    @media screen and (min-width: $tablet-xlg) {
+        max-width: 340px;
+    }
+}
+
+.TitleName {
+    margin-bottom: 20px;
+    @include fonts(20px, $secondary-font);
+
+    @media screen and (min-width: $tablet-lg) {
+        font-size: 26px;
+    }
+}
+
+.Text {
+
+    @include fonts(14px, $secondary-font);
+    margin-bottom: 20px;
+
+    @media screen and (min-width: $tablet-lg) {
+        font-size: 16px;
+    }
+}
+
+.SubText {
+    @include fonts(12px, $secondary-font);
+    color: #BFBFBF;
+    margin-bottom: 20px;
+}
+
+.CartContent {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-areas:
+        "price counter trash";
+
+
+    @media screen and (min-width: $tablet-xlg) {
+        grid-template-areas:
+            "counter price "
+            "counter trash";
+        grid-template-columns: repeat(2, minmax(150px, auto));
+        column-gap: 60px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        grid-template-columns: 100px minmax(200px, auto);
+        gap: 20px 105px;
+    }
+}
+
 .PriceInfo {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    grid-area: price;
+
+    @media (min-width: $desktop) {
+        align-self: flex-start;
+    }
+
+    @media (min-width: $tablet-xlg) {
+        justify-self: flex-end;
+    }
 }
+
 .Price {
     font-size: 30px;
     font-family: $main-font;
     padding-right: 4px;
+
+    @media (min-width: $tablet-lg) {
+        font-size: 40px;
+    }
 }
+
 .BasketSvg {
+    cursor: pointer;
     width: 14px;
     height: 16px;
+
+    @media screen and (min-width: $tablet-lg) {
+        width: 24px;
+        height: 28px;
+    }
 }

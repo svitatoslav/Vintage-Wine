@@ -22,7 +22,7 @@ const SingleExcursion = ({ reverse, orderNum, data }) => {
 
   const handleOpenModal = (title) => {
     dispatch(selectTourAC(title));
-    dispatch(switchModalAC('reservation'));
+    dispatch(switchModalAC("reservation"));
     dispatch(toggleModalAC());
   }
 
