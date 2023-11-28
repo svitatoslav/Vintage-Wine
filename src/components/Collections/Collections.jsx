@@ -13,6 +13,7 @@ const Collections = () => {
         dispatch(getCollectionsThunk());
     }, [dispatch]);
 
+
   return (
       <section>
           <Container>
@@ -22,7 +23,5 @@ const Collections = () => {
       </section>
   );
 };
-
-
 
 export default Collections;

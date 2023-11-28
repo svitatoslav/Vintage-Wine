@@ -1,1 +1,22 @@
-.SingleCatalog {}
+@import '../../assets/variables/variables';
+
+.SingleCatalog {
+    padding: 40px 0 70px;
+
+    .ProductWrapper {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+        padding-bottom: 10px;
+
+        @media screen and (min-width: $tablet-lg) {
+            grid-template-columns: repeat(2, 1fr);
+            row-gap: 20px;
+            column-gap: 10px;
+        }
+
+        @media screen and (min-width: $tablet-xlg) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}

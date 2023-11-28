@@ -81,14 +81,9 @@
         margin-bottom: 60px;
     }
 }
-.FinalCost {
-    border: 1px solid #FFFFFF;
-    width: 243px;
-    padding: 28px;
-    line-height: 24px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+
+.FinalInfoCenter {
+    justify-content: center;
 }
 
 .FinalBtn {
@@ -115,23 +110,12 @@
     font-size: 30px;
     @include flex-cc;
     cursor: pointer;
+    &:disabled {
+        background-color: #909090;
+        cursor: default;
+    }
 }
+
 .Arrow {
     padding-left: 10px;
 }
-
-
-
-// @media (min-width: $tablet) and (max-width: $tablet-lg) {
-//     display: flex;
-//     align-items: flex-start;
-// }
-//   @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
-//     display: block;
-//   }
-//   @media (min-width: $tablet-xlg) and (max-width: $desktop) {
-//     display: block;
-//   }
-//   @media screen and (min-width: $desktop) {
-//     display: block;
-//   }

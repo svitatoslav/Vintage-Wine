@@ -33,11 +33,11 @@ exports.createCart = (req, res, next) => {
 };
 
 exports.updateCart = (req, res, next) => {
-  Cart.findOne({ customerId: req.user.id })
+  Cart.findOne({ customerId: req.user._id })
     .then((cart) => {
       if (!cart) {
         const initialQuery = _.cloneDeep(req.body);
-        initialQuery.customerId = req.user.id;
+        initialQuery.customerId = req.user._id;
 
         const newCart = new Cart(queryCreator(initialQuery));
 
@@ -56,11 +56,10 @@ exports.updateCart = (req, res, next) => {
           );
       } else {
         const initialQuery = _.cloneDeep(req.body);
-        const updatedCart = queryCreator(initialQuery);
 
         Cart.findOneAndUpdate(
-          { customerId: req.user.id },
-          { $set: updatedCart },
+          { customerId: req.user._id },
+          { $set: { ...initialQuery } },
           { new: true }
         )
           .populate('products.product')
@@ -96,14 +95,14 @@ exports.addProductToCart = async (req, res, next) => {
       message: `Product with _id (ObjectId) "${req.params.productId}" does not exist`,
     });
   } else {
-    Cart.findOne({ customerId: req.user.id })
+    Cart.findOne({ customerId: req.user._id })
       .then((cart) => {
         if (!cart) {
           const cartData = {};
-          cartData.customerId = req.user.id;
+          cartData.customerId = req.user._id;
           cartData.products = [].concat({
-            product: req.params.productId,
-            cartQuantity: 1,
+            instance: req.body,
+            quantity: 1,
           });
 
           const newCart = new Cart(queryCreator(cartData));
@@ -125,21 +124,21 @@ exports.addProductToCart = async (req, res, next) => {
           const cartData = {};
 
           const isProductExistInCart = cart.products.some(
-            (item) => item.product.toString() === req.params.productId
+            (item) => item.instance._id === req.params.productId
           );
 
           if (isProductExistInCart) {
             cartData.products = cart.products.map((item) => {
-              if (item.product.toString() === req.params.productId) {
-                item.cartQuantity += 1;
+              if (item.instance._id === req.params.productId) {
+                item.quantity += 1;
               }
 
               return item;
             });
           } else {
             cartData.products = cart.products.concat({
-              product: req.params.productId,
-              cartQuantity: 1,
+              instance: req.body,
+              quantity: 1,
             });
           }
 
@@ -169,7 +168,7 @@ exports.addProductToCart = async (req, res, next) => {
 };
 
 exports.decreaseCartProductQuantity = async (req, res, next) => {
-  Cart.findOne({ customerId: req.user.id })
+  Cart.findOne({ customerId: req.user._id })
     .then((cart) => {
       if (!cart) {
         res.status(400).json({ message: 'Cart does not exists' });
@@ -177,20 +176,20 @@ exports.decreaseCartProductQuantity = async (req, res, next) => {
         const cartData = {};
 
         const isProductExistInCart = cart.products.some(
-          (item) => item.product.toString() === req.params.productId
+          (item) => item.instance._id === req.params.productId
         );
 
         if (isProductExistInCart) {
           cartData.products = cart.products.map((item) => {
-            if (item.product.toString() === req.params.productId) {
-              item.cartQuantity -= 1;
+            if (item.instance._id === req.params.productId) {
+              item.quantity -= 1;
             }
 
             return item;
           });
 
           cartData.products = cart.products.filter(
-            (item) => item.cartQuantity > 0
+            (item) => item.quantity > 0
           );
         } else {
           res.status(400).json({
@@ -199,7 +198,7 @@ exports.decreaseCartProductQuantity = async (req, res, next) => {
         }
 
         Cart.findOneAndUpdate(
-          { customerId: req.user.id },
+          { customerId: req.user._id },
           { $set: cartData },
           { new: true }
         )
@@ -221,15 +220,15 @@ exports.decreaseCartProductQuantity = async (req, res, next) => {
 };
 
 exports.deleteCart = (req, res, next) => {
-  Cart.findOne({ customerId: req.user.id }).then(async (cart) => {
+  Cart.findOne({ customerId: req.user._id }).then(async (cart) => {
     if (!cart) {
       return res
         .status(400)
         .json({ message: `Cart for this customer is not found.` });
     } else {
-      const cartToDelete = await Cart.findOne({ customerId: req.user.id });
+      const cartToDelete = await Cart.findOne({ customerId: req.user._id });
 
-      Cart.deleteOne({ customerId: req.user.id })
+      Cart.deleteOne({ customerId: req.user._id })
         .then((deletedCount) =>
           res.status(200).json({
             message: `Cart witn id "${cartToDelete._id}" is successfully deletes from DB `,
@@ -245,16 +244,13 @@ exports.deleteCart = (req, res, next) => {
 };
 
 exports.deleteProductFromCart = async (req, res, next) => {
-  Cart.findOne({ customerId: req.user.id })
+
+  Cart.findOne({ customerId: req.user._id })
     .then((cart) => {
       if (!cart) {
         res.status(400).json({ message: `Cart does not exist` });
       } else {
-        if (
-          !cart.products.some(
-            (item) => item.product.toString() === req.params.productId
-          )
-        ) {
+        if (!cart.products.some((item) => item.instance._id === req.params.productId)) {
           res.status(400).json({
             message: `Product with _id "${req.params.productId}" is absent in cart.`,
           });
@@ -264,13 +260,13 @@ exports.deleteProductFromCart = async (req, res, next) => {
 
         const cartData = {};
         cartData.products = cart.products.filter(
-          (item) => item.product.toString() !== req.params.productId
+          (item) => item.instance._id !== req.params.productId
         );
 
         const updatedCart = queryCreator(cartData);
 
         if (cartData.products.length === 0) {
-          return Cart.deleteOne({ customerId: req.user.id })
+          return Cart.deleteOne({ customerId: req.user._id })
             .then((deletedCount) =>
               res.status(200).json({
                 products: [],
@@ -284,7 +280,7 @@ exports.deleteProductFromCart = async (req, res, next) => {
         }
 
         Cart.findOneAndUpdate(
-          { customerId: req.user.id },
+          { customerId: req.user._id },
           { $set: updatedCart },
           { new: true }
         )
@@ -306,7 +302,7 @@ exports.deleteProductFromCart = async (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-  Cart.findOne({ customerId: req.user.id })
+  Cart.findOne({ customerId: req.user._id })
     .populate('products.product')
     .populate('customerId')
     .then((cart) => res.json(cart))

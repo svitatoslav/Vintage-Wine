@@ -19,6 +19,7 @@ import SingleCatalog from './components/SingleCatalog/SingleCatalog';
 import SingleProduct from './pages/SingleProduct/SingleProduct';
 import Checkout from './pages/Checkout/Checkout';
 import SingleNews from "./pages/SingleNews/SingleNews";
+import Customer from "./pages/Customer/Customer"
 import Shares from "./pages/Shares/Shares";
 
 import './App.scss';
@@ -34,7 +35,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
-                    <Route path="home" element={<Home />} />
+                    <Route path="/" element={<Home />} />
                     <Route path="about" element={<About />} />
                     <Route path="catalog" element={<Catalog />} />
                     <Route path="catalog/:slug" element={<SingleCatalog />} />
@@ -51,6 +52,7 @@ const App = () => {
 
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/news/:id" element={<SingleNews/>}/>
+                    <Route path="/customer" element={<Customer/>}/>
                 </Route>
             </Routes>
         </>

@@ -38,7 +38,7 @@ const Search = () => {
                 </div>
                 <div className={styles.ProductWrapper}>
                     {shouldShowProducts && filteredProducts.map(product => (
-                        <ProductCard key={product._id} name={product.name} price={product.currentPrice}
+                        <ProductCard data={product} key={product._id} name={product.name} price={product.currentPrice}
                                      img={product.productImg} id={product._id}/>
 
                     ))}

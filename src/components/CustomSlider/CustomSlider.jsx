@@ -11,11 +11,13 @@ import CustomArrowPrev from './icons/CustomArrowPrev';
 import CustomArrowNext from './icons/CustomArrowNext';
 
 import styles from './CustomSlider.module.scss';
+import Button from '../Button/Button';
 
 const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = true}) => {
     const CATALOG_SLIDER = 'CATALOG';
     const COLLECTIONS_SLIDER = 'COLLECTIONS';
     const SINGLE_PRODUCT = 'SINGLE_PRODUCT';
+    const VIEWED_PRODUCTS = 'VIEWED_PRODUCTS';
     const SHARES_PRODUCT = 'SHARES';
 
     const [currentIndex, setCurrentIndex] = useState(toScroll);
@@ -125,10 +127,7 @@ const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = 
 
     const SingleProductSlider = {
         dots: false,
-        infinite: true,
         speed: 1000,
-        slidesToShow: 1,
-        slidesToScroll: 1,
         autoplay: false,
         autoplaySpeed: 3000,
         slidesToShow: 2,
@@ -137,7 +136,53 @@ const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = 
         prevArrow: <SlickArrowLeft/>,
         nextArrow: <SlickArrowRight/>
     };
+    const SingleProductMain = {
+        dots: false,
+        speed: 1000,
+        slidesToShow: 1,
+        autoplay: false,
+        autoplaySpeed: 3000,
+        swipeToSlide: true,
+        arrows: false
+    };
 
+    const viewedProducts = {
+        dots: false,
+        speed: 1000,
+        slidesToShow: toShow,
+        autoplay: false,
+        autoplaySpeed: 3000,
+        swipeToSlide: true,
+        arrows: false,
+        responsive: [
+            {
+                breakpoint: 960,
+                settings: {
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1
+                }
+            },
+            {
+                breakpoint: 460,
+                settings: {
+                    slidesToShow: 1
+                }
+            }
+        ],
+        afterChange: (index) => {
+            setCurrentIndex(index + 1);
+        },
+        ref: sliderRef
+    };
+
+     const handleAddProduct = (id) => {
+         localStorage.setItem('viewedProducts', id);
+     };
     const SliderSharesSettings = {
         dots: false,
         infinite: true,
@@ -221,7 +266,7 @@ const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = 
             )}
             {type === SINGLE_PRODUCT && (
                 <>
-                    <Slider className={styles.singleProductMainSlider} asNavFor={productBodySlider} ref={productMainSlider} arrows={false}>
+                    <Slider className={styles.singleProductMainSlider} asNavFor={productBodySlider} ref={productMainSlider} {...SingleProductMain}>
                         {sliderArray?.map((image, index) => {
                             return (
                                 <div key={index} className={styles.mainSlide}>
@@ -269,9 +314,49 @@ const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = 
                     })}
                 </Slider>
             )}
+            {type === VIEWED_PRODUCTS && (
+                <>
+                    {sliderArray.length > 3 ? (
+                        <Slider {...viewedProducts} className={styles.viewedProductsSlider}>
+                            {sliderArray?.map((slide) => {
+                                return (
+                                    <div className={`${styles.itemSlide} `} key={slide._id}>
+                                        <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
+                                            <img src={`http://localhost:5173${slide.productImg}`} alt={slide.name} />
+                                        </Link>
+                                        <div className={styles.productNav}>
+                                            <h4 className={styles.name}>{slide.name}</h4>
+                                            <p className={styles.price}>{slide.currentPrice}uah</p>
+                                            <Button text="Add to cart" />
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </Slider>
+                    ) : (
+                        <div className={styles.viewedBlock}>
+                            {sliderArray?.map((slide) => {
+                                return (
+                                    <div className={`${styles.itemSlide} `} key={slide._id}>
+                                        <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
+                                            <img src={`http://localhost:5173${slide.productImg}`} alt={slide.name} />
+                                        </Link>
+                                        <div className={styles.productNav}>
+                                            <h4 className={styles.name}>{slide.name}</h4>
+                                            <p className={styles.price}>{slide.currentPrice}uah</p>
+                                            <Button text="Add to cart" />
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                            {(isSlidePagination = false)}
+                        </div>
+                    )}
+                </>
+            )}
 
             {isSlidePagination && (
-                <div className={styles.slickArrows}>
+                <div className={`${styles.slickArrows} ${styles.viewedPagination}`}>
                     <button className="slick-prev slick-arrow" onClick={handlePrevClick}>
                         <PrevArrow/>
                     </button>

@@ -6,6 +6,7 @@ const SELECT_TOUR = 'SELECT_TOUR';
 const initialState = {
   isModalOpen: false,
   isReserved: false,
+  displayedModal: 'reservation',
   selectedTour: null
 };
 
@@ -19,7 +20,7 @@ const modalWindowReducer = (state = initialState, action) => {
   case SWITCH_MODAL:
     return {
       ...state,
-      isReserved: !state.isReserved,
+      displayedModal: action.payload,
     };
   case CANCEL_RESERVED:
     return {
@@ -40,8 +41,9 @@ export const toggleModalAC = () => ({
   type: TOGGLE_OPEN_MODAL,
 });
 
-export const switchModalAC = () => ({
+export const switchModalAC = (modalName) => ({
   type: SWITCH_MODAL,
+  payload: modalName,
 });
 
 export const cancelReservedAC = () => ({

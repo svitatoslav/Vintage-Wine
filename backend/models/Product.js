@@ -32,11 +32,6 @@ const ProductSchema = new Schema(
         productUrl: {
             type: String
         },
-        quantity: {
-            type: Number,
-            required: true,
-            default: 0
-        },
         characteristics: [{ vendorCode: { type: String } }, { grape: { type: String } }, { volume: { type: String } }, { color: { type: String } }, { strength: { type: String } }, { sweetness: { type: String } }, { supplyTemperature: { type: String } }, { manufacturerCountry: { type: String } }],
         productDescription: {
             aroma: { type: String },
