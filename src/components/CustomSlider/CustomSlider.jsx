@@ -244,10 +244,7 @@ const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = 
             {type === SHARES_PRODUCT && (
                 <Slider {...SliderSharesSettings} className={` ${styles.collectionsSharesSlider}`}>
                     {sliderArray?.map((slide) => {
-                        const words = slide.name.split(' ');
-                        const formattedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
-                        const itemLinkShares = formattedWords.join('');
-
+                        const itemLinkShares = slide._id;
                         return (
                             <div className={`${styles.itemSharesSlide}`} key={slide.id}>
                                 <div className={`${styles.imgSharesContainer}`}>
