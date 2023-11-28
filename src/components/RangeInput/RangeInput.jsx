@@ -9,7 +9,6 @@ const RangeInput = () => {
   const { setFieldValue } = useFormikContext();
 
   useEffect(() => {
-    console.log('doit');
     setFieldValue("price", parseInt(value));
   }, [value]);
 

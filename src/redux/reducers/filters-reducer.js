@@ -3,7 +3,7 @@ const UPDATE_LAST_OPTIONS = 'UPDATE_LAST_OPTIONS';
 
 const initialState = {
     filteredProducts: [],
-    lastOptions: null
+    lastOptions: null,
 };
 
 const filtersReducer = (state = initialState, action) => {

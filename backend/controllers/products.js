@@ -142,7 +142,7 @@ exports.getProductsFilterParams = async (req, res, next) => {
   const startPage = Number(req.query.startPage);
   const sort = {};
 
-  console.log(req.query);
+  // console.log(req.query);
 
   switch (req.query.sortBy) {
     case "Alphabetically A-Z":

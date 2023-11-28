@@ -15,7 +15,7 @@ import styles from './FilterGroup.module.scss';
 import { useSearchParams } from 'react-router-dom';
 
 
-const FilterGroup = ({ onClear }) => {
+const FilterGroup = () => {
   const { filter, setFilter, setResetFilters } = useContext(FilterContext);
   const filteredProducts = useSelector(state => state.filters.filteredProducts);
   const [searchParams] = useSearchParams();
@@ -54,9 +54,8 @@ const FilterGroup = ({ onClear }) => {
   }
 
   const clearFilters = () => {
-    setFilter({});
+    setFilter({ categories: searchParams.get("categories") });
     setResetFilters(true);
-    onClear();
   }
 
   return (
@@ -67,10 +66,13 @@ const FilterGroup = ({ onClear }) => {
             <Form className={styles.FilterForm}>
               <div>
                 {
-                  Object.keys(filter).length ? (
-                    <button className={styles.FilterClearBtn} onClick={clearFilters}>
-                      Clear <Clear />
-                    </button>) : null
+                  ((Object.keys(filter).length && !filter.hasOwnProperty('categories')) ||
+                    (Object.keys(filter).length > 1 && filter.hasOwnProperty('categories'))) ?
+                    (
+                      <button className={styles.FilterClearBtn} onClick={clearFilters}>
+                        Clear <Clear />
+                      </button>
+                    ) : null
                 }
                 <ul className={styles.FilterGroup} data-testid="FilterGroup">
 
@@ -92,9 +94,5 @@ const FilterGroup = ({ onClear }) => {
     </div>
   );
 }
-
-FilterGroup.propTypes = {
-  onClear: PropTypes.func.isRequired,
-};
 
 export default FilterGroup;
