@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import Container from "./../Container/Container";
 import Navigation from "../Navigation/Navigation";
 
-
 const Footer = () => {
   return (
     <footer className={styles.Footer}>
@@ -60,6 +59,7 @@ const Footer = () => {
                       className={styles.SearchInput}
                     />
                     <SearchFooter className={styles.SearchLogo} />
+                  
                   </label>
                 </div>
               </div>

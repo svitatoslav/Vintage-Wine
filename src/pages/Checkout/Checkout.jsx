@@ -118,14 +118,17 @@ const Checkout = () => {
                                         <div className={styles.PaymentMethodsImages}>
                                             <div className={styles.CardsImagesContainer}>
                                                 <div className={styles.CardsImages}>
-                                                    <img src="public\imageProject\checkout\six-cards.png" alt="smallCards" />
+                                                    <img src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006680/t5uxihhb8xppi3kiztfi.png" alt="smallCards" />
+                                                    {/* <img src="public\imageProject\checkout\six-cards.png" alt="smallCards" /> */}
                                                 </div>
                                                 <div className={styles.MobilePay}>
-                                                    <img src="public\imageProject\checkout\mobile-pay.png" alt="mobile-pay" />
+                                                    <img src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006680/n3mml70fccu3rmfmne4p.png" alt="mobile-pay" />
+                                                    {/* <img src="public\imageProject\checkout\mobile-pay.png" alt="mobile-pay" /> */}
                                                 </div>
                                             </div>
                                             <div className={styles.CardsImagesBig}>
-                                                <img src="public\imageProject\checkout\nine-cards.png" alt="BigCards" />
+                                                <img src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006680/uebmyasbqb8ifteduybw.png" alt="BigCards" />
+                                                {/* <img src="public\imageProject\checkout\nine-cards.png" alt="BigCards" /> */}
                                             </div>
                                         </div>
                                     </div>
@@ -144,7 +147,8 @@ const Checkout = () => {
                                 </div>
                             ) : (
                                 <div className={styles.ImageAfterSubmite}>
-                                    <img src="public\imageProject\checkout\checkout.png" alt="after submite" />
+                                    <img src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006683/z7j1cej1td8dzuobgxke.png" alt="after submite" />
+                                    {/* <img src="public\imageProject\checkout\checkout.png" alt="after submite" /> */}
                                 </div>
                             )}
                         </Form>

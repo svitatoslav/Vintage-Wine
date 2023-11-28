@@ -4,7 +4,8 @@ import styles from './AboutProduct.module.scss';
 
 const AboutProduct = () => (
     <section className={styles.AboutProduct} data-testid="AboutProduct">
-        <img src="../../../public/imageProject/product/barrels.png" alt="barrels" />
+        <img src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006756/pm6kjel1ed5ruxtbnksv.png" alt="barrels" />
+        {/* <img src="../../../public/imageProject/product/barrels.png" alt="barrels" /> */}
         <div className={styles.content}>
             <p>Can be recommended for collecting. They have a great potential for bottle aging: white wines - at least 5 years, red wines - at least 7 years. Each denomination from 2000 to 5000 bottles per season</p>
             <p>A limited collection of aged still wines. Aging: in oak barrels - 9-12 months and additional aging in bottles.</p>
@@ -35,7 +36,8 @@ const AboutProduct = () => (
                     Wines are aged in oak barrels for 9-12 months Quality control is carried out by SARL Derenoncourt (France) experts.
                 </li>
             </ul>
-            <img src="../../../public/imageProject/product/four-glasses.png" alt="wine image" />
+            <img src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006756/yo8bq5uwgva9i8u2cvjp.png" alt="wine image" />
+            {/* <img src="../../../public/imageProject/product/four-glasses.png" alt="wine image" /> */}
         </div>
     </section>
 );
