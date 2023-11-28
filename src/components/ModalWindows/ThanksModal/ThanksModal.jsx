@@ -15,7 +15,8 @@ const ThanksModal = ({ onClose }) => {
           <Button text="Ok" variant='smallAdaptive' onClick={onClose}/>
         </div>
         <div className={styles.ThanksModalImg}>
-          <img src="imageProject/pop-up/pop-up.png" alt="glass" />
+          <img src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006683/z7j1cej1td8dzuobgxke.png" alt="glass" />
+          {/* <img src="imageProject/pop-up/pop-up.png" alt="glass" /> */}
         </div>
       </div>
     </Container>

@@ -46,7 +46,6 @@ const CartItem = ({ count, product }) => {
           {grape.grape && (
             <p className={styles.SubText}>{grape.grape}, {color.color}</p>
           )}
-          {/* <h3 className={styles.TitleSubname}>Telti-Kuruk, Light-straw</h3> */}
 
           <p className={styles.Text}>{cartDescription}</p>
         </div>
