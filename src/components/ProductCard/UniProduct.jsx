@@ -10,7 +10,8 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import styles from "./UniProduct.module.scss";
 import {
   addOneToExistedProduct,
-  addToCarts, addToCartThunk,
+  addToCarts,
+  addToCartThunk,
   updateCarts,
 } from "../../redux/reducers/cart-reducer";
 import axios from "axios";

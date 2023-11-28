@@ -31,7 +31,7 @@ const rootReducer = combineReducers({
     carts: cartsReducer,
     filters: filtersReducer,
     modal: modalWindowReducer,
-    news: newsReducer
+    news: newsReducer,
 });
 
 const persistConfig = {
