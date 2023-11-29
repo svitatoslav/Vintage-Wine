@@ -15,8 +15,14 @@
 .CountElem {
     font-size: 20px;
     font-family: $main-font;
-
     @media (min-width: $tablet-lg) {
         font-size: 40px;
+    }
+    &:not(p) {
+        cursor: pointer;
+        transition: color 0.4s ease;
+        &:hover {
+            color: $btn-bg;
+        }
     }
 }
