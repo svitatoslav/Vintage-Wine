@@ -38,7 +38,8 @@ module.exports = {
     "react/prop-types": "warn",
     "no-underscore-dangle": "off",
     "react/require-default-props": "warn",
-    "prefer-destructuring": "warn"
+    "prefer-destructuring": "warn",
+    "react/button-has-type": "warn",
     // indent: ['error', 2],
     // semi: ['error', 'always'],
     // quotes: ['error', 'single'],
