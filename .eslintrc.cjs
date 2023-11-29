@@ -37,6 +37,8 @@ module.exports = {
     "import/no-absolute-path": "off",
     "react/prop-types": "warn",
     "no-underscore-dangle": "off",
+    "react/require-default-props": "warn",
+    "prefer-destructuring": "warn"
     // indent: ['error', 2],
     // semi: ['error', 'always'],
     // quotes: ['error', 'single'],
