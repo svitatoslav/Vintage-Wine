@@ -1,4 +1,5 @@
 import cn from "classnames";
+import PropTypes from "prop-types";
 import styles from "./Title.module.scss";
 
 const PageTitle = ({ text, type, extraClass }) => {
@@ -16,6 +17,18 @@ const PageTitle = ({ text, type, extraClass }) => {
       {text}
     </h1>
   );
+};
+
+PageTitle.propTypes = {
+  text: PropTypes.string,
+  type: PropTypes.string,
+  extraClass: PropTypes.string,
+};
+
+PageTitle.defaultProps = {
+  text: "",
+  type: "",
+  extraClass: "",
 };
 
 export default PageTitle;

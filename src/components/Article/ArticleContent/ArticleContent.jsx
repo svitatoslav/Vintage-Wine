@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./ArticleContent.module.scss";
 import Container from "../../Container/Container";
 import Facebook from "/public/imageProject/news/icons/facebook.svg?react";
@@ -27,21 +28,18 @@ const ArticleContent = ({ article }) => {
               <h2 className={styles.Title}>{article.title}</h2>
               <div>
                 <a
-                  className={styles.SvgLink}
                   target="_blank"
                   href="https://twitter.com/?lang=en"
                 >
                   <Linkedin className={styles.Svg} />
                 </a>
                 <a
-                  className={styles.SvgLink}
                   target="_blank"
                   href="https://twitter.com/?lang=en"
                 >
                   <Twitter className={styles.Svg} />
                 </a>
                 <a
-                  className={styles.SvgLink}
                   target="_blank"
                   href="https://twitter.com/?lang=en"
                 >
@@ -64,4 +62,21 @@ const ArticleContent = ({ article }) => {
   );
 };
 
+ArticleContent.propTypes = {
+  article: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.arrayOf(PropTypes.string).isRequired,
+    image: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }),
+};
+
+ArticleContent.defaultProps = {
+  article: {}
+};
+
+
 export default ArticleContent;
+
+

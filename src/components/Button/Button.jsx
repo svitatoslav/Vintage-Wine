@@ -1,5 +1,6 @@
 /* eslint-disable react/button-has-type */
 import cn from "classnames";
+import PropTypes from "prop-types";
 import styles from "./Button.module.scss";
 
 const buttonVariant = {
@@ -38,6 +39,24 @@ const Button = ({
       {text}
     </button>
   );
+};
+
+Button.propTypes = {
+  text: PropTypes.string,
+  onClick: PropTypes.func,
+  type: PropTypes.string,
+  variant: PropTypes.string,
+  color: PropTypes.string,
+  isDisabled: PropTypes.bool,
+};
+
+Button.defaultProps = {
+  text: "",
+  onClick: () => {},
+  type: "button",
+  variant: "default",
+  color: "primary",
+  isDisabled: false,
 };
 
 export default Button;

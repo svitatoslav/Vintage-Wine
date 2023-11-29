@@ -23,6 +23,7 @@ const SingleNews = () => {
     getArticleById();
   }, [id]);
 
+
   if (!article) {
     return null;
   }
