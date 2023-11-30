@@ -5,12 +5,17 @@
   padding: 4px 35px;
   font-size: 15px;
   line-height: 36px;
+  @include transition;
   cursor: pointer;
 
   &:disabled {
     background-color: $secondary-color;
     color: $main-color;
     cursor: default;
+  }
+
+  &:hover {
+    background: $btn-hover;
   }
 
   @media screen and (min-width: $tablet) {

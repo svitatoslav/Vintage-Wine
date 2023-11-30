@@ -47,12 +47,21 @@
     border: 1px solid transparent;
     margin: 0 auto 20px;
     @include transition;
+    cursor: pointer;
 
     @media screen and (min-width: $tablet-xlg) {
         margin: 0 0 20px 0;
     }
 
     &:hover {
-        border: $brd-white;
+        color: $btn-bg;
+    }
+
+    &:hover path {
+        fill: $btn-bg;
+    }
+
+    path {
+        @include transition;
     }
 }
