@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form, Formik } from 'formik';
 import createOptions from '../../helpers/getOptions';
@@ -12,11 +12,15 @@ import RangeInput from '../RangeInput/RangeInput';
 
 import Clear from './icons/clear.svg?react';
 import styles from './FilterGroup.module.scss';
+import { useSearchParams } from 'react-router-dom';
+import { resetAdditionalFiltersAC } from '../../redux/reducers/tabs-reducer';
 
 
-const FilterGroup = ({onClear}) => {
+const FilterGroup = () => {
   const { filter, setFilter, setResetFilters } = useContext(FilterContext);
   const filteredProducts = useSelector(state => state.filters.filteredProducts);
+  const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
 
   const options = Object.values(createOptions(filteredProducts));
   const lastOptions = useSelector(state => state.filters.lastOptions);
@@ -27,8 +31,6 @@ const FilterGroup = ({onClear}) => {
 
     return item;
   });
-
-  console.log(updatedOptions);
 
   const initialValues = {
     sortBy: '',
@@ -54,9 +56,9 @@ const FilterGroup = ({onClear}) => {
   }
 
   const clearFilters = () => {
-    setFilter({});
-    setResetFilters(prev => !prev);
-    onClear();
+    setFilter({ categories: searchParams.get("categories") });
+    setResetFilters(true);
+    dispatch(resetAdditionalFiltersAC());
   }
 
   return (
@@ -67,10 +69,13 @@ const FilterGroup = ({onClear}) => {
             <Form className={styles.FilterForm}>
               <div>
                 {
-                  Object.keys(filter).length ? (
-                    <button className={styles.FilterClearBtn} onClick={clearFilters}>
-                      Clear <Clear />
-                    </button>) : null
+                  ((Object.keys(filter).length && !filter.hasOwnProperty('categories')) ||
+                    (Object.keys(filter).length > 1 && filter.hasOwnProperty('categories'))) ?
+                    (
+                      <button className={styles.FilterClearBtn} onClick={clearFilters}>
+                        Clear <Clear />
+                      </button>
+                    ) : null
                 }
                 <ul className={styles.FilterGroup} data-testid="FilterGroup">
 
@@ -92,9 +97,5 @@ const FilterGroup = ({onClear}) => {
     </div>
   );
 }
-
-FilterGroup.propTypes = {
-  onClear: PropTypes.func.isRequired,
-};
 
 export default FilterGroup;

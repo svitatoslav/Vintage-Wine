@@ -1,19 +1,65 @@
 @import '../../assets/variables/variables';
 @import '../../assets/mixins/mixins';
 
+.FilterBar {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 580px;
+    width: 100%;
+    height: auto;
+    @include flex-ac-sb;
+    margin-bottom: 35px;
+
+    @media screen and (min-width: $tablet-lg) {
+        flex-direction: row;
+        margin-bottom: 75px;
+    }
+
+    @media screen and (min-width: $tablet-xlg) {
+        max-width: 710px;
+    }
+}
+
+
+.FilterBarAllFilters {
+    @include flex-ac;
+    cursor: pointer;
+
+    p {
+        font-family: $secondary-font;
+        font-weight: 400;
+        font-size: 15px;
+        margin-right: 10px;
+        line-height: normal;
+    }
+}
 
 .FilterBarItems {
-    width: 58%;
-    @include flex-ac-sb;
-    padding: 1px;
+    width: 80%;
+    @include flex-cc;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    @media screen and (min-width: $tablet) {
+    }
+
+    @media screen and (min-width: $tablet-lg) {
+        width: 75%;
+        @include flex-ac-sb;
+    }
+
+    @media screen and (min-width: $tablet-xlg) {
+        width: 60%;
+    }
 
     li {
         color: $main-color;
         @include fonts(16px, $secondary-font);
         position: relative;
-        cursor: default;
 
         &:hover {
+
             &::after,
             &::before {
                 content: url("./icons/Shophover.svg");
@@ -29,6 +75,11 @@
                 top: 90%;
             }
         }
+
+        span {
+            padding: 5px;
+            cursor: pointer;
+        }
     }
 
     .Active {
@@ -43,37 +94,5 @@
                 display: none;
             }
         }
-    }
-}
-
-
-.FilterBar {
-    max-width: 580px;
-    width: 100%;
-    height: auto;
-    @include flex-ac-sb;
-    margin-bottom: 75px;
-
-    @media screen and (min-width: $tablet-xlg) {
-        max-width: 710px;
-    }
-}
-
-
-.FilterBarAllFilters {
-    @include flex-ac;
-    margin: 0 auto 35px;
-    cursor: pointer;
-
-    @media screen and (min-width: $tablet-lg) {
-        margin-bottom: 0;
-    }
-
-    p {
-        font-family: $secondary-font;
-        font-weight: 400;
-        font-size: 15px;
-        margin-right: 10px;
-        line-height: normal;
     }
 }
