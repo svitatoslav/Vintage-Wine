@@ -18,6 +18,7 @@ import PageTitle from "../../components/Title/PageTitle";
 import EmptyCartText from "../../components/CartItem/EmptyCartText/EmptyCartText";
 
 import styles from "./Shop.module.scss";
+import { resetOptionAC } from "../../redux/reducers/tabs-reducer";
 
 
 const Filtration = React.lazy(() =>
@@ -37,6 +38,12 @@ const Shop = () => {
   const pathParts = useBreadcrumbs();
   const viewportWidth = useResize();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetOptionAC());
+    }
+  }, []);
 
   useEffect(() => {
     if (resetFilters) {

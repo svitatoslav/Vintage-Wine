@@ -5,16 +5,30 @@ import Arrow from './icons/arrow.svg?react';
 import cn from 'classnames';
 import { useFormikContext } from 'formik';
 import { FilterContext } from '../../contexts/FilterContext';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateLastOptionsAC } from '../../redux/reducers/filters-reducer';
 
 const CustomSelect = ({ option }) => {
-  const { resetFilters, setResetFilters } = useContext(FilterContext);
+  const savedOptions = useSelector(state => state.tabs.options);
+  const { setFilter, resetFilters, setResetFilters } = useContext(FilterContext);
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
   const { setFieldValue } = useFormikContext();
   const dispatch = useDispatch();
   const { label, name, options } = option;
+
+  useEffect(() => {
+    if (Array(savedOptions).length) {
+      setFilter(savedOptions);
+
+      Object.entries(savedOptions).forEach((item) => {
+        const [key, value] = item;
+        if (name === key ) {
+          setSelectedValue({value})
+        }
+      })
+    }
+  }, [])
 
   useEffect(() => {
     const handler = () => setShowMenu(false);

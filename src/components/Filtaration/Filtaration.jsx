@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
 import { updateLastOptionsAC } from "../../redux/reducers/filters-reducer";
-import { changeLinkAC } from "../../redux/reducers/tabs-reducer";
+import { changeLinkAC, changeOptionAC } from "../../redux/reducers/tabs-reducer";
 import { FilterContext } from "../../contexts/FilterContext";
 import { sendGetRequest } from "../../helpers/api/sendGetRequest";
 import FilterGroup from "../FilterGroup/FilterGroup";
@@ -17,7 +17,7 @@ import { useSearchParams } from "react-router-dom";
 const Filtration = () => {
     const { setFilter, setResetFilters } = useContext(FilterContext);
     const currentLink = useSelector(state => state.tabs.currentLink);
-    const [links, setLinks] = useState([{id: 0, name: "All"}]);
+    const [links, setLinks] = useState([{ id: 0, name: "All" }]);
     const [allFilters, setAallFilters] = useState(false);
     const [searchParams] = useSearchParams();
     const dispatch = useDispatch();
@@ -28,9 +28,21 @@ const Filtration = () => {
             setLinks(prevLinks => [...prevLinks, ...catalogLinks]);
         })();
 
-        if (Object.fromEntries(searchParams.entries()).categories) {
-            dispatch(changeLinkAC(Object.fromEntries(searchParams.entries()).categories));
+        if (searchParams.get("categories")) {
+            dispatch(changeLinkAC(searchParams.get("categories")));
         }
+
+        const except = ['perPage', 'startPage', 'categories'];
+        const vals = Array.from(searchParams.entries()).filter((item) => !except.includes(item[0])).map(([key, value]) => ({ [key]: value }))
+
+        
+
+        let obj = {};
+        vals?.forEach((object) =>{
+            obj = {...obj, ...object}
+        });
+
+        dispatch(changeOptionAC(obj));
     }, []);
 
     const handleAllFilters = () => setAallFilters(prev => !prev);
