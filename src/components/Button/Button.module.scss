@@ -13,6 +13,9 @@
     color: $main-color;
     cursor: default;
   }
+  &:disabled:hover {
+    background-color: $secondary-color
+  }
 
   &:hover {
     background: $btn-hover;
