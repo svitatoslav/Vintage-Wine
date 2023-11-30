@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form, Formik } from 'formik';
 import createOptions from '../../helpers/getOptions';
@@ -13,11 +13,13 @@ import RangeInput from '../RangeInput/RangeInput';
 import Clear from './icons/clear.svg?react';
 import styles from './FilterGroup.module.scss';
 import { useSearchParams } from 'react-router-dom';
+import { resetAdditionalFiltersAC } from '../../redux/reducers/tabs-reducer';
 
 
 const FilterGroup = () => {
   const { filter, setFilter, setResetFilters } = useContext(FilterContext);
   const filteredProducts = useSelector(state => state.filters.filteredProducts);
+  const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
 
   const options = Object.values(createOptions(filteredProducts));
@@ -56,6 +58,7 @@ const FilterGroup = () => {
   const clearFilters = () => {
     setFilter({ categories: searchParams.get("categories") });
     setResetFilters(true);
+    dispatch(resetAdditionalFiltersAC());
   }
 
   return (

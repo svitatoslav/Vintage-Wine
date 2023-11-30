@@ -18,7 +18,7 @@ import PageTitle from "../../components/Title/PageTitle";
 import EmptyCartText from "../../components/CartItem/EmptyCartText/EmptyCartText";
 
 import styles from "./Shop.module.scss";
-import { resetOptionAC } from "../../redux/reducers/tabs-reducer";
+import { resetAllFiltersAC } from "../../redux/reducers/tabs-reducer";
 
 
 const Filtration = React.lazy(() =>
@@ -41,7 +41,7 @@ const Shop = () => {
 
   useEffect(() => {
     return () => {
-      dispatch(resetOptionAC());
+      dispatch(resetAllFiltersAC());
     }
   }, []);
 

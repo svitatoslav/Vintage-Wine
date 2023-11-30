@@ -40,7 +40,9 @@ module.exports = function filterParser(filtersQueryString) {
         };
       } else if (!excludedParams.includes(filterParam)) {
         mongooseQuery[filterParam] = decodeURI(filtersQueryString[filterParam]);
-        if (mongooseQuery[filterParam] === 'all') return {};
+        if (mongooseQuery[filterParam] === 'all') {
+          delete mongooseQuery.categories;
+        }
       }
 
       return mongooseQuery;

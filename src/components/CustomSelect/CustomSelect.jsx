@@ -10,7 +10,7 @@ import { updateLastOptionsAC } from '../../redux/reducers/filters-reducer';
 
 const CustomSelect = ({ option }) => {
   const savedOptions = useSelector(state => state.tabs.options);
-  const { setFilter, resetFilters, setResetFilters } = useContext(FilterContext);
+  const { resetFilters, setResetFilters } = useContext(FilterContext);
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
   const { setFieldValue } = useFormikContext();
@@ -19,8 +19,6 @@ const CustomSelect = ({ option }) => {
 
   useEffect(() => {
     if (Array(savedOptions).length) {
-      setFilter(savedOptions);
-
       Object.entries(savedOptions).forEach((item) => {
         const [key, value] = item;
         if (name === key ) {

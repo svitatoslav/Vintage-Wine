@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
 import { updateLastOptionsAC } from "../../redux/reducers/filters-reducer";
-import { changeLinkAC, changeOptionAC } from "../../redux/reducers/tabs-reducer";
+import { changeLinkAC, changeOptionAC, changeRangeAC } from "../../redux/reducers/tabs-reducer";
 import { FilterContext } from "../../contexts/FilterContext";
 import { sendGetRequest } from "../../helpers/api/sendGetRequest";
 import FilterGroup from "../FilterGroup/FilterGroup";
@@ -33,15 +33,16 @@ const Filtration = () => {
         }
 
         const except = ['perPage', 'startPage', 'categories'];
-        const vals = Array.from(searchParams.entries()).filter((item) => !except.includes(item[0])).map(([key, value]) => ({ [key]: value }))
-
-        
+        const vals = Array.from(searchParams.entries()).filter((item) => !except.includes(item[0])).map(([key, value]) => ({ [key]: value }));
 
         let obj = {};
-        vals?.forEach((object) =>{
-            obj = {...obj, ...object}
+        vals?.forEach((object) => {
+            obj = {...obj, ...object};
         });
-
+        if (obj.price) {
+            dispatch(changeRangeAC(obj.price));
+        }
+        setFilter(obj);
         dispatch(changeOptionAC(obj));
     }, []);
 
