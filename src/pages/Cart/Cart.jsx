@@ -43,9 +43,10 @@ const Cart = () => {
         >
           <TotalPrice />
           <div className={styles.FinalBtn}>
-            <Link to={"/shop"}>
-              <Button text={"Continue shopping"} />
-            </Link>
+            <Button
+              onClick={() => navigate("/shop")}
+              text={"Continue shopping"}
+            />
             <Button
               isDisabled={carts.length === 0}
               className={styles.Continue}
