@@ -29,6 +29,7 @@ const ProductCard = ({ price, name, img, id, data }) => {
     <div className={styles.ProductCard} data-testid="ProductCard">
       <Link onClick={handleAddProduct} to={`/shop/${id}`}>
         <img className={styles.Img} src={img} alt={`Image of ${name}`} />
+        {/* <img className={styles.Img} src={img} alt={`Image of ${name}`} /> */}
       </Link>
       <div>
         <p className={styles.Text}>{name}</p>

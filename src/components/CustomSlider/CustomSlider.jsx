@@ -254,7 +254,8 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                                 return (
                                     <div className={`${styles.itemSlide} `} key={slide._id}>
                                         <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
-                                            <img src={`http://localhost:5173${slide.productImg}`} alt={slide.name} />
+                                            <img src={`${slide.productImg}`} alt={slide.name} />
+                                            {/* <img src={`http://localhost:5173${slide.productImg}`} alt={slide.name} /> */}
                                         </Link>
                                         <div className={styles.productNav}>
                                             <h4 className={styles.name}>{slide.name}</h4>
@@ -271,7 +272,8 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                                 return (
                                     <div className={`${styles.itemSlide} `} key={slide._id}>
                                         <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
-                                            <img src={`http://localhost:5173${slide.productImg}`} alt={slide.name} />
+                                            <img src={`${slide.productImg}`} alt={slide.name} />
+                                            {/* <img src={`http://localhost:5173${slide.productImg}`} alt={slide.name} /> */}
                                         </Link>
                                         <div className={styles.productNav}>
                                             <h4 className={styles.name}>{slide.name}</h4>

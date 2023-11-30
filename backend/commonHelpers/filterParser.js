@@ -2,7 +2,7 @@ const excludedParams = ["perPage", "startPage", "minPrice", "maxPrice", "sortBy"
 
 module.exports = function filterParser(filtersQueryString) {
 
-  const mongooseQuery = filtersQueryString.category ? { category: query.category } : {};
+  const mongooseQuery = {};
 
   if (filtersQueryString.color) {
     mongooseQuery["characteristics.color"] = filtersQueryString.color;
@@ -40,6 +40,9 @@ module.exports = function filterParser(filtersQueryString) {
         };
       } else if (!excludedParams.includes(filterParam)) {
         mongooseQuery[filterParam] = decodeURI(filtersQueryString[filterParam]);
+        if (mongooseQuery[filterParam] === 'all') {
+          delete mongooseQuery.categories;
+        }
       }
 
       return mongooseQuery;

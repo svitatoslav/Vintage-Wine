@@ -33,7 +33,8 @@ const SingleProduct = () => {
         return text.replace(/([A-Z])/g, ' $1');
     };
 
-    const sliderImages = singleItem?.slidesImageUrls?.map((item) => `http://localhost:5173/${item}`);
+    const sliderImages = singleItem?.slidesImageUrls?.map((item) => `${item}`);
+    // const sliderImages = singleItem?.slidesImageUrls?.map((item) => `http://localhost:5173/${item}`);
 
     const handleAddToCart = (e) => {
         e.preventDefault();

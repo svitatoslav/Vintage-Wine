@@ -160,9 +160,11 @@ exports.getProductsFilterParams = async (req, res, next) => {
       .limit(perPage)
       .sort(sort);
 
+    const allProducts = await Product.find(mongooseQuery);
+
     const productsQuantity = await Product.find(mongooseQuery);
 
-    res.json({ products, productsQuantity: productsQuantity.length });
+    res.json({ allProducts, products, productsQuantity: productsQuantity.length });
   } catch (err) {
     res.status(400).json({
       message: `Error happened on server: "${err}" `
