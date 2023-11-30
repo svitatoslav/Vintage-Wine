@@ -22,17 +22,18 @@ import fetchViewedProductsReducer from "../reducers/fetchViewedProducts-reducer"
 import tabsReducer from "../reducers/tabs-reducer";
 
 const rootReducer = combineReducers({
-  viewedProducts: fetchViewedProductsReducer,
-  products: productsReducer,
-  catalog: catalogReducer,
-  collections: collectionsReducer,
-  user: authorizationReducer,
-  mobileMenu: mobileMenuReducer,
-  carts: cartsReducer,
-  filters: filtersReducer,
-  modal: modalWindowReducer,
-  news: newsReducer,
-  tabs: tabsReducer,
+    fetchViewedProducts: fetchViewedProductsReducer,
+    // viewedProducts: fetchViewedProductsReducer,
+    products: productsReducer,
+    catalog: catalogReducer,
+    collections: collectionsReducer,
+    user: authorizationReducer,
+    mobileMenu: mobileMenuReducer,
+    carts: cartsReducer,
+    filters: filtersReducer,
+    modal: modalWindowReducer,
+    news: newsReducer,
+    tabs: tabsReducer,
 });
 
 const persistConfig = {

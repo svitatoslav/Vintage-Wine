@@ -1,6 +1,7 @@
 const SET_USER = 'SET_USER';
 const SET_TOKEN = 'SET_TOKEN';
 const SIGN_IN = 'SIGN_IN';
+const SIGN_OUT = 'SIGN_OUT'
 
 const initialState = {
   user: null,
@@ -25,6 +26,12 @@ const authorizationReducer = (state = initialState, action) => {
       ...state,
       isSigned: !state.isSigned,
     };
+    case SIGN_OUT:
+      return {
+        ...state,
+        user: null,
+        token:null,
+      }
   default:
     return state;
   }
@@ -42,6 +49,10 @@ export const setTokenAC = (token) => ({
 
 export const signInAC = () => ({
   type: SIGN_IN,
+});
+
+export const signOutAC = () => ({
+  type: SIGN_OUT,
 });
 
 export default authorizationReducer;

@@ -9,6 +9,10 @@
     font-weight: 400;
     margin-bottom: 40px;
     padding: 0 10px;
+
+    @media screen and (min-width: $tablet-lg) {
+        margin-bottom: 100px;
+    }
 }
 
 .ShopImagesContainer {
@@ -71,9 +75,6 @@
         grid-template-columns: 1fr 1fr;
     }
 }
-
-//
-
 
 .Pagination {
     display: flex;

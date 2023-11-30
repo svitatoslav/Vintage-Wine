@@ -230,8 +230,25 @@
     }
     .itemSlide {
         text-align: center;
-        min-height: 740px;
+        height: 535px;
         margin-bottom: 30px;
+        position: relative;
+        @media screen and (min-width: $tablet) {
+            height: 625px;
+        }
+        @media screen and (min-width: $tablet-lg) {
+            height: 730px;
+        }
+        @media screen and (min-width: $tablet-xlg) {
+            height: 740px;
+        }
+        .productNav {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
         img {
             height: 100%;
             object-fit: cover;
@@ -243,11 +260,15 @@
             }
             @media screen and (min-width: $tablet-lg) {
                 width: 95%;
+                height: 530px;
+            }
+            @media screen and (min-width: $tablet-xlg) {
+                width: 95%;
                 height: 540px;
             }
             @media screen and (min-width: $desktop) {
                 object-fit: cover;
-                width: 380px;
+                width: 350px;
                 margin-bottom: 15px;
             }
         }
@@ -272,18 +293,33 @@
     align-items: center;
     justify-content: center;
     @media screen and (min-width: $tablet-lg) {
-       flex-direction: row;
-       justify-content: space-between;
-       align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
     }
     .itemSlide {
+        position: relative;
+        height: 535px;
         text-align: center;
         margin-bottom: 30px;
         @media screen and (min-width: $tablet) {
             width: 70%;
+            height: 625px;
         }
         @media screen and (min-width: $tablet-lg) {
+            width: 40%;
+            height: 730px;
+        }
+        @media screen and (min-width: $tablet-xlg) {
             width: 30%;
+            height: 740px;
+        }
+        .productNav {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
         img {
             height: 100%;
@@ -296,11 +332,15 @@
             }
             @media screen and (min-width: $tablet-lg) {
                 width: 95%;
+                height: 530px;
+            }
+            @media screen and (min-width: $tablet-xlg) {
+                width: 95%;
                 height: 540px;
             }
             @media screen and (min-width: $desktop) {
                 object-fit: cover;
-                width: 380px;
+                width: 100%;
                 margin-bottom: 15px;
             }
         }
@@ -320,5 +360,3 @@
 .viewedPagination {
     align-self: center;
 }
-
-
