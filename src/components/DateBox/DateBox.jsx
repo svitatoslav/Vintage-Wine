@@ -1,25 +1,26 @@
-import styles from './DateBox.module.scss';
-import {useDispatch, useSelector} from "react-redux";
+import PropTypes from "prop-types";
+import styles from "./DateBox.module.scss";
 
 const formatter = new Intl.DateTimeFormat("en-US", {
-    month: "long",
-    day: "numeric"
+  month: "long",
+  day: "numeric",
 });
-const DateBox = ({date}) => {
-    const dispatch = useDispatch()
-    const news = useSelector((state) => state.news.news)
+const DateBox = ({ date }) => {
+  const formatedDate = formatter.formatToParts(new Date(date));
+  const month = formatedDate[0]?.value;
+  const day = formatedDate[2]?.value;
 
-    const formatedDate = formatter.formatToParts(new Date(date))
-    const month = formatedDate[0].value
-    const day = formatedDate[2].value
-
-    return (
-
-        <div className={styles.DateBox} data-testid="DateBox">
-            <p className={styles.Date}>Date <span className={styles.Month}>{day}</span> <span> {month} </span></p>
-        </div>
-    )
+  return (
+    <div className={styles.DateBox} data-testid="DateBox">
+      <p className={styles.Date}>
+        Date <span className={styles.Month}>{day}</span> <span> {month} </span>
+      </p>
+    </div>
+  );
 };
 
+DateBox.propTypes = {
+  date: PropTypes.string.isRequired,
+};
 
 export default DateBox;

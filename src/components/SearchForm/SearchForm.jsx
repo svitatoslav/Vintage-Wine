@@ -1,13 +1,10 @@
-import styles from "./SearchForm.module.scss";
-import Button from "../Button/Button";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterProducts } from "../../redux/reducers/products-reducer";
-import { logIn } from "passport/lib/http/request";
 import { Link, useSearchParams } from "react-router-dom";
+import styles from "./SearchForm.module.scss";
+import { filterProducts } from "../../redux/reducers/products-reducer";
 import useDebounce from "../../hooks/useDebounce";
 import useClickOutside from "../../hooks/useClickOutside";
-import { formatProductLink } from "../../helpers/formatProductLink";
 
 const SearchForm = () => {
   const dispatch = useDispatch();
@@ -15,7 +12,7 @@ const SearchForm = () => {
   const [isInputActive, setIsInputActive] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState(searchParams.get("query") ?? "");
-  const debouncedValue = useDebounce(searchTerm, 300);
+  const debouncedValue = useDebounce(searchTerm, 250);
 
   const wrapperRef = useRef(null);
   useClickOutside(wrapperRef, () => {
@@ -31,12 +28,13 @@ const SearchForm = () => {
   };
 
   useEffect(() => {
-    dispatch(filterProducts(debouncedValue));
-
-    setSearchParams({
-      query: debouncedValue,
-    });
-  }, [debouncedValue]);
+    if (searchTerm.length >= 2) {
+      dispatch(filterProducts(debouncedValue));
+      setSearchParams({
+        query: debouncedValue,
+      });
+    }
+  }, [debouncedValue, dispatch, setSearchParams]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -65,7 +63,7 @@ const SearchForm = () => {
       />
       {isDropDownOpen && (
         <ul className={styles.List}>
-          {limitedProducts.length > 0 ? (
+          {limitedProducts.length > 0 && searchTerm.length >= 2 ? (
             limitedProducts.map((product) => (
               <li key={product._id}>
                 <Link
