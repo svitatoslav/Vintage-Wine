@@ -1,0 +1,175 @@
+@import '../../../assets/mixins/mixins';
+@import '../../../assets/variables/variables';
+
+.CartPopupWrapper {
+    width: 100%;
+    max-height: 70%;
+    position: absolute;
+    right: 0;
+    top: 15px;
+    padding: 30px 20px;
+    background: #fff;
+    color: #000;
+    overflow-y: scroll;
+    animation-duration: 0.5s;
+    @media screen and (min-width: $tablet) {
+        max-width: 480px;
+    }
+    @media screen and (min-width: $tablet-lg) {
+        max-width: 600px;
+    }
+    @media screen and (min-width: $tablet-xlg) {
+        min-width: 800px;
+        right: 100px;
+        padding: 65px 20px;
+    }
+}
+
+.CartPopupWrapper.show {
+    display: block;
+    @include fadeIn(0.3s, .5s);
+}
+
+.CartPopupWrapper::-webkit-scrollbar {
+    width: 12px;
+}
+
+.CartPopupWrapper::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+}
+
+.CartPopupWrapper::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+.CartPopupWrapper::-webkit-scrollbar-thumb:hover {
+    background-color: $btn-bg;
+}
+.closePopupIcon {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    @include transition;
+    &:hover {
+        color: $btn-bg;
+        @include transition;
+    }
+}
+.List {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.cartNavigation {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @media screen and (min-width: $tablet-xlg) {
+        margin-top: 80px;
+        flex-direction: row;
+    }
+    .clearCart {
+        cursor: pointer;
+        @include transition;
+        @include flex-cc;
+        font-size: 20px;
+        gap: 15px;
+        order: 1;
+        &:hover {
+            color: $btn-bg;
+            @include transition;
+        }
+        @media screen and (min-width: $tablet-xlg) {
+            align-self: flex-end;
+            order: -1;
+        }
+        .clearCartIcon {
+            height: 27px;
+        }
+    }
+    .FinalBtn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 30px;
+        @media screen and (min-width: $tablet-xlg) {
+            align-items: flex-start;
+            margin-bottom: 0;
+        }
+        button {
+            padding: 14px 20px;
+            font-size: 20px;
+            @media screen and (min-width: $tablet-xlg) {
+                padding: 14px 0;
+            }
+        }
+        .totalPrice {
+            margin-bottom: 20px;
+            p {
+                @include flex-cc;
+                gap: 5px;
+                font-family: $main-font;
+                font-size: 20px;
+                .value {
+                    font-size: 40px;
+                }
+                .valuta {
+                    text-transform: uppercase;
+                    align-self: flex-end;
+                }
+            }
+        }
+    }
+}
+
+.applyClearCart {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.8);
+    padding-top: 20%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+    .applyText {
+        font-family: $main-font;
+        font-weight: 700;
+        color: $main-color;
+        font-size: 25px;
+        padding: 0 10px;
+        @media screen and (min-width: $tablet-lg) {
+            font-size: 40px;
+        }
+    }
+    .applyBtns {
+        @include flex-cc;
+        gap: 30px;
+        button {
+            padding: 10px 40px;
+            min-width: inherit;
+            border: 1px solid transparent;
+            @include transition;
+            &:hover {
+                background-color: transparent;
+                color: #be0615;
+                border: 1px solid #be0615;
+                @include transition;
+            }
+        }
+    }
+}
+
+.applyClearCart.show {
+    @include fadeIn(.3s, .3s);
+}
+.applyClearCart.hide {
+    @include fadeOut(.3s);
+}

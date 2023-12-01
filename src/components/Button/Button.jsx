@@ -9,15 +9,16 @@ const buttonVariant = {
     xSmall: styles.xSmall,
     default: styles.Button,
     big: styles.BigButton,
-    smallBasket: styles.SmallBasket
+    smallBasket: styles.SmallBasket,
+    inCart: styles.InCartBtn
 }
 
 const buttonColor = {
     primary: styles.Primary,
     secondary: styles.Secondary,
     transparent: styles.Transparent,
-    gray: styles.GrayBtn
-}
+    gray: styles.GrayBtn,
+};
  const Button = ({text, onClick,type="button",  variant = "default", color = "primary", isDisabled = false}) => {
 
     return (
