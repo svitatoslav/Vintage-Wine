@@ -12,6 +12,9 @@ import CustomArrowNext from './icons/CustomArrowNext';
 
 import styles from './CustomSlider.module.scss';
 import Button from '../Button/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { addOneToExistedProduct, updateCarts } from '../../redux/reducers/cart-reducer';
+import { switchModalAC, toggleModalAC } from '../../redux/reducers/modalWindow-reducer';
 
 const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination = true }) => {
     const CATALOG_SLIDER = 'CATALOG';
@@ -179,10 +182,27 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
         ref: sliderRef
     };
 
-     const handleAddProduct = (id) => {
-         localStorage.setItem('viewedProducts', id);
-     };
+    const handleAddProduct = (id) => {
+        localStorage.setItem('viewedProducts', id);
+    };
 
+    const dispatch = useDispatch();
+    const cart = useSelector((state) => state.carts.carts);
+
+    const handleAddToCart = (viewedProduct) => {
+        const itemInCart = cart?.find(({ instance }) => instance._id === viewedProduct._id);
+        if (itemInCart) {
+            dispatch(addOneToExistedProduct(viewedProduct._id));
+        } else {
+            dispatch(updateCarts([{ quantity: 1, instance: viewedProduct }]));
+        }
+    };
+
+    const handleCartPopup = () => {
+        dispatch(toggleModalAC());
+        dispatch(switchModalAC('cartPopup'));
+    };
+    const cardProductsId = cart.map((item) => item.instance._id);
     return (
         <>
             {type === CATALOG_SLIDER && (
@@ -254,12 +274,24 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                                 return (
                                     <div className={`${styles.itemSlide} `} key={slide._id}>
                                         <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
-                                            <img src={`http://localhost:5173${slide.productImg}`} alt={slide.name} />
+                                            <img src={slide.productImg} alt={slide.name} />
                                         </Link>
                                         <div className={styles.productNav}>
-                                            <h4 className={styles.name}>{slide.name}</h4>
+                                            <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
+                                                <h4 className={styles.name}>{slide.name}</h4>
+                                            </Link>
                                             <p className={styles.price}>{slide.currentPrice}uah</p>
-                                            <Button text="Add to cart" />
+
+                                            {cardProductsId.find((productId) => productId === slide._id) ? (
+                                                <Button text="In cart" type="xSmall" variant="inCart" onClick={handleCartPopup} />
+                                            ) : (
+                                                <Button
+                                                    text="Add to cart"
+                                                    onClick={() => {
+                                                        handleAddToCart(slide);
+                                                    }}
+                                                />
+                                            )}
                                         </div>
                                     </div>
                                 );
@@ -271,12 +303,23 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                                 return (
                                     <div className={`${styles.itemSlide} `} key={slide._id}>
                                         <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
-                                            <img src={`http://localhost:5173${slide.productImg}`} alt={slide.name} />
+                                            <img src={slide.productImg} alt={slide.name} />
                                         </Link>
                                         <div className={styles.productNav}>
-                                            <h4 className={styles.name}>{slide.name}</h4>
+                                            <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
+                                                <h4 className={styles.name}>{slide.name}</h4>
+                                            </Link>
                                             <p className={styles.price}>{slide.currentPrice}uah</p>
-                                            <Button text="Add to cart" />
+                                            {cardProductsId.find((productId) => productId === slide._id) ? (
+                                                <Button text="In cart" type="xSmall" variant="inCart" onClick={handleCartPopup} />
+                                            ) : (
+                                                <Button
+                                                    text="Add to cart"
+                                                    onClick={() => {
+                                                        handleAddToCart(slide);
+                                                    }}
+                                                />
+                                            )}
                                         </div>
                                     </div>
                                 );

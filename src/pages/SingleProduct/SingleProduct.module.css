@@ -1,0 +1,362 @@
+@font-face {
+  font-family: 'GillSans';
+  src: url("./src/assets/fonts/GillSans.otf");
+  font-style: regular;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'GillSans';
+  src: url("./src/assets/fonts/GillSans.otf");
+  font-style: regular;
+  font-weight: 400;
+}
+
+.singleProduct {
+  margin-top: 45px;
+}
+
+.singleProduct .productName {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+@media screen and (min-width: 1000px) {
+  .singleProduct .productName {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+}
+
+.singleProduct .wrapperProductData {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+  gap: 25px;
+}
+
+@media screen and (min-width: 768px) {
+  .singleProduct .wrapperProductData {
+    margin-bottom: 70px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .singleProduct .wrapperProductData {
+    gap: 30px;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+  }
+}
+
+@media screen and (min-width: 1160px) {
+  .singleProduct .wrapperProductData {
+    gap: 55px;
+  }
+}
+
+.singleProduct .wrapperProductData .productImg {
+  width: 100%;
+}
+
+@media screen and (min-width: 480px) {
+  .singleProduct .wrapperProductData .productImg {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .singleProduct .wrapperProductData .productImg {
+    margin-bottom: 70px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .singleProduct .wrapperProductData .productImg {
+    max-width: 400px;
+    width: 500px;
+  }
+}
+
+@media screen and (min-width: 1160px) {
+  .singleProduct .wrapperProductData .productImg {
+    max-width: 500px;
+    width: 500px;
+  }
+}
+
+.singleProduct .wrapperProductData .productInfo {
+  width: 100%;
+}
+
+.singleProduct .wrapperProductData .productInfo .productNameSmall {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .singleProduct .wrapperProductData .productInfo .productNameSmall {
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .singleProduct .wrapperProductData .productInfo .productNameSmall {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+.singleProduct .wrapperProductData .productInfo .collectionsData {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #909090;
+  margin-bottom: 50px;
+}
+
+@media screen and (min-width: 480px) {
+  .singleProduct .wrapperProductData .productInfo .collectionsData {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .singleProduct .wrapperProductData .productInfo .collectionsData {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.singleProduct .wrapperProductData .productInfo .collectionsData p {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .singleProduct .wrapperProductData .productInfo .collectionsData p {
+    font-size: 16px;
+  }
+}
+
+.singleProduct .wrapperProductData .productInfo .collectionsData p .collectionSpan {
+  margin-left: 15px;
+}
+
+.singleProduct .wrapperProductData .productInfo .cartData {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+  gap: 25px;
+}
+
+@media screen and (min-width: 768px) {
+  .singleProduct .wrapperProductData .productInfo .cartData {
+    justify-content: space-around;
+    margin-bottom: 75px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .singleProduct .wrapperProductData .productInfo .cartData {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 80px;
+    margin-bottom: 70px;
+  }
+}
+
+.singleProduct .wrapperProductData .productInfo .cartData .wrapperPrice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 40px;
+  width: 80%;
+}
+
+@media screen and (min-width: 480px) {
+  .singleProduct .wrapperProductData .productInfo .cartData .wrapperPrice {
+    justify-content: space-evenly;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .singleProduct .wrapperProductData .productInfo .cartData .wrapperPrice {
+    flex-wrap: nowrap;
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .singleProduct .wrapperProductData .productInfo .cartData .wrapperPrice {
+    gap: 30px;
+    width: auto;
+  }
+}
+
+@media screen and (min-width: 1160px) {
+  .singleProduct .wrapperProductData .productInfo .cartData .wrapperPrice {
+    gap: 80px;
+  }
+}
+
+.singleProduct .wrapperProductData .productInfo .cartData .wrapperPrice .price .valuta {
+  font-size: 20px;
+}
+
+.singleProduct .wrapperProductData .productInfo .cartData .wrapperPrice .quantityWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 13px;
+}
+
+.singleProduct .wrapperProductData .productInfo .cartData .wrapperPrice .quantityWrapper .minus,
+.singleProduct .wrapperProductData .productInfo .cartData .wrapperPrice .quantityWrapper .plus {
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+}
+
+.singleProduct .wrapperProductData .productInfo .cartData .wrapperPrice .quantityWrapper .minus:hover,
+.singleProduct .wrapperProductData .productInfo .cartData .wrapperPrice .quantityWrapper .plus:hover {
+  transition: all .3s ease-in-out;
+  color: #BE0615;
+}
+
+@media screen and (min-width: 1000px) {
+  .singleProduct .wrapperProductData .productInfo .cartData button {
+    padding: 14px 35px;
+  }
+}
+
+.singleProduct .wrapperProductData .productInfo .shortDescription {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.singleProduct .wrapperProductData .productInfo .shortDescription .titles {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.singleProduct .wrapperProductData .productInfo .shortDescription .titles h5 {
+  font-size: 20px;
+  padding-bottom: 25px;
+  text-align: center;
+  width: 50%;
+  border-bottom: 1px solid #fff;
+}
+
+@media screen and (min-width: 480px) {
+  .singleProduct .wrapperProductData .productInfo .shortDescription .titles h5 {
+    font-size: 30px;
+  }
+}
+
+.singleProduct .wrapperProductData .productInfo .shortDescription .titles h5:first-child {
+  border-right: 1px solid #fff;
+}
+
+@media screen and (min-width: 1000px) {
+  .singleProduct .wrapperProductData .productInfo .shortDescription .titles h5 {
+    font-size: 40px;
+  }
+}
+
+.singleProduct .wrapperProductData .productInfo .shortDescription .text {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 12px;
+}
+
+@media screen and (min-width: 1000px) {
+  .singleProduct .wrapperProductData .productInfo .shortDescription .text {
+    font-size: 16px;
+    margin-bottom: 85px;
+  }
+}
+
+.singleProduct .wrapperProductData .productInfo .shortDescription .text p {
+  font-size: 12px;
+  width: 50%;
+}
+
+@media screen and (min-width: 480px) {
+  .singleProduct .wrapperProductData .productInfo .shortDescription .text p {
+    font-size: 16px;
+  }
+}
+
+.singleProduct .wrapperProductData .productInfo .mainInfo .titleInfo {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+@media screen and (min-width: 480px) {
+  .singleProduct .wrapperProductData .productInfo .mainInfo .titleInfo {
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .singleProduct .wrapperProductData .productInfo .mainInfo .titleInfo {
+    margin-bottom: 60px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .singleProduct .wrapperProductData .productInfo .mainInfo .titleInfo {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+}
+
+.singleProduct .wrapperProductData .productInfo .mainInfo .characteristics li {
+  border-bottom: 1px solid #fff;
+  padding: 20px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.singleProduct .wrapperProductData .productInfo .mainInfo .characteristics li .key {
+  width: 60%;
+  text-transform: capitalize;
+}
+
+.singleProduct .wrapperProductData .productInfo .mainInfo .characteristics li .value {
+  width: 40%;
+  text-align: right;
+}
+
+@media screen and (min-width: 1000px) {
+  .singleProduct .wrapperProductData .productInfo .mainInfo .characteristics li .value {
+    text-align: left;
+  }
+}

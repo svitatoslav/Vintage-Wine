@@ -1,0 +1,272 @@
+@font-face {
+  font-family: 'GillSans';
+  src: url("./src/assets/fonts/GillSans.otf");
+  font-style: regular;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'GillSans';
+  src: url("./src/assets/fonts/GillSans.otf");
+  font-style: regular;
+  font-weight: 400;
+}
+
+.CartPopupWrapper {
+  width: 100%;
+  max-height: 70%;
+  position: absolute;
+  right: 0;
+  top: 15px;
+  padding: 30px 20px;
+  background: #fff;
+  color: #000;
+  overflow-y: scroll;
+  animation-duration: 0.5s;
+}
+
+@media screen and (min-width: 480px) {
+  .CartPopupWrapper {
+    max-width: 480px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .CartPopupWrapper {
+    max-width: 600px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .CartPopupWrapper {
+    min-width: 800px;
+    right: 100px;
+    padding: 65px 20px;
+  }
+}
+
+.CartPopupWrapper.show {
+  display: block;
+  animation-name: fadeInAnimation;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: both;
+  animation-delay: 0.5s;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.CartPopupWrapper::-webkit-scrollbar {
+  width: 12px;
+}
+
+.CartPopupWrapper::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 6px;
+}
+
+.CartPopupWrapper::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.CartPopupWrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #BE0615;
+}
+
+.closePopupIcon {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+.closePopupIcon:hover {
+  color: #BE0615;
+  transition: all .3s ease-in-out;
+}
+
+.List {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cartNavigation {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 1000px) {
+  .cartNavigation {
+    margin-top: 80px;
+    flex-direction: row;
+  }
+}
+
+.cartNavigation .clearCart {
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  gap: 15px;
+  order: 1;
+}
+
+.cartNavigation .clearCart:hover {
+  color: #BE0615;
+  transition: all .3s ease-in-out;
+}
+
+@media screen and (min-width: 1000px) {
+  .cartNavigation .clearCart {
+    align-self: flex-end;
+    order: -1;
+  }
+}
+
+.cartNavigation .clearCart .clearCartIcon {
+  height: 27px;
+}
+
+.cartNavigation .FinalBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+@media screen and (min-width: 1000px) {
+  .cartNavigation .FinalBtn {
+    align-items: flex-start;
+    margin-bottom: 0;
+  }
+}
+
+.cartNavigation .FinalBtn button {
+  padding: 14px 20px;
+  font-size: 20px;
+}
+
+@media screen and (min-width: 1000px) {
+  .cartNavigation .FinalBtn button {
+    padding: 14px 0;
+  }
+}
+
+.cartNavigation .FinalBtn .totalPrice {
+  margin-bottom: 20px;
+}
+
+.cartNavigation .FinalBtn .totalPrice p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-family: "Cormorant Infant", serif;
+  font-size: 20px;
+}
+
+.cartNavigation .FinalBtn .totalPrice p .value {
+  font-size: 40px;
+}
+
+.cartNavigation .FinalBtn .totalPrice p .valuta {
+  text-transform: uppercase;
+  align-self: flex-end;
+}
+
+.applyClearCart {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.8);
+  padding-top: 20%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 40px;
+}
+
+.applyClearCart .applyText {
+  font-family: "Cormorant Infant", serif;
+  font-weight: 700;
+  color: #fff;
+  font-size: 25px;
+  padding: 0 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .applyClearCart .applyText {
+    font-size: 40px;
+  }
+}
+
+.applyClearCart .applyBtns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.applyClearCart .applyBtns button {
+  padding: 10px 40px;
+  min-width: inherit;
+  border: 1px solid transparent;
+  transition: all .3s ease-in-out;
+}
+
+.applyClearCart .applyBtns button:hover {
+  background-color: transparent;
+  color: #be0615;
+  border: 1px solid #be0615;
+  transition: all .3s ease-in-out;
+}
+
+.applyClearCart.show {
+  animation-name: fadeInAnimation;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: both;
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.applyClearCart.hide {
+  animation-name: fadeOutAnimation;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeOutAnimation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
