@@ -16,7 +16,6 @@ import cn from 'classnames';
 const Cart = () => {
     const carts = useSelector((state) => state.carts.carts);
     const pathParts = useBreadcrumbs();
-    console.log(carts);
 
     return (
         <div className={styles.CartContainer}>
