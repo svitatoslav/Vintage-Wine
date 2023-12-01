@@ -79,3 +79,36 @@
     line-height: normal;
     font-family: $family;
 }
+
+@mixin fadeIn($duration: 0.3s, $delay: 0s) {
+  @keyframes fadeInAnimation {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  animation-name: fadeInAnimation;
+  animation-duration: $duration;
+  animation-timing-function: ease-in;
+  animation-fill-mode: both;
+  animation-delay: $delay;
+}
+
+@mixin fadeOut($duration: 0.3s) {
+  @keyframes fadeOutAnimation {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  animation-name: fadeOutAnimation;
+  animation-duration: $duration;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+}
