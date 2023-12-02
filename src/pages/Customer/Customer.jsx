@@ -25,10 +25,15 @@ const Customer = () => {
         <ul className={styles.ListWrapper}>
           <li className={styles.ListItem}>Your Orders</li>
           <li className={styles.ListItem}>
-            <Link className={styles.Link} to="/contacts">Contacts</Link>
+            <Link className={styles.Link} to="/contacts">
+              Contacts
+            </Link>
           </li>
           <li onClick={handleSignOut} className={styles.ListItem}>
-            <Link className={styles.Link} to="/"> Sign out </Link>
+            <Link className={styles.Link} to="/">
+              {" "}
+              Sign out{" "}
+            </Link>
           </li>
         </ul>
       </aside>

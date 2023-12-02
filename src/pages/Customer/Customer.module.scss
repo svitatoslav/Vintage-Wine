@@ -9,16 +9,19 @@
 
 .ListItem {
   font-size: 25px;
-  padding: 15px;
   border: 1px solid #fff;
   transition: background-color 0.3s ease;
   &:hover {
     background-color: #645b5b;
   }
+  &:first-child {
+    padding: 15px;
+  }
 }
 
 .Link {
   display: block;
+  padding: 15px;
 }
 
 .Name {
