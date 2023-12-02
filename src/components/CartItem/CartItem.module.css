@@ -1,0 +1,369 @@
+@font-face {
+  font-family: 'GillSans';
+  src: url("./src/assets/fonts/GillSans.otf");
+  font-style: regular;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'GillSans';
+  src: url("./src/assets/fonts/GillSans.otf");
+  font-style: regular;
+  font-weight: 400;
+}
+
+.Cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+@media (min-width: 480px) {
+  .Cart {
+    flex-direction: row;
+    align-items: start;
+    justify-content: unset;
+    text-align: left;
+    gap: 12px;
+  }
+}
+
+@media (min-width: 1160px) {
+  .Cart {
+    gap: 20px;
+  }
+}
+
+.CartImg img {
+  width: 172px;
+  height: 199px;
+}
+
+@media (min-width: 768px) {
+  .CartImg img {
+    width: 225px;
+    height: 260px;
+  }
+}
+
+@media (min-width: 1160px) {
+  .CartImg img {
+    width: 285px;
+    height: 332px;
+  }
+}
+
+.Counter {
+  grid-area: counter;
+  align-self: center;
+}
+
+@media (min-width: 1160px) {
+  .Counter {
+    align-self: flex-start;
+  }
+}
+
+.Trash {
+  grid-area: trash;
+  justify-self: end;
+}
+
+@media (min-width: 1160px) {
+  .Trash {
+    align-self: end;
+  }
+}
+
+.CartInfo {
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .CartInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .CartInfo {
+    min-height: 200px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .CartInfo {
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .CartTitle {
+    max-width: 340px;
+  }
+}
+
+.TitleName {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-family: "GillSans", serif;
+}
+
+@media screen and (min-width: 768px) {
+  .TitleName {
+    font-size: 26px;
+  }
+}
+
+.Text {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-family: "GillSans", serif;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .Text {
+    font-size: 16px;
+  }
+}
+
+.SubText {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-family: "GillSans", serif;
+  color: #bfbfbf;
+  margin-bottom: 20px;
+}
+
+.CartContent {
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-areas: 'price counter trash';
+}
+
+@media screen and (min-width: 1000px) {
+  .CartContent {
+    grid-template-areas: 'counter price ' 'counter trash';
+    grid-template-columns: repeat(2, minmax(150px, auto));
+    column-gap: 60px;
+  }
+}
+
+@media screen and (min-width: 1160px) {
+  .CartContent {
+    grid-template-columns: 100px minmax(200px, auto);
+    gap: 20px 105px;
+  }
+}
+
+.PriceInfo {
+  display: flex;
+  align-items: center;
+  grid-area: price;
+}
+
+@media (min-width: 1160px) {
+  .PriceInfo {
+    align-self: flex-start;
+  }
+}
+
+@media (min-width: 1000px) {
+  .PriceInfo {
+    justify-self: flex-end;
+  }
+}
+
+.Price {
+  font-size: 30px;
+  font-family: "Cormorant Infant", serif;
+  padding-right: 4px;
+}
+
+@media (min-width: 768px) {
+  .Price {
+    font-size: 40px;
+  }
+}
+
+.BasketSvg {
+  cursor: pointer;
+  width: 14px;
+  height: 16px;
+  fill: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .BasketSvg {
+    width: 24px;
+    height: 28px;
+  }
+}
+
+/*********CART POPUP VIEW*************/
+.Cart.popUpView {
+  margin-bottom: 0;
+}
+
+.Cart.popUpView .CartImg img {
+  width: 105px;
+  height: 100px;
+}
+
+.Cart.popUpView .Counter {
+  order: -1;
+  align-self: center;
+}
+
+@media (min-width: 1160px) {
+  .Cart.popUpView .Counter {
+    align-self: auto;
+  }
+}
+
+.Cart.popUpView .Trash {
+  justify-self: auto;
+}
+
+@media (min-width: 1160px) {
+  .Cart.popUpView .Trash {
+    align-self: auto;
+  }
+}
+
+.Cart.popUpView .CartInfo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@media (min-width: 480px) {
+  .Cart.popUpView .CartInfo {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .Cart.popUpView .CartInfo {
+    min-height: inherit;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .Cart.popUpView .CartInfo {
+    flex-direction: row;
+  }
+}
+
+.Cart.popUpView .CartContent {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+@media (min-width: 480px) {
+  .Cart.popUpView .CartContent {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .Cart.popUpView .CartContent {
+    width: 60%;
+    gap: 60px;
+  }
+}
+
+@media screen and (min-width: 1160px) {
+  .Cart.popUpView .CartContent {
+    gap: 60px;
+  }
+}
+
+.Cart.popUpView .CartTitle {
+  margin-top: 10px;
+  width: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+  .Cart.popUpView .CartTitle {
+    width: 40%;
+    max-width: auto;
+  }
+}
+
+.Cart.popUpView .SubText {
+  margin-bottom: 0;
+}
+
+.Cart.popUpView .PriceInfo {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 1160px) {
+  .Cart.popUpView .PriceInfo {
+    align-self: auto;
+  }
+}
+
+@media (min-width: 1000px) {
+  .Cart.popUpView .PriceInfo {
+    justify-self: auto;
+  }
+}
+
+.Cart.popUpView .TitleName {
+  margin-bottom: 0px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-family: "GillSans", serif;
+}
+
+@media screen and (min-width: 768px) {
+  .Cart.popUpView .TitleName {
+    font-size: 26px;
+  }
+}
+
+.Cart.popUpView .BasketSvg {
+  cursor: pointer;
+  width: 14px;
+  height: 16px;
+  fill: #000;
+  transition: all .3s ease-in-out;
+}
+
+.Cart.popUpView .BasketSvg:hover {
+  fill: #BE0615;
+  transition: all .3s ease-in-out;
+}
+
+@media screen and (min-width: 768px) {
+  .Cart.popUpView .BasketSvg {
+    width: 24px;
+    height: 28px;
+  }
+}

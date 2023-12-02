@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import cn from "classnames";
 import PropTypes from "prop-types";
 import styles from "./Button.module.scss";
@@ -12,6 +11,7 @@ const buttonVariant = {
   default: styles.Button,
   big: styles.BigButton,
   smallBasket: styles.SmallBasket,
+  inCart: styles.InCartBtn,
 };
 
 const buttonColor = {
