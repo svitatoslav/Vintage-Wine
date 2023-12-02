@@ -20,6 +20,7 @@ import cartsReducer from "../reducers/cart-reducer";
 import filtersReducer from "../reducers/filters-reducer";
 import fetchViewedProductsReducer from "../reducers/fetchViewedProducts-reducer";
 import tabsReducer from "../reducers/tabs-reducer";
+import mergeCartsReducer from "../reducers/mergeCarts-reducer";
 
 const rootReducer = combineReducers({
     fetchViewedProducts: fetchViewedProductsReducer,
@@ -34,13 +35,14 @@ const rootReducer = combineReducers({
     modal: modalWindowReducer,
     news: newsReducer,
     tabs: tabsReducer,
+    mergeCart: mergeCartsReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
   blacklist: [],
-  whitelist: ["carts", "user", "tabs"],
+  whitelist: ["carts", "user", "tabs", "mergeCart"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

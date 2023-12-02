@@ -11,6 +11,7 @@ import EmptyCartPopup from '../ModalWindows/EmptyCartPopup/EmptyCartPopup';
 const Overlay = () => {
     const displayedModal = useSelector((state) => state.modal.displayedModal);
     const isModalOpen = useSelector((state) => state.modal.isModalOpen);
+    const isMergedCart = useSelector(state => state.mergeCart.isMergeCart);
     const [isAnimating, setIsAnimating] = useState(false);
     const dispatch = useDispatch();
 
@@ -20,7 +21,7 @@ const Overlay = () => {
     };
 
     const closeModalOutside = (e) => {
-        if (e.target.id === 'overlayPopup') {
+        if (e.target.id === 'overlayPopup' && !isMergedCart) {
             setIsAnimating(true);
             setTimeout(() => {
                 dispatch(toggleModalAC());
