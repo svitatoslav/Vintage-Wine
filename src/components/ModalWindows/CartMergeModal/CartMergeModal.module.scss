@@ -2,21 +2,72 @@
 @import '../../../assets/variables/variables';
 
 .CartModal {
-    max-width: 70%;
     background: rgba(0, 0, 0, 0.8);
-    padding: 40px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 90vh;
+    overflow: auto;
+    padding: 10px;
+    width: 100%;
+
+
+    &::-webkit-scrollbar {
+        width: 5px;
+        background-color: $secondary-color;
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $main-color;
+        border-radius: 5px;
+    }
+
+    @media screen and (min-width: $tablet) {
+        width: 80%;
+    }
+
+    @media screen and (min-width: $tablet-xlg) {
+        max-width: 70%;
+        padding: 20px 40px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        max-width: 700px;
+    }
+}
+
+.CartModalTitle {
+    max-width: 80%;
+    text-align: center;
+    margin: 0 auto 30px;
 }
 
 .CartModalText {
-    text-align: center;
-    margin: 0 auto 30px;
-    max-width: 80%;
-    @include fonts(25px, $secondary-font);
+    @include fonts(17px, $secondary-font);
+    margin-bottom: 10px;
+
+    @media screen and (min-width: $tablet-lg) {
+        font-size: 25px;
+    }
+}
+
+.CartModalSubText {
+    @include fonts(12px, $main-font);
+
+    @media screen and (min-width: $tablet-lg) {
+        font-size: 20px;
+    }
 }
 
 .CartModalLabel {
     margin-bottom: 10px;
-    @include fonts(21px, $secondary-font);
+    @include fonts(16px, $secondary-font);
+
+    @media screen and (min-width: $tablet-lg) {
+        font-size: 19px;
+    }
 }
 
 .CartModalList {
@@ -25,17 +76,32 @@
 
 .CartModalItem {
     @include flex-sb;
-    padding: 10px 40px;
+    padding: 10px 12px;
+    border-bottom: 1px solid white;
 }
 
 .CartModalBtns {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 30px;
+    max-width: 75%;
+    margin: 0 auto;
+    gap: 15px;
+
+    @media screen and (min-width: $tablet) {
+        max-width: 65%;
+    }
+
+    @media screen and (min-width: $tablet-lg) {
+        flex-direction: row;
+        max-width: 100%;
+        gap: 30px;
+    }
+
 }
 
 .CartModalHeader {
-    @include fonts(18px, $secondary-font);
+    @include fonts(16px, $secondary-font);
 }
 
 .CartModalContent {
@@ -44,6 +110,9 @@
 
 .CartModalTable {
     border: $brd-white;
-    max-width: 80%;
     margin: 0 auto;
+
+    li {
+        background: rgba(226, 226, 226, 0.2);
+    }
 }

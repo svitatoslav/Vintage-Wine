@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCarts } from '../../../redux/reducers/cart-reducer';
 import { toggleModalAC } from '../../../redux/reducers/modalWindow-reducer';
 import axios from 'axios';
+import { toggleMergeCartAC } from '../../../redux/reducers/mergeCarts-reducer';
 
 const CartMergeModal = () => {
   const currentCart = useSelector((state) => state.carts.carts);
@@ -79,12 +80,20 @@ const CartMergeModal = () => {
       .then((res) => console.log(res.statusText))
       .catch((err) => console.log(err));
 
+    dispatch(toggleMergeCartAC());
     dispatch(toggleModalAC());
   }
 
   return (
     <div className={styles.CartModal} data-testid="CartMergeModal">
-      <p className={styles.CartModalText}>Some products have been added to your cart before and saved in your account. Would you like to update your current shopping cart status?</p>
+      <div className={styles.CartModalTitle}>
+        <p className={styles.CartModalText}>
+          Some products have been added to your cart before and saved in your account.
+        </p>
+        <p className={styles.CartModalSubText}>
+          Would you like to update your current shopping cart status?
+        </p>
+      </div>
       <div className={styles.CartModalContent}>
         <div className={styles.CartModalList}>
           <h4 className={styles.CartModalLabel}>Previous cart state:</h4>
