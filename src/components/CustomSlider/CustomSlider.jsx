@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import NextArrow from './icons/NextArrow';
 import PrevArrow from './icons/PrevArrow';
@@ -21,6 +21,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
     const COLLECTIONS_SLIDER = 'COLLECTIONS';
     const SINGLE_PRODUCT = 'SINGLE_PRODUCT';
     const VIEWED_PRODUCTS = 'VIEWED_PRODUCTS';
+    const SHARES_PRODUCT = 'SHARES';
 
     const [currentIndex, setCurrentIndex] = useState(toScroll);
     const [productHeaderSlider, setProductHeaderSlider] = useState();
@@ -186,6 +187,46 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
         localStorage.setItem('viewedProducts', id);
     };
 
+    const SliderSharesSettings = {
+        dots: false,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: toShow,
+        slidesToScroll: toScroll,
+        autoplay: false,
+        autoplaySpeed: 3000,
+        arrows: false,
+        responsive: [
+            {
+                breakpoint: 960,
+                settings: {
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 640,
+                settings: {
+                    slidesToShow: 1
+                }
+            },
+            {
+                breakpoint: 460,
+                settings: {
+                    slidesToShow: 1
+                }
+            }
+        ],
+        afterChange: (index) => {
+            setCurrentIndex(index + 1);
+        },
+        ref: sliderRef
+    };
+
+    useEffect(() => {
+        setProductHeaderSlider(productMainSlider.current);
+        setProductBodySlider(productSecondarySlider.current);
+    }, []);
+
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.carts.carts);
 
@@ -212,7 +253,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                         return (
                             <div className={`${styles.itemSlide} `} key={slide.id}>
                                 <Link to={`catalog/${itemLinkCatalog}`}>
-                                    <img src={slide.imageUrl} alt={slide.name} />
+                                    <img src={slide.imageUrl} alt={slide.name}/>
                                     <h4 className={styles.catalogName}>{slide.name}</h4>
                                 </Link>
                             </div>
@@ -265,6 +306,34 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                         })}
                     </Slider>
                 </>
+            )}
+            {type === SHARES_PRODUCT && (
+                <Slider {...SliderSharesSettings} className={` ${styles.collectionsSharesSlider}`}>
+                    {sliderArray?.map((slide) => {
+                        const itemLinkShares = slide._id;
+                        return (
+                            <div className={`${styles.itemSharesSlide}`} key={slide.id}>
+                                <div className={`${styles.imgSharesContainer}`}>
+                                    <Link to={`/${itemLinkShares}`}>
+                                        <div className={`${styles.imgHideContainer}`}>
+                                            <img src={slide.imageUrl} alt={slide.name}/>
+                                        </div>
+                                    </Link>
+                                    <div className={`${styles.imgTextContainer}`}>
+                                        <p> -{slide.discount}%</p>
+                                        <img src={"../public/imageProject/shares/v1028-051.png"} alt={slide.name}/>
+                                    </div>
+                                </div>
+                                <div className={`${styles.textSharesContainer}`}>
+                                    <h4 className={styles.sharesName}>{slide.name}</h4>
+                                    <Link to={`/${itemLinkShares}`} className={`${styles.vvSeeMore}`}>
+                                        See more...
+                                    </Link>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </Slider>
             )}
             {type === VIEWED_PRODUCTS && (
                 <>

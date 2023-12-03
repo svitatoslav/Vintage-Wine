@@ -29,7 +29,7 @@ const partners = require('./backend/routes/partners');
 const excursions = require('./backend/routes/excursions');
 const news = require('./backend/routes/news');
 const lastViewedProducts = require('./backend/routes/lastViewedProducts');
-
+const shares = require('./backend/routes/shares');
 // const mainRoute = require('./routes/index');
 
 const app = express();
@@ -83,7 +83,7 @@ app.use('/api/partners', partners);
 app.use('/api/excursions', excursions);
 app.use('/api/news', news);
 app.use('/api/last-viewed-products', lastViewedProducts);
-
+app.use('/api/shares', shares);
 // app.use('/', mainRoute);
 
 // Server static assets if in production

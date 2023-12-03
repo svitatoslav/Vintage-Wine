@@ -20,8 +20,10 @@ import SingleProduct from './pages/SingleProduct/SingleProduct';
 import Checkout from './pages/Checkout/Checkout';
 import SingleNews from "./pages/SingleNews/SingleNews";
 import Customer from "./pages/Customer/Customer"
+import Shares from "./pages/Shares/Shares";
 
 import './App.scss';
+
 
 const App = () => {
     const dispatch = useDispatch();
@@ -46,6 +48,8 @@ const App = () => {
                     <Route path="search" element={<Search />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="*" element={<NoPage />} />
+                    <Route path="/:id" element={<Shares />} />
+
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/news/:id" element={<SingleNews/>}/>
                     <Route path="/customer" element={<Customer/>}/>
