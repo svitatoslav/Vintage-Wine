@@ -56,7 +56,7 @@ const FilterGroup = () => {
   }
 
   const clearFilters = () => {
-    setFilter({ categories: searchParams.get("categories") });
+    setFilter({ categories: searchParams.get("categories") ?? "all" });
     setResetFilters(true);
     dispatch(resetAdditionalFiltersAC());
   }

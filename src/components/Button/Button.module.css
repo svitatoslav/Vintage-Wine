@@ -1,74 +1,71 @@
-@import '../../assets/variables/variables';
-@import '../../assets/mixins/mixins';
+@font-face {
+  font-family: 'GillSans';
+  src: url("./src/assets/fonts/GillSans.otf");
+  font-style: regular;
+  font-weight: 400;
+}
 
-.Button {
+@font-face {
+  font-family: 'GillSans';
+  src: url("./src/assets/fonts/GillSans.otf");
+  font-style: regular;
+  font-weight: 400;
+}
+
+.Button, .InCartBtn, .WideButton, .Medium, .SmallAdaptive, .SmallBasket, .Small, .xSmall {
   padding: 4px 35px;
   font-size: 15px;
   line-height: 36px;
-  @include transition;
   cursor: pointer;
+}
 
-  &:disabled {
-    background-color: $secondary-color;
-    color: $main-color;
-    cursor: default;
-  }
-  &:disabled:hover {
-    background-color: $secondary-color
-  }
+.Button:disabled, .InCartBtn:disabled, .WideButton:disabled, .Medium:disabled, .SmallAdaptive:disabled, .SmallBasket:disabled, .Small:disabled, .xSmall:disabled {
+  background-color: #909090;
+  color: #fff;
+  cursor: default;
+}
 
-  &:hover {
-    background: $btn-hover;
-  }
-
-  @media screen and (min-width: $tablet) {
+@media screen and (min-width: 480px) {
+  .Button, .InCartBtn, .WideButton, .Medium, .SmallAdaptive, .SmallBasket, .Small, .xSmall {
     padding: 9px 52px;
     font-size: 20px;
   }
+}
 
-  @media screen and (min-width: $tablet-xlg) {
+@media screen and (min-width: 1000px) {
+  .Button, .InCartBtn, .WideButton, .Medium, .SmallAdaptive, .SmallBasket, .Small, .xSmall {
     padding: 14px 68px;
     font-size: 30px;
     min-width: 218px;
   }
 }
 
-
 .xSmall {
-  @extend .Button;
   min-width: 215px;
   padding: 8px 0;
   font-size: 20px;
   line-height: 24px;
 }
 
-
-//  без адаптива + book-time   + Read more + Read all
-
 .Small {
-  @extend .Button;
   min-width: 165px;
   padding: 6px 40px;
   font-size: 20px;
-
 }
 
 .SmallBasket {
-  @extend .Button;
   padding: 10px;
   font-size: 20px;
-
 }
 
-// Read More
-
 .SmallAdaptive {
-  @extend .Button;
   padding: 11px 36px;
   font-size: 14px;
   line-height: 16px;
+}
 
-  @media screen and (min-width: $tablet-xlg) {
+@media screen and (min-width: 1000px) {
+  .SmallAdaptive {
     padding: 11px 40px;
     font-size: 20px;
     line-height: 24px;
@@ -76,15 +73,12 @@
 }
 
 .Medium {
-  @extend .Button;
   font-size: 30px;
   min-width: 218px;
   padding: 12px 35px;
-  //  + continue  + send + Sign in
 }
 
 .WideButton {
-  @extend .Button;
   padding: 12px 27px;
   font-size: 30px;
   min-width: 280px;
@@ -98,36 +92,29 @@
 }
 
 .Primary {
-  background-color: $btn-bg;
-  color: $main-color;
-
+  background-color: #BE0615;
+  color: #fff;
 }
 
 .Secondary {
-  background-color: $main-color;
-  color: $black-color;
+  background-color: #fff;
+  color: #000;
 }
 
 .Transparent {
   background-color: inherit;
-  color: $main-color;
+  color: #fff;
   padding: 3px 18px;
   min-width: 0;
 }
 
 .GrayBtn {
   background-color: inherit;
-  color: $secondary-color;
+  color: #909090;
 }
 
 .InCartBtn {
-  @extend .Button;
   background-color: transparent;
   border: 1px solid #fff;
-  color: $btn-bg;
+  color: #BE0615;
 }
-
-
-
-
-

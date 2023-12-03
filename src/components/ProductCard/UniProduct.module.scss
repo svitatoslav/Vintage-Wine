@@ -54,6 +54,11 @@
 
 .UniProductBtn {
     margin-top: 25px;
+    .wrapperInCartBtn {
+        button {
+            background-color: #000;
+        }
+    }
 }
 
 .SmallText {

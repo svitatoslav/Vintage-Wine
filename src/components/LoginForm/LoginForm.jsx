@@ -16,6 +16,7 @@ import loginValidationSchema from '../../validation/loginValidationSchema';
 import regValidationSchema from '../../validation/regValidationSchema';
 import styles from './LoginForm.module.scss';
 import { switchModalAC, toggleModalAC } from '../../redux/reducers/modalWindow-reducer';
+import { toggleMergeCartAC } from '../../redux/reducers/mergeCarts-reducer';
 
 function LoginForm({ isLogin, formTexts, onLogin }) {
   const isLogged = useSelector((state) => state.user.user);
@@ -69,8 +70,9 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
               })
                 .then((result) => {
                   if (result.data.products.length) {
-                    dispatch(switchModalAC('cart'));
-                    dispatch(toggleModalAC());
+                    dispatch(toggleMergeCartAC());
+                    // dispatch(switchModalAC('cart'));
+                    // dispatch(toggleModalAC());
                     return;
                   }
 
@@ -85,7 +87,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
                   }
                 })
                 .catch((err) => console.log(err))
-            })
+            });
         })
         .catch((err) => {
           setError(...Object.values(err.response.data));

@@ -4,8 +4,8 @@ import Counter from "../Counter/Counter";
 import styles from "./CartItem.module.scss";
 import Basket from "./img/delete.svg?react";
 import axios from "axios";
-
-const CartItem = ({ count, product }) => {
+import cn from 'classnames';
+const CartItem = ({ count, product, popUpView }) => {
   const {
     name,
     productImg,
@@ -34,42 +34,42 @@ const CartItem = ({ count, product }) => {
     }
   };
 
-  return (
-    <div className={styles.Cart}>
-      <div className={styles.CartImg}>
-        <img src={productImg} alt="image" className={styles.Img} />
-      </div>
+ 
+      return (
+          <div className={cn(styles.Cart, { [styles.popUpView]: popUpView })}>
+              <div className={styles.CartImg}>
+                  <img src={productImg} alt="image" className={styles.Img} />
+              </div>
 
-      <div className={styles.CartInfo}>
-        <div className={styles.CartTitle}>
-          <h2 className={styles.TitleName}>{name}</h2>
-          {grape.grape && (
-            <p className={styles.SubText}>{grape.grape}, {color.color}</p>
-          )}
+              <div className={styles.CartInfo}>
+                  <div className={styles.CartTitle}>
+                      <h2 className={styles.TitleName}>{name}</h2>
+                      {grape.grape && (
+                          <p className={styles.SubText}>
+                              {grape.grape}, {color.color}
+                          </p>
+                      )}
+                      {!popUpView ?   <p className={styles.Text}>{cartDescription}</p> : ''}
+                     
+                  </div>
 
-          <p className={styles.Text}>{cartDescription}</p>
-        </div>
+                  <div className={styles.CartContent}>
+                      <div className={styles.PriceInfo}>
+                          <p className={styles.Price}>{(currentPrice * count).toFixed(2)}</p>
+                          <p className={styles.Currency}>UAH</p>
+                      </div>
 
-        <div className={styles.CartContent}>
-          <div className={styles.PriceInfo}>
-            <p className={styles.Price}>{(currentPrice * count).toFixed(2)}</p>
-            <p className={styles.Currency}>UAH</p>
+                      <div className={styles.Counter}>
+                          <Counter id={_id} count={count} data={product} />
+                      </div>
+
+                      <button onClick={removeProduct} className={styles.Trash}>
+                          {<Basket className={styles.BasketSvg} />}
+                      </button>
+                  </div>
+              </div>
           </div>
-
-          <div className={styles.Counter}>
-            <Counter id={_id} count={count} data={product} />
-          </div>
-          
-          <button
-            onClick={removeProduct}
-            className={styles.Trash}
-          >
-            {<Basket className={styles.BasketSvg} />}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+      );
 };
 
 export default CartItem;

@@ -12,8 +12,11 @@ import CustomArrowNext from './icons/CustomArrowNext';
 
 import styles from './CustomSlider.module.scss';
 import Button from '../Button/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { addOneToExistedProduct, updateCarts } from '../../redux/reducers/cart-reducer';
+import { switchModalAC, toggleModalAC } from '../../redux/reducers/modalWindow-reducer';
 
-const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = true}) => {
+const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination = true }) => {
     const CATALOG_SLIDER = 'CATALOG';
     const COLLECTIONS_SLIDER = 'COLLECTIONS';
     const SINGLE_PRODUCT = 'SINGLE_PRODUCT';
@@ -37,14 +40,14 @@ const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = 
     };
 
     /*Arrows for single product slider */
-    const SlickArrowLeft = ({currentSlide, slideCount, ...props}) => (
+    const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
         <button {...props} className={'slick-prev slick-arrow' + (currentSlide === 0 ? ' slick-disabled' : '')} aria-hidden="true" aria-disabled={currentSlide === 0 ? true : false} type="button">
-            <CustomArrowPrev/>
+            <CustomArrowPrev />
         </button>
     );
-    const SlickArrowRight = ({currentSlide, slideCount, ...props}) => (
+    const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
         <button {...props} className={'slick-next slick-arrow' + (currentSlide === slideCount - 1 ? ' slick-disabled' : '')} aria-hidden="true" aria-disabled={currentSlide === slideCount - 1 ? true : false} type="button">
-            <CustomArrowNext/>
+            <CustomArrowNext />
         </button>
     );
 
@@ -133,8 +136,8 @@ const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = 
         slidesToShow: 2,
         swipeToSlide: true,
         focusOnSelect: true,
-        prevArrow: <SlickArrowLeft/>,
-        nextArrow: <SlickArrowRight/>
+        prevArrow: <SlickArrowLeft />,
+        nextArrow: <SlickArrowRight />
     };
     const SingleProductMain = {
         dots: false,
@@ -180,9 +183,10 @@ const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = 
         ref: sliderRef
     };
 
-     const handleAddProduct = (id) => {
-         localStorage.setItem('viewedProducts', id);
-     };
+    const handleAddProduct = (id) => {
+        localStorage.setItem('viewedProducts', id);
+    };
+
     const SliderSharesSettings = {
         dots: false,
         infinite: true,
@@ -223,6 +227,23 @@ const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = 
         setProductBodySlider(productSecondarySlider.current);
     }, []);
 
+    const dispatch = useDispatch();
+    const cart = useSelector((state) => state.carts.carts);
+
+    const handleAddToCart = (viewedProduct) => {
+        const itemInCart = cart?.find(({ instance }) => instance._id === viewedProduct._id);
+        if (itemInCart) {
+            dispatch(addOneToExistedProduct(viewedProduct._id));
+        } else {
+            dispatch(updateCarts([{ quantity: 1, instance: viewedProduct }]));
+        }
+    };
+
+    const handleCartPopup = () => {
+        dispatch(toggleModalAC());
+        dispatch(switchModalAC('cartPopup'));
+    };
+    const cardProductsId = cart.map((item) => item.instance._id);
     return (
         <>
             {type === CATALOG_SLIDER && (
@@ -248,7 +269,7 @@ const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = 
 
                         return (
                             <div className={`${slideClasses} ${index === sliderArray.length - 1 ? styles.oddSlide : ''}`} key={slide.id}>
-                                <img src={slide.imageUrl} alt={slide.name}/>
+                                <img src={slide.imageUrl} alt={slide.name} />
 
                                 <div className={styles.collectionData}>
                                     <h4 className={styles.catalogName}>{slide.name}</h4>
@@ -270,7 +291,7 @@ const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = 
                         {sliderArray?.map((image, index) => {
                             return (
                                 <div key={index} className={styles.mainSlide}>
-                                    <img src={image} alt="slide image"/>
+                                    <img src={image} alt="slide image" />
                                 </div>
                             );
                         })}
@@ -279,7 +300,7 @@ const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = 
                         {sliderArray?.map((image, index) => {
                             return (
                                 <div key={index} className={styles.secondarySlide}>
-                                    <img src={image} alt="slide image"/>
+                                    <img src={image} alt="slide image" />
                                 </div>
                             );
                         })}
@@ -322,12 +343,24 @@ const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = 
                                 return (
                                     <div className={`${styles.itemSlide} `} key={slide._id}>
                                         <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
-                                            <img src={`http://localhost:5173${slide.productImg}`} alt={slide.name} />
+                                            <img src={slide.productImg} alt={slide.name} />
                                         </Link>
                                         <div className={styles.productNav}>
-                                            <h4 className={styles.name}>{slide.name}</h4>
+                                            <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
+                                                <h4 className={styles.name}>{slide.name}</h4>
+                                            </Link>
                                             <p className={styles.price}>{slide.currentPrice}uah</p>
-                                            <Button text="Add to cart" />
+
+                                            {cardProductsId.find((productId) => productId === slide._id) ? (
+                                                <Button text="In cart" type="xSmall" variant="inCart" onClick={handleCartPopup} />
+                                            ) : (
+                                                <Button
+                                                    text="Add to cart"
+                                                    onClick={() => {
+                                                        handleAddToCart(slide);
+                                                    }}
+                                                />
+                                            )}
                                         </div>
                                     </div>
                                 );
@@ -339,12 +372,23 @@ const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = 
                                 return (
                                     <div className={`${styles.itemSlide} `} key={slide._id}>
                                         <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
-                                            <img src={`http://localhost:5173${slide.productImg}`} alt={slide.name} />
+                                            <img src={slide.productImg} alt={slide.name} />
                                         </Link>
                                         <div className={styles.productNav}>
-                                            <h4 className={styles.name}>{slide.name}</h4>
+                                            <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
+                                                <h4 className={styles.name}>{slide.name}</h4>
+                                            </Link>
                                             <p className={styles.price}>{slide.currentPrice}uah</p>
-                                            <Button text="Add to cart" />
+                                            {cardProductsId.find((productId) => productId === slide._id) ? (
+                                                <Button text="In cart" type="xSmall" variant="inCart" onClick={handleCartPopup} />
+                                            ) : (
+                                                <Button
+                                                    text="Add to cart"
+                                                    onClick={() => {
+                                                        handleAddToCart(slide);
+                                                    }}
+                                                />
+                                            )}
                                         </div>
                                     </div>
                                 );
@@ -358,14 +402,14 @@ const CustomSlider = ({sliderArray, type, toShow, toScroll, isSlidePagination = 
             {isSlidePagination && (
                 <div className={`${styles.slickArrows} ${styles.viewedPagination}`}>
                     <button className="slick-prev slick-arrow" onClick={handlePrevClick}>
-                        <PrevArrow/>
+                        <PrevArrow />
                     </button>
                     <div className={styles.sliderNavigation}>
                         <span className={styles.currentIndex}>{currentIndex}</span>
                         <span className={styles.lengthOfSlider}>{sliderArray.length}</span>
                     </div>
                     <button className="slick-next slick-arrow" onClick={handleNextClick}>
-                        <NextArrow/>
+                        <NextArrow />
                     </button>
                 </div>
             )}

@@ -1,0 +1,58 @@
+@import '../../../assets/mixins/mixins';
+@import '../../../assets/variables/variables';
+
+.ThanksModal {
+    @include flex-ac;
+    width: 100%;
+    margin: 0 auto;
+}
+.ThanksModal.show {
+    @include fadeIn(.3s, .3s);
+}
+.ThanksModal.hide {
+    @include fadeOut( 1s);
+}
+
+
+.ThanksModalImg {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    @media screen and (min-width: $tablet-xlg) {
+        width: 50%;
+    }
+}
+
+.ThanksModalText {
+    @include flex-col-ac;
+    text-align: center;
+}
+
+.ThanksModalMainText {
+    text-align: center;
+    @include fonts(30px, $main-font);
+    margin-bottom: 10px;
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    left: 0;
+    @media screen and (min-width: $tablet) {
+        font-size: 50px;
+    }
+
+    @media screen and (min-width: $tablet-lg) {
+        font-size: 70px;
+    }
+
+    @media screen and (min-width: $tablet-xlg) {
+        font-size: 100px;
+        top: 30%;
+        width: 35%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
