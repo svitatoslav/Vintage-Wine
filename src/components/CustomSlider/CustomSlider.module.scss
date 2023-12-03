@@ -1,5 +1,6 @@
 @import '../../assets/variables/variables';
 @import '../../assets/mixins/mixins';
+@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
 
 .wrapperSlider {
     .itemSlide {
@@ -359,4 +360,97 @@
 
 .viewedPagination {
     align-self: center;
+}
+
+.collectionsSharesSlider{
+    div{
+        @media screen and (min-width: 480px) and (max-width: 640px) {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+  .itemSharesSlide{
+      height: 252px !important;
+      position: relative;
+      padding: 0 10px;
+      max-width: 425px;
+
+      @media screen and (min-width: $tablet) and (max-width: 640px) {
+          height: 400px !important;
+      }
+      @media screen and (min-width: 641px) {
+          min-height: 315px !important;
+          height: 100% !important;
+          max-height: 390px !important;
+      }
+
+      .imgSharesContainer{
+          margin-top: 10px;
+          position: relative;
+
+          width: 100%;
+          height: auto;
+
+          .imgHideContainer{
+              margin-bottom: 15px;
+              overflow: hidden;
+
+              img{
+                  height: 100%;
+                  display: block;
+                  object-fit: cover;
+              }
+          }
+          .imgTextContainer{
+              width: 60px;
+              height: 69px;
+              position: absolute;
+              top: -10px;
+              right: 0;
+
+              p{
+                  color: var(--white, #FFF);
+                  font-family: 'Grand Hotel', cursive;
+                  font-size: 20px;
+                  font-style: normal;
+                  font-weight: 400;
+                  line-height: normal;
+
+                  position: absolute;
+                  top: 50%;
+                  right: 45%;
+                  transform: translate(50%, -50%);
+              }
+          }
+      }
+      .textSharesContainer{
+          display: none;
+          height: 100%;
+          align-items: center;
+          justify-content: right;
+          position: relative;
+
+          @media screen and (min-width: $tablet) {
+              display: flex;
+              flex-direction: column;
+              align-items: end;
+          }
+
+          .sharesName{
+              color: var(--white, #FFF);
+              text-align: right;
+              font-family: $main-font;
+              font-size: clamp(20px,2vw, 30px);
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+          }
+      }
+      .vvSeeMore{
+          margin: 10px 0;
+          font-family: $secondary-font;
+          font-size: 16px;
+      }
+  }
 }
