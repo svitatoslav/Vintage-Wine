@@ -138,7 +138,8 @@
             }
             .collectionsDescription {
                 font-size: 14px;
-                a {
+                span {
+                    display: block;
                     font-size: 14px;
                     margin-top: 10px;
                     margin-left: 0;
@@ -453,4 +454,29 @@
           font-size: 16px;
       }
   }
+}
+.productionSlider {
+    .itemSlide {
+        height: 250px;
+        @media screen and (min-width: $tablet-lg) {
+            height: 440px;
+         }
+        img {
+            height: 100%;
+             width: 93%;
+        }
+    }
+}
+
+.awardsSlider {
+    max-width: 800px;
+    margin: 0 auto;
+    .itemSlide {
+        height: 135px;
+        display: flex!important;
+        @include flex-cc;
+        img {
+            width: 140px;
+        }
+    }
 }

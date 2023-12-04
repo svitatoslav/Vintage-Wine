@@ -23,6 +23,10 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
     const VIEWED_PRODUCTS = 'VIEWED_PRODUCTS';
     const SHARES_PRODUCT = 'SHARES';
 
+     const PRODUCTION_ABOUT = 'PRODUCTION_ABOUT';
+     const AWARDS_ABOUT = 'AWARDS_ABOUT';
+    const dispatch = useDispatch();
+    const cart = useSelector((state) => state.carts.carts);
     const [currentIndex, setCurrentIndex] = useState(toScroll);
     const [productHeaderSlider, setProductHeaderSlider] = useState();
     const [productBodySlider, setProductBodySlider] = useState();
@@ -52,6 +56,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
     );
 
     const SliderCatalogSettings = {
+        margin: 20,
         dots: false,
         infinite: true,
         speed: 1000,
@@ -139,6 +144,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
         prevArrow: <SlickArrowLeft />,
         nextArrow: <SlickArrowRight />
     };
+
     const SingleProductMain = {
         dots: false,
         speed: 1000,
@@ -227,8 +233,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
         setProductBodySlider(productSecondarySlider.current);
     }, []);
 
-    const dispatch = useDispatch();
-    const cart = useSelector((state) => state.carts.carts);
+   
 
     const handleAddToCart = (viewedProduct) => {
         const itemInCart = cart?.find(({ instance }) => instance._id === viewedProduct._id);
@@ -243,7 +248,9 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
         dispatch(toggleModalAC());
         dispatch(switchModalAC('cartPopup'));
     };
+
     const cardProductsId = cart.map((item) => item.instance._id);
+
     return (
         <>
             {type === CATALOG_SLIDER && (
@@ -275,9 +282,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                                     <h4 className={styles.catalogName}>{slide.name}</h4>
                                     <p className={styles.collectionsDescription}>
                                         {slide.shortDescription}
-                                        <Link to={`collections/${itemLinkCatalog}`} className="vvReadMore">
-                                            Read more ...
-                                        </Link>
+                                        <span className="vvReadMore"> Read more ...</span>
                                     </p>
                                 </div>
                             </div>
@@ -397,6 +402,28 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                         </div>
                     )}
                 </>
+            )}
+            {type === PRODUCTION_ABOUT && (
+                <Slider {...SliderCatalogSettings} className={`${styles.wrapperSlider} ${styles.productionSlider}`}>
+                    {sliderArray?.map((slide) => {
+                        return (
+                            <div className={`${styles.itemSlide} `} key={slide.id}>
+                                <img src={slide.imageUrl} alt='production slide image' />
+                            </div>
+                        );
+                    })}
+                </Slider>
+            )}
+            {type === AWARDS_ABOUT && (
+                <Slider {...SliderCatalogSettings} className={`${styles.wrapperSlider} ${styles.awardsSlider}`}>
+                    {sliderArray?.map((slide) => {
+                        return (
+                            <div className={`${styles.itemSlide} `} key={slide.id}>
+                                <img src={slide.imageUrl} alt='production slide image' />
+                            </div>
+                        );
+                    })}
+                </Slider>
             )}
 
             {isSlidePagination && (
