@@ -1,22 +1,24 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  ErrorMessage, Field, Form, Formik,
-} from 'formik';
-import axios from 'axios';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import axios from "axios";
 import {
   setTokenAC,
   setUserAC,
+  setUserIdAC,
   signInAC,
-} from '../../redux/reducers/authorization-reducer';
-import Button from '../Button/Button';
-import loginValidationSchema from '../../validation/loginValidationSchema';
-import regValidationSchema from '../../validation/regValidationSchema';
-import styles from './LoginForm.module.scss';
-import { switchModalAC, toggleModalAC } from '../../redux/reducers/modalWindow-reducer';
-import { toggleMergeCartAC } from '../../redux/reducers/mergeCarts-reducer';
+} from "../../redux/reducers/authorization-reducer";
+import Button from "../Button/Button";
+import loginValidationSchema from "../../validation/loginValidationSchema";
+import regValidationSchema from "../../validation/regValidationSchema";
+import styles from "./LoginForm.module.scss";
+import {
+  switchModalAC,
+  toggleModalAC,
+} from "../../redux/reducers/modalWindow-reducer";
+import { toggleMergeCartAC } from "../../redux/reducers/mergeCarts-reducer";
 
 function LoginForm({ isLogin, formTexts, onLogin }) {
   const isLogged = useSelector((state) => state.user.user);
@@ -24,50 +26,55 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
   const token = useSelector((state) => state.user.token);
   const currentCart = useSelector((state) => state.carts.carts);
   const dispatch = useDispatch();
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   if (isLogged) {
     return <Navigate to="/" />;
   }
 
   const initialValues = {
-    login: '',
-    email: '',
-    loginOrEmail: '',
-    password: '',
+    login: "",
+    email: "",
+    loginOrEmail: "",
+    password: "",
   };
 
   const validationSchema = isLogin
-    ? regValidationSchema : loginValidationSchema;
+    ? regValidationSchema
+    : loginValidationSchema;
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     const { email, login, ...logValues } = values;
     const { loginOrEmail, ...regValues } = values;
 
     if (isLogin) {
-      axios.post('http://127.0.0.1:4000/api/customers/login', logValues)
+      axios
+        .post("http://127.0.0.1:4000/api/customers/login", logValues)
         .then((res) => {
           dispatch(setTokenAC(res.data.token));
           dispatch(setUserAC(res.data.user));
+          dispatch(setUserIdAC(res.data.id));
 
           const newCart = {
             customerId: res.data.id,
             products: [],
-          }
+          };
 
-          axios.post('http://127.0.0.1:4000/api/cart/', newCart, {
-            headers: {
-              "Authorization": res.data.token,
-            }
-          })
+          axios
+            .post("http://127.0.0.1:4000/api/cart/", newCart, {
+              headers: {
+                Authorization: res.data.token,
+              },
+            })
             .then((res) => console.log(res.statusText))
             .catch((err) => console.log(err))
             .finally(() => {
-              axios.get('http://127.0.0.1:4000/api/cart/', {
-                headers: {
-                  "Authorization": res.data.token,
-                }
-              })
+              axios
+                .get("http://127.0.0.1:4000/api/cart/", {
+                  headers: {
+                    Authorization: res.data.token,
+                  },
+                })
                 .then((result) => {
                   if (result.data.products.length) {
                     dispatch(toggleMergeCartAC());
@@ -77,26 +84,32 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
                   }
 
                   if (currentCart.length) {
-                    axios.put('http://127.0.0.1:4000/api/cart/', {products: currentCart}, {
-                      headers: {
-                        "Authorization": res.data.token,
-                      }
-                    })
-                    .then((res) => console.log(res.statusText))
-                    .catch((err) => console.log(err))
+                    axios
+                      .put(
+                        "http://127.0.0.1:4000/api/cart/",
+                        { products: currentCart },
+                        {
+                          headers: {
+                            Authorization: res.data.token,
+                          },
+                        },
+                      )
+                      .then((res) => console.log(res.statusText))
+                      .catch((err) => console.log(err));
                   }
                 })
-                .catch((err) => console.log(err))
+                .catch((err) => console.log(err));
             });
         })
         .catch((err) => {
           setError(...Object.values(err.response.data));
           setTimeout(() => {
-            setError('');
+            setError("");
           }, 4000);
         });
     } else {
-      axios.post('http://127.0.0.1:4000/api/customers/', regValues)
+      axios
+        .post("http://127.0.0.1:4000/api/customers/", regValues)
         .then(() => {
           dispatch(signInAC());
         })
@@ -169,11 +182,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
               component="div"
             />
           </div>
-          {(error && isLogin) && (
-            <div className={styles.FormError}>
-              {error}
-            </div>
-          )}
+          {error && isLogin && <div className={styles.FormError}>{error}</div>}
           <Button
             type="submit"
             text={formTexts.button}
