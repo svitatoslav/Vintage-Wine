@@ -1,5 +1,6 @@
 const Excursion = require("../models/Excursion");
 const queryCreator = require("../commonHelpers/queryCreator");
+const sendMail = require("../commonHelpers/mailSender");
 const _ = require("lodash");
 
 exports.getExcursions = (req, res, next) => {
@@ -13,7 +14,6 @@ exports.getExcursions = (req, res, next) => {
 };
 
 exports.reserveExcursion = (req, res, next) => {
-
   Excursion.findOne({ title: req.params.title })
     .then(excursion => {
       if (!excursion) {
@@ -27,12 +27,39 @@ exports.reserveExcursion = (req, res, next) => {
         const updatedReservation = queryCreator(initialQuery);
         const {title, ...reservation} = updatedReservation;
 
+        const subscriberMail = req.body.email;
+        const letterSubject = req.body.letterSubject;
+        const letterHtml = req.body.letterHtml;
+
+        if (!letterSubject) {
+          return res.status(400).json({
+            message:
+              "This operation involves sending a letter to the client. Please provide field 'letterSubject' for the letter."
+          });
+        }
+  
+        if (!letterHtml) {
+          return res.status(400).json({
+            message:
+              "This operation involves sending a letter to the client. Please provide field 'letterHtml' for the letter."
+          });
+        }
+
         Excursion.findOneAndUpdate(
           { title: req.params.title },
           { $push: { reservations: { $each: [reservation] } } },
           { new: true }
         )
-          .then(excursion => res.json(excursion))
+          .then(async excursion => {
+            const mailResult = await sendMail(
+              subscriberMail,
+              letterSubject,
+              letterHtml,
+              res
+            );
+  
+            res.json({ excursion, mailResult });
+          })
           .catch(err =>
             res.status(400).json({
               message: `Error happened on server: "${err}" `

@@ -11,6 +11,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import reservationValidationSchema from '../../../validation/reservationValidationSchema';
 import { switchModalAC } from '../../../redux/reducers/modalWindow-reducer';
 import CustomTourSelect from '../../CustomSelect/CustomTourSelect';
+import createLetterHtml from '../../../helpers/createLetterHtml';
 
 const ReservationModal = ({ onClose }) => {
   const [options, setOptions] = useState([]);
@@ -41,8 +42,10 @@ const ReservationModal = ({ onClose }) => {
   }
 
   const handleSubmit = (values, { resetForm }) => {
+    const body = createLetterHtml(values);
+
     try {
-      axios.put(`http://127.0.0.1:4000/api/excursions/${values.title}`, values)
+      axios.put(`http://127.0.0.1:4000/api/excursions/${values.title}`, body)
         .then(response => {
           if (response.status == 200) {
             dispatch(switchModalAC('thanks'));
