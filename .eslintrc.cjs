@@ -20,6 +20,10 @@ module.exports = {
         sourceType: "script",
       },
     },
+    {
+      files: ["src/redux/reducers/*.js"],
+      rules: { "default-param-last": "off" },
+    },
   ],
   parserOptions: {
     ecmaVersion: "latest",
