@@ -47,68 +47,74 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
     const { loginOrEmail, ...regValues } = values;
 
     if (isLogin) {
-      axios
-        .post("http://127.0.0.1:4000/api/customers/login", logValues)
-        .then((res) => {
-          dispatch(setTokenAC(res.data.token));
-          dispatch(setUserAC(res.data.user));
-          dispatch(setUserIdAC(res.data.id));
+      try {
+        axios
+          .post("http://127.0.0.1:4000/api/customers/login", logValues, { silent: true })
+          .then((res) => {
+            dispatch(setTokenAC(res.data.token));
+            dispatch(setUserAC(res.data.user));
+            dispatch(setUserIdAC(res.data.id));
 
-          const newCart = {
-            customerId: res.data.id,
-            products: [],
-          };
+            const newCart = {
+              customerId: res.data.id,
+              products: [],
+            };
 
-          dispatch(hideLoadingAC());
-          axios.post('http://127.0.0.1:4000/api/cart/', newCart, {
-            headers: {
-              "Authorization": res.data.token,
-            }
+            dispatch(hideLoadingAC());
+            axios.post('http://127.0.0.1:4000/api/cart/', newCart, {
+              headers: {
+                "Authorization": res.data.token,
+              },
+              silent: true
+            })
+              .catch(err => console.log(err))
+              .finally(() => {
+                axios
+                  .get("http://127.0.0.1:4000/api/cart/", {
+                    headers: {
+                      Authorization: res.data.token,
+                    },
+                  })
+                  .then((result) => {
+                    if (result.data.products.length) {
+                      dispatch(toggleMergeCartAC());
+                      return;
+                    }
+
+                    if (currentCart.length) {
+                      axios.put('http://127.0.0.1:4000/api/cart/', { products: currentCart }, {
+                        headers: {
+                          "Authorization": res.data.token,
+                        },
+                        silent: true
+                      })
+                        .catch((err) => console.log(err))
+                    }
+                  })
+                  .catch((err) => console.log(err));
+              });
           })
-            .then((res) => console.log(res.statusText))
-            .catch((err) => console.log(err))
-            .finally(() => {
-              axios
-                .get("http://127.0.0.1:4000/api/cart/", {
-                  headers: {
-                    Authorization: res.data.token,
-                  },
-                })
-                .then((result) => {
-                  if (result.data.products.length) {
-                    dispatch(toggleMergeCartAC());
-                    // dispatch(switchModalAC('cart'));
-                    // dispatch(toggleModalAC());
-                    return;
-                  }
-
-                  if (currentCart.length) {
-                    axios.put('http://127.0.0.1:4000/api/cart/', { products: currentCart }, {
-                      headers: {
-                        "Authorization": res.data.token,
-                      }
-                    })
-                      .then((res) => console.log(res.statusText))
-                      .catch((err) => console.log(err))
-                  }
-                })
-                .catch((err) => console.log(err));
-            });
-        })
-        .catch((err) => {
-          setError(...Object.values(err.response.data));
-          setTimeout(() => {
-            setError("");
-          }, 4000);
-        });
+          .catch((err) => {
+            setError(...Object.values(err.response.data));
+            setTimeout(() => {
+              setError("");
+            }, 4000);
+          });
+      } catch (err) {
+        console.log(err);
+      }
     } else {
-      axios
-        .post("http://127.0.0.1:4000/api/customers/", regValues)
-        .then(() => {
-          dispatch(hideLoadingAC());
-          dispatch(signInAC());
-        })
-        .catch((err) => console.log(err));
+      try {
+        axios
+          .post("http://127.0.0.1:4000/api/customers/", regValues)
+          .then(() => {
+            dispatch(hideLoadingAC());
+            dispatch(signInAC());
+          })
+          .catch((err) => console.log(err));
+      } catch (err) {
+        console.log(err);
+      }
     }
 
     resetForm(initialValues);

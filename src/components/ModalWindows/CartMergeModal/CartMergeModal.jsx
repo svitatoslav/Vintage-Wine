@@ -4,7 +4,7 @@ import Button from '../../Button/Button';
 import Loader from '../../Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCarts } from '../../../redux/reducers/cart-reducer';
-import { toggleModalAC } from '../../../redux/reducers/modalWindow-reducer';
+import { switchModalAC, toggleModalAC } from '../../../redux/reducers/modalWindow-reducer';
 import axios from 'axios';
 import { toggleMergeCartAC } from '../../../redux/reducers/mergeCarts-reducer';
 import { hideLoadingAC, showLoadingAC } from '../../../redux/reducers/loading-reducer';
@@ -34,7 +34,7 @@ const CartMergeModal = () => {
         
         dispatch(hideLoadingAC());
       } catch (err) {
-        console.log(err);
+        dispatch(switchModalAC('error'));
       }
     })();
   }, []);
@@ -83,7 +83,6 @@ const CartMergeModal = () => {
         "Authorization": token,
       }
     })
-      .then((res) => console.log(res.statusText))
       .catch((err) => console.log(err));
 
     dispatch(toggleMergeCartAC());
