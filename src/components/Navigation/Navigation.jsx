@@ -8,30 +8,36 @@ import pages from '../../assets/pages';
 function Navigation({ mobile, isFootNav }) {
   const { pathname } = useLocation();
 
-  const links = pages?.map(({ id, text, url }) => (
-    <li key={id}>
-      <Link
-        to={url}
-        className={
-          cn(styles.PageLink, {
-            [styles.PageLinkActive]: mobile
-                && (pathname === url)
-          })
-        }
-      >
-        {text}
-      </Link>
-    </li>
-  ));
+  const links = pages?.map(({ id, text, url }) => {
+    console.log(pathname);
+    console.log(url);
+    return (
+      <li key={id}>
+        <Link
+          to={url}
+          className={
+            cn(styles.PageLink,
+              { [styles.PageLinkActive]: pathname === url },
+              {
+                [styles.PageLinkMobActive]: mobile
+                  && (pathname === url)
+              })
+          }
+        >
+          {text}
+        </Link>
+      </li>
+    )
+  });
 
   return (
     <nav>
-      <ul className={cn(styles.NavigationList,  {[styles.FooterNav]:isFootNav}, { [styles.NavigationBurger]: mobile})} data-testid="Navigation">
+      <ul className={cn(styles.NavigationList, { [styles.FooterNav]: isFootNav }, { [styles.NavigationBurger]: mobile })} data-testid="Navigation">
         {links}
       </ul>
     </nav>
   );
-  
+
 }
 
 Navigation.propTypes = {

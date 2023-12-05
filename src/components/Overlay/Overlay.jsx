@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ThanksModal from '../ModalWindows/ThanksModal/ThanksModal';
 import ReservationModal from '../ModalWindows/ReservationModal/ReservationModal';
@@ -7,6 +7,7 @@ import styles from './Overlay.module.scss';
 import CartMergeModal from '../ModalWindows/CartMergeModal/CartMergeModal';
 import CartPopup from '../ModalWindows/CartPopup/CartPopup';
 import EmptyCartPopup from '../ModalWindows/EmptyCartPopup/EmptyCartPopup';
+import ErrorPopup from '../ModalWindows/ErrorPopup/ErrorPopup';
 
 const Overlay = () => {
     const displayedModal = useSelector((state) => state.modal.displayedModal);
@@ -45,6 +46,8 @@ const Overlay = () => {
                 return <CartPopup onClose={handleClose} />;
             case 'cartEmptyPopup':
                 return <EmptyCartPopup onClose={handleClose} />;
+            case 'error':
+                return <ErrorPopup onClose={handleClose} />;
             default:
                 break;
         }

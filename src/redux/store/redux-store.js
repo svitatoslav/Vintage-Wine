@@ -22,6 +22,7 @@ import sharesReducer from "../reducers/shares-reducer";
 import fetchViewedProductsReducer from "../reducers/fetchViewedProducts-reducer";
 import tabsReducer from "../reducers/tabs-reducer";
 import mergeCartsReducer from "../reducers/mergeCarts-reducer";
+import loadingReducer from "../reducers/loading-reducer";
 import orderReducer from "../reducers/order-reducer";
 
 const rootReducer = combineReducers({
@@ -39,6 +40,7 @@ const rootReducer = combineReducers({
   tabs: tabsReducer,
   mergeCart: mergeCartsReducer,
   shares: sharesReducer,
+  loader: loadingReducer,
   order: orderReducer,
 });
 
