@@ -48,17 +48,21 @@ const ReservationModal = ({ onClose }) => {
     const body = createLetterHtml(values);
     dispatch(showLoadingAC());
     try {
-      axios.put(`http://127.0.0.1:4000/api/excursions/${values.title}`, body)
+      axios.put(`http://127.0.0.1:4000/api/excursons/${values.title}`, body)
         .then(response => {
           if (response.status == 200) {
             dispatch(switchModalAC('thanks'));
-            dispatch(hideLoadingAC());
           }
         })
-        .catch(err => console.log(err))
-        .finally(() => resetForm());
+        .catch(() => {
+          dispatch(switchModalAC('error'));
+        })
+        .finally(() => {
+          resetForm();
+          dispatch(hideLoadingAC());
+        });
     } catch (err) {
-      console.log(err)
+      dispatch(switchModalAC('error'));
     }
   };
 

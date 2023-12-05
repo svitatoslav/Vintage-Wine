@@ -41,7 +41,7 @@ const cartsReducer = (state = initialState, action) => {
       return {
         ...state,
         carts: state.carts.filter(
-          (item) => item.instance._id !== action.payload
+          (item) => item.instance._id !== action.payload,
         ),
       };
     case CLEAR_CART:
@@ -118,6 +118,25 @@ export const fetchNewsThunk = () => {
   };
 };
 
+export const removeCartThunk = () => {
+  return (dispatch, getState) => {
+    const {
+      user: { token },
+    } = getState();
+    dispatch(clearCartAC());
+
+    if (token) {
+      axios
+        .delete(`http://127.0.0.1:4000/api/cart`, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .catch((err) => console.error(err));
+    }
+  };
+};
+
 export const addToCartThunk = (item) => (dispatch, getState) => {
   const {
     carts: { carts },
@@ -139,7 +158,6 @@ export const addToCartThunk = (item) => (dispatch, getState) => {
           Authorization: token,
         },
       })
-      .then((res) => console.log(res.statusText))
       .catch((err) => console.log(err));
   }
 };
