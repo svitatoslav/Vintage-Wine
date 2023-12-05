@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { Navigate } from "react-router-dom";
 import Container from "../../components/Container/Container";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
@@ -9,12 +10,18 @@ import styles from "./Checkout.module.scss";
 import Button from "../../components/Button/Button";
 import CheckoutItem from "../../components/CartItem/CheckoutItem/CheckoutItem";
 import TotalPrice from "../../components/TotalPrice/TotalPrice";
-import { placeOrderThunk } from "../../redux/reducers/order-reducer";
+import {
+  DataStatus,
+  placeOrderThunk,
+  setInfoDataStatusAC,
+} from "../../redux/reducers/order-reducer";
 
 const Checkout = () => {
   const [showComment, setShowComment] = useState(false);
   const cartItems = useSelector((state) => state.carts.carts);
-  const [displayClientInfo, setDisplayClientInfo] = useState(true);
+  const { info: orderInfo, placeOrderDataStatus } = useSelector(
+    (state) => state.order,
+  );
   const dispatch = useDispatch();
   const pathParts = useBreadcrumbs();
   const validationSchema = Yup.object().shape({
@@ -28,51 +35,42 @@ const Checkout = () => {
     comment: Yup.string().optional(),
   });
 
+  const isOrderLoading = placeOrderDataStatus === DataStatus.PENDING;
+  const isOrderLoaded = placeOrderDataStatus === DataStatus.FULFILLED;
+
+  useEffect(() => {
+    return () => {
+      dispatch(setInfoDataStatusAC(DataStatus.IDLE));
+    };
+  }, [dispatch]);
+
+  if (placeOrderDataStatus === DataStatus.IDLE && cartItems.length === 0) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <section>
       <Container>
         <h3 className="vvPageTitle">Checkout </h3>
         <Breadcrumbs pathParts={pathParts} />
         <div className={styles.CheckoutWrapper}>
-          {!displayClientInfo && (
-            <div className={styles.ThanksBox}>
-              <img
-                src="public\imageProject\checkout\checkout.png"
-                alt="after submite"
-              />
-              <div className={styles.ThanksText}>
-                <p className={styles.MainText}>Thank you for your order!</p>
-                <p className={styles.SubText}>
-                  All information about the order will be in your mail
-                </p>
+          {isOrderLoaded && (
+            <div className={styles.ContentWrapper}>
+              <div className={styles.ThanksBox}>
+                <img
+                  src="public\imageProject\checkout\checkout.png"
+                  alt="after submite"
+                />
+                <div className={styles.ThanksText}>
+                  <p className={styles.MainText}>Thank you for your order!</p>
+                  <p className={styles.SubText}>
+                    All information about the order will be in your mail
+                  </p>
+                </div>
               </div>
-            </div>
-          )}
-          <Formik
-            initialValues={{
-              toggle: false,
-              checked: [],
-              name: "",
-              lastName: "",
-              email: "",
-              phone: "",
-              country: "",
-              city: "",
-              address: "",
-              comment: "",
-            }}
-            validationSchema={validationSchema}
-            onSubmit={async (values, actions) => {
-              setDisplayClientInfo(false);
-              actions.setSubmitting(false);
-
-              dispatch(placeOrderThunk(values));
-            }}
-          >
-            <Form className={styles.CheckoutForm}>
               <div className={styles.ProductInfo}>
                 <div className={styles.AddedProducts}>
-                  {cartItems.map(({ quantity, instance }) => {
+                  {orderInfo.products.map(({ quantity, instance }) => {
                     return (
                       <CheckoutItem
                         key={instance._id}
@@ -83,22 +81,29 @@ const Checkout = () => {
                   })}
                 </div>
                 <TotalPrice isInCheckout />
-
-                {displayClientInfo && (
-                  <>
-                    <label className={styles.Checkbox}>
-                      <Field type="checkbox" name="toggle" />
-                      <p>
-                        By clicking the `Place order` button, you agree to the
-                        Privacy Policy
-                      </p>
-                    </label>
-                    <Button text="Place order" type="submit" />
-                  </>
-                )}
               </div>
-
-              {displayClientInfo && (
+            </div>
+          )}
+          {placeOrderDataStatus !== DataStatus.FULFILLED && (
+            <Formik
+              initialValues={{
+                toggle: false,
+                checked: [],
+                name: "",
+                lastName: "",
+                email: "",
+                phone: "",
+                country: "",
+                city: "",
+                address: "",
+                comment: "",
+              }}
+              validationSchema={validationSchema}
+              onSubmit={(values) => {
+                dispatch(placeOrderThunk(values));
+              }}
+            >
+              <Form className={styles.ContentWrapper}>
                 <div className={styles.ClientInfo}>
                   <h2 className={styles.ClientInfoTitle}>Your order</h2>
                   <div className={styles.PersonalData}>
@@ -197,9 +202,36 @@ const Checkout = () => {
                     </div>
                   )}
                 </div>
-              )}
-            </Form>
-          </Formik>
+                <div className={styles.ProductInfo}>
+                  <div className={styles.AddedProducts}>
+                    {cartItems.map(({ quantity, instance }) => {
+                      return (
+                        <CheckoutItem
+                          key={instance._id}
+                          count={quantity}
+                          product={instance}
+                        />
+                      );
+                    })}
+                  </div>
+                  <TotalPrice isInCheckout />
+
+                  <label className={styles.Checkbox}>
+                    <Field type="checkbox" name="toggle" />
+                    <p>
+                      By clicking the `Place order` button, you agree to the
+                      Privacy Policy
+                    </p>
+                  </label>
+                  <Button
+                    isDisabled={isOrderLoading}
+                    text="Place order"
+                    type="submit"
+                  />
+                </div>
+              </Form>
+            </Formik>
+          )}
         </div>
       </Container>
     </section>

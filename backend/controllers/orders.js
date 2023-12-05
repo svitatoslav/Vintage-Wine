@@ -99,16 +99,16 @@ exports.placeOrder = async (req, res, next) => {
     newOrder
       .save()
       .then(async (order) => {
-        // const mailResult = await sendMail(
-        //   subscriberMail,
-        //   letterSubject,
-        //   letterHtml,
-        //   res,
-        // );
+        const mailResult = await sendMail(
+          subscriberMail,
+          letterSubject,
+          letterHtml,
+          res,
+        );
 
-        for (item of order.products) {
+        for (const item of order.products) {
           const id = item.instance._id;
-          const product = await Product.findOne({ _id: id });
+          // const product = await Product.findOne({ _id: id });
           // const productQuantity = product.quantity;
           await Product.findOneAndUpdate(
             { _id: id },
@@ -117,8 +117,7 @@ exports.placeOrder = async (req, res, next) => {
           );
         }
 
-        // res.json({ order, mailResult });
-        res.json({ order });
+        res.json({ order, mailResult });
       })
       .catch((err) =>
         res.status(400).json({

@@ -1,7 +1,7 @@
 @import '../../assets/variables/variables';
 @import '../../assets/mixins/mixins';
 
-.CheckoutForm {
+.ContentWrapper {
   width: 100%;
   display: flex;
   align-items: center;
@@ -9,14 +9,14 @@
   gap: 30px;
 
   @media screen and (min-width: $tablet-xlg) {
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: center;
     align-items: start;
     gap: 45px;
   }
 
   @media screen and (min-width: $desktop) {
-    gap: 75px;
+    gap: 60px;
   }
 }
 
@@ -26,6 +26,7 @@
   align-items: center;
   border: $brd-white;
   padding: 14px 8px 40px;
+  width: 100%;
 
   @media screen and (min-width: $tablet) {
     padding: 26px 28px 45px;
