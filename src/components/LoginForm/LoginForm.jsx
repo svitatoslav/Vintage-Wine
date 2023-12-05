@@ -9,22 +9,20 @@ import {
   setUserAC,
   setUserIdAC,
   signInAC,
-} from "../../redux/reducers/authorization-reducer";
-import Button from "../Button/Button";
-import loginValidationSchema from "../../validation/loginValidationSchema";
-import regValidationSchema from "../../validation/regValidationSchema";
-import styles from "./LoginForm.module.scss";
-import {
-  switchModalAC,
-  toggleModalAC,
-} from "../../redux/reducers/modalWindow-reducer";
-import { toggleMergeCartAC } from "../../redux/reducers/mergeCarts-reducer";
+} from '../../redux/reducers/authorization-reducer';
+import Button from '../Button/Button';
+import loginValidationSchema from '../../validation/loginValidationSchema';
+import regValidationSchema from '../../validation/regValidationSchema';
+import { toggleMergeCartAC } from '../../redux/reducers/mergeCarts-reducer';
+import styles from './LoginForm.module.scss';
+import { hideLoadingAC, showLoadingAC } from '../../redux/reducers/loading-reducer';
+import Loader from '../Loader/Loader';
 
 function LoginForm({ isLogin, formTexts, onLogin }) {
   const isLogged = useSelector((state) => state.user.user);
   const isSigned = useSelector((state) => state.user.isSigned);
-  const token = useSelector((state) => state.user.token);
   const currentCart = useSelector((state) => state.carts.carts);
+  const isLoading = useSelector(state => state.loader.isLoading);
   const dispatch = useDispatch();
   const [error, setError] = useState("");
 
@@ -44,76 +42,79 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
     : loginValidationSchema;
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    dispatch(showLoadingAC());
     const { email, login, ...logValues } = values;
     const { loginOrEmail, ...regValues } = values;
 
     if (isLogin) {
-      axios
-        .post("http://127.0.0.1:4000/api/customers/login", logValues)
-        .then((res) => {
-          dispatch(setTokenAC(res.data.token));
-          dispatch(setUserAC(res.data.user));
-          dispatch(setUserIdAC(res.data.id));
+      try {
+        axios
+          .post("http://127.0.0.1:4000/api/customers/login", logValues, { silent: true })
+          .then((res) => {
+            dispatch(setTokenAC(res.data.token));
+            dispatch(setUserAC(res.data.user));
+            dispatch(setUserIdAC(res.data.id));
 
-          const newCart = {
-            customerId: res.data.id,
-            products: [],
-          };
+            const newCart = {
+              customerId: res.data.id,
+              products: [],
+            };
 
-          axios
-            .post("http://127.0.0.1:4000/api/cart/", newCart, {
+            dispatch(hideLoadingAC());
+            axios.post('http://127.0.0.1:4000/api/cart/', newCart, {
               headers: {
-                Authorization: res.data.token,
+                "Authorization": res.data.token,
               },
+              silent: true
             })
-            .then((res) => console.log(res.statusText))
-            .catch((err) => console.log(err))
-            .finally(() => {
-              axios
-                .get("http://127.0.0.1:4000/api/cart/", {
-                  headers: {
-                    Authorization: res.data.token,
-                  },
-                })
-                .then((result) => {
-                  if (result.data.products.length) {
-                    dispatch(toggleMergeCartAC());
-                    // dispatch(switchModalAC('cart'));
-                    // dispatch(toggleModalAC());
-                    return;
-                  }
+              .catch(err => console.log(err))
+              .finally(() => {
+                axios
+                  .get("http://127.0.0.1:4000/api/cart/", {
+                    headers: {
+                      Authorization: res.data.token,
+                    },
+                  })
+                  .then((result) => {
+                    if (result.data.products.length) {
+                      dispatch(toggleMergeCartAC());
+                      return;
+                    }
 
-                  if (currentCart.length) {
-                    axios
-                      .put(
-                        "http://127.0.0.1:4000/api/cart/",
-                        { products: currentCart },
-                        {
-                          headers: {
-                            Authorization: res.data.token,
-                          },
+                    if (currentCart.length) {
+                      axios.put('http://127.0.0.1:4000/api/cart/', { products: currentCart }, {
+                        headers: {
+                          "Authorization": res.data.token,
                         },
-                      )
-                      .then((res) => console.log(res.statusText))
-                      .catch((err) => console.log(err));
-                  }
-                })
-                .catch((err) => console.log(err));
-            });
-        })
-        .catch((err) => {
-          setError(...Object.values(err.response.data));
-          setTimeout(() => {
-            setError("");
-          }, 4000);
-        });
+                        silent: true
+                      })
+                        .catch((err) => console.log(err))
+                    }
+                  })
+                  .catch((err) => console.log(err));
+              });
+          })
+          .catch((err) => {
+            setError(...Object.values(err.response.data));
+            setTimeout(() => {
+              setError("");
+            }, 4000);
+          });
+      } catch (err) {
+        console.log(err);
+      }
     } else {
-      axios
-        .post("http://127.0.0.1:4000/api/customers/", regValues)
-        .then(() => {
-          dispatch(signInAC());
-        })
-        .catch((err) => console.log(err));
+      try {
+        axios
+          .post("http://127.0.0.1:4000/api/customers/", regValues)
+          .then(() => {
+            dispatch(hideLoadingAC());
+            dispatch(signInAC());
+          })
+          .catch((err) => console.log(err));
+      } catch (err) {
+        console.log(err);
+      }
     }
 
     resetForm(initialValues);
@@ -128,80 +129,92 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
     >
       {({ isSubmitting }) => (
         <Form className={styles.LoginForm}>
-          <h4 className={styles.LoginTitle}>{formTexts.title}</h4>
-          <div className={styles.LoginFields}>
-            {isLogin ? (
-              <>
-                <Field
-                  className={styles.LoginInput}
-                  type="text"
-                  name="loginOrEmail"
-                  placeholder="Login or e-mail"
-                />
-                <ErrorMessage
-                  className={styles.LoginError}
-                  name="loginOrEmail"
-                  component="div"
-                />
-              </>
+          {
+            isLoading ? (
+              <Loader />
             ) : (
               <>
-                <Field
-                  className={styles.LoginInput}
-                  type="text"
-                  name="login"
-                  placeholder="Login"
+                <h4 className={styles.LoginTitle}>{formTexts.title}</h4>
+                <div className={styles.LoginFields}>
+                  {isLogin ? (
+                    <>
+                      <Field
+                        className={styles.LoginInput}
+                        type="text"
+                        name="loginOrEmail"
+                        placeholder="Login or e-mail"
+                      />
+                      <ErrorMessage
+                        className={styles.LoginError}
+                        name="loginOrEmail"
+                        component="div"
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <Field
+                        className={styles.LoginInput}
+                        type="text"
+                        name="login"
+                        placeholder="Login"
+                      />
+                      <ErrorMessage
+                        className={styles.LoginError}
+                        name="login"
+                        component="div"
+                      />
+                      <Field
+                        className={styles.LoginInput}
+                        type="email"
+                        name="email"
+                        placeholder="E-mail"
+                      />
+                      <ErrorMessage
+                        className={styles.LoginError}
+                        name="email"
+                        component="div"
+                      />
+                    </>
+                  )}
+                  <Field
+                    className={styles.LoginInput}
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                  <ErrorMessage
+                    className={styles.LoginError}
+                    name="password"
+                    component="div"
+                  />
+                </div>
+                {(error && isLogin) && (
+                  <div className={styles.FormError}>
+                    {error}
+                  </div>
+                )}
+                <Button
+                  type="submit"
+                  text={formTexts.button}
+                  disabled={isSubmitting}
                 />
-                <ErrorMessage
-                  className={styles.LoginError}
-                  name="login"
-                  component="div"
-                />
-                <Field
-                  className={styles.LoginInput}
-                  type="email"
-                  name="email"
-                  placeholder="E-mail"
-                />
-                <ErrorMessage
-                  className={styles.LoginError}
-                  name="email"
-                  component="div"
-                />
+                {!isSigned && (
+                  <div>
+                    <span className={styles.LoginOptionText}>
+                      {`${formTexts.option} `}
+                    </span>
+                    <button
+                      type="button"
+                      className={styles.LoginOption}
+                      onClick={onLogin}
+                    >
+                      {formTexts.otherButton}
+                    </button>
+                  </div>
+                )}
               </>
-            )}
-            <Field
-              className={styles.LoginInput}
-              type="password"
-              name="password"
-              placeholder="Password"
-            />
-            <ErrorMessage
-              className={styles.LoginError}
-              name="password"
-              component="div"
-            />
-          </div>
-          {error && isLogin && <div className={styles.FormError}>{error}</div>}
-          <Button
-            type="submit"
-            text={formTexts.button}
-            disabled={isSubmitting}
-          />
-          {!isSigned && (
-            <div>
-              <span className={styles.LoginOptionText}>
-                {`${formTexts.option} `}
-              </span>
-              <button
-                type="button"
-                className={styles.LoginOption}
-                onClick={onLogin}
-              >
-                {formTexts.otherButton}
-              </button>
-            </div>
-          )}
+            )
+          }
         </Form>
       )}
     </Formik>

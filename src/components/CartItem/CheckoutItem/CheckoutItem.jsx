@@ -1,31 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import { removeAll } from "../../../redux/reducers/cart-reducer";
-import Counter from "../../Counter/Counter";
 import styles from "./CheckoutItem.module.scss";
-import { FaRegTrashAlt } from "react-icons/fa";
-import axios from "axios";
 
 const CheckoutItem = ({ count, product }) => {
-  const { name, productImg, _id, currentPrice, characteristics } = product;
-
+  const { name, productImg, currentPrice, characteristics } = product;
   const [code, grape, volume, color] = characteristics;
-
-  const token = useSelector((state) => state.user.token);
-  const dispatch = useDispatch();
-
-  const removeProduct = () => {
-    dispatch(removeAll(_id));
-    if (token) {
-      axios
-        .delete(`http://127.0.0.1:4000/api/cart/${_id}`, {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((res) => console.log(res.statusText))
-        .catch((err) => console.log(err));
-    }
-  };
 
   return (
     <div className={styles.CheckoutItem}>

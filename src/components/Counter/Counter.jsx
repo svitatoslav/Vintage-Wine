@@ -1,9 +1,8 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { addOneToExistedProduct, removeFromCarts } from '../../redux/reducers/cart-reducer'
-import Button from '../Button/Button'
-import styles from "./Counter.module.scss"
-import axios from 'axios'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addOneToExistedProduct, removeFromCarts } from '../../redux/reducers/cart-reducer';
+import styles from "./Counter.module.scss";
+import axios from 'axios';
 
 const Counter = ({ id, count, data }) => {
   const token = useSelector((state) => state.user.token);
@@ -19,8 +18,7 @@ const Counter = ({ id, count, data }) => {
           "Authorization": token,
         }
       })
-        .then((res) => console.log(res.statusText))
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     }
   }
 
@@ -33,8 +31,7 @@ const Counter = ({ id, count, data }) => {
           "Authorization": token,
         }
       })
-        .then((res) => console.log(res.statusText))
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     }
   }
 
@@ -42,10 +39,10 @@ const Counter = ({ id, count, data }) => {
     <div className={styles.Counter}>
       <button className={styles.CountElem} onClick={removeOne}>-</button>
       <p className={styles.CountElem}>{count}</p>
-      
+
       <button className={styles.CountElem} onClick={addOne}>+</button>
     </div>
   )
 }
 
-export default Counter
+export default Counter;

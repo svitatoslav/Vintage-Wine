@@ -13,8 +13,7 @@ import styles from './SingleProduct.module.scss';
 import AboutProduct from '../../components/AboutProduct/AboutProduct';
 import LastViewed from './../../components/LastViewed/LastViewed';
 import { fetchViewedProductsThunk } from '../../redux/reducers/fetchViewedProducts-reducer';
-import { addOneToExistedProduct, addToCarts, updateCarts } from '../../redux/reducers/cart-reducer';
-import { Link } from 'react-router-dom';
+import { addOneToExistedProduct, updateCarts } from '../../redux/reducers/cart-reducer';
 import { switchModalAC, toggleModalAC } from '../../redux/reducers/modalWindow-reducer';
 
 const SingleProduct = () => {

@@ -7,9 +7,8 @@ import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
 import Button from "../../components/Button/Button";
 import Arrow from "./img/arrow.svg?react";
-import calcTotalPrice from "../../helpers/calcTotalPrice";
 import EmptyCartText from "../../components/CartItem/EmptyCartText/EmptyCartText";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TotalPrice from "../../components/TotalPrice/TotalPrice";
 import cn from "classnames";
 
