@@ -14,15 +14,16 @@ import {
 import Button from '../Button/Button';
 import loginValidationSchema from '../../validation/loginValidationSchema';
 import regValidationSchema from '../../validation/regValidationSchema';
-import styles from './LoginForm.module.scss';
-import { switchModalAC, toggleModalAC } from '../../redux/reducers/modalWindow-reducer';
 import { toggleMergeCartAC } from '../../redux/reducers/mergeCarts-reducer';
+import styles from './LoginForm.module.scss';
+import { hideLoadingAC, showLoadingAC } from '../../redux/reducers/loading-reducer';
+import Loader from '../Loader/Loader';
 
 function LoginForm({ isLogin, formTexts, onLogin }) {
   const isLogged = useSelector((state) => state.user.user);
   const isSigned = useSelector((state) => state.user.isSigned);
-  const token = useSelector((state) => state.user.token);
   const currentCart = useSelector((state) => state.carts.carts);
+  const isLoading = useSelector(state => state.loader.isLoading);
   const dispatch = useDispatch();
   const [error, setError] = useState('');
 
@@ -41,6 +42,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
     ? regValidationSchema : loginValidationSchema;
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    dispatch(showLoadingAC());
     const { email, login, ...logValues } = values;
     const { loginOrEmail, ...regValues } = values;
 
@@ -55,6 +57,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
             products: [],
           }
 
+          dispatch(hideLoadingAC());
           axios.post('http://127.0.0.1:4000/api/cart/', newCart, {
             headers: {
               "Authorization": res.data.token,
@@ -77,13 +80,13 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
                   }
 
                   if (currentCart.length) {
-                    axios.put('http://127.0.0.1:4000/api/cart/', {products: currentCart}, {
+                    axios.put('http://127.0.0.1:4000/api/cart/', { products: currentCart }, {
                       headers: {
                         "Authorization": res.data.token,
                       }
                     })
-                    .then((res) => console.log(res.statusText))
-                    .catch((err) => console.log(err))
+                      .then((res) => console.log(res.statusText))
+                      .catch((err) => console.log(err))
                   }
                 })
                 .catch((err) => console.log(err))
@@ -98,6 +101,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
     } else {
       axios.post('http://127.0.0.1:4000/api/customers/', regValues)
         .then(() => {
+          dispatch(hideLoadingAC());
           dispatch(signInAC());
         })
         .catch((err) => console.log(err));
@@ -108,94 +112,104 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
-      {({ isSubmitting }) => (
-        <Form className={styles.LoginForm}>
-          <h4 className={styles.LoginTitle}>{formTexts.title}</h4>
-          <div className={styles.LoginFields}>
-            {isLogin ? (
-              <>
-                <Field
-                  className={styles.LoginInput}
-                  type="text"
-                  name="loginOrEmail"
-                  placeholder="Login or e-mail"
-                />
-                <ErrorMessage
-                  className={styles.LoginError}
-                  name="loginOrEmail"
-                  component="div"
-                />
-              </>
-            ) : (
-              <>
-                <Field
-                  className={styles.LoginInput}
-                  type="text"
-                  name="login"
-                  placeholder="Login"
-                />
-                <ErrorMessage
-                  className={styles.LoginError}
-                  name="login"
-                  component="div"
-                />
-                <Field
-                  className={styles.LoginInput}
-                  type="email"
-                  name="email"
-                  placeholder="E-mail"
-                />
-                <ErrorMessage
-                  className={styles.LoginError}
-                  name="email"
-                  component="div"
-                />
-              </>
-            )}
-            <Field
-              className={styles.LoginInput}
-              type="password"
-              name="password"
-              placeholder="Password"
-            />
-            <ErrorMessage
-              className={styles.LoginError}
-              name="password"
-              component="div"
-            />
-          </div>
-          {(error && isLogin) && (
-            <div className={styles.FormError}>
-              {error}
-            </div>
-          )}
-          <Button
-            type="submit"
-            text={formTexts.button}
-            disabled={isSubmitting}
-          />
-          {!isSigned && (
-            <div>
-              <span className={styles.LoginOptionText}>
-                {`${formTexts.option} `}
-              </span>
-              <button
-                type="button"
-                className={styles.LoginOption}
-                onClick={onLogin}
-              >
-                {formTexts.otherButton}
-              </button>
-            </div>
-          )}
-        </Form>
-      )}
-    </Formik>
+    <>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ isSubmitting }) => (
+          <Form className={styles.LoginForm}>
+            {
+              isLoading ? (
+                <Loader />
+              ) : (
+                <>
+                  <h4 className={styles.LoginTitle}>{formTexts.title}</h4>
+                  <div className={styles.LoginFields}>
+                    {isLogin ? (
+                      <>
+                        <Field
+                          className={styles.LoginInput}
+                          type="text"
+                          name="loginOrEmail"
+                          placeholder="Login or e-mail"
+                        />
+                        <ErrorMessage
+                          className={styles.LoginError}
+                          name="loginOrEmail"
+                          component="div"
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <Field
+                          className={styles.LoginInput}
+                          type="text"
+                          name="login"
+                          placeholder="Login"
+                        />
+                        <ErrorMessage
+                          className={styles.LoginError}
+                          name="login"
+                          component="div"
+                        />
+                        <Field
+                          className={styles.LoginInput}
+                          type="email"
+                          name="email"
+                          placeholder="E-mail"
+                        />
+                        <ErrorMessage
+                          className={styles.LoginError}
+                          name="email"
+                          component="div"
+                        />
+                      </>
+                    )}
+                    <Field
+                      className={styles.LoginInput}
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                    />
+                    <ErrorMessage
+                      className={styles.LoginError}
+                      name="password"
+                      component="div"
+                    />
+                  </div>
+                  {(error && isLogin) && (
+                    <div className={styles.FormError}>
+                      {error}
+                    </div>
+                  )}
+                  <Button
+                    type="submit"
+                    text={formTexts.button}
+                    disabled={isSubmitting}
+                  />
+                  {!isSigned && (
+                    <div>
+                      <span className={styles.LoginOptionText}>
+                        {`${formTexts.option} `}
+                      </span>
+                      <button
+                        type="button"
+                        className={styles.LoginOption}
+                        onClick={onLogin}
+                      >
+                        {formTexts.otherButton}
+                      </button>
+                    </div>
+                  )}
+                </>
+              )
+            }
+          </Form>
+        )}
+      </Formik>
+    </>
   );
 }
 

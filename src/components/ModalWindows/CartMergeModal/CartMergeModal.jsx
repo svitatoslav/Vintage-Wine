@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import styles from './CartMergeModal.module.scss';
 import Button from '../../Button/Button';
+import Loader from '../../Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCarts } from '../../../redux/reducers/cart-reducer';
 import { toggleModalAC } from '../../../redux/reducers/modalWindow-reducer';
 import axios from 'axios';
 import { toggleMergeCartAC } from '../../../redux/reducers/mergeCarts-reducer';
+import { hideLoadingAC, showLoadingAC } from '../../../redux/reducers/loading-reducer';
 
 const CartMergeModal = () => {
   const currentCart = useSelector((state) => state.carts.carts);
-  const [cart, setCart] = useState([]);
+  const isLoading = useSelector(state => state.loader.isLoading);
   const token = useSelector((state) => state.user.token);
+  const [cart, setCart] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(showLoadingAC());
     (async () => {
       try {
         const response = await fetch('http://127.0.0.1:4000/api/cart', {
@@ -27,6 +31,8 @@ const CartMergeModal = () => {
         const result = await response.json();
 
         setCart(result.products);
+        
+        dispatch(hideLoadingAC());
       } catch (err) {
         console.log(err);
       }
@@ -85,82 +91,89 @@ const CartMergeModal = () => {
   }
 
   return (
-    <div className={styles.CartModal} data-testid="CartMergeModal">
-      <div className={styles.CartModalTitle}>
-        <p className={styles.CartModalText}>
-          Some products have been added to your cart before and saved in your account.
-        </p>
-        <p className={styles.CartModalSubText}>
-          Would you like to update your current shopping cart status?
-        </p>
-      </div>
-      <div className={styles.CartModalContent}>
-        <div className={styles.CartModalList}>
-          <h4 className={styles.CartModalLabel}>Previous cart state:</h4>
-          <div className={styles.CartModalTable}>
-            <div className={styles.CartModalItem}>
-              <div className={styles.CartModalHeader} >Product name</div>
-              <div className={styles.CartModalHeader}>Quantity</div>
+    <>
+      {
+        isLoading ? (
+          <Loader />
+        ) : (
+          <div className={styles.CartModal} data-testid="CartMergeModal">
+            <div className={styles.CartModalTitle}>
+              <p className={styles.CartModalText}>
+                Some products have been added to your cart before and saved in your account.
+              </p>
+              <p className={styles.CartModalSubText}>
+                Would you like to update your current shopping cart status?
+              </p>
             </div>
-            <ul>
-              {cart?.map(({ quantity, instance }) => {
-                return (
-                  <li key={instance._id} className={styles.CartModalItem}>
-                    <div>{instance.name}</div>
-                    <div>{quantity}</div>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </div>
-        <div className={styles.CartModalList}>
-          <h4 className={styles.CartModalLabel}>Current cart state:</h4>
-          {currentCart.length > 0 ?
-            (<div className={styles.CartModalTable}>
-              <div className={styles.CartModalItem}>
-                <div className={styles.CartModalHeader} >Product name</div>
-                <div className={styles.CartModalHeader}>Quantity</div>
+            <div className={styles.CartModalContent}>
+              <div className={styles.CartModalList}>
+                <h4 className={styles.CartModalLabel}>Previous cart state:</h4>
+                <div className={styles.CartModalTable}>
+                  <div className={styles.CartModalItem}>
+                    <div className={styles.CartModalHeader} >Product name</div>
+                    <div className={styles.CartModalHeader}>Quantity</div>
+                  </div>
+                  <ul>
+                    {cart?.map(({ quantity, instance }) => {
+                      return (
+                        <li key={instance._id} className={styles.CartModalItem}>
+                          <div>{instance.name}</div>
+                          <div>{quantity}</div>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
               </div>
-              <ul>
-                {currentCart?.map(({ quantity, instance }) => {
-                  return (
-                    <li key={instance._id} className={styles.CartModalItem}>
-                      <div>{instance.name}</div>
-                      <div>{quantity}</div>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>) : (
-              <div style={{ textAlign: "center" }}>Empty</div>
-            )}
-        </div>
-        <div className={styles.CartModalList}>
-          <h4 className={styles.CartModalLabel}>Your cart after update:</h4>
-          <div className={styles.CartModalTable}>
-            <div className={styles.CartModalItem}>
-              <div className={styles.CartModalHeader} >Product name</div>
-              <div className={styles.CartModalHeader}>Quantity</div>
+              <div className={styles.CartModalList}>
+                <h4 className={styles.CartModalLabel}>Current cart state:</h4>
+                {currentCart.length > 0 ?
+                  (<div className={styles.CartModalTable}>
+                    <div className={styles.CartModalItem}>
+                      <div className={styles.CartModalHeader} >Product name</div>
+                      <div className={styles.CartModalHeader}>Quantity</div>
+                    </div>
+                    <ul>
+                      {currentCart?.map(({ quantity, instance }) => {
+                        return (
+                          <li key={instance._id} className={styles.CartModalItem}>
+                            <div>{instance.name}</div>
+                            <div>{quantity}</div>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>) : (
+                    <div style={{ textAlign: "center" }}>Empty</div>
+                  )}
+              </div>
+              <div className={styles.CartModalList}>
+                <h4 className={styles.CartModalLabel}>Your cart after update:</h4>
+                <div className={styles.CartModalTable}>
+                  <div className={styles.CartModalItem}>
+                    <div className={styles.CartModalHeader} >Product name</div>
+                    <div className={styles.CartModalHeader}>Quantity</div>
+                  </div>
+                  <ul>
+                    {resultArray?.map(({ quantity, instance }) => {
+                      return (
+                        <li key={instance._id} className={styles.CartModalItem}>
+                          <div>{instance.name}</div>
+                          <div>{quantity}</div>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
+              </div>
             </div>
-            <ul>
-              {resultArray?.map(({ quantity, instance }) => {
-                return (
-                  <li key={instance._id} className={styles.CartModalItem}>
-                    <div>{instance.name}</div>
-                    <div>{quantity}</div>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className={styles.CartModalBtns}>
-        <Button text="Yes, update the cart" variant='smallAdaptive' onClick={() => updateCart(resultArray)} />
-        <Button text="No, leave the current state" variant='smallAdaptive' onClick={() => updateCart()} />
-      </div>
-    </div>
+            <div className={styles.CartModalBtns}>
+              <Button text="Yes, update the cart" variant='smallAdaptive' onClick={() => updateCart(resultArray)} />
+              <Button text="No, leave the current state" variant='smallAdaptive' onClick={() => updateCart()} />
+            </div>
+          </div >
+        )}
+    </>
   );
 }
 

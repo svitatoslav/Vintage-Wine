@@ -1,9 +1,8 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { addOneToExistedProduct, removeFromCarts } from '../../redux/reducers/cart-reducer'
-import Button from '../Button/Button'
-import styles from "./Counter.module.scss"
-import axios from 'axios'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addOneToExistedProduct, removeFromCarts } from '../../redux/reducers/cart-reducer';
+import styles from "./Counter.module.scss";
+import axios from 'axios';
 
 const Counter = ({ id, count, data }) => {
   const token = useSelector((state) => state.user.token);
@@ -48,4 +47,4 @@ const Counter = ({ id, count, data }) => {
   )
 }
 
-export default Counter
+export default Counter;

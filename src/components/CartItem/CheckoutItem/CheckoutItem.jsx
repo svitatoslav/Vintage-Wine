@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { removeAll } from "../../../redux/reducers/cart-reducer";
-import Counter from "../../Counter/Counter";
 import styles from "./CheckoutItem.module.scss";
-import { FaRegTrashAlt } from "react-icons/fa";
 import axios from "axios";
 
 const CheckoutItem = ({ count, product }) => {
