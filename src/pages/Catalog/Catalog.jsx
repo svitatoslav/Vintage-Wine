@@ -9,6 +9,7 @@ import useBreadcrumbs from "../../hooks/useBreadcrumbs";
 import Container from "./../../components/Container/Container";
 import styles from "./Catalog.module.scss";
 import Breadcrumbs from "./../../components/Breadcrumbs/Breadcrumbs";
+import PageTitle from "../../components/Title/PageTitle";
 
 const Catalog = () => {
   const pathParts = useBreadcrumbs();
@@ -20,7 +21,7 @@ const Catalog = () => {
   return (
     <section>
       <Container>
-        <h3 className="vvPageTitle">Our catalog </h3>
+         <PageTitle text={'Our catalog'} />
         {<Breadcrumbs pathParts={pathParts} />}
         <div className={styles.CatalogList}>
           {catalog.map((item) => {
