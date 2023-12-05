@@ -1,11 +1,20 @@
-import styles from './Title.module.scss'
+import PropTypes from "prop-types";
+import styles from "./Title.module.scss";
 
+const SubTitle = ({ text }) => {
+  return (
+    <h3 data-testid="subTitle" className={styles.vvSubTitle}>
+      {text}
+    </h3>
+  );
+};
 
-const SubTitle = ({text}) => {
+SubTitle.propTypes = {
+  text: PropTypes.string,
+};
 
-    return (
-        <h3  data-testid="subTitle" className={styles.vvSubTitle}>{text}</h3>
-    )
-}
+SubTitle.defaultProps = {
+  text: "",
+};
 
-export default SubTitle
+export default SubTitle;

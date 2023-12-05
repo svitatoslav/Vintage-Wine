@@ -15,13 +15,13 @@ import LastViewed from './../../components/LastViewed/LastViewed';
 import { fetchViewedProductsThunk } from '../../redux/reducers/fetchViewedProducts-reducer';
 import { addOneToExistedProduct, addToCarts, updateCarts } from '../../redux/reducers/cart-reducer';
 import { Link } from 'react-router-dom';
+import { switchModalAC, toggleModalAC } from '../../redux/reducers/modalWindow-reducer';
 
 const SingleProduct = () => {
     const dispatch = useDispatch();
     const [singleItem, setSingleItem] = useState({});
     const pathParts = useBreadcrumbs();
     const cart = useSelector((state) => state.carts.carts);
-
     const viewedProducts = useSelector((state) => state.fetchViewedProducts.viewedProducts);
     const viewedProductsStorage = JSON.stringify(viewedProducts);
 
@@ -33,8 +33,7 @@ const SingleProduct = () => {
         return text.replace(/([A-Z])/g, ' $1');
     };
 
-    const sliderImages = singleItem?.slidesImageUrls?.map((item) => `${item}`);
-    // const sliderImages = singleItem?.slidesImageUrls?.map((item) => `http://localhost:5173/${item}`);
+    const sliderImages = singleItem?.slidesImageUrls?.map((item) => item);
 
     const handleAddToCart = (e) => {
         e.preventDefault();
@@ -58,6 +57,11 @@ const SingleProduct = () => {
             isInCart = true;
         }
     });
+
+    const handleCartPopup = () => {
+        dispatch(toggleModalAC());
+        dispatch(switchModalAC("cartPopup"));
+    };
 
     useEffect(() => {
         async function fetchData() {
@@ -94,7 +98,7 @@ const SingleProduct = () => {
         <Container>
             <div className={styles.singleProduct}>
                 <h3 className={styles.productName}>{singleItem?.name}</h3>
-                {<Breadcrumbs pathParts={pathParts} />}
+                {<Breadcrumbs pathParts={[pathParts[0], singleItem.name]} />}
                 <div className={styles.wrapperProductData}>
                     <div className={styles.productImg}>
                         <CustomSlider sliderArray={sliderImages} type="SINGLE_PRODUCT" isSlidePagination={false} />
@@ -122,19 +126,8 @@ const SingleProduct = () => {
                                 <span className={styles.price}>
                                     {singleItem?.currentPrice} <span className={styles.valuta}>UAH</span>
                                 </span>
-                                {/* <div className={styles.quantityWrapper}>
-                                    <span className={styles.minus}>-</span>
-                                    <span className={styles.quantity}>1</span>
-                                    <span className={styles.plus}>+</span>
-                                </div> */}
                             </div>
-                            {isInCart ? (
-                                <Link to="/cart" className={styles.cartLinkProduct}>
-                                    <Button text="In cart" type="xSmall" />
-                                </Link>
-                            ) : (
-                                <Button text="Add to cart" type="xSmall" onClick={handleAddToCart} className="foo" />
-                            )}
+                            {isInCart ? <Button text="In cart" type="xSmall" variant="inCart" onClick={handleCartPopup} /> : <Button text="Add to cart" type="xSmall" onClick={handleAddToCart} />}
                         </div>
                         <div className={styles.shortDescription}>
                             <div className={styles.titles}>

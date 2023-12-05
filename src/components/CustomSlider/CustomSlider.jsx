@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import NextArrow from './icons/NextArrow';
 import PrevArrow from './icons/PrevArrow';
@@ -12,13 +12,21 @@ import CustomArrowNext from './icons/CustomArrowNext';
 
 import styles from './CustomSlider.module.scss';
 import Button from '../Button/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { addOneToExistedProduct, updateCarts } from '../../redux/reducers/cart-reducer';
+import { switchModalAC, toggleModalAC } from '../../redux/reducers/modalWindow-reducer';
 
 const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination = true }) => {
     const CATALOG_SLIDER = 'CATALOG';
     const COLLECTIONS_SLIDER = 'COLLECTIONS';
     const SINGLE_PRODUCT = 'SINGLE_PRODUCT';
     const VIEWED_PRODUCTS = 'VIEWED_PRODUCTS';
+    const SHARES_PRODUCT = 'SHARES';
 
+     const PRODUCTION_ABOUT = 'PRODUCTION_ABOUT';
+     const AWARDS_ABOUT = 'AWARDS_ABOUT';
+    const dispatch = useDispatch();
+    const cart = useSelector((state) => state.carts.carts);
     const [currentIndex, setCurrentIndex] = useState(toScroll);
     const [productHeaderSlider, setProductHeaderSlider] = useState();
     const [productBodySlider, setProductBodySlider] = useState();
@@ -48,6 +56,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
     );
 
     const SliderCatalogSettings = {
+        margin: 20,
         dots: false,
         infinite: true,
         speed: 1000,
@@ -135,6 +144,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
         prevArrow: <SlickArrowLeft />,
         nextArrow: <SlickArrowRight />
     };
+
     const SingleProductMain = {
         dots: false,
         speed: 1000,
@@ -179,9 +189,67 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
         ref: sliderRef
     };
 
-     const handleAddProduct = (id) => {
-         localStorage.setItem('viewedProducts', id);
-     };
+    const handleAddProduct = (id) => {
+        localStorage.setItem('viewedProducts', id);
+    };
+
+    const SliderSharesSettings = {
+        dots: false,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: toShow,
+        slidesToScroll: toScroll,
+        autoplay: false,
+        autoplaySpeed: 3000,
+        arrows: false,
+        responsive: [
+            {
+                breakpoint: 960,
+                settings: {
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 640,
+                settings: {
+                    slidesToShow: 1
+                }
+            },
+            {
+                breakpoint: 460,
+                settings: {
+                    slidesToShow: 1
+                }
+            }
+        ],
+        afterChange: (index) => {
+            setCurrentIndex(index + 1);
+        },
+        ref: sliderRef
+    };
+
+    useEffect(() => {
+        setProductHeaderSlider(productMainSlider.current);
+        setProductBodySlider(productSecondarySlider.current);
+    }, []);
+
+   
+
+    const handleAddToCart = (viewedProduct) => {
+        const itemInCart = cart?.find(({ instance }) => instance._id === viewedProduct._id);
+        if (itemInCart) {
+            dispatch(addOneToExistedProduct(viewedProduct._id));
+        } else {
+            dispatch(updateCarts([{ quantity: 1, instance: viewedProduct }]));
+        }
+    };
+
+    const handleCartPopup = () => {
+        dispatch(toggleModalAC());
+        dispatch(switchModalAC('cartPopup'));
+    };
+
+    const cardProductsId = cart.map((item) => item.instance._id);
 
     return (
         <>
@@ -192,7 +260,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                         return (
                             <div className={`${styles.itemSlide} `} key={slide.id}>
                                 <Link to={`catalog/${itemLinkCatalog}`}>
-                                    <img src={slide.imageUrl} alt={slide.name} />
+                                    <img src={slide.imageUrl} alt={slide.name}/>
                                     <h4 className={styles.catalogName}>{slide.name}</h4>
                                 </Link>
                             </div>
@@ -214,9 +282,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                                     <h4 className={styles.catalogName}>{slide.name}</h4>
                                     <p className={styles.collectionsDescription}>
                                         {slide.shortDescription}
-                                        <Link to={`collections/${itemLinkCatalog}`} className="vvReadMore">
-                                            Read more ...
-                                        </Link>
+                                        <span className="vvReadMore"> Read more ...</span>
                                     </p>
                                 </div>
                             </div>
@@ -246,6 +312,34 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                     </Slider>
                 </>
             )}
+            {type === SHARES_PRODUCT && (
+                <Slider {...SliderSharesSettings} className={` ${styles.collectionsSharesSlider}`}>
+                    {sliderArray?.map((slide) => {
+                        const itemLinkShares = slide._id;
+                        return (
+                            <div className={`${styles.itemSharesSlide}`} key={slide.id}>
+                                <div className={`${styles.imgSharesContainer}`}>
+                                    <Link to={`/${itemLinkShares}`}>
+                                        <div className={`${styles.imgHideContainer}`}>
+                                            <img src={slide.imageUrl} alt={slide.name}/>
+                                        </div>
+                                    </Link>
+                                    <div className={`${styles.imgTextContainer}`}>
+                                        <p> -{slide.discount}%</p>
+                                        <img src={"../public/imageProject/shares/v1028-051.png"} alt={slide.name}/>
+                                    </div>
+                                </div>
+                                <div className={`${styles.textSharesContainer}`}>
+                                    <h4 className={styles.sharesName}>{slide.name}</h4>
+                                    <Link to={`/${itemLinkShares}`} className={`${styles.vvSeeMore}`}>
+                                        See more...
+                                    </Link>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </Slider>
+            )}
             {type === VIEWED_PRODUCTS && (
                 <>
                     {sliderArray.length > 3 ? (
@@ -254,13 +348,24 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                                 return (
                                     <div className={`${styles.itemSlide} `} key={slide._id}>
                                         <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
-                                            <img src={`${slide.productImg}`} alt={slide.name} />
-                                            {/* <img src={`http://localhost:5173${slide.productImg}`} alt={slide.name} /> */}
+                                            <img src={slide.productImg} alt={slide.name} />
                                         </Link>
                                         <div className={styles.productNav}>
-                                            <h4 className={styles.name}>{slide.name}</h4>
+                                            <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
+                                                <h4 className={styles.name}>{slide.name}</h4>
+                                            </Link>
                                             <p className={styles.price}>{slide.currentPrice}uah</p>
-                                            <Button text="Add to cart" />
+
+                                            {cardProductsId.find((productId) => productId === slide._id) ? (
+                                                <Button text="In cart" type="xSmall" variant="inCart" onClick={handleCartPopup} />
+                                            ) : (
+                                                <Button
+                                                    text="Add to cart"
+                                                    onClick={() => {
+                                                        handleAddToCart(slide);
+                                                    }}
+                                                />
+                                            )}
                                         </div>
                                     </div>
                                 );
@@ -272,13 +377,23 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                                 return (
                                     <div className={`${styles.itemSlide} `} key={slide._id}>
                                         <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
-                                            <img src={`${slide.productImg}`} alt={slide.name} />
-                                            {/* <img src={`http://localhost:5173${slide.productImg}`} alt={slide.name} /> */}
+                                            <img src={slide.productImg} alt={slide.name} />
                                         </Link>
                                         <div className={styles.productNav}>
-                                            <h4 className={styles.name}>{slide.name}</h4>
+                                            <Link to={`/shop/${slide.name.replace(/ /g, '-').replace(/\./g, '+')}`} onClick={() => handleAddProduct(slide._id)}>
+                                                <h4 className={styles.name}>{slide.name}</h4>
+                                            </Link>
                                             <p className={styles.price}>{slide.currentPrice}uah</p>
-                                            <Button text="Add to cart" />
+                                            {cardProductsId.find((productId) => productId === slide._id) ? (
+                                                <Button text="In cart" type="xSmall" variant="inCart" onClick={handleCartPopup} />
+                                            ) : (
+                                                <Button
+                                                    text="Add to cart"
+                                                    onClick={() => {
+                                                        handleAddToCart(slide);
+                                                    }}
+                                                />
+                                            )}
                                         </div>
                                     </div>
                                 );
@@ -287,6 +402,28 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                         </div>
                     )}
                 </>
+            )}
+            {type === PRODUCTION_ABOUT && (
+                <Slider {...SliderCatalogSettings} className={`${styles.wrapperSlider} ${styles.productionSlider}`}>
+                    {sliderArray?.map((slide) => {
+                        return (
+                            <div className={`${styles.itemSlide} `} key={slide.id}>
+                                <img src={slide.imageUrl} alt='production slide image' />
+                            </div>
+                        );
+                    })}
+                </Slider>
+            )}
+            {type === AWARDS_ABOUT && (
+                <Slider {...SliderCatalogSettings} className={`${styles.wrapperSlider} ${styles.awardsSlider}`}>
+                    {sliderArray?.map((slide) => {
+                        return (
+                            <div className={`${styles.itemSlide} `} key={slide.id}>
+                                <img src={slide.imageUrl} alt='production slide image' />
+                            </div>
+                        );
+                    })}
+                </Slider>
             )}
 
             {isSlidePagination && (

@@ -9,54 +9,60 @@ import Button from "../../components/Button/Button";
 import Arrow from "./img/arrow.svg?react";
 import calcTotalPrice from "../../helpers/calcTotalPrice";
 import EmptyCartText from "../../components/CartItem/EmptyCartText/EmptyCartText";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TotalPrice from "../../components/TotalPrice/TotalPrice";
-import cn from 'classnames';
+import cn from "classnames";
 
 const Cart = () => {
-    const carts = useSelector((state) => state.carts.carts);
-    const pathParts = useBreadcrumbs();
+  const carts = useSelector((state) => state.carts.carts);
+  const pathParts = useBreadcrumbs();
+  const navigate = useNavigate();
 
-    return (
-        <div className={styles.CartContainer}>
-            <Container>
-                <h2 className={styles.TitleShoping}>Shopping bag</h2>
-                <Breadcrumbs pathParts={pathParts}/>
-                <ul className={styles.List}>
-                    {carts.length > 0 ? (
-                        carts?.map(({quantity, instance}, index) => (
-                            <CartItem
-                                key={instance._id}
-                                count={quantity}
-                                product={instance}
-                            />
-                        ))
-                    ) : (
-                        <EmptyCartText text="The cart is empty"/>
-                    )}
-                </ul>
-                <div className={cn(styles.FinalInfo, {[styles.FinalInfoCenter]: carts.length === 0})}>
-                    <TotalPrice />
-                    <div className={styles.FinalBtn}>
-                        <Link to={"/shop"}>
-                            <Button text={"Continue shopping"}/>
-                        </Link>
-                        {carts.length > 0 ? (
-                            <button className={styles.Continue} type={"button"}>
-                                <Link to={"/checkout"}>
-                                    Continue {<Arrow className={styles.Arrow}/>}
-                                </Link>
-                            </button>
-                        ) : (
-                            <button disabled={true} className={styles.Continue} type={"button"}>
-                                Continue {<Arrow className={styles.Arrow}/>}
-                            </button>
-                        )}
-                    </div>
-                </div>
-            </Container>
+  return (
+    <div className={styles.CartContainer}>
+      <Container>
+        <h2 className={styles.TitleShoping}>Shopping bag</h2>
+        <Breadcrumbs pathParts={pathParts} />
+        <ul className={styles.List}>
+          {carts.length > 0 ? (
+            carts?.map(({ quantity, instance }, index) => (
+              <CartItem
+                key={instance._id}
+                count={quantity}
+                product={instance}
+              />
+            ))
+          ) : (
+            <EmptyCartText text="The cart is empty" />
+          )}
+        </ul>
+        <div
+          className={cn(styles.FinalInfo, {
+            [styles.FinalInfoCenter]: carts.length === 0,
+          })}
+        >
+          <TotalPrice />
+          <div className={styles.FinalBtn}>
+            <Button
+              onClick={() => navigate("/shop")}
+              text={"Continue shopping"}
+            />
+            <Button
+              isDisabled={carts.length === 0}
+              className={styles.Continue}
+              type="button"
+              onClick={() => navigate("/checkout")}
+              text={
+                <span>
+                  Continue <Arrow className={styles.Arrow} />
+                </span>
+              }
+            />
+          </div>
         </div>
-    );
+      </Container>
+    </div>
+  );
 };
 
 export default Cart;

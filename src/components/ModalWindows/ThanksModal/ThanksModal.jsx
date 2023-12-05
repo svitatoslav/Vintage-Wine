@@ -6,20 +6,18 @@ import Button from '../../Button/Button';
 
 const ThanksModal = ({ onClose }) => {
   return (
-    <Container>
-      <div className={styles.ThanksModal} data-testid="ThanksModal">
-
-        <div className={styles.ThanksModalText}>
-          <p className={styles.ThanksModalMainText}>Thank you for booking</p>
-          <p className={styles.ThanksModalInfo}>All booking information on your e-mail</p>
-          <Button text="Ok" variant='smallAdaptive' onClick={onClose}/>
-        </div>
-        <div className={styles.ThanksModalImg}>
-          <img src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006683/z7j1cej1td8dzuobgxke.png" alt="glass" />
-          {/* <img src="imageProject/pop-up/pop-up.png" alt="glass" /> */}
-        </div>
-      </div>
-    </Container>
+      <Container>
+          <div className={styles.ThanksModal} data-testid="ThanksModal">
+              <div className={styles.ThanksModalText}>
+                  <p className={styles.ThanksModalMainText}>Thank you for booking</p>
+                  <p className={styles.ThanksModalInfo}>All booking information on your e-mail</p>
+                  <Button text="Ok" variant="smallAdaptive" onClick={onClose} />
+              </div>
+              <div className={styles.ThanksModalImg}>
+                  <img src="http://localhost:5173/imageProject/pop-up/pop-up.png" alt="glass" />
+              </div>
+          </div>
+      </Container>
   );
 }
 

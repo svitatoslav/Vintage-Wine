@@ -13,6 +13,9 @@
     color: $main-color;
     cursor: default;
   }
+  &:disabled:hover {
+    background-color: $secondary-color
+  }
 
   &:hover {
     background: $btn-hover;
@@ -116,6 +119,17 @@
   background-color: inherit;
   color: $secondary-color;
 }
+
+.InCartBtn {
+  @extend .Button;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: $btn-bg;
+  &:hover {
+    background: transparent;
+  }
+}
+
 
 
 

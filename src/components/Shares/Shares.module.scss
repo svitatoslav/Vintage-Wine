@@ -1,0 +1,23 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.noShares{
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 400px;
+  text-align: center;
+  font-family: $main-font;
+  font-size: 16px;
+  line-height: 1.5;
+  color: $main-color;
+
+  @media screen and (min-width: $tablet) {
+    max-width: 525px;
+    font-size: 22px;
+  }
+
+  @media screen and (min-width: $tablet-lg) {
+    max-width: 625px;
+    font-size: 26px;
+  }
+}

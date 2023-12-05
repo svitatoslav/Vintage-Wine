@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
-import NewsItemTags from "../../NewsItem/NewsItemTags";
 import {Link} from "react-router-dom"
+import PropTypes from "prop-types";
+import NewsItemTags from "../../NewsItem/NewsItemTags";
 import styles from "./Aside.module.scss"
 import Container from "../../Container/Container";
 
@@ -15,8 +16,8 @@ const Aside = ({article}) => {
                 return fetch(`http://127.0.0.1:4000/api/news/${id}`)
                     .then(res => res.json())
             })
-            const articles = await Promise.all(promises)
-            setArticles(articles)
+            const fetchedArticles = await Promise.all(promises)
+            setArticles(fetchedArticles)
         }
         getRelatedItems()
 
@@ -25,13 +26,13 @@ const Aside = ({article}) => {
     return (
         <Container>
             <aside className={styles.Wrapper} data-testid="Aside">
-                {articles.map((article) => (
-                    <div className={styles.ItemWrapper} key={article._id}>
-                        <img className={styles.Img} src={article.image} alt=""/>
-                        <NewsItemTags tags={article.tags}/>
-                        <h2 className={styles.Title}>{article.title}</h2>
-                        <p className={styles.Description}>{article.description[0].split(" ").slice(0, 26).join(" ")}</p>
-                        <Link className={styles.Link} to={`/news/${article._id}`}>Read more...</Link>
+                {articles.map((articleItem) => (
+                    <div className={styles.ItemWrapper} key={articleItem._id}>
+                        <img className={styles.Img} src={articleItem.image} alt=""/>
+                        <NewsItemTags tags={articleItem.tags}/>
+                        <h2 className={styles.Title}>{articleItem.title}</h2>
+                        <p className={styles.Description}>{articleItem.description[0].split(" ").slice(0, 26).join(" ")}</p>
+                        <Link className={styles.Link} to={`/news/${articleItem._id}`}>Read more...</Link>
                     </div>
                 ))}
             </aside>
@@ -39,5 +40,20 @@ const Aside = ({article}) => {
     )
 }
 
+Aside.propTypes = {
+    article: PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.arrayOf(PropTypes.string),
+        image: PropTypes.string,
+        createdAt: PropTypes.string,
+        tags: PropTypes.arrayOf(PropTypes.string),
+        related: PropTypes.arrayOf(PropTypes.string),
+        _id: PropTypes.string,
+    })
+}
+
+Aside.defaultProps = {
+    article: {}
+}
 
 export default Aside;
