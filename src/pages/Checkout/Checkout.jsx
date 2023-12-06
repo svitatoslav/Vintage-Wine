@@ -59,7 +59,6 @@ const Checkout = () => {
               <div className={styles.ThanksBox}>
                 <img
                   src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006683/z7j1cej1td8dzuobgxke.png"
-                  // src="public\imageProject\checkout\checkout.png"
                   alt="after submite"
                 />
                 <div className={styles.ThanksText}>
@@ -81,7 +80,7 @@ const Checkout = () => {
                     );
                   })}
                 </div>
-                <TotalPrice isInCheckout />
+                <TotalPrice isInCheckout data={orderInfo.products} />
               </div>
             </div>
           )}
@@ -166,14 +165,12 @@ const Checkout = () => {
                         <div className={styles.CardsImages}>
                           <img
                             src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006680/t5uxihhb8xppi3kiztfi.png"
-                            // src="public\imageProject\checkout\six-cards.png"
                             alt="smallCards"
                           />
                         </div>
                         <div className={styles.MobilePay}>
                           <img
                             src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006680/n3mml70fccu3rmfmne4p.png"
-                            // src="public\imageProject\checkout\mobile-pay.png"
                             alt="mobile-pay"
                           />
                         </div>
@@ -181,7 +178,6 @@ const Checkout = () => {
                       <div className={styles.CardsImagesBig}>
                         <img
                           src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006680/uebmyasbqb8ifteduybw.png"
-                          // src="public\imageProject\checkout\nine-cards.png"
                           alt="BigCards"
                         />
                       </div>

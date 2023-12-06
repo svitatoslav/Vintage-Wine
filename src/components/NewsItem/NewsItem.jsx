@@ -6,9 +6,9 @@ import Button from "../Button/Button";
 import {fetchNewsAC} from "../../redux/reducers/news-reducer";
 import DateBox from "../DateBox/DateBox";
 import {Link} from "react-router-dom";
-import Facebook from "/public/imageProject/news/icons/facebook.svg?react"
-import Twitter from "/public/imageProject/news/icons/twitter.svg?react"
-import Linkedin from "/public/imageProject/news/icons/linkedin.svg?react"
+import Facebook from "./../Article/ArticleContent/icons/facebook.svg?react"
+import Twitter from "./../Article/ArticleContent/icons/twitter.svg?react"
+import Linkedin from "./../Article/ArticleContent/icons/linkedin.svg?react"
 import NewsItemTags from "./NewsItemTags";
 
 const NewsItem = ({img, name, desc, date, tags}) => {
