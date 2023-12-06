@@ -66,8 +66,8 @@ exports.placeOrder = async (req, res, next) => {
     // }
 
     const subscriberMail = req.body.email;
-    const letterSubject = req.body.letterSubject;
-    const letterHtml = req.body.letterHtml;
+    const letterSubject = `Order confirmation nr ${order.orderNo}`;
+    const letterHtmlText = req.body.letterHtml;
 
     const { errors, isValid } = validateOrderForm(req.body);
 
@@ -83,14 +83,14 @@ exports.placeOrder = async (req, res, next) => {
       });
     }
 
-    if (!letterHtml) {
+    if (!letterHtmlText) {
       return res.status(400).json({
         message:
           "This operation involves sending a letter to the client. Please provide field 'letterHtml' for the letter.",
       });
     }
-
-    const newOrder = new Order(order);
+    const {letterHtml, ...orderData} = order;
+    const newOrder = new Order(orderData);
 
     if (order.customerId) {
       newOrder.populate("customerId").execPopulate();
@@ -102,7 +102,7 @@ exports.placeOrder = async (req, res, next) => {
         const mailResult = await sendMail(
           subscriberMail,
           letterSubject,
-          letterHtml,
+          letterHtmlText,
           res,
         );
 

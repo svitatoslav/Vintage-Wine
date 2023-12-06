@@ -58,7 +58,7 @@ const Checkout = () => {
             <div className={styles.ContentWrapper}>
               <div className={styles.ThanksBox}>
                 <img
-                  src="public\imageProject\checkout\checkout.png"
+                  src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006683/z7j1cej1td8dzuobgxke.png"
                   alt="after submite"
                 />
                 <div className={styles.ThanksText}>
@@ -80,7 +80,7 @@ const Checkout = () => {
                     );
                   })}
                 </div>
-                <TotalPrice isInCheckout />
+                <TotalPrice isInCheckout data={orderInfo.products} />
               </div>
             </div>
           )}
@@ -164,20 +164,23 @@ const Checkout = () => {
                       <div className={styles.CardsImagesContainer}>
                         <div className={styles.CardsImages}>
                           <img
-                            src="public\imageProject\checkout\six-cards.png"
+                            src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006680/t5uxihhb8xppi3kiztfi.png"
+                            // src="public\imageProject\checkout\six-cards.png"
                             alt="smallCards"
                           />
                         </div>
                         <div className={styles.MobilePay}>
                           <img
-                            src="public\imageProject\checkout\mobile-pay.png"
+                            src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006680/n3mml70fccu3rmfmne4p.png"
+                            // src="public\imageProject\checkout\mobile-pay.png"
                             alt="mobile-pay"
                           />
                         </div>
                       </div>
                       <div className={styles.CardsImagesBig}>
                         <img
-                          src="public\imageProject\checkout\nine-cards.png"
+                          src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006680/uebmyasbqb8ifteduybw.png"
+                          // src="public\imageProject\checkout\nine-cards.png"
                           alt="BigCards"
                         />
                       </div>

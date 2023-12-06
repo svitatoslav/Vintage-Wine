@@ -1,5 +1,7 @@
 import axios from "axios";
 import { removeCartThunk } from "./cart-reducer";
+import { createOrderLetter } from "../../helpers/createLetterHtml";
+import { hideLoadingAC, showLoadingAC } from "./loading-reducer";
 
 export const DataStatus = {
   IDLE: "idle",
@@ -59,18 +61,7 @@ export const placeOrderThunk = (info) => async (dispatch, getState) => {
     mobile: info.phone,
     email: info.email,
     shipping: `${info.city} 50UAH`,
-    letterSubject: "Thank you for order! You are welcome!",
-    letterHtml: `
-    <h1>${user ? `${user}, your` : "Your"} order is placed.</h1>
-    <div>
-      <h3>Delivery Address</h3>    
-      <ul>
-        <li>Country: ${info.country}</li>
-        <li>City: ${info.city}</li>
-        <li>Address: ${info.address}</li>
-      </ul>
-      <p>Mobile: ${info.phone}</p>
-    </div>`,
+    letterHtml: createOrderLetter(info, carts)
   };
 
   if (!token) {
@@ -80,7 +71,7 @@ export const placeOrderThunk = (info) => async (dispatch, getState) => {
   }
 
   dispatch(setInfoDataStatusAC(DataStatus.PENDING));
-
+  dispatch(showLoadingAC());
   const { data } = await axios.post(
     "http://localhost:4000/api/orders",
     newOrder,
@@ -88,6 +79,7 @@ export const placeOrderThunk = (info) => async (dispatch, getState) => {
 
   dispatch(setInfoDataStatusAC(DataStatus.FULFILLED));
   dispatch(setOrderInfoAC(data.order));
+  dispatch(hideLoadingAC());
   dispatch(removeCartThunk());
 };
 

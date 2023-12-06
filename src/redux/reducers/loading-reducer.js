@@ -8,11 +8,6 @@ const initialState = {
 
 const loadingReducer = (state = initialState, action) => {
     switch (action.type) {
-        // case SWITCH_LOADING:
-        //     return {
-        //         ...state,
-        //         isLoading: !state.isLoading
-        //     };
         case SHOW_LOADING:
             return {
                 ...state,
@@ -27,10 +22,6 @@ const loadingReducer = (state = initialState, action) => {
             return state;
     }
 };
-
-// export const switchLoadingAC = () => ({
-//     type: SWITCH_LOADING
-// });
 
 export const showLoadingAC = () => ({
     type: SHOW_LOADING
