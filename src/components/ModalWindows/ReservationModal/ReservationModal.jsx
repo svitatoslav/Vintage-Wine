@@ -11,7 +11,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import reservationValidationSchema from '../../../validation/reservationValidationSchema';
 import { switchModalAC } from '../../../redux/reducers/modalWindow-reducer';
 import CustomTourSelect from '../../CustomSelect/CustomTourSelect';
-import createLetterHtml from '../../../helpers/createLetterHtml';
+import { createExcursionLetter } from '../../../helpers/createLetterHtml';
 import Loader from '../../Loader/Loader';
 import { hideLoadingAC, showLoadingAC } from '../../../redux/reducers/loading-reducer';
 
@@ -45,7 +45,7 @@ const ReservationModal = ({ onClose }) => {
   }
 
   const handleSubmit = (values, { resetForm }) => {
-    const body = createLetterHtml(values);
+    const body = createExcursionLetter(values);
     dispatch(showLoadingAC());
     try {
       axios.put(`http://127.0.0.1:4000/api/excursions/${values.title}`, body)
