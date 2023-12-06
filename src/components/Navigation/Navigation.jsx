@@ -9,8 +9,6 @@ function Navigation({ mobile, isFootNav }) {
   const { pathname } = useLocation();
 
   const links = pages?.map(({ id, text, url }) => {
-    console.log(pathname);
-    console.log(url);
     return (
       <li key={id}>
         <Link
