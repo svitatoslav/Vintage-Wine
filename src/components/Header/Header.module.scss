@@ -6,6 +6,7 @@
     width: 100%;
     position: relative;
     z-index: 20;
+
     @media screen and (min-width: $mobile) {
         padding-top: 8px;
     }
@@ -41,10 +42,11 @@
 
 .HeaderWidgets {
     @include flex-ac;
-    gap: 28px;
+    gap: 20px;
 
     @media screen and (min-width: $tablet) {
         padding-bottom: 16px;
+        gap: 28px;
     }
 
     @media screen and (min-width: $desktop) {
@@ -60,6 +62,7 @@
 
 .HeaderCart {
     position: relative;
+
     .Counter {
         position: absolute;
         top: -8px;
@@ -68,12 +71,12 @@
         min-height: 17px;
         padding: 2px;
         @include flex-cc;
-        border-radius: 8px; 
+        border-radius: 8px;
         font-family: $secondary-font;
-        background: $btn-bg; 
+        background: $btn-bg;
         color: $main-color;
         font-size: 12px;
         font-weight: 400;
-        line-height: 1; 
+        line-height: 1;
     }
 }

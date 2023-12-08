@@ -11,6 +11,7 @@ import EmptyCartText from "../../components/CartItem/EmptyCartText/EmptyCartText
 import { useNavigate } from "react-router-dom";
 import TotalPrice from "../../components/TotalPrice/TotalPrice";
 import cn from "classnames";
+import PageTitle from "../../components/Title/PageTitle";
 
 const Cart = () => {
   const carts = useSelector((state) => state.carts.carts);
@@ -20,7 +21,7 @@ const Cart = () => {
   return (
     <div className={styles.CartContainer}>
       <Container>
-        <h2 className={styles.TitleShoping}>Shopping bag</h2>
+        <PageTitle text="Shopping bag" />
         <Breadcrumbs pathParts={pathParts} />
         <ul className={styles.List}>
           {carts.length > 0 ? (

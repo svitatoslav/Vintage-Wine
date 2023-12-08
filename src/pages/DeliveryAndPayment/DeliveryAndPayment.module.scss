@@ -1,0 +1,110 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.Delivery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    @media screen and (min-width: $tablet-lg) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+    }
+}
+
+.DeliveryInfo {
+    margin-bottom: 20px;
+
+    @media screen and (min-width: $tablet) {
+        margin-bottom: 30px;
+    }
+
+    p {
+        @include fonts(14px, $secondary-font);
+
+        @media screen and (min-width: $tablet-xlg) {
+            font-size: 20px;
+        }
+    }
+}
+
+.DeliveryHeading {
+    @include fonts(28px, $main-font);
+    margin-bottom: 5px;
+
+    @media screen and (min-width: $tablet-xlg) {
+        margin-bottom: 10px;
+        font-size: 40px;
+    }
+}
+
+.DeliveryImg {
+    width: 100%;
+
+    @media screen and (min-width: $tablet-lg) {
+        width: 50%;
+    }
+}
+
+.DeliveryDimensions {
+    @include fonts(28px, $main-font);
+    text-align: center;
+    margin-bottom: 20px;
+
+    @media screen and (min-width: $tablet) {
+        font-size: 34px;
+    }
+}
+
+.DeliveryPackageList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 20px;
+
+    @media screen and (min-width: $tablet-lg) {
+        justify-content: space-between;
+        align-items: end;
+        flex-direction: row;
+    }
+
+}
+
+.DeliveryPackageItem {
+    text-align: center;
+}
+
+.DeliverySize {
+    @include fonts(25px, $main-font);
+    font-weight: 700;
+    margin: 10px 0;
+
+    @media screen and (min-width: $tablet) {
+        font-size: 35px;
+    }
+}
+
+.PaymentList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.PaymentItem {
+    @include transition;
+    width: 120px;
+
+    @media screen and (min-width: $tablet-xlg) {
+        width: 200px;
+    }
+
+    &:hover {
+        transform: scale(1.05)
+    }
+}
