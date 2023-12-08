@@ -21,8 +21,13 @@ import Checkout from './pages/Checkout/Checkout';
 import SingleNews from "./pages/SingleNews/SingleNews";
 import Customer from "./pages/Customer/Customer"
 import Shares from "./pages/Shares/Shares";
+import Dashboard from './pages/Dashboard/Dashboard';
 
 import './App.scss';
+import Overview from './pages/Overview/Overview';
+import Management from './pages/Management/Management';
+import Orders from './pages/Orders/Orders';
+import Reservations from './pages/Reservations/Reservations';
 
 
 const App = () => {
@@ -47,12 +52,20 @@ const App = () => {
                     <Route path="cart" element={<Cart />} />
                     <Route path="search" element={<Search />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="*" element={<NoPage />} />
-                    <Route path="/:id" element={<Shares />} />
+                    <Route path="shares/:id" element={<Shares />} />
 
                     <Route path="/checkout" element={<Checkout />} />
-                    <Route path="/news/:id" element={<SingleNews/>}/>
-                    <Route path="/customer" element={<Customer/>}/>
+                    <Route path="/news/:id" element={<SingleNews />} />
+                    <Route path="/customer" element={<Customer />} />
+                    <Route path="*" element={<NoPage />} />
+                </Route>
+
+                <Route path="/dashboard/" element={<Dashboard />}>
+                    <Route index element={<Overview />} />
+                    <Route path="overview" element={<Overview />} />
+                    <Route path="management" element={<Management />} />
+                    <Route path="orders" element={<Orders />} />
+                    <Route path="reservations" element={<Reservations />} />
                 </Route>
             </Routes>
         </>

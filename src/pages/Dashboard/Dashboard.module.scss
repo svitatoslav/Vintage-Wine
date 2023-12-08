@@ -1,0 +1,9 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+
+.Dashboard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

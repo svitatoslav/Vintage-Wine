@@ -319,7 +319,7 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                         return (
                             <div className={`${styles.itemSharesSlide}`} key={slide._id}>
                                 <div className={`${styles.imgSharesContainer}`}>
-                                    <Link to={`/${itemLinkShares}`}>
+                                    <Link to={`/shares/${itemLinkShares}`}>
                                         <div className={`${styles.imgHideContainer}`}>
                                             <img src={slide.imageUrl} alt={slide.name}/>
                                         </div>
