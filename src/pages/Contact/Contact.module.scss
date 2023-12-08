@@ -2,7 +2,7 @@
 @import '../../assets/mixins/mixins';
 
 .parent {
-  min-height: calc(100vh - 1100px);
+  min-height: calc(100vh - 1000px);
 
   @media screen and (min-width: $tablet-xlg) {
     display: grid;
