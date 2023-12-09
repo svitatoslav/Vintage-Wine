@@ -16,10 +16,9 @@ const SideBar = () => {
   };
 
   return (
-    <div className={styles.SideBar}>
+    <aside className={styles.SideBar}>
       <div>
         <Logo className={styles.SideBarLogo} />
-        <span>Dashboard</span>
       </div>
       <div className={styles.SideBarOptions}>
         <DashboardNav />
@@ -28,7 +27,7 @@ const SideBar = () => {
           <Link to='/'><Button text="Log out" variant='xSmall' onClick={handleSignOut}/></Link>
         </div>
       </div>
-    </div>
+    </aside>
   );
 }
 
