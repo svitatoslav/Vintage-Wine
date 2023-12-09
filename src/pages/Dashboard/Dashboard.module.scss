@@ -7,3 +7,9 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.DashboardMain {
+    width: calc(100% - 302px);
+    height: 100vh;
+    overflow-y: auto;
+}

@@ -1,0 +1,37 @@
+@import "src/assets/variables/variables";
+@import "src/assets/mixins/mixins";
+
+.ManagementControllers {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ManagementControllersList {
+    display: grid;
+    grid-template-columns: repeat(2, 300px);
+    grid-template-rows: repeat(2, 300px);
+    gap: 10px;
+}
+
+.ManagementControllersItem {
+    border: 1px solid #fff;
+    @include fonts(28px, $secondary-font);
+    @include transition;
+
+    &:hover {
+        color: $btn-bg;
+        transform: scale(1.02);
+    }
+
+    a {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+}

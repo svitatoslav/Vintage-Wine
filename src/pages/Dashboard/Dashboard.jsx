@@ -4,11 +4,12 @@ import styles from './Dashboard.module.scss';
 
 const Dashboard = () => {
     return (
-        <main className={styles.Dashboard}>
+        <div className={styles.Dashboard}>
             <SideBar />
-
-            <Outlet />
-        </main>
+            <main className={styles.DashboardMain}>
+                <Outlet />
+            </main>
+        </div>
     );
 }
 

@@ -28,6 +28,7 @@ import Overview from './pages/Overview/Overview';
 import Management from './pages/Management/Management';
 import Orders from './pages/Orders/Orders';
 import Reservations from './pages/Reservations/Reservations';
+import ManagementWrapper from './components/admin-components/ManagementWrapper/ManagementWrapper';
 
 
 const App = () => {
@@ -64,6 +65,7 @@ const App = () => {
                     <Route index element={<Overview />} />
                     <Route path="overview" element={<Overview />} />
                     <Route path="management" element={<Management />} />
+                    <Route path="management/:slug" element={<ManagementWrapper />} />
                     <Route path="orders" element={<Orders />} />
                     <Route path="reservations" element={<Reservations />} />
                 </Route>

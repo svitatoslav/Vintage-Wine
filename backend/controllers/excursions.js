@@ -73,3 +73,39 @@ exports.reserveExcursion = (req, res, next) => {
       })
     );
 };
+
+exports.addExcursion = (req, res, next) => {
+  const excursionFields = _.cloneDeep(req.body);
+
+  // productFields.itemNo = rand();
+
+  // try {
+  //   productFields.name = productFields.name
+  //     .toLowerCase()
+  //     .trim()
+  //     .replace(/\s\s+/g, " ");
+
+  //   // const imageUrls = req.body.previewImages.map(img => {
+  //   //   return `/img/products/${productFields.itemNo}/${img.name}`;
+  //   // });
+
+  //   // productFields.imageUrls = _.cloneDeep(imageUrls);
+  // } catch (err) {
+  //   res.status(400).json({
+  //     message: `Error happened on server: "${err}" `
+  //   });
+  // }
+
+  const updatedExcursion = queryCreator(excursionFields);
+
+  const newExcursion = new Excursion(updatedExcursion);
+
+  newExcursion
+    .save()
+    .then(excursion => res.json(excursion))
+    .catch(err =>
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `
+      })
+    );
+};
