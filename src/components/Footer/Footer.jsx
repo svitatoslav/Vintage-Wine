@@ -66,21 +66,21 @@ const Footer = () => {
 
               <div className={styles.Network}>
                 <ul className={styles.NetworkNav}>
-                  <a target="_blank" className={styles.NetworkItem}>
+                  <li className={styles.NetworkItem}>
                     <Link to="https://www.linkedin.com" className={styles.NetworkLink}>
                       <In className={styles.NetworkLogo} />
                     </Link>
-                  </a>
-                  <a target="_blank" className={styles.NetworkItem}>
+                  </li>
+                  <li className={styles.NetworkItem}>
                     <Link to="https://twitter.com/?lang=uk" className={styles.NetworkLink}>
                       <Twitter className={styles.NetworkLogo} />
                     </Link>
-                  </a>
-                  <a target="_blank" className={styles.NetworkItem}>
+                  </li>
+                  <li className={styles.NetworkItem}>
                     <Link to="https://www.facebook.com" className={styles.NetworkLink}>
                       <Facebook className={styles.NetworkLogo} />
                     </Link>
-                  </a>
+                  </li>
                 </ul>
               </div>
             </div>
