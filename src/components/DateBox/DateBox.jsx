@@ -5,6 +5,7 @@ const formatter = new Intl.DateTimeFormat("en-US", {
   month: "long",
   day: "numeric",
 });
+
 const DateBox = ({ date }) => {
   const formatedDate = formatter.formatToParts(new Date(date));
   const month = formatedDate[0]?.value;

@@ -40,7 +40,7 @@ const SearchForm = () => {
     e.preventDefault();
   };
 
-  const limitedProducts = products.slice(0, 5);
+  const limitedProducts = products.slice(0, 4);
 
   const handleAddProduct = (id) => {
     localStorage.setItem("viewedProducts", id);
