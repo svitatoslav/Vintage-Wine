@@ -7,6 +7,8 @@ import Container from "../../components/Container/Container";
 import styles from "./Customer.module.scss";
 import { signOutAC } from "../../redux/reducers/authorization-reducer";
 import { clearCartAC } from "../../redux/reducers/cart-reducer";
+import Button from "../../components/Button/Button";
+import { getOrderInfoThunk } from "../../redux/reducers/order-reducer";
 
 const Customer = () => {
   const user = useSelector((state) => state.user.user);
@@ -23,7 +25,11 @@ const Customer = () => {
       <aside className={styles.Aside}>
         <h2 className={styles.Name}>Hi {user}</h2>
         <ul className={styles.ListWrapper}>
-          <li className={styles.ListItem}>Your Orders</li>
+          <li className={styles.ListItem}>
+            <Link className={styles.Link} to="/orders">
+              Your Orders
+            </Link>
+          </li>
           <li className={styles.ListItem}>
             <Link className={styles.Link} to="/contacts">
               Contacts
@@ -31,8 +37,7 @@ const Customer = () => {
           </li>
           <li onClick={handleSignOut} className={styles.ListItem}>
             <Link className={styles.Link} to="/">
-              {" "}
-              Sign out{" "}
+              Sign out
             </Link>
           </li>
         </ul>
