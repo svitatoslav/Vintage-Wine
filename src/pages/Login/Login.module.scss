@@ -4,21 +4,22 @@
 .Login {
     position: relative;
     width: 100%;
-
+    
     @media screen and (min-width: $tablet) {
         max-width: 347px;
     }
-
+    
     @media screen and (min-width: $tablet-lg) {
         max-width: 419px;
     }
-
+    
     @media screen and (min-width: $tablet-xlg) {
         max-width: 496px;
     }
 }
 
 .LoginWrapper {
+    min-height: calc(100vh - 600px);
     width: 100%;
     padding-top: 20px;
     position: relative;
@@ -43,7 +44,7 @@
     .LiginImg {
         width: 272px;
         height: 409px;
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url('/imageProject/autorization/autorization.png') center/cover no-repeat;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url('https://res.cloudinary.com/dhpukux5x/image/upload/v1698006416/ybrjbfqppems2qnpu0nj.png') center/cover no-repeat;
         position: absolute;
         left: -111px;
         top: 0;

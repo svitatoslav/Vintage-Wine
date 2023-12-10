@@ -19,7 +19,7 @@ const Catalog = () => {
     dispatch(fetchCatalogThunk());
   }, [dispatch]);
   return (
-    <section>
+    <section className={styles.f}>
       <Container>
          <PageTitle text={'Our catalog'} />
         {<Breadcrumbs pathParts={pathParts} />}

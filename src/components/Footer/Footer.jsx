@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import Container from "./../Container/Container";
 import Navigation from "../Navigation/Navigation";
 
-
 const Footer = () => {
   return (
     <footer className={styles.Footer}>
@@ -60,6 +59,7 @@ const Footer = () => {
                       className={styles.SearchInput}
                     />
                     <SearchFooter className={styles.SearchLogo} />
+                  
                   </label>
                 </div>
               </div>
@@ -67,17 +67,17 @@ const Footer = () => {
               <div className={styles.Network}>
                 <ul className={styles.NetworkNav}>
                   <li className={styles.NetworkItem}>
-                    <Link to="/linkedIn" className={styles.NetworkLink}>
+                    <Link to="https://www.linkedin.com" className={styles.NetworkLink}>
                       <In className={styles.NetworkLogo} />
                     </Link>
                   </li>
                   <li className={styles.NetworkItem}>
-                    <Link to="/twitter" className={styles.NetworkLink}>
+                    <Link to="https://twitter.com/?lang=uk" className={styles.NetworkLink}>
                       <Twitter className={styles.NetworkLogo} />
                     </Link>
                   </li>
                   <li className={styles.NetworkItem}>
-                    <Link to="/facebook" className={styles.NetworkLink}>
+                    <Link to="https://www.facebook.com" className={styles.NetworkLink}>
                       <Facebook className={styles.NetworkLogo} />
                     </Link>
                   </li>

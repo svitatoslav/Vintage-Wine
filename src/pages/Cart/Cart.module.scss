@@ -34,6 +34,7 @@
     @media (min-width: $tablet) and (max-width: $tablet-lg) {
         display: flex;
         justify-content: space-evenly;
+        // justify-content: flex-end;
         align-items: center;
         margin-bottom: 60px;
     }
@@ -91,9 +92,15 @@
     font-size: 30px;
     @include flex-cc;
     cursor: pointer;
-    &:disabled {
-        background-color: #909090;
-        cursor: default;
+    // &:disabled {
+    //     background-color: #909090;
+    //     cursor: default;
+    // }
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        font-size: 20px;
+    }
+    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+        font-size: 20px;
     }
 }
 
