@@ -21,6 +21,10 @@
     background: $btn-hover;
   }
 
+  &:hover {
+    background: $btn-hover;
+  }
+
   @media screen and (min-width: $tablet) {
     padding: 9px 52px;
     font-size: 20px;

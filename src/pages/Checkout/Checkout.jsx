@@ -70,7 +70,7 @@ const Checkout = () => {
               </div>
               <div className={styles.ProductInfo}>
                 <div className={styles.AddedProducts}>
-                  {orderInfo.products.map(({ quantity, instance }) => {
+                  {orderInfo?.products.map(({ quantity, instance }) => {
                     return (
                       <CheckoutItem
                         key={instance._id}
