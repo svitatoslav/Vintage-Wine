@@ -24,6 +24,9 @@
         color: $btn-bg;
     }
 }
+.PageLinkActive {
+    color: $btn-bg;
+}
 .FooterNav {
     display: grid;
 }
@@ -39,7 +42,7 @@
         }
     }
 
-    .PageLinkActive {
+    .PageLinkMobActive {
         background: $btn-bg;
         color: $main-color;
     }

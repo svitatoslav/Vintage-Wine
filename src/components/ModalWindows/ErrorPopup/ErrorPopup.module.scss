@@ -1,0 +1,97 @@
+@import '../../../assets/mixins/mixins';
+@import '../../../assets/variables/variables';
+
+.ErrorPopup {
+    background-color: rgba(0, 0, 0, 0.8);
+    background-image: url('../../../assets/images/broken.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 20px 0;
+    width: 100%;
+
+    @media screen and (min-width: $tablet) {
+        max-width: 500px;
+    }
+
+    @media screen and (min-width: $tablet-lg) {
+        max-width: 700px;
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(15, 15, 15, 0.7);
+    }
+}
+
+.ErrorPopupTop {
+    padding: 0 40px;
+}
+
+.ErrorPopupContent {
+    position: relative;
+    padding: 0 10px;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 10;
+
+    @media screen and (min-width: $tablet-lg) {
+        padding: 0 50px;
+    }
+}
+
+.ErrorPopupTitle {
+    margin-top: 0;
+    @include fonts(32px, $secondary-font);
+
+    @media screen and (min-width: $tablet-lg) {
+        font-size: 45px;
+    }
+}
+
+.ErrorPopupClose {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.ErrorPopupText {
+    @include fonts(18px, $main-font);
+    margin-bottom: 40px;
+
+    @media screen and (min-width: $tablet-lg) {
+        font-size: 23px;
+    }
+}
+
+.ErrorPopupContact {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    @include fonts(18px, $secondary-font);
+
+    @media screen and (min-width: $tablet-lg) {
+        font-size: 24px;
+    }
+
+    a {
+        @include transition;
+
+        &:hover {
+            color: $btn-bg;
+        }
+    }
+}

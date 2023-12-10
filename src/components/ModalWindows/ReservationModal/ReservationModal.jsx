@@ -11,11 +11,14 @@ import { AiOutlineClose } from 'react-icons/ai';
 import reservationValidationSchema from '../../../validation/reservationValidationSchema';
 import { switchModalAC } from '../../../redux/reducers/modalWindow-reducer';
 import CustomTourSelect from '../../CustomSelect/CustomTourSelect';
-import createLetterHtml from '../../../helpers/createLetterHtml';
+import { createExcursionLetter } from '../../../helpers/createLetterHtml';
+import Loader from '../../Loader/Loader';
+import { hideLoadingAC, showLoadingAC } from '../../../redux/reducers/loading-reducer';
 
 const ReservationModal = ({ onClose }) => {
   const [options, setOptions] = useState([]);
   const selectedTour = useSelector(state => state.modal.selectedTour);
+  const isLoading = useSelector(state => state.loader.isLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,8 +45,8 @@ const ReservationModal = ({ onClose }) => {
   }
 
   const handleSubmit = (values, { resetForm }) => {
-    const body = createLetterHtml(values);
-
+    const body = createExcursionLetter(values);
+    dispatch(showLoadingAC());
     try {
       axios.put(`http://127.0.0.1:4000/api/excursions/${values.title}`, body)
         .then(response => {
@@ -51,77 +54,88 @@ const ReservationModal = ({ onClose }) => {
             dispatch(switchModalAC('thanks'));
           }
         })
-        .catch(err => console.log(err))
-        .finally(() => resetForm());
+        .catch(() => {
+          dispatch(switchModalAC('error'));
+        })
+        .finally(() => {
+          resetForm();
+          dispatch(hideLoadingAC());
+        });
     } catch (err) {
-      console.log(err)
+      dispatch(switchModalAC('error'));
     }
   };
 
   return (
-    <div className={styles.ReservationModal} data-testid="ReservationModal">
-      <div className={styles.ReservationModalContent}>
-        <div className={styles.ReservationModalTop}>
-          <AiOutlineClose size={25} className={styles.ReservationModalClose} onClick={onClose} />
-          <PageTitle text="Book an excursion" extraClass={styles.ReservationModalTitle} />
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className={styles.ReservationModal} data-testid="ReservationModal">
+          <div className={styles.ReservationModalContent}>
+            <div className={styles.ReservationModalTop}>
+              <AiOutlineClose size={25} className={styles.ReservationModalClose} onClick={onClose} />
+              <PageTitle text="Book an excursion" extraClass={styles.ReservationModalTitle} />
+            </div>
+            <Formik
+              initialValues={initialValues}
+              onSubmit={handleSubmit}
+              validationSchema={reservationValidationSchema}
+            >
+              {({ isSubmitting }) => (
+                <Form className={styles.ReservationModalForm}>
+                  <div className={styles.FormBody}>
+                    <CustomTourSelect placeHolder={selectedTour} style={{ width: "100%" }} name="title" options={options} defVal={selectedTour} />
+                    <Field
+                      type="text"
+                      name="firstName"
+                      placeholder="Name"
+                    />
+                    <ErrorMessage
+                      className="vvErrorMsg"
+                      name="firstName"
+                      component="div"
+                    />
+                    <Field
+                      type="text"
+                      name="lastName"
+                      placeholder="Last name"
+                    />
+                    <ErrorMessage
+                      className="vvErrorMsg"
+                      name="lastName"
+                      component="div"
+                    />
+                    <Field
+                      type="email"
+                      name="email"
+                      placeholder="E-mail"
+                    />
+                    <ErrorMessage
+                      className="vvErrorMsg"
+                      name="email"
+                      component="div"
+                    />
+                    <Field
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone"
+                    />
+                    <ErrorMessage
+                      className="vvErrorMsg"
+                      name="phone"
+                      component="div"
+                    />
+                    <Datepicker name="date" />
+                  </div>
+                  <Button type="submit" text="Book time" disabled={isSubmitting} />
+                </Form>
+              )}
+            </Formik>
+          </div>
         </div>
-        <Formik
-          initialValues={initialValues}
-          onSubmit={handleSubmit}
-          validationSchema={reservationValidationSchema}
-        >
-          {({ isSubmitting }) => (
-            <Form className={styles.ReservationModalForm}>
-              <div className={styles.FormBody}>
-                <CustomTourSelect placeHolder={selectedTour} style={{ width: "100%" }} name="title" options={options} defVal={selectedTour} />
-                <Field
-                  type="text"
-                  name="firstName"
-                  placeholder="Name"
-                />
-                <ErrorMessage
-                  className="vvErrorMsg"
-                  name="firstName"
-                  component="div"
-                />
-                <Field
-                  type="text"
-                  name="lastName"
-                  placeholder="Last name"
-                />
-                <ErrorMessage
-                  className="vvErrorMsg"
-                  name="lastName"
-                  component="div"
-                />
-                <Field
-                  type="email"
-                  name="email"
-                  placeholder="E-mail"
-                />
-                <ErrorMessage
-                  className="vvErrorMsg"
-                  name="email"
-                  component="div"
-                />
-                <Field
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone"
-                />
-                <ErrorMessage
-                  className="vvErrorMsg"
-                  name="phone"
-                  component="div"
-                />
-                <Datepicker name="date" />
-              </div>
-              <Button type="submit" text="Book time" disabled={isSubmitting} />
-            </Form>
-          )}
-        </Formik>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 

@@ -2,7 +2,7 @@ const Product = require("../models/Product");
 const Cart = require("../models/Cart");
 const mongoose = require("mongoose");
 
-module.exports = async customerId => {
+module.exports = async (customerId) => {
   try {
     const cart = await Cart.findOne({ customerId: customerId });
 
@@ -10,22 +10,22 @@ module.exports = async customerId => {
       async (resultPromise, cartItem) => {
         const result = await resultPromise;
         const dbProduct = await Product.findOne({
-          _id: cartItem.product._id
+          _id: cartItem.instance._id,
         });
         result.push({
           _id: new mongoose.Types.ObjectId(),
-          product: dbProduct,
-          cartQuantity: cartItem.cartQuantity
+          instance: dbProduct,
+          quantity: cartItem.quantity,
         });
         return result;
       },
-      Promise.resolve([])
+      Promise.resolve([]),
     );
 
     return cartProducts;
   } catch (err) {
     return {
-      message: `Error happened on server: "${err}" `
+      message: `Error happened on server: "${err}" `,
     };
   }
 };

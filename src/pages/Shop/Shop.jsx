@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from 'react-paginate';
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
 import useResize from "../../hooks/useResize";
@@ -19,11 +19,10 @@ import EmptyCartText from "../../components/CartItem/EmptyCartText/EmptyCartText
 
 import styles from "./Shop.module.scss";
 import { resetAllFiltersAC } from "../../redux/reducers/tabs-reducer";
+import Loader from "../../components/Loader/Loader";
+import { hideLoadingAC, showLoadingAC } from "../../redux/reducers/loading-reducer";
+import Filtration from "../../components/Filtaration/Filtaration";
 
-
-const Filtration = React.lazy(() =>
-  import("../../components/Filtaration/Filtaration")
-);
 
 const MIN_VALUE = 768;
 const MAX_VALUE = 1160;
@@ -35,6 +34,7 @@ const Shop = () => {
   const [filter, setFilter] = useState({});
   const [resetFilters, setResetFilters] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const isLoading = useSelector(state => state.loader.isLoading);
   const pathParts = useBreadcrumbs();
   const viewportWidth = useResize();
   const dispatch = useDispatch();
@@ -71,11 +71,14 @@ const Shop = () => {
     const url = 'http://127.0.0.1:4000/api/products/filter?' + createUrlQuery(filter);
 
     (async () => {
+      dispatch(showLoadingAC());
       const data = await sendGetRequest(url);
       setProductCards(createCards(data.products));
       setNumberOfPages(Math.ceil(data.productsQuantity / 10));
       dispatch(updateFilteredProductsAC((data.allProducts)));
       setResetFilters(false);
+      
+      dispatch(hideLoadingAC());
     })();
   }, [filter, viewportWidth, currentPage]);
 
@@ -124,20 +127,20 @@ const Shop = () => {
     return shopElements;
   }
 
+  const loaderOrEmpty = isLoading && !productCards.length ? <Loader /> : <EmptyCartText text="Products not found" />;
+
   return (
     <div className={styles.ShopContainer}>
       <PageTitle text="Our Shop" />
       <Breadcrumbs pathParts={pathParts} />
       <FilterContext.Provider value={{ filter, setFilter, resetFilters, setResetFilters }}>
-        <Suspense fallback={<div>Loading...</div>} >
-          <Filtration />
-        </Suspense>
+        <Filtration />
       </FilterContext.Provider>
       <div className={styles.ShopImagesContainer}>
         {
           productCards.length ?
             productCards :
-            (<EmptyCartText text="Products not found" />)
+            loaderOrEmpty
         }
       </div>
       {numberOfPages > 1 && (
