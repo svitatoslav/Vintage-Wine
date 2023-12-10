@@ -15,6 +15,7 @@
   margin-inline: auto;
   min-height: 800px;
   background-size: 656px 818px;
+  min-height: calc(100vh - 800px);
 
   @media screen and (max-width: $tablet) {
     background-size: 400px 600px;
