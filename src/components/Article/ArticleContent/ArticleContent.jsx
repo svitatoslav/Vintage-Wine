@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import styles from "./ArticleContent.module.scss";
 import Container from "../../Container/Container";
-import Facebook from "/public/imageProject/news/icons/facebook.svg?react";
-import Twitter from "/public/imageProject/news/icons/twitter.svg?react";
-import Linkedin from "/public/imageProject/news/icons/linkedin.svg?react";
+import Facebook from "./icons/facebook.svg?react";
+import Twitter from "./icons/twitter.svg?react";
+import Linkedin from "./icons/linkedin.svg?react";
 import NewsItemTags from "../../NewsItem/NewsItemTags";
 import DateBox from "../../DateBox/DateBox";
 

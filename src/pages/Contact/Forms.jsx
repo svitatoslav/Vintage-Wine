@@ -3,8 +3,22 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import validation from "./validation";
 import cn from "classnames";
+import axios from "axios";
+import {useEffect, useState} from "react";
 
 const Forms = () => {
+    const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+    const validationSchema = validation();
+
+    useEffect(() => {
+        if (isFormSubmitted) {
+            const timer = setTimeout(() => {
+                setIsFormSubmitted(false);
+            }, 5000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [isFormSubmitted]);
 
     const initialValues = {
         name: "",
@@ -14,18 +28,23 @@ const Forms = () => {
     }
 
     const handleSubmit = async (values, {setSubmitting, resetForm}) => {
-        console.log(values);
-        resetForm(initialValues);
+        try {
+            const response = await axios.post('http://localhost:4000/api/contact', values);
+            resetForm(initialValues);
+            setIsFormSubmitted(true);
+        } catch (error) {
+            console.error('Form submission error', error);
+        }
         setSubmitting(false);
     };
-
-    const validationSchema = validation();
 
     return (
         <Formik className={cn(styles.div2)} initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
             {({isSubmitting}) => (
                 <Form className={styles.form}>
                     <h3 className={styles.title}>Contact form</h3>
+
+                    <div className={`${styles.successMessage} ${isFormSubmitted ? styles.active : ''}`}>Message successfully sent!</div>
 
                     <Field type="text" name="name" placeholder="Name"/>
                     <ErrorMessage name="name" className={styles.error} component="div"/>

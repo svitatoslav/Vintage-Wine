@@ -3,24 +3,33 @@ const Schema = mongoose.Schema;
 
 const SharesSchema = new Schema(
     {
-        title: {
+        imageUrl: {
             type: String,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        },
+        discount: {
+            type: Number,
             required: true
         },
         description: {
-            type: [String],
-            required: true
-        },
-        image: {
             type: String,
             required: true
         },
-        createdAt: {
-            type: Date,
-            default: new Date()
+        pathParts: {
+            type: String,
+            required: true
         },
-        tags: {
-            type: [String]
+        conditions: {
+            type: String,
+            required: true
+        },
+        productCategories: {
+            type: String,
+            required: true
         }
     }
 )
