@@ -18,6 +18,11 @@ const ContactSchema = new Schema(
         question: {
             type: String,
             required: true
+        },
+        isRead: {
+            type: Boolean,
+            required: true,
+            default: false
         }
     }
 )
