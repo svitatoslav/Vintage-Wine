@@ -84,12 +84,6 @@ const Shop = () => {
     })();
   }, [filter, viewportWidth, currentPage]);
 
-  useEffect(() => {
-    if (currentPage > 1 && numberOfPages < currentPage) {
-      setCurrentPage(1);
-    }
-  }, [numberOfPages]);
-
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage + 1);
