@@ -33,7 +33,7 @@ const Forms = () => {
             resetForm(initialValues);
             setIsFormSubmitted(true);
         } catch (error) {
-            console.error('Ошибка отправки формы', error);
+            console.error('Form submission error', error);
         }
         setSubmitting(false);
     };
@@ -44,9 +44,7 @@ const Forms = () => {
                 <Form className={styles.form}>
                     <h3 className={styles.title}>Contact form</h3>
 
-                    <div className={`${styles.successMessage} ${isFormSubmitted ? styles.active : ''}`}>
-                        Message successfully sent!
-                    </div>
+                    <div className={`${styles.successMessage} ${isFormSubmitted ? styles.active : ''}`}>Message successfully sent!</div>
 
                     <Field type="text" name="name" placeholder="Name"/>
                     <ErrorMessage name="name" className={styles.error} component="div"/>
