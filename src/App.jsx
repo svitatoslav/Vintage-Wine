@@ -29,6 +29,7 @@ import Management from './pages/Management/Management';
 import Orders from './pages/Orders/Orders';
 import Reservations from './pages/Reservations/Reservations';
 import ManagementWrapper from './components/admin-components/ManagementWrapper/ManagementWrapper';
+import ContactRequests from './pages/ContactRequests/ContactRequests';
 
 
 const App = () => {
@@ -68,7 +69,14 @@ const App = () => {
                     <Route path="management/:slug" element={<ManagementWrapper />} />
                     <Route path="orders" element={<Orders />} />
                     <Route path="reservations" element={<Reservations />} />
+                    <Route path="contacts" element={<ContactRequests />} />
                 </Route>
+                {/* <Route path="/overview" element={<Dashboard />} />
+                <Route path="/management" element={<Management />} />
+                <Route path="/management/:slug" element={<ManagementWrapper />} />
+                <Route path="/orders" element={<Orders />} />
+                <Route path="/reservations" element={<Reservations />} />
+                <Route path="/contacts" element={<ContactRequests />} /> */}
             </Routes>
         </>
     );

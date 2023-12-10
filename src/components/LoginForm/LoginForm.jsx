@@ -52,7 +52,6 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
         axios
           .post("http://127.0.0.1:4000/api/customers/login", logValues, { silent: true })
           .then((res) => {
-            console.log(res.data.token);
             dispatch(setTokenAC(res.data.token));
             dispatch(setUserAC(res.data.user));
             dispatch(setUserIdAC(res.data.id));            

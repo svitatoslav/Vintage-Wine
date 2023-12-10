@@ -2,7 +2,6 @@
 @import '../../../assets/mixins/mixins';
 
 .DashboardNav {
-    margin-top: 50px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -11,6 +10,11 @@
 .DashboardNavItem {
     border-radius: 7px 0px 0px 7px;
     padding: 10px 0px 10px 16px;
+    @include transition;
+
+    &:hover {
+        background-color: #212121;
+    }
 
     a {
         display: flex;
@@ -29,7 +33,6 @@
     background: var(--light-mode-gray-90212121, #212121);
 
     a {
-
         background: $btn-bg;
     }
 }

@@ -38,7 +38,9 @@ const ManagementWrapper = () => {
       <SectionTitle secText={`${titleName} form`} />
       <Breadcrumbs pathParts={pathParts.slice(1)} noPrefix />
 
-      {displayedForm()}
+      <div className={styles.ManagementWrapper}>
+        {displayedForm()}
+      </div>
     </>
   );
 }

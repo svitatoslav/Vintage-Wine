@@ -11,9 +11,11 @@ const ManagementControllers = () => {
                 {
                     controllers.map(controller => {
                         const itemLink = controller.toLowerCase();
-                        return <li key={controller} className={styles.ManagementControllersItem}>
-                            <Link to={`/dashboard/management/${itemLink}`}>{controller}</Link>
-                        </li>
+                        return (
+                            <li key={controller} className={styles.ManagementControllersItem}>
+                                <Link to={`/dashboard/management/${itemLink}`}>{controller}</Link>
+                            </li>
+                        )
                     })
                 }
             </ul>

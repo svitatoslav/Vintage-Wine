@@ -110,7 +110,7 @@ const ProductsForm = () => {
                         />
                         <Field
                             className={styles.AddProductInput}
-                            type="text"
+                            type="number"
                             name="price"
                             placeholder="Product price"
                         />

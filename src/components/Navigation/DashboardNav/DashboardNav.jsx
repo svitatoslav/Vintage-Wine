@@ -5,6 +5,7 @@ import Box from './icons/Overview.svg?react';
 import Transfer from './icons/Transaction.svg?react';
 import Reservation from './icons/Receipt.svg?react';
 import Order from './icons/Expencces.svg?react';
+import Bell from './icons/Bell.svg?react';
 import { useState } from 'react';
 
 const DashboardNav = () => {
@@ -13,7 +14,8 @@ const DashboardNav = () => {
         <Link to='/dashboard/overview'> <Box /> Overview</Link>,
         <Link to='/dashboard/management'>< Transfer /> Content management</Link>,
         <Link to='/dashboard/orders'><Order /> Orders</Link>,
-        <Link to='/dashboard/reservations'><Reservation /> Reservations</Link>
+        <Link to='/dashboard/reservations'><Reservation /> Reservations</Link>,
+        <Link to='/dashboard/contacts'><Bell /> Contact requests</Link>
     ];
 
     const handleActiveLink = (e, index) => {
