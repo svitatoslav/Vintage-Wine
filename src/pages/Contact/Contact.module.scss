@@ -343,11 +343,7 @@
 .successMessage{
   position: fixed;
   z-index: 100;
-  top: -90px;
-  left: calc(50% - 200px);
 
-  width: 400px;
-  height: 80px;
   background-color: #be0615;
   border-radius: 0 0 10px 10px;
 
@@ -355,8 +351,31 @@
   justify-content: center;
   align-items: center;
 
-  @include fonts (25px, $secondary-font);
   transition: all 0.5s ease;
+
+  top: -60px;
+  left: calc(50% - 100px);
+
+  width: 200px;
+  height: 50px;
+  @include fonts (16px, $secondary-font);
+
+  @media screen and (min-width: $tablet-lg) {
+    top: -70px;
+    left: calc(50% - 150px);
+
+    width: 300px;
+    height: 70px;
+    @include fonts (20px, $secondary-font);
+  }
+  @media screen and (min-width: $tablet-xlg) {
+    top: -90px;
+    left: calc(50% - 200px);
+
+    width: 400px;
+    height: 80px;
+    @include fonts (25px, $secondary-font);
+  }
 }
 
 .successMessage.active {
