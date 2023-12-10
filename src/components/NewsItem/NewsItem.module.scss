@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   column-gap: 20px;
+  min-height: calc(100vh - 800px);
 
   @media screen and (min-width: $tablet-lg) {
     display: grid;
