@@ -8,6 +8,7 @@ import {useEffect, useState} from "react";
 
 const Forms = () => {
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+    const validationSchema = validation();
 
     useEffect(() => {
         if (isFormSubmitted) {
@@ -36,8 +37,6 @@ const Forms = () => {
         }
         setSubmitting(false);
     };
-
-    const validationSchema = validation();
 
     return (
         <Formik className={cn(styles.div2)} initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
