@@ -4,21 +4,22 @@
 .Login {
     position: relative;
     width: 100%;
-
+    
     @media screen and (min-width: $tablet) {
         max-width: 347px;
     }
-
+    
     @media screen and (min-width: $tablet-lg) {
         max-width: 419px;
     }
-
+    
     @media screen and (min-width: $tablet-xlg) {
         max-width: 496px;
     }
 }
 
 .LoginWrapper {
+    min-height: calc(100vh - 600px);
     width: 100%;
     padding-top: 20px;
     position: relative;
