@@ -20,7 +20,7 @@ const DashboardNav = () => {
 
     const handleActiveLink = (e, index) => {
         const {target} = e;
-        if (target.nodeName !== "A") return;
+        if (target.nodeName === "LI") return;
         setIsActive(index);
     };
 

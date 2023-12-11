@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import ReactPaginate from 'react-paginate';
+import ReactPaginate from "react-paginate";
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
 import useResize from "../../hooks/useResize";
 import { FaLessThan } from "react-icons/fa6";
@@ -20,9 +20,11 @@ import EmptyCartText from "../../components/CartItem/EmptyCartText/EmptyCartText
 import styles from "./Shop.module.scss";
 import { resetAllFiltersAC } from "../../redux/reducers/tabs-reducer";
 import Loader from "../../components/Loader/Loader";
-import { hideLoadingAC, showLoadingAC } from "../../redux/reducers/loading-reducer";
+import {
+  hideLoadingAC,
+  showLoadingAC,
+} from "../../redux/reducers/loading-reducer";
 import Filtration from "../../components/Filtaration/Filtaration";
-
 
 const MIN_VALUE = 768;
 const MAX_VALUE = 1160;
@@ -34,7 +36,7 @@ const Shop = () => {
   const [filter, setFilter] = useState({});
   const [resetFilters, setResetFilters] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const isLoading = useSelector(state => state.loader.isLoading);
+  const isLoading = useSelector((state) => state.loader.isLoading);
   const pathParts = useBreadcrumbs();
   const viewportWidth = useResize();
   const dispatch = useDispatch();
@@ -42,7 +44,7 @@ const Shop = () => {
   useEffect(() => {
     return () => {
       dispatch(resetAllFiltersAC());
-    }
+    };
   }, []);
 
   useEffect(() => {
@@ -55,7 +57,6 @@ const Shop = () => {
 
   useEffect(() => {
     const createUrlQuery = (filterConfigs) => {
-
       searchParams.set("perPage", "10");
       searchParams.set("startPage", currentPage);
 
@@ -66,27 +67,22 @@ const Shop = () => {
       setSearchParams(Object.fromEntries(searchParams.entries()));
 
       return searchParams.toString();
-    }
+    };
 
-    const url = 'http://127.0.0.1:4000/api/products/filter?' + createUrlQuery(filter);
+    const url =
+      "http://127.0.0.1:4000/api/products/filter?" + createUrlQuery(filter);
 
     (async () => {
       dispatch(showLoadingAC());
       const data = await sendGetRequest(url);
       setProductCards(createCards(data.products));
       setNumberOfPages(Math.ceil(data.productsQuantity / 10));
-      dispatch(updateFilteredProductsAC((data.allProducts)));
+      dispatch(updateFilteredProductsAC(data.allProducts));
       setResetFilters(false);
-      
+
       dispatch(hideLoadingAC());
     })();
   }, [filter, viewportWidth, currentPage]);
-
-  useEffect(() => {
-    if (currentPage > 1 && numberOfPages < currentPage) {
-      setCurrentPage(1);
-    }
-  }, [numberOfPages])
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
@@ -95,7 +91,8 @@ const Shop = () => {
 
   function createCards(array) {
     const shopElements = [];
-    const chunkSize = (viewportWidth > MIN_VALUE && viewportWidth < MAX_VALUE) ? 3 : 5;
+    const chunkSize =
+      viewportWidth > MIN_VALUE && viewportWidth < MAX_VALUE ? 3 : 5;
 
     for (let i = 0; i < array.length; i += chunkSize) {
       const chunk = array.slice(i, i + chunkSize);
@@ -108,7 +105,7 @@ const Shop = () => {
       );
 
       const smallImagesDiv = (
-        <div className={styles.ShopImagesSmall} key={`smallImages_${i}`} >
+        <div className={styles.ShopImagesSmall} key={`smallImages_${i}`}>
           {restImages.map((product) => (
             <div key={product._id} className={styles.SmallProductContainer}>
               <UniProduct key={product._id} data={product} isSmall />
@@ -118,30 +115,37 @@ const Shop = () => {
       );
 
       shopElements.push(
-        <div dir={i % 2 === 0 ? 'ltr' : 'rtl'} className={styles.ShopImagesSection} key={`section_${i}`}>
+        <div
+          dir={i % 2 === 0 ? "ltr" : "rtl"}
+          className={styles.ShopImagesSection}
+          key={`section_${i}`}
+        >
           {[bigImageDiv, smallImagesDiv]}
-        </div>
+        </div>,
       );
     }
 
     return shopElements;
   }
 
-  const loaderOrEmpty = isLoading && !productCards.length ? <Loader /> : <EmptyCartText text="Products not found" />;
+  const loaderOrEmpty =
+    isLoading && !productCards.length ? (
+      <Loader />
+    ) : (
+      <EmptyCartText text="Products not found" />
+    );
 
   return (
     <div className={styles.ShopContainer}>
       <PageTitle text="Our Shop" />
       <Breadcrumbs pathParts={pathParts} />
-      <FilterContext.Provider value={{ filter, setFilter, resetFilters, setResetFilters }}>
+      <FilterContext.Provider
+        value={{ filter, setFilter, resetFilters, setResetFilters }}
+      >
         <Filtration />
       </FilterContext.Provider>
       <div className={styles.ShopImagesContainer}>
-        {
-          productCards.length ?
-            productCards :
-            loaderOrEmpty
-        }
+        {productCards.length ? productCards : loaderOrEmpty}
       </div>
       {numberOfPages > 1 && (
         <ReactPaginate
@@ -164,6 +168,6 @@ const Shop = () => {
       )}
     </div>
   );
-}
+};
 
 export default Shop;

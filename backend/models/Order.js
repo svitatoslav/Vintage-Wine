@@ -11,6 +11,10 @@ const OrderSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "customers"
     },
+    customerName: {
+      type: String,
+      required: true
+    },
     products: [
       {
         type: Schema.Types.Mixed,
@@ -34,6 +38,11 @@ const OrderSchema = new Schema(
       type: Boolean,
       default: false
     },
+    completed: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
     status: {
       type: String
     },
@@ -48,6 +57,9 @@ const OrderSchema = new Schema(
     date: {
       type: Date,
       default: Date.now
+    },
+    shipmentDate: {
+      type: Date,
     }
   },
   { strict: false }

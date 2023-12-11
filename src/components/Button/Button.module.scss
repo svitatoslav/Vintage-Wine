@@ -6,6 +6,7 @@
   font-size: 15px;
   line-height: 36px;
   @include transition;
+  background: $btn-bg;
   cursor: pointer;
 
   &:disabled {
@@ -15,6 +16,10 @@
   }
   &:disabled:hover {
     background-color: $secondary-color
+  }
+
+  &:hover {
+    background: $btn-hover;
   }
 
   &:hover {
@@ -100,7 +105,6 @@
 .Primary {
   background-color: $btn-bg;
   color: $main-color;
-
 }
 
 .Secondary {
@@ -118,6 +122,10 @@
 .GrayBtn {
   background-color: inherit;
   color: $secondary-color;
+}
+
+.Success {
+  background-color: rgb(4, 181, 4) !important;
 }
 
 .InCartBtn {

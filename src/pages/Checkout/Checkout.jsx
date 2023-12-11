@@ -70,7 +70,7 @@ const Checkout = () => {
               </div>
               <div className={styles.ProductInfo}>
                 <div className={styles.AddedProducts}>
-                  {orderInfo.products.map(({ quantity, instance }) => {
+                  {orderInfo?.products.map(({ quantity, instance }) => {
                     return (
                       <CheckoutItem
                         key={instance._id}
@@ -88,7 +88,6 @@ const Checkout = () => {
             <Formik
               initialValues={{
                 toggle: false,
-                checked: [],
                 name: "",
                 lastName: "",
                 email: "",
@@ -100,7 +99,11 @@ const Checkout = () => {
               }}
               validationSchema={validationSchema}
               onSubmit={(values) => {
-                dispatch(placeOrderThunk(values));
+                const {name, lastName, ...rest} = values;
+                const body = {...rest, customerName: name + ' ' + lastName};
+
+                console.log(body);
+                dispatch(placeOrderThunk(body));
               }}
             >
               <Form className={styles.ContentWrapper}>

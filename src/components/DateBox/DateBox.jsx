@@ -1,12 +1,9 @@
 import PropTypes from "prop-types";
 import styles from "./DateBox.module.scss";
+import { formatedPartsDate } from "../../helpers/formatteDate";
 
-const formatter = new Intl.DateTimeFormat("en-US", {
-  month: "long",
-  day: "numeric",
-});
 const DateBox = ({ date }) => {
-  const formatedDate = formatter.formatToParts(new Date(date));
+  const formatedDate = formatedPartsDate(date);
   const month = formatedDate[0]?.value;
   const day = formatedDate[2]?.value;
 
