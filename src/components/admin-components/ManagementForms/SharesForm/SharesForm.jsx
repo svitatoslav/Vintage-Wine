@@ -37,82 +37,82 @@ const SharesForm = () => {
             onSubmit={handleSubmit}
         >
             {({ isSubmitting }) => (
-                <Form className={styles.AddProductForm}>
-                    <div className={styles.AddProductFields}>
+                <Form className={styles.AddSharesForm}>
+                    <div className={styles.AddSharesFields}>
                         <Field
-                            className={styles.AddProductInput}
+                            className={styles.AddSharesInput}
                             type="text"
                             name="name"
-                            placeholder="Excursion title"
+                            placeholder="Promotion title"
                         />
                         <ErrorMessage
-                            className={styles.AddProductError}
+                            className={styles.AddSharesError}
                             name="name"
                             component="div"
                         />
                         <Field
-                            className={styles.AddProductInput}
+                            className={styles.AddSharesInput}
                             type="text"
                             name="description"
-                            placeholder="Excursion description"
+                            placeholder="Promotion description"
                         />
                         <ErrorMessage
-                            className={styles.AddProductError}
+                            className={styles.AddSharesError}
                             name="description"
                             component="div"
                         />
                         <Field
-                            className={styles.AddProductInput}
+                            className={styles.AddSharesInput}
                             type="text"
                             name="imageURL"
-                            placeholder="Excursion picture"
+                            placeholder="Promotion picture"
                         />
                         <ErrorMessage
-                            className={styles.AddProductError}
+                            className={styles.AddSharesError}
                             name="imageURL"
                             component="div"
                         />
                         <Field
-                            className={styles.AddProductInput}
+                            className={styles.AddSharesInput}
                             type="text"
                             name="discount"
-                            placeholder="Excursion picture"
+                            placeholder="Promotion picture"
                         />
                         <ErrorMessage
-                            className={styles.AddProductError}
+                            className={styles.AddSharesError}
                             name="discount"
                             component="div"
                         />
                         <Field
-                            className={styles.AddProductInput}
+                            className={styles.AddSharesInput}
                             type="text"
                             name="pathParts"
-                            placeholder="Excursion picture"
+                            placeholder="Promotion picture"
                         />
                         <ErrorMessage
-                            className={styles.AddProductError}
+                            className={styles.AddSharesError}
                             name="pathParts"
                             component="div"
                         />
                         <Field
-                            className={styles.AddProductInput}
+                            className={styles.AddSharesInput}
                             type="text"
                             name="conditions"
-                            placeholder="Excursion picture"
+                            placeholder="Promotion conditions"
                         />
                         <ErrorMessage
-                            className={styles.AddProductError}
+                            className={styles.AddSharesError}
                             name="conditions"
                             component="div"
                         />
                         <Field
-                            className={styles.AddProductInput}
+                            className={styles.AddSharesInput}
                             type="text"
                             name="productCategories"
-                            placeholder="Excursion picture"
+                            placeholder="Product categories"
                         />
                         <ErrorMessage
-                            className={styles.AddProductError}
+                            className={styles.AddSharesError}
                             name="productCategories"
                             component="div"
                         />

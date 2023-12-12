@@ -30,7 +30,7 @@
 
 .OrdersAdminButtonActive {
     border:  1px solid $btn-bg;
-    color: $btn-bg;
+    background: $btn-bg;
     transform: scale(1.07);
 }
 
@@ -43,8 +43,13 @@
 .OrdersAdminItem {
     font-size: 20px;
     border: $brd-white;
-    // box-shadow: 0 0 10px $secondary-color;
     cursor: pointer;
+    @include transition;
+
+    &:hover {
+        border: 1px solid $btn-bg;
+        color: $btn-bg;
+    }
 
     a {
         display: inline-block;

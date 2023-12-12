@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
 require('dotenv').config();
+const cloudinary = require('cloudinary').v2;
 
 const globalConfigs = require('./backend/routes/globalConfigs');
 // ./backend/routes/globalConfigs
@@ -30,21 +31,25 @@ const news = require('./backend/routes/news');
 const lastViewedProducts = require('./backend/routes/lastViewedProducts');
 const shares = require('./backend/routes/shares');
 const contact = require('./backend/routes/contact');
+const multer = require('multer');
 // const mainRoute = require('./routes/index');
 
 const app = express();
 
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
 app.use(cors());
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+
+cloudinary.config({
+  cloud_name: 'dyjwpccso',
+  api_key: '535722222753226',
+  api_secret: 'ZAkkqjUsrURXMeMnqCVJeK4zyrw',
+});
+
+const upload = multer({ dest: 'uploads/' });
 
 // DB Config
 const db = require('./backend/config/keys').mongoURI;
@@ -54,6 +59,28 @@ mongoose
   .connect(db, {useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false })
   .then(() => console.log('MongoDB Connected'))
   .catch((err) => console.log(err));
+
+
+const imageSchema = new mongoose.Schema({
+  imageUrl: String,
+});
+
+const Image = mongoose.model('Image', imageSchema);
+
+// Inside your upload route
+app.post('/upload', upload.single('image'), async (req, res) => {
+    console.log(req.file);
+  try {
+    const result = await cloudinary.uploader.upload(req.file.path);
+    const newImage = new Image({ imageUrl: result.url });
+    await newImage.save();
+    res.json({ url: result.url });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error uploading image' });
+  }
+});
+
 
 // Passport middleware
 app.use(passport.initialize());

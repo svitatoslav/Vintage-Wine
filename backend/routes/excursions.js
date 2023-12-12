@@ -1,12 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+const multer = require('multer');
+
+
+const upload = multer({ dest: 'uploads/' });
 
 //Import controllers
 const {
-    getExcursions,
-    reserveExcursion,
-    addExcursion,
+  getExcursions,
+  reserveExcursion,
+  addExcursion,
+  uploadExcursionImg
 } = require("../controllers/excursions");
 
 
@@ -17,14 +22,22 @@ router.get("/", getExcursions);
 
 // @access  Private
 router.post(
-    "/",
-    passport.authenticate("jwt-admin", { session: false }),
-    addExcursion
-  );
+  "/",
+  passport.authenticate("jwt-admin", { session: false }),
+  addExcursion
+);
 
-// @route   PUT /customers
-// @desc    Register customer
+// @access  Private
+router.put(
+  "/:id",
+  passport.authenticate("jwt-admin", { session: false }),
+  upload.single('imageURL'),
+  uploadExcursionImg
+);
+
+
 // @access  Public
-router.put("/:title", reserveExcursion);
+router.put("/reservation/:title", reserveExcursion);
+
 
 module.exports = router;

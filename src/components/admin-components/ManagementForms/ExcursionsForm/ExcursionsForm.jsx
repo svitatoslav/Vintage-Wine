@@ -14,16 +14,38 @@ const ExcursionsForm = () => {
     };
 
     const handleSubmit = (values, { setSubmitting, resetForm }) => {
+        const { imageURL, ...rest } = values;
 
-        axios.post('http://127.0.0.1:4000/api/excursions/', values, {
+        axios.post('http://127.0.0.1:4000/api/excursions/', rest, {
             headers: {
                 "Authorization": token,
             }
         })
-            .then(excursions => {
-                console.log(excursions);
+            .then((excursion) => {
+                const formData = new FormData();
+                formData.append('imageURL', imageURL);
+                formData.append('title', excursion.data.title);
+                formData.append('description', excursion.data.description);
+
+                axios.put(`http://127.0.0.1:4000/api/excursions/${excursion.data._id}`, formData, {
+                    headers: {
+                        "Authorization": token,
+                        "Content-Type": "multipart/form-data",
+                    }
+                })
+                    .then(excursions => {
+                        console.log(excursions);
+                       
+                    })
+                    .catch(err => console.log(err));
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
+            .finally(() => resetForm());
+
+
+
+
+
     };
 
     return (
@@ -32,40 +54,39 @@ const ExcursionsForm = () => {
             // validationSchema={validationSchema}
             onSubmit={handleSubmit}
         >
-            {({ isSubmitting }) => (
-                <Form className={styles.AddProductForm}>
-                    {/* <h4 className={styles.LoginTitle}>{formTexts.title}</h4> */}
-                    <div className={styles.AddProductFields}>
+            {({ isSubmitting, setFieldValue }) => (
+                <Form className={styles.AddExcursionForm}>
+                    <div className={styles.AddExcursionFields}>
                         <Field
-                            className={styles.AddProductInput}
+                            className={styles.AddExcursionInput}
                             type="text"
                             name="title"
                             placeholder="Excursion title"
                         />
                         <ErrorMessage
-                            className={styles.AddProductError}
+                            className={styles.AddExcursionError}
                             name="title"
                             component="div"
                         />
                         <Field
-                            className={styles.AddProductInput}
+                            className={styles.AddExcursionInput}
                             type="text"
                             name="description"
                             placeholder="Excursion description"
                         />
                         <ErrorMessage
-                            className={styles.AddProductError}
+                            className={styles.AddExcursionError}
                             name="description"
                             component="div"
                         />
-                        <Field
-                            className={styles.AddProductInput}
-                            type="text"
+                        <input
+                            className={styles.AddExcursionInput}
+                            type="file"
                             name="imageURL"
-                            placeholder="Excursion picture"
+                            onChange={(e) => setFieldValue('imageURL', e.target.files[0])}
                         />
                         <ErrorMessage
-                            className={styles.AddProductError}
+                            className={styles.AddExcursionError}
                             name="imageURL"
                             component="div"
                         />
