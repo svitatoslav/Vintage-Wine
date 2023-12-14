@@ -33,19 +33,10 @@ const ExcursionsForm = () => {
                         "Content-Type": "multipart/form-data",
                     }
                 })
-                    .then(excursions => {
-                        console.log(excursions);
-                       
-                    })
                     .catch(err => console.log(err));
             })
             .catch(err => console.log(err))
             .finally(() => resetForm());
-
-
-
-
-
     };
 
     return (

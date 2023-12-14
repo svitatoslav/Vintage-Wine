@@ -321,13 +321,12 @@ const CustomSlider = ({ sliderArray, type, toShow, toScroll, isSlidePagination =
                                 <div className={`${styles.imgSharesContainer}`}>
                                     <Link to={`/shares/${itemLinkShares}`}>
                                         <div className={`${styles.imgHideContainer}`}>
-                                            <img src={slide.imageUrl} alt={slide.name}/>
+                                            <img src={slide.imageURL} alt={slide.name}/>
                                         </div>
                                     </Link>
                                     <div className={`${styles.imgTextContainer}`}>
                                         <p> -{slide.discount}%</p>
                                         <img src={"https://res.cloudinary.com/dhpukux5x/image/upload/v1701814459/v1028-051_jdihbh.png"} alt={slide.name}/>
-                                        {/* <img src={"../public/imageProject/shares/v1028-051.png"} alt={slide.name}/> */}
                                     </div>
                                 </div>
                                 <div className={`${styles.textSharesContainer}`}>

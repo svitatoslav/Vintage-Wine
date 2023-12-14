@@ -6,6 +6,14 @@ const rand = uniqueRandom(0, 999999);
 const queryCreator = require("../commonHelpers/queryCreator");
 const filterParser = require("../commonHelpers/filterParser");
 const _ = require("lodash");
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+  cloud_name: 'dyjwpccso',
+  api_key: '535722222753226',
+  api_secret: 'ZAkkqjUsrURXMeMnqCVJeK4zyrw',
+});
+
 
 exports.addImages = (req, res, next) => {
   if (req.files.length > 0) {
@@ -99,6 +107,80 @@ exports.updateProduct = (req, res, next) => {
     );
 };
 
+exports.updateProductImg = (req, res, next) => {
+  Product.findOne({ _id: req.params.id })
+    .then(product => {
+      if (!product) {
+        return res.status(400).json({
+          message: `Product with id "${req.params.id}" is not found.`
+        });
+      } else {
+        const productFields = _.cloneDeep(req.body);
+
+        try {
+          productFields.name = productFields.name
+            .toLowerCase()
+            .trim()
+            .replace(/\s\s+/g, " ");
+        } catch (err) {
+          res.status(400).json({
+            message: `Error happened on server: "${err}" `
+          });
+        }
+
+        const updatedProduct = queryCreator(productFields);
+
+        Product.findOneAndUpdate(
+          { _id: req.params.id },
+          { $set: updatedProduct },
+          { new: true }
+        )
+          .then(product => res.json(product))
+          .catch(err =>
+            res.status(400).json({
+              message: `Error happened on server: "${err}" `
+            })
+          );
+        //  const filePaths = req.files.map(file => file.path);
+
+        // const uploadPromises = filePaths.map(filePath => {
+        //   return cloudinary.uploader.upload(filePath);
+        // });
+
+        // try {
+        //   const result = await Promise.all(uploadPromises);
+        //   const resultUrls = result.map(res => {
+        //     const { url, ...rest } = res;
+        //     return url;
+        //   });
+
+        //   const initialQuery = _.cloneDeep(req.body);
+        //   initialQuery.imageURL = resultUrls;
+        //   const updatedExcursion = queryCreator(initialQuery);
+
+        //   Shares.findOneAndUpdate(
+        //     { _id: req.params.id },
+        //     { $set: updatedExcursion },
+        //     { new: true }
+        //   )
+        //     .then(excursion => {
+        //       res.json({ excursion });
+        //     })
+        //     .catch(err =>
+        //       res.status(400).json({
+        //         message: `Error happened on server: "${err}" `
+        //       })
+        //     );
+
+      }
+    })
+    .catch(err =>
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `
+      })
+    );
+};
+
 exports.getProducts = (req, res, next) => {
   const perPage = Number(req.query.perPage);
   const startPage = Number(req.query.startPage);
@@ -146,7 +228,7 @@ exports.getProductsFilterParams = async (req, res, next) => {
     case "Alphabetically A-Z":
       sort.name = "asc";
       break;
-  
+
     case "Alphabetically Z-A":
       sort.name = "desc";
       break;

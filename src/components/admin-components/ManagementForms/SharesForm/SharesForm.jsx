@@ -18,16 +18,35 @@ const SharesForm = () => {
     };
 
     const handleSubmit = (values, { setSubmitting, resetForm }) => {
+        // console.log(values);
+        const { imageURL, ...rest } = values;
 
-        // axios.post('http://127.0.0.1:4000/api/shares/', values, {
-        //     headers: {
-        //         "Authorization": token,
-        //     }
-        // })
-        //     .then(excursions => {
-        //         console.log(excursions);
-        //     })
-        //     .catch(err => console.log(err));
+        axios.post('http://127.0.0.1:4000/api/shares/', rest, {
+            headers: {
+                "Authorization": token,
+            }
+        })
+            .then((excursion) => {
+                const formData = new FormData();
+                formData.append('imageURL', imageURL);
+                Object.entries(excursion.data).forEach(([key, value]) => {
+                    formData.append(key, value);
+                });
+
+                axios.put(`http://127.0.0.1:4000/api/shares/images/${excursion.data._id}`, formData, {
+                    headers: {
+                        "Authorization": token,
+                        "Content-Type": "multipart/form-data",
+                    }
+                })
+                    .then(excursions => {
+                        console.log(excursions);
+
+                    })
+                    .catch(err => console.log(err));
+            })
+            .catch(err => console.log(err))
+            // .finally(() => resetForm());
     };
 
     return (
@@ -36,7 +55,7 @@ const SharesForm = () => {
             // validationSchema={validationSchema}
             onSubmit={handleSubmit}
         >
-            {({ isSubmitting }) => (
+            {({ isSubmitting, setFieldValue }) => (
                 <Form className={styles.AddSharesForm}>
                     <div className={styles.AddSharesFields}>
                         <Field
@@ -53,45 +72,23 @@ const SharesForm = () => {
                         <Field
                             className={styles.AddSharesInput}
                             type="text"
+                            name="pathParts"
+                            placeholder="Short title"
+                        />
+                        <ErrorMessage
+                            className={styles.AddSharesError}
+                            name="pathParts"
+                            component="div"
+                        />
+                        <Field
+                            className={styles.AddSharesInput}
+                            type="text"
                             name="description"
                             placeholder="Promotion description"
                         />
                         <ErrorMessage
                             className={styles.AddSharesError}
                             name="description"
-                            component="div"
-                        />
-                        <Field
-                            className={styles.AddSharesInput}
-                            type="text"
-                            name="imageURL"
-                            placeholder="Promotion picture"
-                        />
-                        <ErrorMessage
-                            className={styles.AddSharesError}
-                            name="imageURL"
-                            component="div"
-                        />
-                        <Field
-                            className={styles.AddSharesInput}
-                            type="text"
-                            name="discount"
-                            placeholder="Promotion picture"
-                        />
-                        <ErrorMessage
-                            className={styles.AddSharesError}
-                            name="discount"
-                            component="div"
-                        />
-                        <Field
-                            className={styles.AddSharesInput}
-                            type="text"
-                            name="pathParts"
-                            placeholder="Promotion picture"
-                        />
-                        <ErrorMessage
-                            className={styles.AddSharesError}
-                            name="pathParts"
                             component="div"
                         />
                         <Field
@@ -108,12 +105,34 @@ const SharesForm = () => {
                         <Field
                             className={styles.AddSharesInput}
                             type="text"
+                            name="discount"
+                            placeholder="Discount rate"
+                        />
+                        <ErrorMessage
+                            className={styles.AddSharesError}
+                            name="discount"
+                            component="div"
+                        />
+                        <Field
+                            className={styles.AddSharesInput}
+                            type="text"
                             name="productCategories"
-                            placeholder="Product categories"
+                            placeholder="Categories of products"
                         />
                         <ErrorMessage
                             className={styles.AddSharesError}
                             name="productCategories"
+                            component="div"
+                        />
+                        <input
+                            className={styles.AddExcursionInput}
+                            type="file"
+                            name="imageURL"
+                            onChange={(e) => setFieldValue('imageURL', e.target.files[0])}
+                        />
+                        <ErrorMessage
+                            className={styles.AddExcursionError}
+                            name="imageURL"
                             component="div"
                         />
                     </div>
