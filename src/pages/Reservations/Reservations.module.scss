@@ -1,0 +1,64 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+
+.Reservations {
+    padding-top: 60px;
+}
+
+
+.ReservationsExcursion {
+    padding: 20px;
+    border: $brd-white;
+    margin-bottom: 10px;
+}
+
+.ExcursionHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+}
+
+.ReservationsList {
+    height: 300px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+        background-color: $secondary-color;
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $main-color;
+        border-radius: 5px;
+    }
+}
+
+.ReservationsListItem {
+    display: grid;
+    grid-template-columns: 30px repeat(3, 1fr);
+    padding: 8px;
+}
+
+.ReservationsData {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.ReservationsExcursionTitle {
+    @include fonts(32px, $main-font);
+}
+
+.ExcursionHeading {
+    display: grid;
+    grid-template-columns: 30px repeat(3, 1fr);
+    margin-bottom: 15px;
+    border-bottom: 1px solid $secondary-color;
+    border-top: 1px solid $secondary-color;
+    padding: 10px 0;
+}

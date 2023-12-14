@@ -24,6 +24,7 @@ import tabsReducer from "../reducers/tabs-reducer";
 import mergeCartsReducer from "../reducers/mergeCarts-reducer";
 import loadingReducer from "../reducers/loading-reducer";
 import orderReducer from "../reducers/order-reducer";
+import orderAdminReducer from "../reducers/orderAdmin-reducer";
 
 const rootReducer = combineReducers({
   fetchViewedProducts: fetchViewedProductsReducer,
@@ -42,13 +43,14 @@ const rootReducer = combineReducers({
   shares: sharesReducer,
   loader: loadingReducer,
   order: orderReducer,
+  orderAdmin: orderAdminReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
   blacklist: [],
-  whitelist: ["carts", "user", "tabs", "mergeCart"],
+  whitelist: ["carts", "user", "tabs", "mergeCart", "orderAdmin"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

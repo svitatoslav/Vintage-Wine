@@ -20,6 +20,7 @@ const BURGER_BREAKPOINT = 1000;
 function Header() {
   const viewportWidth = useResize();
   const user = useSelector((state) => state.user.user);
+  const isAdmin = useSelector((state) => state.user.isAdmin);
   const isMenuOpen = useSelector((state) => state.mobileMenu.isMenuOpen);
   const productsInCart = useSelector((state) => state.carts.carts);
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ function Header() {
             </div>
             <div className={styles.HeaderWidgetsGroup}>
               {user ? (
-                  <Link title={user} to="/customer">
+                  <Link title={user} to={isAdmin ? "/dashboard" : "/customer"}>
                       <PersonWidget />
                   </Link>
               )

@@ -2,7 +2,7 @@ import styles from "./CheckoutItem.module.scss";
 
 const CheckoutItem = ({ count, product }) => {
   const { name, productImg, currentPrice, characteristics } = product;
-  const [code, grape, volume, color] = characteristics;
+  const { grape, color } = characteristics;
 
   return (
     <div className={styles.CheckoutItem}>

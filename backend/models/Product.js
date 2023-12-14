@@ -15,29 +15,34 @@ const ProductSchema = new Schema(
             type: String,
             required: true
         },
-        collectionOfProduct: {
+        cartDescription: {
+            type: String
+        },
+        collectionBelongs: {
             type: String,
             required: true
         },
         productImg: {
             type: String,
-            required: true
         },
-        slidesImageUrls: [
-            {
-                type: String,
-                required: true
-            }
-        ],
-        productUrl: {
-            type: String
+        slidesImageUrls: {
+            type: Array,
         },
-        characteristics: [{ vendorCode: { type: String } }, { grape: { type: String } }, { volume: { type: String } }, { color: { type: String } }, { strength: { type: String } }, { sweetness: { type: String } }, { supplyTemperature: { type: String } }, { manufacturerCountry: { type: String } }],
         productDescription: {
-            aroma: { type: String },
-            taste: { type: String }
+            aroma: { type: String, required: true },
+            taste: { type: String, required: true }
         },
-        cartDescription: { type: String }
+        characteristics: {
+            vendorCode: { type: String, required: true },
+            grape: { type: String, required: true },
+            volume: { type: String, required: true },
+            color: { type: String, required: true },
+            strength: { type: String, required: true },
+            sweetness: { type: String, required: true },
+            supplyTemperature: { type: String, required: true },
+            country: { type: String, required: true },
+            year: { type: Number, required: true },
+          },
     },
     { strict: false }
 );

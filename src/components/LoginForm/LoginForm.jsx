@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import axios from "axios";
 import {
+  setAccessAC,
   setTokenAC,
   setUserAC,
   setUserIdAC,
@@ -53,7 +54,8 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
           .then((res) => {
             dispatch(setTokenAC(res.data.token));
             dispatch(setUserAC(res.data.user));
-            dispatch(setUserIdAC(res.data.id));
+            dispatch(setUserIdAC(res.data.id));            
+            dispatch(setAccessAC(res.data.isAdmin));
 
             const newCart = {
               customerId: res.data.id,

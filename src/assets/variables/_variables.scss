@@ -1,6 +1,8 @@
 @font-face {
     font-family: 'GillSans';
-    src: url('./src/assets/fonts/GillSans.otf');
+    src: url('./src/assets/fonts/GillSans.otf') format('opentype'),
+        url('../../src/assets/fonts/GillSans.otf') format('opentype'),
+        url('../src/assets/fonts/GillSans.otf') format('opentype');
     font-style: regular;
     font-weight: 400;
 }

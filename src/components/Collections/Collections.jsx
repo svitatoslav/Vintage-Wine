@@ -8,7 +8,6 @@ import SectionTitle from "../Title/SectionTitle";
 const Collections = () => {
   const collections = useSelector((state) => state.collections.collections);
   const dispatch = useDispatch();
-  console.log(collections);
 
   useEffect(() => {
     dispatch(getCollectionsThunk());

@@ -3,11 +3,13 @@ const SET_USER_ID = "SET_USER_ID";
 const SET_TOKEN = "SET_TOKEN";
 const SIGN_IN = "SIGN_IN";
 const SIGN_OUT = "SIGN_OUT";
+const SET_ACCESS = "SET_ACCESS";
 
 const initialState = {
   user: null,
   userId: null,
   token: null,
+  isAdmin: false,
   isSigned: false,
 };
 
@@ -39,6 +41,11 @@ const authorizationReducer = (state = initialState, action) => {
         user: null,
         token: null,
       };
+    case SET_ACCESS:
+      return {
+        ...state,
+        isAdmin: action.payload
+      };
     default:
       return state;
   }
@@ -65,6 +72,11 @@ export const signInAC = () => ({
 
 export const signOutAC = () => ({
   type: SIGN_OUT,
+});
+
+export const setAccessAC = (isAdmin) => ({
+  type: SET_ACCESS,
+  payload: isAdmin
 });
 
 export default authorizationReducer;

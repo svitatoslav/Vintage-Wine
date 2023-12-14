@@ -3,9 +3,8 @@ const Schema = mongoose.Schema;
 
 const SharesSchema = new Schema(
     {
-        imageUrl: {
+        imageURL: {
             type: String,
-            required: true
         },
         name: {
             type: String,

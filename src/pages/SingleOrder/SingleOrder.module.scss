@@ -1,0 +1,102 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+
+// .SingleOrder {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+// }
+
+.SingleOrderBody {
+    width: 80%;
+    margin: 0 auto 50px;
+    padding: 20px;
+    border: $brd-white;
+}
+
+.SingleOrderNumber {
+    font-size: 20px;
+    span {
+        color: $btn-bg;
+        margin-left: 10px;
+    }
+}
+
+.SingleOrderSegment {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+    
+    &:first-of-type {
+        border-bottom: 1px solid $secondary-color;
+    }
+}
+
+.SingleOrderDetails {
+    width: 45%;
+}
+
+.SingleOrderSubTitle {
+    @include fonts(22px, $secondary-font);
+}
+
+.SingleOrderDetailsList {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding-left: 30px;
+    margin-top: 10px;
+    font-size: 20px;
+    span {
+        color: $btn-bg;
+        @include fonts(18px, $secondary-font);
+        padding-left: 7px;
+    }
+}
+
+.SingleOrderProducts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.SingleOrderProductsItem {
+    display: grid;
+    grid-template-columns: 30px 1fr 100px 100px 50px;
+    background: $secondary-color;
+    padding: 20px;
+    font-size: 20px;
+    p {
+        font-size: 20px;
+
+        &:nth-child(4) {
+            text-align: center;
+        }
+    }
+
+}
+
+.SingleOrderHeading {
+    display: grid;
+    grid-template-columns: 30px 1fr 100px 100px 50px;
+    margin: 20px 0;
+    padding: 10px 20px;
+    border-top: 1px solid $secondary-color;
+    border-bottom: 1px solid $secondary-color;
+    p {
+        &:nth-child(4) {
+            text-align: center;
+        }
+    }
+}
+
+.SingleOrderData {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
