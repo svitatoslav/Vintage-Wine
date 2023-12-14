@@ -24,6 +24,7 @@ import Shares from "./pages/Shares/Shares";
 
 import "./App.scss";
 import Orders from "./pages/Customer/Orders/Orders";
+import CheckoutSuccess from "./pages/Checkout/CheckoutSuccess/CheckoutSuccess";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,32 +32,30 @@ const App = () => {
     dispatch(fetchProductsThunk());
   }, [dispatch]);
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/" element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="catalog" element={<Catalog />} />
-          <Route path="catalog/:slug" element={<SingleCatalog />} />
-          <Route path="shop" element={<Shop />} />
-          <Route path="shop/:id" element={<SingleProduct />} />
-          <Route path="news" element={<News />} />
-          <Route path="delivery&payment" element={<DeliveryAndPayment />} />
-          <Route path="contacts" element={<Contact />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="search" element={<Search />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<NoPage />} />
-          <Route path="/:id" element={<Shares />} />
-
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/news/:id" element={<SingleNews />} />
-          <Route path="/customer" element={<Customer />} />
-          <Route path="/orders" element={<Orders />} />
-        </Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="catalog" element={<Catalog />} />
+        <Route path="catalog/:slug" element={<SingleCatalog />} />
+        <Route path="shop" element={<Shop />} />
+        <Route path="shop/:id" element={<SingleProduct />} />
+        <Route path="news" element={<News />} />
+        <Route path="delivery&payment" element={<DeliveryAndPayment />} />
+        <Route path="contacts" element={<Contact />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="search" element={<Search />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NoPage />} />
+        <Route path="/:id" element={<Shares />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout/success" element={<CheckoutSuccess />} />
+        <Route path="/news/:id" element={<SingleNews />} />
+        <Route path="/customer" element={<Customer />} />
+        <Route path="/orders" element={<Orders />} />
+      </Route>
+    </Routes>
   );
 };
 

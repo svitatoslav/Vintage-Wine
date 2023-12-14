@@ -105,6 +105,7 @@ export const placeOrderThunk = (info) => async (dispatch, getState) => {
 
   dispatch(setInfoDataStatusAC(DataStatus.FULFILLED));
   dispatch(setOrderInfoAC(data.order));
+  window.location.href = data.url;
   dispatch(hideLoadingAC());
   dispatch(removeCartThunk());
 };

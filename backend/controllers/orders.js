@@ -7,6 +7,9 @@ const queryCreator = require("../commonHelpers/queryCreator");
 const productAvailibilityChecker = require("../commonHelpers/productAvailibilityChecker");
 const subtractProductsFromCart = require("../commonHelpers/subtractProductsFromCart");
 const _ = require("lodash");
+const stripe = require("stripe")(
+  "sk_test_51OEab4ABi53fWKsMfpy1ZEIoTuV2gdApovhKyXp5Q8BfSLvx7cBAiWzaQLe2dLPW5W5BytNaKXIaH7yYFVUQN2hZ00kGrwOA7l",
+);
 
 const uniqueRandom = require("unique-random");
 const rand = uniqueRandom(1000000, 9999999);
@@ -89,41 +92,72 @@ exports.placeOrder = async (req, res, next) => {
           "This operation involves sending a letter to the client. Please provide field 'letterHtml' for the letter.",
       });
     }
-    const {letterHtml, ...orderData} = order;
+    const { letterHtml, ...orderData } = order;
     const newOrder = new Order(orderData);
 
     if (order.customerId) {
       newOrder.populate("customerId").execPopulate();
     }
 
-    newOrder
-      .save()
-      .then(async (order) => {
-        const mailResult = await sendMail(
-          subscriberMail,
-          letterSubject,
-          letterHtmlText,
-          res,
-        );
-
-        for (const item of order.products) {
-          const id = item.instance._id;
-          // const product = await Product.findOne({ _id: id });
-          // const productQuantity = product.quantity;
-          await Product.findOneAndUpdate(
-            { _id: id },
-            // { quantity: productQuantity - item.cartQuantity },
-            { new: true },
-          );
-        }
-
-        res.json({ order, mailResult });
-      })
-      .catch((err) =>
-        res.status(400).json({
-          message: `Error happened on server: "${err}" `,
-        }),
+    newOrder.save().then(async (order) => {
+      const mailResult = await sendMail(
+        subscriberMail,
+        letterSubject,
+        letterHtmlText,
+        res,
       );
+
+      for (const item of order.products) {
+        const id = item.instance._id;
+        // const product = await Product.findOne({ _id: id });
+        // const productQuantity = product.quantity;
+        await Product.findOneAndUpdate(
+          { _id: id },
+          // { quantity: productQuantity - item.cartQuantity },
+          { new: true },
+        );
+      }
+
+      // res.json({ order, mailResult });
+    });
+    // .catch((err) =>
+    //   res.status(400).json({
+    //     message: `Error happened on server: "${err}" `,
+    //   }),
+    // );
+
+    const lineItems = order.products.map((product) => ({
+      price_data: {
+        currency: "UAH",
+        product_data: {
+          name: product.instance.name,
+          images: [product.instance.productImg],
+        },
+        unit_amount: product.instance.currentPrice * 100,
+      },
+      quantity: product.quantity,
+    }));
+
+    const session = await stripe.checkout.sessions.create({
+      line_items: [
+        {
+          price_data: {
+            currency: "UAH",
+            product_data: {
+              name: "Delivery",
+            },
+            unit_amount: 50 * 100,
+          },
+          quantity: 1,
+        },
+        ...lineItems,
+      ],
+      mode: "payment",
+      success_url: `${process.env.CLIENT_URL}/checkout/success`,
+      cancel_url: `${process.env.CLIENT_URL}?canceled=true`,
+    });
+
+    res.json({ url: session.url });
   } catch (err) {
     res.status(400).json({
       message: `Error happened on server: "${err}" `,
@@ -131,7 +165,7 @@ exports.placeOrder = async (req, res, next) => {
   }
 };
 
-exports.updateOrder = (req, res, next) => {
+exports.updateOrder = (req, rs, next) => {
   Order.findOne({ _id: req.params.id }).then(async (currentOrder) => {
     if (!currentOrder) {
       return res

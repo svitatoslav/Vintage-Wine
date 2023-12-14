@@ -1,0 +1,59 @@
+@import '../../../assets/variables/variables';
+@import '../../../assets/mixins/mixins';
+
+
+.ThanksBox {
+    position: relative;
+    width: 100%;
+    margin: 50px 0;
+  
+    img {
+      width: 60%;
+    }
+  }
+
+  .Image {
+    display: block;
+    max-width: 400px;
+    object-fit: contain;
+  }
+  
+  .ThanksText {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    text-align: center;
+    transform: translateY(-50%);
+    max-width: 290px;
+    
+    @media screen and (min-width: $tablet) {
+      max-width: 370px;
+    }
+    
+    @media screen and (min-width: $tablet-lg) {
+      max-width: 464px;
+    }
+  }
+  
+  .MainText {
+    @include fonts(45px, $main-font);
+    margin-bottom: 12px;
+  
+    @media screen and (min-width: $tablet) {
+      font-size: 60px;
+    }
+  
+    @media screen and (min-width: $tablet-lg) {
+      font-size: 80px;
+    }
+  }
+  
+  .SubText {
+    @include fonts(16px, $secondary-font);
+    max-width: 200px;
+    margin: 0 auto;
+  
+    @media screen and (min-width: $tablet) {
+      max-width: 100%;
+    }
+  }

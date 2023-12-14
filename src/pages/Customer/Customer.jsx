@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import PageTitle from "../../components/Title/PageTitle";
 import Container from "../../components/Container/Container";
@@ -9,6 +9,7 @@ import { signOutAC } from "../../redux/reducers/authorization-reducer";
 import { clearCartAC } from "../../redux/reducers/cart-reducer";
 import Button from "../../components/Button/Button";
 import { getOrderInfoThunk } from "../../redux/reducers/order-reducer";
+import React from "react";
 
 const Customer = () => {
   const user = useSelector((state) => state.user.user);
@@ -18,6 +19,10 @@ const Customer = () => {
     dispatch(signOutAC());
     dispatch(clearCartAC());
   };
+
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
 
   return (
     <Container>

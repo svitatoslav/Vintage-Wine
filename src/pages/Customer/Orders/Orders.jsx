@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Slider from "react-slick";
 import ReactPaginate from "react-paginate";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa6";
@@ -36,25 +36,23 @@ const getSlidesToShow = (viewportWidth) => {
   return 4;
 };
 
+const itemsPerPage = 3;
+
 const Orders = () => {
   const orders = useSelector((state) => state.order.orderHistory);
+  const user = useSelector((state) => state.user.user);
   const viewportWidth = useResize();
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const [numberOfPages, setNumberOfPages] = useState(null);
 
-  const itemsPerPage = 3;
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const displayedOrders = orders.slice(startIndex, endIndex);
+  const numberOfPages = Math.ceil(orders.length / itemsPerPage);
 
   useEffect(() => {
     dispatch(getOrderInfoThunk());
-    setNumberOfPages(Math.ceil(orders.length / itemsPerPage));
-    if (currentPage > 1 && numberOfPages < currentPage) {
-      setCurrentPage(1);
-    }
-  }, [currentPage, viewportWidth, numberOfPages]);
+  }, [dispatch]);
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
@@ -94,6 +92,10 @@ const Orders = () => {
 
   const style = viewportWidth < BIG_VALUE ? { display: "none" } : {};
 
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
   if (orders.length > 0) {
     content = (
       <div>
@@ -109,7 +111,9 @@ const Orders = () => {
             <div className={styles.OrderInfoWrapper} key={order.orderNo}>
               <p className={styles.OrderItem}>{order.orderNo}</p>
               <p className={styles.OrderItem}>{formattedDate(order.date)}</p>
-              <p className={styles.OrderItem}>{order.totalSum} UAH</p>
+              <p className={styles.OrderItem}>
+                {order.totalSum.toFixed(2)} UAH
+              </p>
               <p className={styles.OrderItem}>
                 {order.deliveryAddress.address}, {order.deliveryAddress.city}
               </p>
@@ -126,7 +130,7 @@ const Orders = () => {
                   >
                     <img
                       className={styles.ProductImg}
-                      src={product.instance.productImg}
+                      src={`${product.instance.productImg}`}
                       alt="product img"
                     />
                     <p className={styles.ProductItemText}>
