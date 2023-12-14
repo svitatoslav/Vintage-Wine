@@ -204,6 +204,7 @@
                         border-bottom: 1px solid $main-color;
                         padding: 20px 0;
                         width: 100%;
+                        @include fonts(16px, $secondary-font);
                         @include flex-ac-sb;
                         .key {
                             width: 60%;

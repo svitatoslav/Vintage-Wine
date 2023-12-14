@@ -1,9 +1,11 @@
 const getAdditionalOptions = (array, variant) => {
     const options = array?.map(({ characteristics }, i) => {
-        const value = characteristics.find(field => field[variant]);
+        const value = Object.entries(characteristics).find(field => {
+            if (field[0] === variant) return field[1];
+        });
 
         return {
-            value: value?.[variant],
+            value: value?.[1],
             id: i
         }
     }).filter(item => item.value);
@@ -24,9 +26,11 @@ const getAdditionalOptions = (array, variant) => {
 }
 
 const getOptions = (array) => {
-    const options = array?.map(({ collection }, i) => {
+
+    const options = array?.map(({ collectionBelongs }, i) => {
+
         return {
-            value: collection,
+            value: collectionBelongs,
             id: i
         }
     }).filter(item => item.value);
@@ -62,8 +66,8 @@ const createOptions = (products) => {
 
     options.collection = {
         label: "Collection",
-        name: "collection",
-        options: getOptions(products, "collection")
+        name: "collectionBelongs",
+        options: getOptions(products)
     };
 
     filterSet.forEach(filter => {

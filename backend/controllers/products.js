@@ -30,11 +30,43 @@ exports.addImages = (req, res, next) => {
 
 exports.addProduct = (req, res, next) => {
   const productFields = _.cloneDeep(req.body);
+  const {
+    vendorCode,
+    grape,
+    volume,
+    color,
+    strength,
+    sweetness,
+    supplyTemperature,
+    country,
+    year,
+    aroma,
+    taste,
+    ...rest
+  } = productFields;
 
-  productFields.itemNo = rand();
+  const updatedProductFields = {
+    ...rest,
+    characteristics: {
+      vendorCode,
+      grape,
+      volume,
+      color,
+      strength,
+      sweetness,
+      supplyTemperature,
+      country,
+      year,
+    },
+    productDescription: {
+      aroma,
+      taste,
+    }
+  }
+  updatedProductFields.itemNo = rand();
 
   try {
-    productFields.name = productFields.name
+    updatedProductFields.name = updatedProductFields.name
       .toLowerCase()
       .trim()
       .replace(/\s\s+/g, " ");
@@ -50,7 +82,7 @@ exports.addProduct = (req, res, next) => {
     });
   }
 
-  const updatedProduct = queryCreator(productFields);
+  const updatedProduct = queryCreator(updatedProductFields);
 
   const newProduct = new Product(updatedProduct);
 
@@ -109,13 +141,47 @@ exports.updateProduct = (req, res, next) => {
 
 exports.updateProductImg = (req, res, next) => {
   Product.findOne({ _id: req.params.id })
-    .then(product => {
+    .then(async product => {
       if (!product) {
         return res.status(400).json({
           message: `Product with id "${req.params.id}" is not found.`
         });
       } else {
         const productFields = _.cloneDeep(req.body);
+
+        const {
+          vendorCode,
+          grape,
+          volume,
+          color,
+          strength,
+          sweetness,
+          supplyTemperature,
+          country,
+          year,
+          aroma,
+          taste,
+          ...rest
+        } = productFields;
+      
+        const updatedProductFields = {
+          ...rest,
+          characteristics: {
+            vendorCode,
+            grape,
+            volume,
+            color,
+            strength,
+            sweetness,
+            supplyTemperature,
+            country,
+            year,
+          },
+          productDescription: {
+            aroma,
+            taste,
+          }
+        }
 
         try {
           productFields.name = productFields.name
@@ -128,31 +194,51 @@ exports.updateProductImg = (req, res, next) => {
           });
         }
 
-        const updatedProduct = queryCreator(productFields);
+        const filePaths = req.files.map(file => file.path);        
 
-        Product.findOneAndUpdate(
-          { _id: req.params.id },
-          { $set: updatedProduct },
-          { new: true }
-        )
-          .then(product => res.json(product))
-          .catch(err =>
-            res.status(400).json({
-              message: `Error happened on server: "${err}" `
-            })
-          );
+        const uploadPromises = filePaths.map(filePath => {
+          return cloudinary.uploader.upload(filePath);
+        });
+
+        try {
+          const result = await Promise.all(uploadPromises);
+
+          const resultUrls = result.map(res => {
+            const { url, ...rest } = res;
+            return url;
+          });
+
+          updatedProductFields.productImg = resultUrls[0];
+          updatedProductFields.slidesImageUrls = resultUrls.slice(1);
+          const updatedProduct = queryCreator(updatedProductFields);
+
+          Product.findOneAndUpdate(
+            { _id: req.params.id },
+            { $set: updatedProduct },
+            { new: true }
+          )
+            .then(product => res.json(product))
+            .catch(err =>
+              res.status(400).json({
+                message: `Error happened on server: "${err}" `
+              })
+            );
+        } catch (err) {
+          res.status(400).json({
+            message: `Error happened on server: "${err}" `
+          });
+        }
+
         //  const filePaths = req.files.map(file => file.path);
 
-        // const uploadPromises = filePaths.map(filePath => {
-        //   return cloudinary.uploader.upload(filePath);
-        // });
+
 
         // try {
         //   const result = await Promise.all(uploadPromises);
-        //   const resultUrls = result.map(res => {
-        //     const { url, ...rest } = res;
-        //     return url;
-        //   });
+          // const resultUrls = result.map(res => {
+          //   const { url, ...rest } = res;
+          //   return url;
+          // });
 
         //   const initialQuery = _.cloneDeep(req.body);
         //   initialQuery.imageURL = resultUrls;

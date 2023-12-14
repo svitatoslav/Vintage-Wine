@@ -18,7 +18,7 @@ const CartItem = ({ count, product, popUpView }) => {
         characteristics,
     } = product;
 
-    const [code, grape, volume, color] = characteristics;
+    const { grape, color } = characteristics;
 
     const token = useSelector((state) => state.user.token);
     const dispatch = useDispatch();

@@ -66,7 +66,7 @@ const SingleOrder = () => {
                                 <p className={styles.SingleOrderNumber}>Shipment date: <span>{formattedDate(currentOrder?.shipmentDate || 0)}</span></p>
                             )}
                         </div>
-                        <Button text={currentOrder.completed ? "Completed" : "Confirm shipment"} variant='xSmall' color={currentOrder.completed && "success"} isDisabled={currentOrder.completed || currentOrder?.products?.length !== checked} onClick={handleShipment} />
+                        <Button text={currentOrder.completed ? "Completed" : "Confirm shipment"} variant='xSmall' color={currentOrder.completed ? "success" : ""} isDisabled={currentOrder.completed || currentOrder?.products?.length !== checked} onClick={handleShipment} />
                     </div>
 
                     <div className={styles.SingleOrderSegment}>
@@ -100,7 +100,7 @@ const SingleOrder = () => {
                                 <li key={product._id} className={styles.SingleOrderProductsItem}>
                                     <span>{i + 1}.</span>
                                     <p>{product.instance.name}</p>
-                                    <p>{product.instance.characteristics[0].vendorCode}</p>
+                                    <p>{product.instance.characteristics.vendorCode}</p>
                                     <p>{product.quantity}</p>
                                     <input
                                         type="checkbox"

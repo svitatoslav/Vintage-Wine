@@ -18,7 +18,7 @@ const SharesForm = () => {
     };
 
     const handleSubmit = (values, { setSubmitting, resetForm }) => {
-        // console.log(values);
+
         const { imageURL, ...rest } = values;
 
         axios.post('http://127.0.0.1:4000/api/shares/', rest, {
@@ -46,7 +46,7 @@ const SharesForm = () => {
                     .catch(err => console.log(err));
             })
             .catch(err => console.log(err))
-            // .finally(() => resetForm());
+            .finally(() => resetForm());
     };
 
     return (

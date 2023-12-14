@@ -94,7 +94,8 @@ router.put(
 router.put(
   "/images/:id",
   passport.authenticate("jwt-admin", { session: false }),
-  upload.array('imageURL'),
+  // upload.single('productImg'),
+  upload.array('slidesImageUrls'),
   updateProductImg
 );
 
