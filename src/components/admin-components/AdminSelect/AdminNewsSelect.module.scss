@@ -1,0 +1,60 @@
+@import '../../../assets/mixins/mixins';
+@import '../../../assets/variables/variables';
+
+.CustomSelect {
+    position: relative;
+    width: 100%;
+    @include fonts(16px, $secondary-font);
+}
+
+.CustomSelectInput {
+    @include flex-ac-sb;
+    padding: 16px 10px;
+    user-select: none;
+    border: $brd-white;
+}
+
+.CustomSelectMenu {
+    position: absolute;
+    width: 100%;
+    max-height: 135px;
+    overflow: auto;
+    background: $black-color;
+    z-index: 2;
+    border: $brd-white;
+
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+.Disabled {
+    color: #5C5C5C;
+    border: 2px solid #5C5C5C;
+
+    svg {
+        path {
+            fill: #5C5C5C;
+        }
+    }
+}
+
+.CustomSelectOption {
+    text-align: center;
+    cursor: pointer;
+    padding: 12px 10px;
+    border-bottom: $brd-white;
+    transition: .3s;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:hover {
+        background: #5C5C5C;
+    }
+}
+
+.CustomSelectOptionActive {
+    color: $btn-bg;
+}
