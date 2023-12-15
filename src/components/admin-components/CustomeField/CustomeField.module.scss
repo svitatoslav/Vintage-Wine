@@ -1,0 +1,22 @@
+@import '../../../assets/mixins/mixins';
+@import '../../../assets/variables/variables';
+
+
+
+.CustomeField {
+    display: flex;
+    gap: 10px;
+    // align-items: center;
+    width: 100%;
+}
+
+.CustomeFieldInput {
+    width: 100%;
+}
+.CustomFieldBtn {
+    padding: 5px;
+    width: 100px;
+    background: $btn-bg;
+    font-size: 20px;
+    cursor: pointer;
+}

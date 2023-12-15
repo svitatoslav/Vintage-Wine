@@ -1,0 +1,55 @@
+@import '../../../../assets/mixins/mixins';
+@import '../../../../assets/variables/variables';
+
+.AddNewsForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 11px;
+    padding: 26px 36px 31px 40px;
+    border: 2px solid #fff;
+}
+
+.AddNewsFields {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.AddNewsTags {
+    width: 100%;
+}
+.AddNewsSubTitle {
+    margin: 15px 0;
+}
+
+.AddNewsRelated {
+    width: 100%;
+    padding: 5px 0;
+}
+
+.AddNewsLabel {
+    @include fonts(18px, $secondary-font);
+}
+
+.AddNewsRelatedList {
+    margin: 5px 0 10px;
+    color: $btn-bg;
+    @include fonts(20px, $secondary-font);
+
+    span {
+        margin-right: 5px;
+        color: $main-color;
+        font-size: 12px;
+    }
+}
+
+.AddParagraphBtn {
+    background: $btn-bg;
+    padding: 5px;
+    cursor: pointer;
+}

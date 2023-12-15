@@ -60,6 +60,7 @@ const OrderSchema = new Schema(
     },
     shipmentDate: {
       type: Date,
+      default: Date.now
     }
   },
   { strict: false }
