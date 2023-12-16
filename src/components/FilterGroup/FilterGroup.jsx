@@ -22,6 +22,8 @@ const FilterGroup = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
 
+  console.log(filteredProducts);
+
   const options = Object.values(createOptions(filteredProducts));
   const lastOptions = useSelector(state => state.filters.lastOptions);
   const updatedOptions = options.map(item => {

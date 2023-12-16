@@ -1,0 +1,85 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.ContactRequestsUnread {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid $secondary-color;
+    padding-bottom: 20px;
+    height: 88px;
+}
+
+.ContactItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include fonts(20px, $secondary-font);
+    width: 200px;
+    padding: 20px;
+    border: $brd-white;
+    cursor: pointer;
+}
+
+.ContactItemUnread {
+    color: $btn-bg;
+    border: 2px solid $btn-bg;
+}
+
+.ContactRequestsList {
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.ContactRequestsData {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 350px;
+    border: $brd-white;
+}
+
+.ContactRequestsMainInfo {
+    display: flex;
+    justify-content: space-between;
+    background: $secondary-color;
+    padding: 20px;
+
+    svg {
+        cursor: pointer;
+
+        &:hover path {
+            fill: $btn-bg;
+        }
+
+        path {
+            @include transition;
+        }
+    }
+}
+
+.ContactRequestsPersonalData {
+    color: $black-color;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ContactRequestsDataMsg {
+    padding: 10px 20px 20px;
+    height: 100px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+        background-color: $secondary-color;
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $main-color;
+        border-radius: 5px;
+    }
+}

@@ -83,7 +83,7 @@ const SingleProduct = () => {
             const addViewedProduct = async () => {
                 try {
                     await axios.post(`http://127.0.0.1:4000/api/last-viewed-products`, { productId: dataToSend });
-                } catch (err) {}
+                } catch (err) { }
             };
             addViewedProduct();
         }
@@ -92,6 +92,7 @@ const SingleProduct = () => {
     useEffect(() => {
         dispatch(fetchViewedProductsThunk());
     }, [dispatch]);
+
 
     return (
         <Container>
@@ -106,18 +107,20 @@ const SingleProduct = () => {
                         <h4 className={styles.productNameSmall}>{singleItem?.name}</h4>
                         <div className={styles.collectionsData}>
                             <p>
-                                {singleItem?.characteristics?.map((item, index) => {
+                                <span>{singleItem?.characteristics?.grape}. </span>
+                                <span>{singleItem?.characteristics?.color}. </span>
+                                {/* {singleItem?.characteristics?.map((item, index) => {
                                     if (item?.grape) {
                                         return <span key={index}>{item?.grape}. </span>;
                                     }
                                     if (item?.color) {
                                         return <span key={index}>{item?.color}</span>;
                                     }
-                                })}
+                                })} */}
                             </p>
                             <p>
                                 Collection
-                                <span className={styles.collectionSpan}>{singleItem?.collection}</span>
+                                <span className={styles.collectionSpan}>{singleItem?.collectionBelongs}</span>
                             </p>
                         </div>
                         <div className={styles.cartData}>
@@ -141,10 +144,9 @@ const SingleProduct = () => {
                         <div className={styles.mainInfo}>
                             <h4 className={styles.titleInfo}>Characteristics of the product</h4>
                             <ul className={styles.characteristics}>
-                                {singleItem?.characteristics?.map((item, index) => {
-                                    const key = Object.keys(item)[0];
+                                {singleItem?.characteristics && Object.entries(singleItem.characteristics).map((item, index) => {
+                                    const [key, value] = item;
                                     const formattedKey = addSpaceBeforeUppercase(key);
-                                    const value = item[key];
                                     if (value !== '') {
                                         return (
                                             <li key={index}>

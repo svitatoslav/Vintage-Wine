@@ -21,9 +21,17 @@ import Checkout from "./pages/Checkout/Checkout";
 import SingleNews from "./pages/SingleNews/SingleNews";
 import Customer from "./pages/Customer/Customer";
 import Shares from "./pages/Shares/Shares";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 import "./App.scss";
 import Orders from "./pages/Customer/Orders/Orders";
+import Overview from "./pages/Overview/Overview";
+import Management from "./pages/Management/Management";
+import OrdersAdmin from "./pages/OrdersAdmin/OrdersAdmin";
+import Reservations from "./pages/Reservations/Reservations";
+import ManagementWrapper from "./components/admin-components/ManagementWrapper/ManagementWrapper";
+import ContactRequests from "./pages/ContactRequests/ContactRequests";
+import SingleOrder from "./pages/SingleOrder/SingleOrder";
 import CheckoutSuccess from "./pages/Checkout/CheckoutSuccess/CheckoutSuccess";
 
 const App = () => {
@@ -32,30 +40,49 @@ const App = () => {
     dispatch(fetchProductsThunk());
   }, [dispatch]);
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="/" element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="catalog" element={<Catalog />} />
-        <Route path="catalog/:slug" element={<SingleCatalog />} />
-        <Route path="shop" element={<Shop />} />
-        <Route path="shop/:id" element={<SingleProduct />} />
-        <Route path="news" element={<News />} />
-        <Route path="delivery&payment" element={<DeliveryAndPayment />} />
-        <Route path="contacts" element={<Contact />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="search" element={<Search />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<NoPage />} />
-        <Route path="/:id" element={<Shares />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/checkout/success" element={<CheckoutSuccess />} />
-        <Route path="/news/:id" element={<SingleNews />} />
-        <Route path="/customer" element={<Customer />} />
-        <Route path="/orders" element={<Orders />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="catalog" element={<Catalog />} />
+          <Route path="catalog/:slug" element={<SingleCatalog />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="shop/:id" element={<SingleProduct />} />
+          <Route path="news" element={<News />} />
+          <Route path="delivery&payment" element={<DeliveryAndPayment />} />
+          <Route path="contacts" element={<Contact />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="search" element={<Search />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="shares/:id" element={<Shares />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/news/:id" element={<SingleNews />} />
+          <Route path="/customer" element={<Customer />} />
+          <Route path="*" element={<NoPage />} />
+          <Route path="/checkout/success" element={<CheckoutSuccess />} />
+        </Route>
+
+        <Route path="/dashboard/" element={<Dashboard />}>
+          <Route index element={<Overview />} />
+          <Route path="overview" element={<Overview />} />
+          <Route path="management" element={<Management />} />
+          <Route path="management/:slug" element={<ManagementWrapper />} />
+          <Route path="orders" element={<OrdersAdmin />} />
+          <Route path="orders/:id" element={<SingleOrder />} />
+          <Route path="reservations" element={<Reservations />} />
+          <Route path="contacts" element={<ContactRequests />} />
+        </Route>
+        {/* <Route path="/overview" element={<Dashboard />} />
+                <Route path="/management" element={<Management />} />
+                <Route path="/management/:slug" element={<ManagementWrapper />} />
+                <Route path="/orders" element={<Orders />} />
+                <Route path="/reservations" element={<Reservations />} />
+                <Route path="/contacts" element={<ContactRequests />} /> */}
+      </Routes>
+    </>
   );
 };
 

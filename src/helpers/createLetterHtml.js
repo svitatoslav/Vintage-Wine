@@ -160,7 +160,7 @@ const createOrderLetter = (initData, orderedProducts) => {
             <div class="container">
                 <h2>Order Confirmation</h2>
         
-                <p>Dear ${initData.name},</p>
+                <p>Dear ${initData.customerName},</p>
         
                 <p>Thank you for your order. We are pleased to confirm that your order has been successfully processed and is on its way. Below are the details of your order:</p>
         
@@ -168,7 +168,7 @@ const createOrderLetter = (initData, orderedProducts) => {
                 <p><strong>Address:</strong> ${initData.address}, ${initData.city}, ${initData.country}</p>
         
                 <h3>Customer Information</h3>
-                <p><strong>Name:</strong> ${initData.name} ${initData.lastName}</p>
+                <p><strong>Name:</strong> ${initData.customerName}</p>
                 <p><strong>E-mail:</strong> ${initData.email}</p>
                 <p><strong>Phone:</strong> ${initData.phone}</p>
         

@@ -2,6 +2,13 @@ const Excursion = require("../models/Excursion");
 const queryCreator = require("../commonHelpers/queryCreator");
 const sendMail = require("../commonHelpers/mailSender");
 const _ = require("lodash");
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+  cloud_name: 'dyjwpccso',
+  api_key: '535722222753226',
+  api_secret: 'ZAkkqjUsrURXMeMnqCVJeK4zyrw',
+});
 
 exports.getExcursions = (req, res, next) => {
   Excursion.find()
@@ -25,7 +32,7 @@ exports.reserveExcursion = (req, res, next) => {
       } else {
         const initialQuery = _.cloneDeep(req.body);
         const updatedReservation = queryCreator(initialQuery);
-        const {title, ...reservation} = updatedReservation;
+        const { title, ...reservation } = updatedReservation;
 
         const subscriberMail = req.body.email;
         const letterSubject = req.body.letterSubject;
@@ -37,7 +44,7 @@ exports.reserveExcursion = (req, res, next) => {
               "This operation involves sending a letter to the client. Please provide field 'letterSubject' for the letter."
           });
         }
-  
+
         if (!letterHtml) {
           return res.status(400).json({
             message:
@@ -57,7 +64,7 @@ exports.reserveExcursion = (req, res, next) => {
               letterHtml,
               res
             );
-  
+
             res.json({ excursion, mailResult });
           })
           .catch(err =>
@@ -67,6 +74,66 @@ exports.reserveExcursion = (req, res, next) => {
           );
       }
     })
+    .catch(err =>
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `
+      })
+    );
+};
+
+exports.uploadExcursionImg = (req, res, next) => {
+  Excursion.findOne({ _id: req.params.id })
+    .then(async excursion => {
+      if (!excursion) {
+        return res
+          .status(400)
+          .json({
+            message: `Excursion with title "${req.params.id}" is not found.`
+          });
+      } else {
+        try {
+          const result = await cloudinary.uploader.upload(req.file.path);
+          const initialQuery = _.cloneDeep(req.body);
+          initialQuery.imageURL = result.url;
+          const updatedExcursion = queryCreator(initialQuery);
+
+          Excursion.findOneAndUpdate(
+            { _id: req.params.id },
+            { $set: updatedExcursion },
+            { new: true }
+          )
+            .then(excursion => {
+              res.json({ excursion });
+            })
+            .catch(err =>
+              res.status(400).json({
+                message: `Error happened on server: "${err}" `
+              })
+            );
+
+        } catch (err) {
+          console.error(err);
+          res.status(500).json({ error: 'Error uploading image' });
+        }
+      }
+    })
+    .catch(err =>
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `
+      })
+    );
+};
+
+exports.addExcursion = (req, res, next) => {
+  const excursionFields = _.cloneDeep(req.body);
+
+  const updatedExcursion = queryCreator(excursionFields);
+
+  const newExcursion = new Excursion(updatedExcursion);
+
+  newExcursion
+    .save()
+    .then(excursion => res.json(excursion))
     .catch(err =>
       res.status(400).json({
         message: `Error happened on server: "${err}" `

@@ -19,7 +19,9 @@ const buttonColor = {
   secondary: styles.Secondary,
   transparent: styles.Transparent,
   gray: styles.GrayBtn,
+  success: styles.Success,
 };
+
 const Button = ({
   text,
   onClick,

@@ -86,6 +86,7 @@ export const placeOrderThunk = (info) => async (dispatch, getState) => {
     },
     mobile: info.phone,
     email: info.email,
+    customerName: info.customerName,
     shipping: `${info.city} 50UAH`,
     letterHtml: createOrderLetter(info, carts),
   };
