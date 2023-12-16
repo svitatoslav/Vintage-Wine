@@ -62,7 +62,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
               products: [],
             };
 
-            dispatch(hideLoadingAC());
+            
             axios.post('http://127.0.0.1:4000/api/cart/', newCart, {
               headers: {
                 "Authorization": res.data.token,
@@ -101,7 +101,8 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
             setTimeout(() => {
               setError("");
             }, 4000);
-          });
+          })
+          .finally(() => dispatch(hideLoadingAC()))
       } catch (err) {
         console.log(err);
       }
@@ -113,7 +114,8 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
             dispatch(hideLoadingAC());
             dispatch(signInAC());
           })
-          .catch((err) => console.log(err));
+          .catch((err) => console.log(err))
+          .finally(() => dispatch(hideLoadingAC()));
       } catch (err) {
         console.log(err);
       }

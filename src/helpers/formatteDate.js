@@ -16,3 +16,11 @@ const formatterMonthDay = new Intl.DateTimeFormat("en-US", {
 export const formatedPartsDate = (date) => {
   return formatterMonthDay.formatToParts(new Date(date));
 };
+
+export function extractMonth(dateString) {
+  const date = new Date(dateString);
+
+  const month = date.getUTCMonth() + 1;
+
+  return month;
+}
