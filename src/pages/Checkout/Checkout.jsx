@@ -69,7 +69,7 @@ const Checkout = () => {
   }
 
   return (
-    <section>
+    <section className={styles.CheckoutInfo}>
       <Container>
         <h3 className="vvPageTitle">Checkout </h3>
         <Breadcrumbs pathParts={pathParts} />

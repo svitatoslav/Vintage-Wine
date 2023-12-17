@@ -25,6 +25,8 @@ const Customer = () => {
   }
 
   return (
+    <div className={styles.Profile}>
+
     <Container>
       <PageTitle text="My Profile" />
       <aside className={styles.Aside}>
@@ -48,6 +50,7 @@ const Customer = () => {
         </ul>
       </aside>
     </Container>
+    </div>
   );
 };
 export default Customer;
