@@ -52,7 +52,7 @@ const persistConfig = {
   key: "root",
   storage,
   blacklist: [],
-  whitelist: ["carts", "user", "tabs", "mergeCart", "orderAdmin"],
+  whitelist: ["carts", "order", "user", "tabs", "mergeCart", "orderAdmin"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

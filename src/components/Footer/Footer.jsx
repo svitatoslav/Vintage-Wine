@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./Footer.module.scss";
 import Logo from "./icon/footer-logo.svg?react";
 import Location from "./icon/location.svg?react";
@@ -5,8 +6,7 @@ import In from "./icon/in.svg?react";
 import Twitter from "./icon/twitter.svg?react";
 import Facebook from "./icon/facebook.svg?react";
 import SearchFooter from "./icon/search.svg?react";
-import { Link } from "react-router-dom";
-import Container from "./../Container/Container";
+import Container from "../Container/Container";
 import Navigation from "../Navigation/Navigation";
 
 const Footer = () => {
@@ -21,7 +21,7 @@ const Footer = () => {
 
             <div className={styles.MenuLocation}>
               <div className={styles.FooterMenu}>
-                    <Navigation isFootNav />
+                <Navigation isFootNav />
               </div>
 
               <div className={styles.Location}>
@@ -59,7 +59,6 @@ const Footer = () => {
                       className={styles.SearchInput}
                     />
                     <SearchFooter className={styles.SearchLogo} />
-                  
                   </label>
                 </div>
               </div>
@@ -67,17 +66,26 @@ const Footer = () => {
               <div className={styles.Network}>
                 <ul className={styles.NetworkNav}>
                   <li className={styles.NetworkItem}>
-                    <Link to="https://www.linkedin.com" className={styles.NetworkLink}>
+                    <Link
+                      to="https://www.linkedin.com"
+                      className={styles.NetworkLink}
+                    >
                       <In className={styles.NetworkLogo} />
                     </Link>
                   </li>
                   <li className={styles.NetworkItem}>
-                    <Link to="https://twitter.com/?lang=uk" className={styles.NetworkLink}>
+                    <Link
+                      to="https://twitter.com/?lang=uk"
+                      className={styles.NetworkLink}
+                    >
                       <Twitter className={styles.NetworkLogo} />
                     </Link>
                   </li>
                   <li className={styles.NetworkItem}>
-                    <Link to="https://www.facebook.com" className={styles.NetworkLink}>
+                    <Link
+                      to="https://www.facebook.com"
+                      className={styles.NetworkLink}
+                    >
                       <Facebook className={styles.NetworkLogo} />
                     </Link>
                   </li>

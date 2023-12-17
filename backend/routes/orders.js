@@ -10,7 +10,8 @@ const {
   deleteOrder,
   getOrders,
   getOrder,
-  getAllOrders
+  getAllOrders,
+  createCheckoutSession,
 } = require("../controllers/orders");
 
 // @route   POST /orders
@@ -24,7 +25,7 @@ router.post("/", placeOrder);
 router.put(
   "/:orderNo",
   passport.authenticate("jwt-admin", { session: false }),
-  updateOrder
+  updateOrder,
 );
 
 // @route   PUT /orders/cancel/:id
@@ -33,7 +34,7 @@ router.put(
 router.put(
   "/cancel/:id",
   passport.authenticate("jwt", { session: false }),
-  cancelOrder
+  cancelOrder,
 );
 
 // @route   DELETE /orders/:id
@@ -42,7 +43,7 @@ router.put(
 router.delete(
   "/:id",
   passport.authenticate("jwt", { session: false }),
-  deleteOrder
+  deleteOrder,
 );
 
 // @route   GET /orders
@@ -53,7 +54,11 @@ router.get("/", passport.authenticate("jwt", { session: false }), getOrders);
 // @route   GET /orders
 // @desc    Get all orders
 // @access  Private
-router.get("/all", passport.authenticate("jwt-admin", { session: false }), getAllOrders);
+router.get(
+  "/all",
+  passport.authenticate("jwt-admin", { session: false }),
+  getAllOrders,
+);
 
 // @route   GET /orders/:orderNo
 // @desc    Get one order by orderNo
@@ -61,7 +66,13 @@ router.get("/all", passport.authenticate("jwt-admin", { session: false }), getAl
 router.get(
   "/:orderNo",
   passport.authenticate("jwt", { session: false }),
-  getOrder
+  getOrder,
 );
+
+// @route ET /session/:sessionId
+// @desc Get all checkout value by sessionId
+// @access  Private
+
+router.post("/checkout-session", createCheckoutSession);
 
 module.exports = router;

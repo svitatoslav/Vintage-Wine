@@ -5,7 +5,7 @@ const Customer = mongoose.model("customers");
 const getConfigs = require("./getConfigs");
 const keys = require("./keys.js");
 
-module.exports = async passport => {
+module.exports = async (passport) => {
   const opts = {};
   const configs = await getConfigs();
   opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
@@ -15,29 +15,29 @@ module.exports = async passport => {
     "jwt",
     new JwtStrategy(opts, (jwt_payload, done) => {
       Customer.findById(jwt_payload.id)
-        .then(customer => {
+        .then((customer) => {
           if (customer) {
             return done(null, customer);
           }
           return done(null, false);
         })
-        .catch(err => console.log(err));
-    })
+        .catch((err) => console.log(err));
+    }),
   );
 
   passport.use(
     "jwt-admin",
     new JwtStrategy(opts, (jwt_payload, done) => {
       Customer.findById(jwt_payload.id)
-        .then(customer => {
+        .then((customer) => {
           if (customer && customer.isAdmin) {
             return done(null, customer);
           }
           return done(null, false, {
-            message: "You have not enough permissions for this operation"
+            message: "You have not enough permissions for this operation",
           });
         })
-        .catch(err => console.log(err));
-    })
+        .catch((err) => console.log(err));
+    }),
   );
 };
