@@ -29,39 +29,21 @@
     }
 }
 .FinalInfo {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
 
-
-    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    @media (min-width: $tablet-lg)  {
         display: flex;
+        flex-direction: row;
         justify-content: space-evenly;
-        // justify-content: flex-end;
         align-items: center;
         margin-bottom: 60px;
     }
-    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
-        display: flex;
+    @media (min-width: $tablet-xlg) {
         justify-content: flex-end;
-        align-items: center;
-        margin-bottom: 60px;
-    }
-    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        margin-bottom: 60px;
-    }
-    @media (min-width: $desktop) and (max-width: $desktop-lg) {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        margin-bottom: 60px;
-    }
-    @media screen and (min-width: $desktop-lg) {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        margin-bottom: 60px;
     }
 }
 
@@ -73,17 +55,9 @@
     display: grid;
     gap: 16px;
     font-family: $main-font;
+    min-width: 280px;
 
-    @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
-        margin-left: 50px;
-    }
-    @media (min-width: $tablet-xlg) and (max-width: $desktop) {
-        margin-left: 50px;
-    }
-    @media (min-width: $desktop) and (max-width: $desktop-lg) {
-        margin-left: 50px;
-    }
-    @media screen and (min-width: $desktop-lg) {
+    @media (min-width: $tablet-lg) {
         margin-left: 50px;
     }
 }
