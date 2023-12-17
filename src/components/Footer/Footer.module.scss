@@ -8,13 +8,15 @@
   position: relative;
   z-index: 20;
 
-  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
-    padding-top: 50px;
-  }
-  @media screen and (min-width: $desktop) {
+  @media (min-width: $tablet-xlg)  {
     padding-top: 50px;
   }
 }
+
+
+
+
+
 .FooterInfo {
 
   @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
@@ -27,8 +29,8 @@
     display: flex;
   }
 }
-.FooterContainer {
 
+.FooterContainer {
   @media (min-width: $tablet) and (max-width: $tablet-lg) {
     display: flex;
   }
@@ -42,6 +44,7 @@
     display: flex;
   }
 }
+
 .FooterLogo {
   @include flex-cc;
   margin-bottom: 18px;

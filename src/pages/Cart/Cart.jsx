@@ -45,7 +45,7 @@ const Cart = () => {
           <div className={styles.FinalBtn}>
             <Button
               onClick={() => navigate("/shop")}
-              text={"Continue shopping"}
+              text="Continue shopping"
             />
             <Button
               isDisabled={carts.length === 0}
