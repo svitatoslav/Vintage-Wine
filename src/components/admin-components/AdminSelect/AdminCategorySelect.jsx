@@ -5,10 +5,10 @@ import Arrow from './icons/arrow.svg?react';
 import cn from 'classnames';
 import { useFormikContext } from 'formik';
 
-const AdminNewsSelect = ({ placeHolder, name, options, style }) => {
+const AdminCategorySelect = ({ placeHolder, name, options, style }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
-  const { values, setFieldValue } = useFormikContext();
+  const { setFieldValue } = useFormikContext();
 
   useEffect(() => {
     const handler = () => setShowMenu(false);
@@ -21,9 +21,7 @@ const AdminNewsSelect = ({ placeHolder, name, options, style }) => {
 
   useEffect(() => {
     if (selectedValue) {
-      const newValue = [...values[name], selectedValue];
-      setFieldValue(name, newValue);
-      setSelectedValue(null);
+      setFieldValue(name, selectedValue?.value.toLowerCase());
     }
   }, [selectedValue])
 
@@ -43,7 +41,7 @@ const AdminNewsSelect = ({ placeHolder, name, options, style }) => {
 
   const getDisplay = () => {
     if (selectedValue) {
-      return selectedValue.label;
+      return selectedValue.value;
     }
     return placeHolder;
   };
@@ -60,8 +58,8 @@ const AdminNewsSelect = ({ placeHolder, name, options, style }) => {
         <div className={styles.CustomSelectHolder}>
           <div className={styles.CustomSelectMenu}>
             {options.map((option) => (
-              <div key={option.id} className={cn(styles.CustomSelectOption, { [styles.CustomSelectOptionActive]: isSelected(option) })} onClick={() => onOptionClick(option)}>
-                {option.label}
+              <div key={option.value} className={cn(styles.CustomSelectOption, { [styles.CustomSelectOptionActive]: isSelected(option) })} onClick={() => onOptionClick(option)}>
+                {option.value}
               </div>
             ))}
           </div>
@@ -72,11 +70,11 @@ const AdminNewsSelect = ({ placeHolder, name, options, style }) => {
 };
 
 
-AdminNewsSelect.propTypes = {
+AdminCategorySelect.propTypes = {
   placeHolder: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
   style: PropTypes.object
 };
 
-export default AdminNewsSelect;
+export default AdminCategorySelect;

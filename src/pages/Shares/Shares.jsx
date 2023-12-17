@@ -4,7 +4,6 @@ import PageTitle from "../../components/Title/PageTitle";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import styles from "./Shares.module.scss"
 import Container from "../../components/Container/Container";
-import CustomSlider from "../../components/CustomSlider/CustomSlider";
 
 const Shares = () => {
     const {id} = useParams();
@@ -26,7 +25,7 @@ const Shares = () => {
             {<Breadcrumbs pathParts={formattedPathParts}/>}
             <div className={`${styles.container}`}>
                 <div className={`${styles.imgHideContainer} ${styles.div1}`}>
-                    <img src={userName.imageUrl} alt={userName.name} />
+                    <img src={userName.imageURL} alt={userName.name} />
                     <p className={`${styles.textDiscount}`}> -{userName.discount}%</p>
                     <span className={`${styles.b1}`}></span>
                     <span className={`${styles.b2}`}></span>

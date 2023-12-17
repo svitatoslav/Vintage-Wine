@@ -25,6 +25,7 @@ import mergeCartsReducer from "../reducers/mergeCarts-reducer";
 import loadingReducer from "../reducers/loading-reducer";
 import orderReducer from "../reducers/order-reducer";
 import orderAdminReducer from "../reducers/orderAdmin-reducer";
+import submitFormReducer from "../reducers/submitForm-reducer";
 
 const rootReducer = combineReducers({
   fetchViewedProducts: fetchViewedProductsReducer,
@@ -44,6 +45,7 @@ const rootReducer = combineReducers({
   loader: loadingReducer,
   order: orderReducer,
   orderAdmin: orderAdminReducer,
+  formSubmit: submitFormReducer,
 });
 
 const persistConfig = {

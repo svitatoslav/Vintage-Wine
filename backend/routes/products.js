@@ -91,10 +91,9 @@ router.put(
 // @route   PUT /products/:id
 // @desc    Update existing product
 // @access  Private
-router.put(
+router.patch(
   "/images/:id",
   passport.authenticate("jwt-admin", { session: false }),
-  // upload.single('productImg'),
   upload.array('slidesImageUrls'),
   updateProductImg
 );

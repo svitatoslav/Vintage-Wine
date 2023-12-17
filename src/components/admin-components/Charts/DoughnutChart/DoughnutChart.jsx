@@ -9,21 +9,31 @@ import axios from 'axios';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
-const getProductNames = async () => {
-    try {
-        const response = await axios.get(`http://127.0.0.1:4000/api/products`);
-        return response.data.map(item => item.name);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}
+// const getProductNames = async () => {
+//     try {
+//         const response = await axios.get(`http://127.0.0.1:4000/api/products`);
+//         return response.data.map(item => item.name);
+//     } catch (error) {
+//         console.error('Error fetching data:', error);
+//     }
+// }
 
-const productNames = await getProductNames();
+// const productNames = await getProductNames();
 
 
 const DoughnutChart = () => {
     const [orderData, setOrderData] = useState([]);
+    const [productNames, setProductNames] = useState([]);
     const token = useSelector((state) => state.user.token);
+
+    useEffect(() => {
+        axios.get(`http://127.0.0.1:4000/api/products`)
+            .then(response => {
+                const data = response.data.map(item => item.name);
+                setProductNames(data);
+            })
+            .catch(err => console.log(err));
+    }, []);
 
     useEffect(() => {
         axios.get('http://127.0.0.1:4000/api/orders/all', {

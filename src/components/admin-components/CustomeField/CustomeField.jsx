@@ -8,7 +8,6 @@ const CustomField = ({ name, style }) => {
     const [text, setText] = useState('');
     const { values, setFieldValue } = useFormikContext();
 
-
     useEffect(() => {
         if (tag) {
             const newValue = [...values.tags, tag];
@@ -32,6 +31,7 @@ const CustomField = ({ name, style }) => {
                 className={styles.CustomeFieldInput}
                 type="text"
                 name="tags"
+                value={text}
                 placeholder="Add tags"
                 onChange={handleInput}
             />

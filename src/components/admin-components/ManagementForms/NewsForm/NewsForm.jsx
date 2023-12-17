@@ -2,13 +2,16 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import styles from './NewsForm.module.scss';
 import Button from "../../../Button/Button";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AdminNewsSelect from "../../AdminSelect/AdminNewsSelect";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CustomField from "../../CustomeField/CustomeField";
+import newsValidationSchema from "../../../../validation/newsValidationSchema";
+import { changeMessageAC, switchSuccessMsg } from "../../../../redux/reducers/submitForm-reducer";
 
 const NewsForm = () => {
     const token = useSelector((state) => state.user.token);
+    const dispatch = useDispatch();
     const [options, setOptions] = useState([]);
     const [paragraphNum, setParagraphNum] = useState(1);
 
@@ -40,7 +43,7 @@ const NewsForm = () => {
     };
 
     const handleSubmit = (values, { setSubmitting, resetForm }) => {
-
+        dispatch(switchSuccessMsg());
         const { image, title, related, tags, ...rest } = values;
 
         const descr = Object.entries(rest).map(item => item[1]);
@@ -69,20 +72,23 @@ const NewsForm = () => {
                     }
                 })
                     .then(news => {
-                        console.log(news);
-
+                        dispatch(changeMessageAC("Data successfully saved!"));
                     })
-                    .catch(err => console.log(err));
+                    .catch(err => {
+                        dispatch(changeMessageAC("Failure!"))
+                    })
             })
-            .catch(err => console.log(err))
-        .finally(() => resetForm());
+            .catch(err => {
+                dispatch(changeMessageAC("Failure!"))
+            })
+            .finally(() => resetForm());
     };
 
     const makeFields = () => {
         let arr = [];
         for (let i = 0; i < paragraphNum; i++) {
             arr.push(
-                <Fragment key={i}>
+                <div key={i} className={styles.AddNewsField}>
                     <Field
                         className={styles.AddProductInput}
                         type="text"
@@ -90,11 +96,11 @@ const NewsForm = () => {
                         placeholder="News paragraph"
                     />
                     <ErrorMessage
-                        className={styles.AddProductError}
+                        className={styles.AddNewsError}
                         name={`description_${i + 1}`}
                         component="div"
                     />
-                </Fragment>
+                </div>
             )
         }
         return arr;
@@ -106,54 +112,48 @@ const NewsForm = () => {
         setParagraphNum(prev => prev + 1);
     }
 
+    const validationSchema = newsValidationSchema;
+
     return (
         <Formik
             initialValues={initialValues}
-            // validationSchema={validationSchema}
+            validationSchema={validationSchema}
             onSubmit={handleSubmit}
         >
             {({ isSubmitting, setFieldValue, values }) => (
                 <Form className={styles.AddNewsForm}>
                     <div className={styles.AddNewsFields}>
-                        <Field
-                            className={styles.AddProductInput}
-                            type="text"
-                            name="title"
-                            placeholder="News title"
-                        />
-                        <ErrorMessage
-                            className={styles.AddProductError}
-                            name="title"
-                            component="div"
-                        />
-                        <input
-                            className={styles.AddProductInput}
-                            type="file"
-                            name="image"
-                            onChange={(e) => setFieldValue('image', e.target.files[0])}
-                        />
-                        <ErrorMessage
-                            className={styles.AddProductError}
-                            name="image"
-                            component="div"
-                        />
+                        <div className={styles.AddNewsField}>
+                            <Field
+                                className={styles.AddProductInput}
+                                type="text"
+                                name="title"
+                                placeholder="News title"
+                            />
+                            <ErrorMessage
+                                className={styles.AddNewsError}
+                                name="title"
+                                component="div"
+                            />
+                        </div>
+                        <div className={styles.AddNewsField}>
+                            <input
+                                className={styles.AddProductInput}
+                                type="file"
+                                name="image"
+                                onChange={(e) => setFieldValue('image', e.target.files[0])}
+                            />
+                            <ErrorMessage
+                                className={styles.AddNewsError}
+                                name="image"
+                                component="div"
+                            />
+                        </div>
                     </div>
 
                     <h3 className={styles.AddNewsSubTitle}>Content and relations</h3>
 
                     <div className={styles.AddNewsFields}>
-                        {/* <Field
-                            className={styles.AddProductInput}
-                            type="text"
-                            name="tags"
-                            placeholder="Add tags"
-                        />
-                        <ErrorMessage
-                            className={styles.AddProductError}
-                            name="tags"
-                            component="div"
-                        /> */}
-
                         <div className={styles.AddNewsRelated}>
                             {
                                 values.tags.length > 0 && (
@@ -167,18 +167,16 @@ const NewsForm = () => {
                                     </>
                                 )
                             }
-                            <CustomField name="tags"/>
-                            {/* <Field
-                                className={styles.AddProductInput}
-                                type="text"
-                                name="tags"
-                                placeholder="Add tags"
-                            />
-                            <ErrorMessage
-                                className={styles.AddProductError}
-                                name="tags"
-                                component="div"
-                            /> */}
+                            <div className={styles.AddNewsField}>
+                                <CustomField name="tags" />
+
+
+                                <ErrorMessage
+                                    className={styles.AddNewsError}
+                                    name="tags"
+                                    component="div"
+                                />
+                            </div>
                         </div>
 
                         {
@@ -206,7 +204,7 @@ const NewsForm = () => {
                             }
                             <AdminNewsSelect placeHolder="Choose related news" name='related' options={options} />
                             <ErrorMessage
-                                className={styles.AddProductError}
+                                className={styles.AddNewsError}
                                 name="related"
                                 component="div"
                             />
