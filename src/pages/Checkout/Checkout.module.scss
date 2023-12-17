@@ -19,6 +19,9 @@
     gap: 60px;
   }
 }
+.CheckoutInfo {
+  min-height: calc(100vh - 500px);
+}
 
 .ProductInfo {
   display: flex;

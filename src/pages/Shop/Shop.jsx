@@ -141,7 +141,9 @@ const Shop = () => {
     );
 
   return (
+      <div className={styles.ShopInfo}>
     <div className={styles.ShopContainer}>
+
       <PageTitle text="Our Shop" />
       <Breadcrumbs pathParts={pathParts} />
       <FilterContext.Provider
@@ -171,6 +173,7 @@ const Shop = () => {
           pageLinkClassName={styles.PageBtn}
         />
       )}
+      </div>
     </div>
   );
 };
