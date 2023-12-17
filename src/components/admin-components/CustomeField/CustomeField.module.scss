@@ -6,7 +6,6 @@
 .CustomeField {
     display: flex;
     gap: 10px;
-    // align-items: center;
     width: 100%;
 }
 
@@ -15,8 +14,13 @@
 }
 .CustomFieldBtn {
     padding: 5px;
-    width: 100px;
+    width: 180px;
     background: $btn-bg;
-    font-size: 20px;
+    font-size: 24px;
     cursor: pointer;
+    @include transition;
+
+    &:hover {
+        background: $btn-hover;
+    }
 }

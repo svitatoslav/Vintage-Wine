@@ -67,7 +67,6 @@ exports.addProduct = (req, res, next) => {
 
   try {
     updatedProductFields.name = updatedProductFields.name
-      .toLowerCase()
       .trim()
       .replace(/\s\s+/g, " ");
 
@@ -108,7 +107,6 @@ exports.updateProduct = (req, res, next) => {
 
         try {
           productFields.name = productFields.name
-            .toLowerCase()
             .trim()
             .replace(/\s\s+/g, " ");
         } catch (err) {
@@ -147,52 +145,7 @@ exports.updateProductImg = (req, res, next) => {
           message: `Product with id "${req.params.id}" is not found.`
         });
       } else {
-        const productFields = _.cloneDeep(req.body);
-
-        const {
-          vendorCode,
-          grape,
-          volume,
-          color,
-          strength,
-          sweetness,
-          supplyTemperature,
-          country,
-          year,
-          aroma,
-          taste,
-          ...rest
-        } = productFields;
-      
-        const updatedProductFields = {
-          ...rest,
-          characteristics: {
-            vendorCode,
-            grape,
-            volume,
-            color,
-            strength,
-            sweetness,
-            supplyTemperature,
-            country,
-            year,
-          },
-          productDescription: {
-            aroma,
-            taste,
-          }
-        }
-
-        try {
-          productFields.name = productFields.name
-            .toLowerCase()
-            .trim()
-            .replace(/\s\s+/g, " ");
-        } catch (err) {
-          res.status(400).json({
-            message: `Error happened on server: "${err}" `
-          });
-        }
+        const productFields = _.cloneDeep(product);
 
         const filePaths = req.files.map(file => file.path);        
 
@@ -208,9 +161,9 @@ exports.updateProductImg = (req, res, next) => {
             return url;
           });
 
-          updatedProductFields.productImg = resultUrls[0];
-          updatedProductFields.slidesImageUrls = resultUrls.slice(1);
-          const updatedProduct = queryCreator(updatedProductFields);
+          productFields.productImg = resultUrls[0];
+          productFields.slidesImageUrls = resultUrls.slice(1);
+          const updatedProduct = queryCreator(productFields);
 
           Product.findOneAndUpdate(
             { _id: req.params.id },

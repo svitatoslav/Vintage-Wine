@@ -70,7 +70,6 @@ const NewsForm = () => {
                 })
                     .then(news => {
                         console.log(news);
-
                     })
                     .catch(err => console.log(err));
             })
@@ -168,17 +167,12 @@ const NewsForm = () => {
                                 )
                             }
                             <CustomField name="tags"/>
-                            {/* <Field
-                                className={styles.AddProductInput}
-                                type="text"
-                                name="tags"
-                                placeholder="Add tags"
-                            />
+                            
                             <ErrorMessage
                                 className={styles.AddProductError}
                                 name="tags"
                                 component="div"
-                            /> */}
+                            />
                         </div>
 
                         {
