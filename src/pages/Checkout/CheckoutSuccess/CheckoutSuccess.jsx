@@ -31,7 +31,7 @@ const CheckoutSuccess = () => {
 
   useEffect(() => {
     if (placeOrderDataStatus === DataStatus.FULFILLED) {
-      setTimeout(navigateToShop, 7000);
+      setTimeout(navigateToShop, 9000);
     }
 
     return () => {
