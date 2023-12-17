@@ -11,7 +11,7 @@ const {
   getOrders,
   getOrder,
   getAllOrders,
-  getSessionData,
+  createCheckoutSession,
 } = require("../controllers/orders");
 
 // @route   POST /orders
@@ -73,10 +73,6 @@ router.get(
 // @desc Get all checkout value by sessionId
 // @access  Private
 
-router.get(
-  "/get-session-data/:sessionId",
-  passport.authenticate("jwt", { session: false }),
-  getSessionData,
-);
+router.post("/checkout-session", createCheckoutSession);
 
 module.exports = router;

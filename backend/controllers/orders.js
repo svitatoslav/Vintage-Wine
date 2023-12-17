@@ -118,51 +118,13 @@ exports.placeOrder = async (req, res, next) => {
         );
       }
 
-      // res.json({ order, mailResult });
+      res.json({ order, mailResult });
     });
     // .catch((err) =>
     //   res.status(400).json({
     //     message: `Error happened on server: "${err}" `,
     //   }),
     // );
-
-    const lineItems = order.products.map((product) => ({
-      price_data: {
-        currency: "UAH",
-        product_data: {
-          name: product.instance.name,
-          images: [product.instance.productImg],
-          metadata: {
-            productId: product.instance.name,
-          },
-        },
-        unit_amount: product.instance.currentPrice * 100,
-      },
-      quantity: product.quantity,
-    }));
-
-    const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          price_data: {
-            currency: "UAH",
-            product_data: {
-              name: "Delivery",
-            },
-            unit_amount: 50 * 100,
-          },
-          quantity: 1,
-        },
-        ...lineItems,
-      ],
-      mode: "payment",
-      success_url: `${process.env.CLIENT_URL}/checkout/success?sessionId={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.CLIENT_URL}?canceled=true`,
-    });
-
-    console.log(session);
-
-    res.json({ url: session.url });
   } catch (err) {
     res.status(400).json({
       message: `Error happened on server: "${err}" `,
@@ -170,18 +132,50 @@ exports.placeOrder = async (req, res, next) => {
   }
 };
 
-exports.getSessionData = async (req, res) => {
-  try {
-    const sessionId = req.params.sessionId;
-    const session = await stripe.checkout.sessions.listLineItems(sessionId);
+exports.createCheckoutSession = async (req, res) => {
+  const customerInfo = _.cloneDeep(req.body);
+  let cartProducts = [];
 
-    res.status(200).json({ success: true, sessionData: session });
-  } catch (error) {
-    console.error("Error fetching session data:", error);
-    res
-      .status(500)
-      .json({ success: false, error: "Failed to fetch session data" });
+  if (req.body.customerId) {
+    cartProducts = await subtractProductsFromCart(req.body.customerId);
   }
+
+  if (cartProducts.length > 0) {
+    customerInfo.products = _.cloneDeep(cartProducts);
+  }
+
+  const lineItems = customerInfo.products.map((product) => ({
+    price_data: {
+      currency: "UAH",
+      product_data: {
+        name: product.instance.name,
+        images: [product.instance.productImg],
+      },
+      unit_amount: product.instance.currentPrice * 100,
+    },
+    quantity: product.quantity,
+  }));
+
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        price_data: {
+          currency: "UAH",
+          product_data: {
+            name: "Delivery",
+          },
+          unit_amount: 50 * 100,
+        },
+        quantity: 1,
+      },
+      ...lineItems,
+    ],
+    mode: "payment",
+    success_url: `${process.env.CLIENT_URL}/checkout/success?sessionId={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${process.env.CLIENT_URL}/checkout?canceled=true`,
+  });
+
+  res.json({ url: session.url });
 };
 
 exports.updateOrder = (req, res, next) => {

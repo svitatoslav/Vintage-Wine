@@ -12,12 +12,15 @@ export const DataStatus = {
 const SET_ORDER_INFO = "SET_ORDER_INFO";
 const SET_PLACE_ORDER_DATA_STATUS = "SET_PLACE_ORDER_DATA_STATUS";
 const SET_GET_ORDERS_DATA_STATUS = "SET_GET_ORDERS_DATA_STATUS";
+const SET_CREATE_CHECKOUT_SESSION_DATA_STATUS =
+  "SET_CREATE_CHECKOUT_SESSION_DATA_STATUS";
 const SET_ORDER_HISTORY = "SET_ORDER_HISTORY";
 
 const initialState = {
   info: null,
   placeOrderDataStatus: DataStatus.IDLE,
   getOrderDataStatus: DataStatus.IDLE,
+  createCheckoutSessionDataStatus: DataStatus.IDLE,
   orderHistory: [],
 };
 
@@ -39,6 +42,12 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         getOrderDataStatus: action.payload,
+      };
+    }
+    case SET_CREATE_CHECKOUT_SESSION_DATA_STATUS: {
+      return {
+        ...state,
+        createCheckoutSessionDataStatus: action.payload,
       };
     }
     case SET_ORDER_HISTORY: {
@@ -72,10 +81,41 @@ export const setOrderDataStatusAC = (orderDataStatus) => ({
   payload: orderDataStatus,
 });
 
-export const placeOrderThunk = (info) => async (dispatch, getState) => {
+const setCreateCheckoutSessionDataStatusAC = (orderDataStatus) => ({
+  type: SET_CREATE_CHECKOUT_SESSION_DATA_STATUS,
+  payload: orderDataStatus,
+});
+
+export const createCheckoutSessionThunk =
+  (orderInfo) => async (dispatch, getState) => {
+    const {
+      carts: { carts },
+      user: { token, userId },
+    } = getState();
+
+    const customerInfo = {};
+
+    if (!token) {
+      customerInfo.products = carts;
+    } else {
+      customerInfo.customerId = userId;
+    }
+
+    dispatch(setOrderInfoAC(orderInfo));
+    dispatch(setCreateCheckoutSessionDataStatusAC(DataStatus.PENDING));
+    const { data } = await axios.post(
+      "http://localhost:4000/api/orders/checkout-session",
+      customerInfo,
+    );
+    dispatch(setCreateCheckoutSessionDataStatusAC(DataStatus.FULFILLED));
+    window.location.href = data.url;
+  };
+
+export const placeOrderThunk = () => async (dispatch, getState) => {
   const {
     carts: { carts },
     user: { token, userId },
+    order: { info },
   } = getState();
 
   const newOrder = {
@@ -99,15 +139,11 @@ export const placeOrderThunk = (info) => async (dispatch, getState) => {
 
   dispatch(setInfoDataStatusAC(DataStatus.PENDING));
   dispatch(showLoadingAC());
-  const { data } = await axios.post(
-    "http://localhost:4000/api/orders",
-    newOrder,
-  );
+  await axios.post("http://localhost:4000/api/orders", newOrder);
 
   dispatch(setInfoDataStatusAC(DataStatus.FULFILLED));
-  dispatch(setOrderInfoAC(data.order));
-  window.location.href = data.url;
   dispatch(hideLoadingAC());
+  dispatch(setOrderInfoAC(null));
   dispatch(removeCartThunk());
 };
 

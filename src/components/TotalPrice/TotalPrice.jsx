@@ -6,12 +6,10 @@ import styles from "./TotalPrice.module.scss";
 
 const TotalPrice = ({ isInCheckout }) => {
   const cartItems = useSelector((state) => state.carts.carts);
-  const { totalSum } = useSelector((state) => state.order.info) || {};
 
   const SHIPPING_PRICE = 50;
 
-  const total =
-    cartItems.length > 0 ? calcTotalPrice(cartItems) : parseFloat(totalSum);
+  const total = cartItems.length > 0 ? calcTotalPrice(cartItems) : 0;
 
   const totalWithShipping = (total + SHIPPING_PRICE).toFixed(2);
 
