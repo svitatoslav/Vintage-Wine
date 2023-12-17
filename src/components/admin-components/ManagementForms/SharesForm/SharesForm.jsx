@@ -2,10 +2,13 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import styles from './SharesForm.module.scss';
 import Button from "../../../Button/Button";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import sharesValidationSchema from "../../../../validation/sharesValidationSchema";
+import { changeMessageAC, switchSuccessMsg } from "../../../../redux/reducers/submitForm-reducer";
 
 const SharesForm = () => {
     const token = useSelector((state) => state.user.token);
+    const dispatch = useDispatch();
 
     const initialValues = {
         name: "",
@@ -18,7 +21,7 @@ const SharesForm = () => {
     };
 
     const handleSubmit = (values, { setSubmitting, resetForm }) => {
-
+        dispatch(switchSuccessMsg());
         const { imageURL, ...rest } = values;
 
         axios.post('http://127.0.0.1:4000/api/shares/', rest, {
@@ -39,20 +42,23 @@ const SharesForm = () => {
                         "Content-Type": "multipart/form-data",
                     }
                 })
-                    .then(excursions => {
-                        console.log(excursions);
-
+                    .then(shares => {
+                        dispatch(changeMessageAC("Data successfully saved!"));
                     })
-                    .catch(err => console.log(err));
+                    .catch(err => {
+                        dispatch(changeMessageAC("Failure!"))
+                    })
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                dispatch(changeMessageAC("Failure!"))
+            })
             .finally(() => resetForm());
     };
 
     return (
         <Formik
             initialValues={initialValues}
-            // validationSchema={validationSchema}
+            validationSchema={sharesValidationSchema}
             onSubmit={handleSubmit}
         >
             {({ isSubmitting, setFieldValue }) => (
@@ -125,13 +131,13 @@ const SharesForm = () => {
                             component="div"
                         />
                         <input
-                            className={styles.AddExcursionInput}
+                            className={styles.AddSharesInput}
                             type="file"
                             name="imageURL"
                             onChange={(e) => setFieldValue('imageURL', e.target.files[0])}
                         />
                         <ErrorMessage
-                            className={styles.AddExcursionError}
+                            className={styles.AddSharesError}
                             name="imageURL"
                             component="div"
                         />

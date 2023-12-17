@@ -8,6 +8,7 @@ import ProductsForm from "../ManagementForms/ProductsForm/ProductsForm";
 import ExcursionsForm from "../ManagementForms/ExcursionsForm/ExcursionsForm";
 import NewsForm from "../ManagementForms/NewsForm/NewsForm";
 import SharesForm from "../ManagementForms/SharesForm/SharesForm";
+import SuccessMessage from "../../SuccessMessage/SuccessMessage";
 
 const ManagementWrapper = () => {
   const pathParts = useBreadcrumbs();
@@ -37,7 +38,7 @@ const ManagementWrapper = () => {
     <>
       <SectionTitle secText={`${titleName} form`} />
       <Breadcrumbs pathParts={pathParts.slice(1)} noPrefix />
-
+      <SuccessMessage />
       <div className={styles.ManagementWrapper}>
         {displayedForm()}
       </div>

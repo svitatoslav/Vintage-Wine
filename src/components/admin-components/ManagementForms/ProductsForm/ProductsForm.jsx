@@ -1,20 +1,21 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import styles from './ProductsForm.module.scss';
 import Button from "../../../Button/Button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import productsValidationSchema from "../../../../validation/productsValidationSchema";
 import { useEffect, useState } from "react";
 import AdminCategorySelect from "../../AdminSelect/AdminCategorySelect";
+import { changeMessageAC, switchSuccessMsg } from "../../../../redux/reducers/submitForm-reducer";
 
 const ProductsForm = () => {
     const token = useSelector((state) => state.user.token);
+    const dispatch = useDispatch();
     const [options, setOptions] = useState([]);
 
     useEffect(() => {
         axios.get('http://127.0.0.1:4000/api/catalog/')
             .then(categories => {
-                console.log(categories.data);
                 const options = categories.data?.map(category => (
                     {
                         id: category.id,
@@ -48,7 +49,7 @@ const ProductsForm = () => {
     };
 
     const handleSubmit = (values, { setSubmitting, resetForm }) => {
-        console.log(values);
+        dispatch(switchSuccessMsg());
         const { productImg, slidesImageUrls, ...rest } = values;
 
         axios.post('http://127.0.0.1:4000/api/products/', rest, {
@@ -57,7 +58,6 @@ const ProductsForm = () => {
             }
         })
             .then((product) => {
-                // const { characteristics, productDescription, ...rest } = product.data;
                 const formData = new FormData();
                 formData.append('slidesImageUrls', productImg);
 
@@ -65,42 +65,22 @@ const ProductsForm = () => {
                     formData.append(`slidesImageUrls`, image);
                 });
 
-                // Object.entries(rest).forEach(([key, value]) => {
-                //     formData.append(key, value);
-                // });
-
-                // Object.entries(characteristics).forEach(([key, value]) => {
-                //     formData.append(key, value);
-                // });
-
-                // Object.entries(productDescription).forEach(([key, value]) => {
-                //     formData.append(key, value);
-                // });
-
-                // axios.put(`http://127.0.0.1:4000/api/products/images/${product.data._id}`, formData, {
-                //     headers: {
-                //         "Authorization": token,
-                //         "Content-Type": "multipart/form-data",
-                //     }
-                // })
-                //     .then(product => {
-                //         console.log(product);
-
-                //     })
-                //     .catch(err => console.log(err));
                 axios.patch(`http://127.0.0.1:4000/api/products/images/${product.data._id}`, formData, {
                     headers: {
                         "Authorization": token,
                         "Content-Type": "multipart/form-data",
                     }
                 })
-                    .then(news => {
-                        console.log(news);
-
+                    .then(products => {
+                        dispatch(changeMessageAC("Data successfully saved!"));
                     })
-                    .catch(err => console.log(err));
+                    .catch(err => {
+                        dispatch(changeMessageAC("Failure!"))
+                    });
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                dispatch(changeMessageAC("Failure!"))
+            })
             .finally(() => resetForm());
     };
 
@@ -143,7 +123,7 @@ const ProductsForm = () => {
                             />
                         </div>
                         <div className={styles.AddProductField}>
-                            <AdminCategorySelect placeHolder="Choose category" name="categories" options={options}/>
+                            <AdminCategorySelect placeHolder="Choose category" name="categories" options={options} />
                             <ErrorMessage
                                 className={styles.AddProductError}
                                 name="categories"

@@ -55,9 +55,7 @@ const productsValidationSchema = Yup.object().shape({
     .max(20, 'Sweetness must be between 3 and 20 characters')
     .matches(/^[a-zA-Z\s]+$/, 'Allowed characters are a-z, A-Z'),
   supplyTemperature: Yup.string()
-    .min(3, 'Temperature must be between 3 and 20 characters')
-    .max(20, 'Temperature must be between 3 and 20 characters')
-    .matches(/^[a-zA-Z\s]+$/, 'Allowed characters are a-z, A-Z'),
+    .max(20, 'Temperature cannot exceed 20 characters'),
   country: Yup.string()
     .min(3, 'Country must be between 3 and 20 characters')
     .max(20, 'Country must be between 3 and 20 characters')
