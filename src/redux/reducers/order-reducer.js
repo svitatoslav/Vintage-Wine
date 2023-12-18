@@ -104,7 +104,7 @@ export const createCheckoutSessionThunk =
     dispatch(setOrderInfoAC(orderInfo));
     dispatch(setCreateCheckoutSessionDataStatusAC(DataStatus.PENDING));
     const { data } = await axios.post(
-      "http://localhost:4000/api/orders/checkout-session",
+      "/api/orders/checkout-session",
       customerInfo,
     );
     dispatch(setCreateCheckoutSessionDataStatusAC(DataStatus.FULFILLED));
@@ -139,7 +139,7 @@ export const placeOrderThunk = () => async (dispatch, getState) => {
 
   dispatch(setInfoDataStatusAC(DataStatus.PENDING));
   dispatch(showLoadingAC());
-  await axios.post("http://localhost:4000/api/orders", newOrder);
+  await axios.post("/api/orders", newOrder);
 
   dispatch(setInfoDataStatusAC(DataStatus.FULFILLED));
   dispatch(hideLoadingAC());
@@ -154,7 +154,7 @@ export const getOrderInfoThunk = () => async (dispatch, getState) => {
 
   dispatch(setOrderDataStatusAC(DataStatus.PENDING));
 
-  const { data } = await axios.get("http://localhost:4000/api/orders", {
+  const { data } = await axios.get("/api/orders", {
     headers: {
       Authorization: token,
     },

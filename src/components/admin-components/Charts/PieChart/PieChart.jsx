@@ -16,7 +16,7 @@ const PieChart = () => {
   useEffect(() => {
     try {
       axios
-        .get(`http://127.0.0.1:4000/api/catalog/`)
+        .get(`/api/catalog/`)
         .then((response) => {
           const labels = response.data.map((item) => item.name);
           setLabels(labels);
@@ -29,7 +29,7 @@ const PieChart = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:4000/api/orders/all", {
+      .get("/api/orders/all", {
         headers: {
           Authorization: token,
         },

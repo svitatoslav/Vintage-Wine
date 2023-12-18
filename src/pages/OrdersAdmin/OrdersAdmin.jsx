@@ -15,7 +15,7 @@ const Orders = () => {
     const [currentTab, setCurrentTab] = useState(1);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:4000/api/orders/all', {
+        axios.get('/api/orders/all', {
             headers: {
                 "Authorization": token,
             }

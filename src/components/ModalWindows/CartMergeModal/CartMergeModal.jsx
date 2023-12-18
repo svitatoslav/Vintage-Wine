@@ -20,7 +20,7 @@ const CartMergeModal = () => {
     dispatch(showLoadingAC());
     (async () => {
       try {
-        const response = await fetch('http://127.0.0.1:4000/api/cart', {
+        const response = await fetch('/api/cart', {
           method: 'GET',
           headers: {
             'Authorization': token,
@@ -78,7 +78,7 @@ const CartMergeModal = () => {
       body = { products: currentCart };
     }
 
-    axios.put('http://127.0.0.1:4000/api/cart/', body, {
+    axios.put('/api/cart/', body, {
       headers: {
         "Authorization": token,
       }

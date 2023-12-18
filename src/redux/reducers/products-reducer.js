@@ -40,7 +40,7 @@ export const filterProducts = (searchTerm) => ({
 
 export const fetchProductsThunk = () => {
   return async (dispatch) => {
-    const response = await fetch("http://127.0.0.1:4000/api/products");
+    const response = await fetch("/api/products");
     const products = await response.json();
 
     dispatch(fetchProductsAC(products));

@@ -16,7 +16,7 @@ const NewsForm = () => {
     const [paragraphNum, setParagraphNum] = useState(1);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:4000/api/news/')
+        axios.get('/api/news/')
             .then(newsAll => {
                 const options = newsAll.data?.map(news => (
                     {
@@ -56,7 +56,7 @@ const NewsForm = () => {
             description: descr
         }
 
-        axios.post('http://127.0.0.1:4000/api/news/', body, {
+        axios.post('/api/news/', body, {
             headers: {
                 "Authorization": token,
             }
@@ -65,7 +65,7 @@ const NewsForm = () => {
                 const formData = new FormData();
                 formData.append('image', image);
 
-                axios.patch(`http://127.0.0.1:4000/api/news/images/${news.data._id}`, formData, {
+                axios.patch(`/api/news/images/${news.data._id}`, formData, {
                     headers: {
                         "Authorization": token,
                         "Content-Type": "multipart/form-data",

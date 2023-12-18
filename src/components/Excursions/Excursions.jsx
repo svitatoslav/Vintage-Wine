@@ -39,7 +39,7 @@ const Excursions = () => {
   }
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:4000/api/excursions/')
+    axios.get('/api/excursions/')
       .then(excursions => setExcursions(excursions.data))
       .catch(err => console.log(err));
   }, []);
