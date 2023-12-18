@@ -21,6 +21,15 @@
     top: 0;
     left: 0;
     z-index: 100;
+    padding: 10px 0;
+}
+
+.UniProductCoverSmall {
+    justify-content: space-between;
+
+    @media (min-width: $tablet) {
+        justify-content: center;
+    }
 }
 
 .UniProductLink {
@@ -54,6 +63,7 @@
 
 .UniProductBtn {
     margin-top: 25px;
+
     .wrapperInCartBtn {
         button {
             background-color: #000;
@@ -62,9 +72,17 @@
 }
 
 .SmallText {
-    font-size: 16px;
+    font-size: 14px;
+
+    @media (min-width: $tablet) {
+        font-size: 16px;
+    }
 }
 
 .SmallPrice {
-    font-size: 30px;
+    font-size: 20px;
+
+    @media (min-width: $tablet) {
+        font-size: 30px;
+    }
 }

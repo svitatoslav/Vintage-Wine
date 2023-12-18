@@ -12,6 +12,7 @@ const buttonVariant = {
   big: styles.BigButton,
   smallBasket: styles.SmallBasket,
   inCart: styles.InCartBtn,
+  product: styles.ProductBtn,
 };
 
 const buttonColor = {
