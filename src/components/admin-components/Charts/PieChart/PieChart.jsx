@@ -16,7 +16,7 @@ const PieChart = () => {
   useEffect(() => {
     try {
       axios
-        .get(`https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/catalog/`)
+        .get(`http://127.0.0.1:4000/api/catalog/`)
         .then((response) => {
           const labels = response.data.map((item) => item.name);
           setLabels(labels);
@@ -29,7 +29,7 @@ const PieChart = () => {
 
   useEffect(() => {
     axios
-      .get("https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/orders/all", {
+      .get("http://127.0.0.1:4000/api/orders/all", {
         headers: {
           Authorization: token,
         },

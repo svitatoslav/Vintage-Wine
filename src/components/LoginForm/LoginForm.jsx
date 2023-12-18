@@ -50,7 +50,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
     if (isLogin) {
       try {
         axios
-          .post("https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/customers/login", logValues, { silent: true })
+          .post("http://127.0.0.1:4000/api/customers/login", logValues, { silent: true })
           .then((res) => {
             dispatch(setTokenAC(res.data.token));
             dispatch(setUserAC(res.data.user));
@@ -63,7 +63,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
             };
 
             
-            axios.post('https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/cart/', newCart, {
+            axios.post('http://127.0.0.1:4000/api/cart/', newCart, {
               headers: {
                 "Authorization": res.data.token,
               },
@@ -72,7 +72,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
               .catch(err => console.log(err))
               .finally(() => {
                 axios
-                  .get("https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/cart/", {
+                  .get("http://127.0.0.1:4000/api/cart/", {
                     headers: {
                       Authorization: res.data.token,
                     },
@@ -84,7 +84,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
                     }
 
                     if (currentCart.length) {
-                      axios.put('https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/cart/', { products: currentCart }, {
+                      axios.put('http://127.0.0.1:4000/api/cart/', { products: currentCart }, {
                         headers: {
                           "Authorization": res.data.token,
                         },
@@ -109,7 +109,7 @@ function LoginForm({ isLogin, formTexts, onLogin }) {
     } else {
       try {
         axios
-          .post("https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/customers/", regValues)
+          .post("http://127.0.0.1:4000/api/customers/", regValues)
           .then(() => {
             dispatch(hideLoadingAC());
             dispatch(signInAC());

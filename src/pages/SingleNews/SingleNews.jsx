@@ -16,7 +16,7 @@ const SingleNews = () => {
 
   useEffect(() => {
     const getArticleById = async () => {
-      const response = await fetch(`https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/news/${id}`);
+      const response = await fetch(`http://127.0.0.1:4000/api/news/${id}`);
       const fetchedArticle = await response.json();
       setArticle(fetchedArticle);
     };

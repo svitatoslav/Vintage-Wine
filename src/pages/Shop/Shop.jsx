@@ -70,7 +70,7 @@ const Shop = () => {
     };
 
     const url =
-      "https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/products/filter?" + createUrlQuery(filter);
+      "http://127.0.0.1:4000/api/products/filter?" + createUrlQuery(filter);
 
     (async () => {
       dispatch(showLoadingAC());

@@ -65,7 +65,7 @@ const SingleProduct = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get(`https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/products/${localStorage.getItem('viewedProducts')}`);
+                const response = await axios.get(`http://127.0.0.1:4000/api/products/${localStorage.getItem('viewedProducts')}`);
                 setSingleItem(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -82,7 +82,7 @@ const SingleProduct = () => {
 
             const addViewedProduct = async () => {
                 try {
-                    await axios.post(`https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/last-viewed-products`, { productId: dataToSend });
+                    await axios.post(`http://127.0.0.1:4000/api/last-viewed-products`, { productId: dataToSend });
                 } catch (err) { }
             };
             addViewedProduct();

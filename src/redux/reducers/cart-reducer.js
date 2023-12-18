@@ -109,7 +109,7 @@ export const fetchCarts = (cart) => ({
 export const fetchNewsThunk = () => {
   return async (dispatch, getState) => {
     const curentState = getState();
-    const response = await fetch("https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/cart", {
+    const response = await fetch("http://127.0.0.1:4000/api/cart", {
       method: "GET",
       headers: { Authorization: curentState.user.token },
     });
@@ -127,7 +127,7 @@ export const removeCartThunk = () => {
 
     if (token) {
       axios
-        .delete(`https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/cart`, {
+        .delete(`http://127.0.0.1:4000/api/cart`, {
           headers: {
             Authorization: token,
           },
@@ -153,7 +153,7 @@ export const addToCartThunk = (item) => (dispatch, getState) => {
 
   if (token) {
     axios
-      .put(`https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/cart/${item._id}`, item, {
+      .put(`http://127.0.0.1:4000/api/cart/${item._id}`, item, {
         headers: {
           Authorization: token,
         },

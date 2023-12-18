@@ -20,7 +20,7 @@ const CartMergeModal = () => {
     dispatch(showLoadingAC());
     (async () => {
       try {
-        const response = await fetch('https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/cart', {
+        const response = await fetch('http://127.0.0.1:4000/api/cart', {
           method: 'GET',
           headers: {
             'Authorization': token,
@@ -78,7 +78,7 @@ const CartMergeModal = () => {
       body = { products: currentCart };
     }
 
-    axios.put('https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/cart/', body, {
+    axios.put('http://127.0.0.1:4000/api/cart/', body, {
       headers: {
         "Authorization": token,
       }

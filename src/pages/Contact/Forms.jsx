@@ -30,7 +30,7 @@ const Forms = () => {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       const response = await axios.post(
-        "https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/contact",
+        "http://localhost:4000/api/contact",
         values,
       );
       resetForm(initialValues);
