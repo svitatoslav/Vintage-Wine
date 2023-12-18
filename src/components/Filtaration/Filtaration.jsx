@@ -24,7 +24,7 @@ const Filtration = () => {
 
     useEffect(() => {
         (async () => {
-            const catalogLinks = await sendGetRequest('http://127.0.0.1:4000/api/catalog');
+            const catalogLinks = await sendGetRequest('https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/catalog');
             setLinks(prevLinks => [...prevLinks, ...catalogLinks]);
         })();
 

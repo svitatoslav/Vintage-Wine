@@ -13,7 +13,7 @@ const ContactRequests = () => {
     const [requests, setRequests] = useState([]);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:4000/api/contact', {
+        axios.get('https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/contact', {
             headers: {
                 "Authorization": token,
             }
@@ -26,7 +26,7 @@ const ContactRequests = () => {
 
     const handleReadRequest = (request) => {
         request.isRead = true;
-        axios.put(`http://127.0.0.1:4000/api/contact/${request._id}`, request, {
+        axios.put(`https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/contact/${request._id}`, request, {
             headers: {
                 "Authorization": token,
             }
@@ -38,7 +38,7 @@ const ContactRequests = () => {
     }
 
     const handleDeleteRequest = (id) => {
-        axios.delete(`http://127.0.0.1:4000/api/contact/${id}`, {
+        axios.delete(`https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/contact/${id}`, {
             headers: {
                 "Authorization": token,
             }

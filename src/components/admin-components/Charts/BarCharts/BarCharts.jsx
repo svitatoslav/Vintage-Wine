@@ -33,7 +33,7 @@ const BarCharts = () => {
     const token = useSelector((state) => state.user.token);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:4000/api/orders/all', {
+        axios.get('https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/orders/all', {
             headers: {
                 "Authorization": token,
             }

@@ -39,7 +39,7 @@ const Excursions = () => {
   }
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:4000/api/excursions/')
+    axios.get('https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/excursions/')
       .then(excursions => setExcursions(excursions.data))
       .catch(err => console.log(err));
   }, []);

@@ -28,7 +28,7 @@ const CartItem = ({ count, product, popUpView }) => {
         if (token) {
             try {
                 axios
-                    .delete(`http://127.0.0.1:4000/api/cart/${_id}`, {
+                    .delete(`https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/cart/${_id}`, {
                         headers: {
                             Authorization: token,
                         },

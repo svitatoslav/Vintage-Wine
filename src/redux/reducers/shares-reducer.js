@@ -23,7 +23,7 @@ const fetchCatalogAC = (shares) => ({
 
 export const fetchSharesThunk = () => {
     return async (dispatch) => {
-        const response = await fetch('http://127.0.0.1:4000/api/shares');
+        const response = await fetch('https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/shares');
         const shares = await response.json();
 
         dispatch(fetchCatalogAC(shares));

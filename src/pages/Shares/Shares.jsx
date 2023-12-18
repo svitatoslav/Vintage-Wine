@@ -12,7 +12,7 @@ const Shares = () => {
 
     useEffect(() => {
         const getArticleById = async () => {
-            const response = await fetch(`http://127.0.0.1:4000/api/shares/${id}`)
+            const response = await fetch(`https://vintage-wine-l5ax0zanr-sviats-projects-0463f59c.vercel.app/api/shares/${id}`)
             const result = await response.json();
             setUserName(result);
         }
