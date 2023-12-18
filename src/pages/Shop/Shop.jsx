@@ -70,7 +70,7 @@ const Shop = () => {
     };
 
     const url =
-      "/api/products/filter?" + createUrlQuery(filter);
+      "http://127.0.0.1:4000/api/products/filter?" + createUrlQuery(filter);
 
     (async () => {
       dispatch(showLoadingAC());

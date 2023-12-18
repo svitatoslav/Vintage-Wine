@@ -13,7 +13,7 @@ const Counter = ({ id, count, data }) => {
 
     dispatch(removeFromCarts(id));
     if (token) {
-      axios.delete(`/api/cart/product/${id}`, {
+      axios.delete(`http://127.0.0.1:4000/api/cart/product/${id}`, {
         headers: {
           "Authorization": token,
         }
@@ -26,7 +26,7 @@ const Counter = ({ id, count, data }) => {
     dispatch(addOneToExistedProduct(id));
 
     if (token) {
-      axios.put(`/api/cart/${id}`, data, {
+      axios.put(`http://127.0.0.1:4000/api/cart/${id}`, data, {
         headers: {
           "Authorization": token,
         }

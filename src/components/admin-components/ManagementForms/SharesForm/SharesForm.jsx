@@ -24,7 +24,7 @@ const SharesForm = () => {
         dispatch(switchSuccessMsg());
         const { imageURL, ...rest } = values;
 
-        axios.post('/api/shares/', rest, {
+        axios.post('http://127.0.0.1:4000/api/shares/', rest, {
             headers: {
                 "Authorization": token,
             }
@@ -36,7 +36,7 @@ const SharesForm = () => {
                     formData.append(key, value);
                 });
 
-                axios.put(`/api/shares/images/${excursion.data._id}`, formData, {
+                axios.put(`http://127.0.0.1:4000/api/shares/images/${excursion.data._id}`, formData, {
                     headers: {
                         "Authorization": token,
                         "Content-Type": "multipart/form-data",

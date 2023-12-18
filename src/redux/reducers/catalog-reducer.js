@@ -23,7 +23,7 @@ const fetchCatalogAC = (catalog) => ({
 
 export const fetchCatalogThunk = () => {
     return async (dispatch) => {
-        const response = await fetch('/api/catalog');
+        const response = await fetch('http://127.0.0.1:4000/api/catalog');
         const catalog = await response.json();
 
         dispatch(fetchCatalogAC(catalog));
