@@ -2,9 +2,6 @@ import { useSelector } from 'react-redux';
 import styles from './PieChart.module.scss';
 import {
     Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
     ArcElement,
     Title,
     Tooltip,
@@ -21,21 +18,25 @@ ChartJS.register(
     Legend
 );
 
-const getCategories = async () => {
-    try {
-        const response = await axios.get(`http://127.0.0.1:4000/api/catalog/`);
-        return response.data.map(item => item.name);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}
-
-const labels = await getCategories();
 
 
 const PieChart = () => {
+    const [labels, setLabels] = useState([]);
     const [orderData, setOrderData] = useState([]);
     const token = useSelector((state) => state.user.token);
+
+    useEffect(() => {
+            try {
+                axios.get(`http://127.0.0.1:4000/api/catalog/`)
+                .then(response => {
+                    const labels = response.data.map(item => item.name);
+                    setLabels(labels);
+                })
+                .catch(err => console.log(err));                
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+    }, [])
 
     useEffect(() => {
         axios.get('http://127.0.0.1:4000/api/orders/all', {
