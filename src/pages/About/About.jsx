@@ -124,7 +124,7 @@ const About = () => {
                 </section>
             </Container>
             <section className={styles.AwardsVineyards}>
-                <img src="https://res.cloudinary.com/dhpukux5x/image/upload/v1701810896/glass-red_rpjw6a.png" alt="" className={styles.sectionBgImage}/>
+                <img src="https://res.cloudinary.com/dhpukux5x/image/upload/v1701810896/glass-red_rpjw6a.png" alt="glass" className={styles.sectionBgImage}/>
                 {/* <img src="../../../public/imageProject/about-us/glass-red.png" alt="" className={styles.sectionBgImage}/> */}
                 <Container>
                     <SectionTitle subText='Our' secText='Awards' />

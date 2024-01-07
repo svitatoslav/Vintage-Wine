@@ -40,6 +40,7 @@ const authorizationReducer = (state = initialState, action) => {
         ...state,
         user: null,
         token: null,
+        isSigned: false
       };
     case SET_ACCESS:
       return {

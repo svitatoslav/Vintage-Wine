@@ -35,7 +35,7 @@ const EmptyCartPopup = () => {
                     <p className={styles.ThanksModalMainText}>Your cart was empty</p>
                 </div>
                 <div className={styles.ThanksModalImg}>
-                    <img src="http://localhost:5173/imageProject/about-us/corcs.png" alt="glass" />
+                    <img src="https://res.cloudinary.com/dhpukux5x/image/upload/v1698006346/ionlofjbrdtawop6htx3.png" alt="glass" />
                 </div>
             </div>
         </Container>

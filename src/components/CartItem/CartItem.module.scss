@@ -153,9 +153,14 @@
     width: 14px;
     height: 16px;
     fill: $main-color;
+    @include transition;
+
     @media screen and (min-width: $tablet-lg) {
         width: 24px;
         height: 28px;
+    }
+    &:hover {
+        fill: $btn-bg;
     }
 }
 /*********CART POPUP VIEW*************/

@@ -20,14 +20,20 @@
 }
 
 .Item {
-  margin-bottom: 70px;
+  margin-bottom: 0;
   max-width: 350px;
+  width: 100%;
   position: relative;
   justify-self: center;
   min-height: 635px;
 
+  @media screen and (min-width: $tablet-lg) {
+    margin-bottom: 50px;
+  }
+
   @media screen and (min-width: $desktop) {
     justify-self: end;
+    margin-bottom: 70px;
   }
 }
 
