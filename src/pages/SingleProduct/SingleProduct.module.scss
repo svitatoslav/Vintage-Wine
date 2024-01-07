@@ -1,0 +1,225 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.singleProduct {
+    margin-top: 45px;
+    .productName {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 25px;
+        @media screen and (min-width: $tablet-xlg) {
+            font-size: 40px;
+            margin-bottom: 40px;
+        }
+    }
+    .wrapperProductData {
+        @include flex-sb;
+        @include flex-w;
+        margin-bottom: 50px;
+        gap: 25px;
+        @media screen and (min-width: $tablet-lg) {
+            margin-bottom: 70px;
+        }
+        @media screen and (min-width: $tablet-xlg) {
+            gap: 30px;
+            flex-wrap: nowrap;
+            align-items: flex-start;
+        }
+        @media screen and (min-width: $desktop) {
+            gap: 55px;
+        }
+        .productImg {
+            width: 100%;
+            @media screen and (min-width: $tablet) {
+                @include flex-col;
+                @include flex-cc;
+            }
+            @media screen and (min-width: $tablet-lg) {
+                margin-bottom: 70px;
+            }
+            @media screen and (min-width: $tablet-xlg) {
+                max-width: 400px;
+                width: 500px;
+            }
+            @media screen and (min-width: $desktop) {
+                max-width: 500px;
+                width: 500px;
+            }
+        }
+        .productInfo {
+            width: 100%;
+            .productNameSmall {
+                font-size: 20px;
+                margin-bottom: 15px;
+                @media screen and (min-width: $tablet-lg) {
+                    font-size: 30px;
+                }
+                @media screen and (min-width: $tablet-xlg) {
+                    font-size: 30px;
+                    margin-bottom: 20px;
+                }
+            }
+            .collectionsData {
+                @include flex-col;
+                color: #909090;
+                margin-bottom: 50px;
+                @media screen and (min-width: $tablet) {
+                    flex-direction: row;
+                    @include flex-ac-sb;
+                }
+                @media screen and (min-width: $tablet-xlg) {
+                    @include flex-ac-sb;
+                }
+                p {
+                    font-size: 12px;
+                    margin-bottom: 5px;
+                    @media screen and (min-width: $tablet-lg) {
+                        font-size: 16px;
+                    }
+                    .collectionSpan {
+                        margin-left: 15px;
+                    }
+                }
+            }
+            .cartData {
+                @include flex-cc;
+                @include flex-w;
+                margin-bottom: 50px;
+                gap: 25px;
+                @media screen and (min-width: $tablet-lg) {
+                    justify-content: space-around;
+                    margin-bottom: 75px;
+                }
+                @media screen and (min-width: $tablet-xlg) {
+                    @include flex-ac-sb;
+                    flex-wrap: nowrap;
+                    gap: 80px;
+                    margin-bottom: 70px;
+                }
+                .wrapperPrice {
+                    @include flex-ac-sb;
+                    font-size: 40px;
+                    width: 80%;
+                    @media screen and (min-width: $tablet) {
+                        justify-content: space-evenly;
+                    }
+                    @media screen and (min-width: $tablet-lg) {
+                        flex-wrap: nowrap;
+                        width: 50%;
+                    }
+                    @media screen and (min-width: $tablet-xlg) {
+                        gap: 30px;
+                        width: auto;
+                    }
+                    @media screen and (min-width: $desktop) {
+                        gap: 80px;
+                    }
+                    .price {
+                        .valuta {
+                            font-size: 20px;
+                        }
+                    }
+                    .quantityWrapper {
+                        @include flex-ac-sb;
+                        gap: 13px;
+                        .minus,
+                        .plus {
+                            @include transition;
+                            cursor: pointer;
+                            &:hover {
+                                @include transition;
+                                color: $btn-bg;
+                            }
+                        }
+                    }
+                }
+                button {
+                    @media screen and (min-width: $tablet-xlg) {
+                        padding: 14px 35px;
+                    }
+                }
+            }
+            .shortDescription {
+                @include flex-ac-sb;
+                flex-direction: column;
+                .titles {
+                    width: 100%;
+                    @include flex-ac-sb;
+                    margin-bottom: 15px;
+                    h5 {
+                        font-size: 20px;
+                        padding-bottom: 25px;
+                        text-align: center;
+                        width: 50%;
+                        border-bottom: 1px solid $main-color;
+                        @media screen and (min-width: $tablet) {
+                            font-size: 30px;
+                        }
+                        &:first-child {
+                            border-right: 1px solid $main-color;
+                        }
+                        @media screen and (min-width: $tablet-xlg) {
+                            font-size: 40px;
+                        }
+                    }
+                }
+                .text {
+                    width: 100%;
+                    @include flex-ac-sb;
+                    text-align: center;
+                    margin-bottom: 50px;
+                    font-size: 12px;
+
+                    @media screen and (min-width: $tablet-xlg) {
+                        font-size: 16px;
+                        margin-bottom: 85px;
+                    }
+                    p {
+                        font-size: 12px;
+                        width: 50%;
+                        @media screen and (min-width: $tablet) {
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+            .mainInfo {
+                .titleInfo {
+                    font-size: 20px;
+                    text-align: center;
+                    margin-bottom: 30px;
+                    @media screen and (min-width: $tablet) {
+                        font-size: 30px;
+                    }
+                    @media screen and (min-width: $tablet-lg) {
+                        margin-bottom: 60px;
+                    }
+                    @media screen and (min-width: $tablet-xlg) {
+                        font-size: 40px;
+                        margin-bottom: 40px;
+                    }
+                }
+                .characteristics {
+                    li {
+                        border-bottom: 1px solid $main-color;
+                        padding: 20px 0;
+                        width: 100%;
+                        @include fonts(16px, $secondary-font);
+                        @include flex-ac-sb;
+                        .key {
+                            width: 60%;
+                            text-transform: capitalize;
+                        }
+                        .value {
+                            width: 40%;
+                            text-align: right;
+                            @media screen and (min-width: $tablet-xlg) {
+                                text-align: left;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+.Aside {
+  max-width: 600px;
+}
+
+.ListWrapper {
+    max-width: 600px;
+    margin: 30px 0 100px;
+}
+
+.ListItem {
+  font-size: 25px;
+  border: 1px solid #fff;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #645b5b;
+  }
+}
+
+.Link {
+  display: block;
+  padding: 15px;
+}
+
+.Name {
+  font-size: 50px;
+  max-width: 300px;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  &:hover {
+    color: #b2aeae;
+  }
+}

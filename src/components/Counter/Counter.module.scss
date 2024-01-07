@@ -1,0 +1,30 @@
+@import './../../assets/mixins/mixins';
+@import './../../assets/variables/variables';
+
+.Counter {
+    @include flex-cc;
+    font-size: 20px;
+    font-family: $main-font;
+    gap: 12px;
+
+    @media (min-width: $tablet-lg) {
+        font-size: 40px;
+    }
+}
+
+.CountElem {
+    font-size: 20px;
+    font-family: $main-font;
+    
+    @media (min-width: $tablet-lg) {
+        font-size: 40px;
+    }
+}
+button.CountElem {
+    cursor: pointer;
+    @include transition;
+    &:hover {
+        @include transition;
+        color: $btn-bg ;
+    }
+}

@@ -1,0 +1,144 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.Button {
+  padding: 4px 35px;
+  font-size: 15px;
+  line-height: 36px;
+  @include transition;
+  background: $btn-bg;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: $secondary-color;
+    color: $main-color;
+    cursor: default;
+  }
+  &:disabled:hover {
+    background-color: $secondary-color
+  }
+
+  &:hover {
+    background: $btn-hover;
+  }
+
+  &:hover {
+    background: $btn-hover;
+  }
+
+  @media screen and (min-width: $tablet) {
+    padding: 9px 52px;
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: $tablet-xlg) {
+    padding: 14px 68px;
+    font-size: 30px;
+    min-width: 218px;
+  }
+}
+
+
+.xSmall {
+  @extend .Button;
+  min-width: 215px;
+  padding: 8px 0;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+
+//  без адаптива + book-time   + Read more + Read all
+
+.Small {
+  @extend .Button;
+  min-width: 165px;
+  padding: 6px 40px;
+  font-size: 20px;
+
+}
+
+.SmallBasket {
+  @extend .Button;
+  padding: 10px;
+  font-size: 20px;
+
+}
+
+// Read More
+
+.SmallAdaptive {
+  @extend .Button;
+  padding: 11px 36px;
+  font-size: 14px;
+  line-height: 16px;
+
+  @media screen and (min-width: $tablet-xlg) {
+    padding: 11px 40px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+.Medium {
+  @extend .Button;
+  font-size: 30px;
+  min-width: 218px;
+  padding: 12px 35px;
+  //  + continue  + send + Sign in
+}
+
+.WideButton {
+  @extend .Button;
+  padding: 12px 27px;
+  font-size: 30px;
+  min-width: 280px;
+}
+
+.BigButton {
+  min-width: 305px;
+  padding: 21px 0;
+  font-size: 30px;
+  line-height: 36px;
+}
+
+.Primary {
+  background-color: $btn-bg;
+  color: $main-color;
+}
+
+.Secondary {
+  background-color: $main-color;
+  color: $black-color;
+}
+
+.Transparent {
+  background-color: inherit;
+  color: $main-color;
+  padding: 3px 18px;
+  min-width: 0;
+}
+
+.GrayBtn {
+  background-color: inherit;
+  color: $secondary-color;
+}
+
+.Success {
+  background-color: rgb(4, 87, 4) !important;
+}
+
+.InCartBtn {
+  @extend .Button;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: $btn-bg;
+  &:hover {
+    background: transparent;
+  }
+}
+
+
+
+
+

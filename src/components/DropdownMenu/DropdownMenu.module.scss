@@ -1,0 +1,73 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.DropdownMenu {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    overflow-y: auto;
+    min-height: 100%;
+}
+
+.DropdownHidden {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: -100%;
+    width: 100%;
+    transition: left .6s ease-in-out;
+}
+
+.DropdownVisible {
+    left: 0; 
+}
+
+.DropdownBody {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.70) 100%), url('https://res.cloudinary.com/dhpukux5x/image/upload/v1701204827/menu-bg_ocnkfo.webp') center 50%/cover no-repeat;
+    @include flex-col-c;
+    gap: 94px;
+    min-height: 100%;
+    padding: 50px 0;
+    overflow-y: auto;
+}
+
+.DropdownTitle {
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 1;
+    text-align: center;
+    color: $main-color;
+
+    span {
+        position: relative;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 7px;
+            background: url('./icons/symbol.svg');
+            top: 50%;
+            transform: translateY(-50%);
+            left: -44px;
+        }
+    
+        &::after {
+            left: unset;
+            right: -44px;
+        }
+    }
+}
+
+.DropdownClose {
+    position: absolute;
+    right: 29px;
+    top: 45px;
+    width: 20px;
+    height: 20px;
+}

@@ -1,0 +1,61 @@
+@import '../../../assets/mixins/mixins';
+@import '../../../assets/variables/variables';
+
+.CheckoutItem {
+    display: flex;
+    gap: 18px;
+    width: 100%;
+}
+
+.CheckoutInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.CheckoutItemDescr {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+// .CheckoutItemQuantity {
+//     @include fonts(14px, $secondary-font);
+// }
+
+.CheckoutImg {
+    img {
+        width: 77px;
+        height: 97px;
+        object-fit: cover;
+    }
+}
+
+.TitleName {
+    @include fonts(16px, $secondary-font);
+}
+
+.Text {
+    color: #BFBFBF;
+    @include fonts(12px, $secondary-font);
+}
+
+.Price {
+    @include fonts(20px, $main-font);
+
+    span {
+        font-size: 12px;
+    }
+}
+
+.CheckoutLowerInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Bottom {
+    display: flex;
+    justify-content: space-between;
+}

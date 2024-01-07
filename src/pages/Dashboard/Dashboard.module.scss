@@ -1,0 +1,16 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+
+.Dashboard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.DashboardMain {
+    width: calc(100% - 302px);
+    height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 80px;
+}

@@ -1,0 +1,114 @@
+@import '../variables/variables';
+
+@mixin flex-cc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-ac {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flex-jc {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin flex-ac-sb {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-sb {
+    display: flex;
+    justify-content: space-between;
+}
+
+@mixin flex-w {
+    flex-wrap: wrap;
+}
+
+@mixin flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+@mixin flex-col-c {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@mixin flex-col-ac {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@mixin flex-row-c {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@mixin flex-cc-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin abs-t5 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@mixin transition {
+    transition: all .3s ease-in-out;
+}
+
+@mixin fonts ($size, $family) {
+    font-size: $size;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-family: $family;
+}
+
+@mixin fadeIn($duration: 0.3s, $delay: 0s) {
+  @keyframes fadeInAnimation {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  animation-name: fadeInAnimation;
+  animation-duration: $duration;
+  animation-timing-function: ease-in;
+  animation-fill-mode: both;
+  animation-delay: $delay;
+}
+
+@mixin fadeOut($duration: 0.3s) {
+  @keyframes fadeOutAnimation {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  animation-name: fadeOutAnimation;
+  animation-duration: $duration;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+}

@@ -1,0 +1,285 @@
+@import './../../assets/mixins/mixins';
+@import './../../assets/variables/variables';
+
+.Footer {
+  width: 100%;
+  background-color: #5b0007;
+  padding-top: 18px;
+  position: relative;
+  z-index: 20;
+
+  @media (min-width: $tablet-xlg)  {
+    padding-top: 50px;
+  }
+}
+
+
+
+
+
+.FooterInfo {
+
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    display: flex;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    display: flex;
+  }
+  @media screen and (min-width: $desktop) {
+    display: flex;
+  }
+}
+
+.FooterContainer {
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    display: flex;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    display: flex;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    display: flex;
+  }
+  @media screen and (min-width: $desktop) {
+    display: flex;
+  }
+}
+
+.FooterLogo {
+  @include flex-cc;
+  margin-bottom: 18px;
+
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    margin-left: 20px;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    align-items: start;
+    margin-right: 50px;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    align-items: start;
+    margin: 0 40px 0 20px;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    align-items: start;
+    margin: 0 40px 0 20px;
+  }
+  @media screen and (min-width: $desktop) {
+    align-items: start;
+    margin: 0 40px 0 20px;
+  }
+}
+.FooterImage {
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    width: 173px;
+    height: 50px;
+  }
+}
+.MenuLocation {
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    display: flex;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+  @media screen and (min-width: $desktop) {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+}
+.FooterMenu {
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: center;
+
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    width: 100%;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    width: 100%;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    width: 100%;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    width: 100%;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 100%;
+  }
+}
+// .FooterNav {
+//     display: grid;
+// //   display: grid;
+// //   justify-content: center;
+// //   align-items: center;
+// }
+// .FooterItem {
+//   padding-bottom: 16px;
+//   font-family: $secondary-font;
+// }
+// // .FooterLink {
+// // }
+.Location {
+  margin: 0 57px;
+
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    margin: 0 10px 0 56px;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    margin: 0 12px;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    margin: 0 14px;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    margin: 0 14px;
+  }
+  @media screen and (min-width: $desktop) {
+    margin: 0 77px;
+  }
+}
+.LocationTitle {
+    font-size: 20px;
+    padding-bottom: 20px;
+}
+// .LocationAddress {
+// }
+.AddressInfo {
+    display: flex;
+    padding-bottom: 20px;
+}
+.AddressText {
+    width: 100%;
+    padding-left: 2px;
+}
+.SearchCopywriting {
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        @include flex-ac;
+        justify-content: space-evenly;
+    }
+}
+.SearchNetwork {
+    @media (min-width: $mobile) and (max-width: $tablet) {
+        @include flex-ac;
+        justify-content: space-evenly;
+    }
+    @media (min-width: $tablet) and (max-width: $tablet-lg) {
+        @include flex-ac;
+        justify-content: space-evenly;
+    }
+}
+.Search {
+    @include flex-ac;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    display: grid;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    display: grid;
+    margin-right: 50px;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    display: grid;
+    margin: 0 20px 55px 0;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    display: grid;
+    margin: 0 20px 55px 0;
+  }
+  @media screen and (min-width: $desktop) {
+    display: grid;
+    margin: 0 20px 55px 0;
+  }
+}
+.SearchTitle {
+    font-size: 20px;
+
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    margin-bottom: 18px;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    margin-bottom: 18px;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    padding-bottom: 20px;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    padding-bottom: 20px;
+  }
+  @media screen and (min-width: $desktop) {
+    padding-bottom: 20px;
+  }
+}
+.SearchLabel {
+  display: flex;
+  height: 41px;
+  width: 207px;
+}
+.SearchInput {
+    padding: 16px;
+    font-size: 14px;
+    color: #c7c7c7;
+}
+.SearchLogo {
+    background-color: $main-color;
+    width: 49px;
+    height: 41px;
+    padding: 12px;
+}
+.Network {
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    margin-top: 30px;
+  }
+}
+.NetworkNav {
+    @include flex-cc;
+    padding-bottom: 28px;
+
+    @media (min-width: $mobile) and (max-width: $tablet) {
+        padding-bottom: 0;
+    }
+}
+// .NetworkItem {
+// }
+// .NetworkLink {
+// }
+.NetworkLogo {
+    margin-inline: 6px;
+}
+.Copywriting {
+    display: none;
+    text-align: center;
+    padding-bottom: 28px;
+
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    display: block;
+  }
+  @media (min-width: $tablet) and (max-width: $tablet-lg) {
+    display: block;
+  }
+  @media (min-width: $tablet-lg) and (max-width: $tablet-xlg) {
+    display: block;
+  }
+  @media (min-width: $tablet-xlg) and (max-width: $desktop) {
+    display: block;
+  }
+  @media screen and (min-width: $desktop) {
+    display: block;
+  }
+}

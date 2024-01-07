@@ -1,0 +1,25 @@
+@import "src/assets/variables/variables";
+
+
+.DateBox {
+  background-color: $btn-bg;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 0 16px;
+  margin-left: 10px;
+}
+
+.Date {
+  font-size: 16px;
+  line-height: 18px;
+  font-family: $secondary-font;
+}
+
+.Month {
+  font-size: 30px;
+  line-height: 28px;
+  font-family: $main-font;
+}

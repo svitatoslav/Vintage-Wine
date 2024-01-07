@@ -1,0 +1,91 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.CombinationFood {
+    padding: 0;
+    gap: 55px;
+    @include flex-col;
+    margin-bottom: 50px;
+    @media screen and (min-width: $tablet-lg) {
+        margin-bottom: 70px;
+    }
+    @media screen and (min-width: $tablet-xlg) {
+        margin: 0 auto 70px;
+        width: 60%;
+        @include flex-ac-sb;
+    }
+    @media screen and (min-width: $desktop) {
+        width: 100%;
+        flex-direction: row;
+        gap: 80px;
+    }
+    .deliveryPaymentWrapper {
+        width: 100%;
+        .deliveryPayment {
+            @include flex-ac-sb;
+            margin-bottom: 35px;
+            .title {
+                width: 45%;
+                font-size: 20px;
+                @media screen and (min-width: $tablet) {
+                    font-size: 30px;
+                }
+                @media screen and (min-width: $tablet-xlg) {
+                    font-size: 40px;
+                    width: 100%;
+                }
+            }
+            .text {
+                width: 65%;
+                font-size: 12px;
+                @media screen and (min-width: $tablet-xlg) {
+                    font-size: 16px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .perfectCombination {
+        width: 100%;
+        border: $brd-white;
+        padding: 35px 10px;
+        @media screen and (min-width: $tablet-lg) {
+            padding: 35px 85px;
+        }
+        .title {
+            font-size: 20px;
+            margin-bottom: 35px;
+            text-align: center;
+            @media screen and (min-width: $tablet) {
+                font-size: 40px;
+            }
+        }
+        .dishes {
+            @include flex-ac-sb;
+            gap: 5px;
+            @media screen and (min-width: $tablet-lg) {
+                gap: 30px;
+            }
+            .dish {
+                text-align: center;
+                p {
+                    font-size: 12px;
+                    @media screen and (min-width: $tablet) {
+                        font-size: 16px;
+                    }
+                }
+
+                img {
+                    height: 60px;
+                    width: 60px;
+                    object-fit: cover;
+                    margin-bottom: 15px;
+                    @media screen and (min-width: $tablet-lg) {
+                        height: 86px;
+                        width: 86px;
+                    }
+                }
+            }
+        }
+    }
+}

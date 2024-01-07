@@ -1,0 +1,482 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+
+.wrapperSlider {
+    .itemSlide {
+        height: 300px;
+        @media screen and (min-width: $tablet-lg) {
+            height: 400px;
+        }
+        @media screen and (min-width: $tablet-xlg) {
+            height: auto;
+        }
+        a {
+            position: relative;
+            display: block;
+            height: inherit;
+            margin: 0 10px;
+
+            img {
+                object-fit: cover;
+                height: 100%;
+            }
+            .catalogName {
+                position: absolute;
+                bottom: 40px;
+                right: 30px;
+                font-size: 40px;
+            }
+        }
+    }
+}
+.slickArrows {
+    margin-top: 0;
+    @include flex-cc;
+    position: relative;
+    gap: 15px;
+    @media screen and (min-width: $tablet-lg) {
+        margin-top: 30px;
+    }
+
+    button {
+        position: static;
+        width: 30px;
+        height: 30px;
+        transform: translate(0, 0);
+        background: #909090;
+        border-radius: 100%;
+        @include transition;
+        &::before {
+            display: none !important;
+        }
+        svg {
+            fill: #000;
+        }
+        &:hover {
+            background: $main-color;
+            @include transition;
+        }
+        &:focus {
+            background: #909090;
+        }
+    }
+    .sliderNavigation {
+        position: relative;
+        min-width: 35px;
+        min-height: 45px;
+        &::before {
+            position: absolute;
+            content: '';
+            display: block;
+            top: 60%;
+            transform: translateY(-50%) rotate(-45deg);
+            left: 0;
+            background: $main-color;
+            height: 2px;
+            border-radius: 2px;
+            width: 100%;
+            color: $main-color;
+        }
+        .currentIndex {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 30px;
+        }
+        .lengthOfSlider {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            font-size: 20px;
+            color: #909090;
+        }
+    }
+}
+
+.collectionsWrapperSlider {
+    .collectionsSlide {
+        position: relative;
+        display: flex !important;
+        justify-content: flex-end;
+        @media screen and (min-width: $tablet-lg) {
+            justify-content: space-evenly;
+        }
+        @media screen and (min-width: $tablet-xlg) {
+            justify-content: flex-end;
+        }
+        img {
+            max-width: 70%;
+            @media screen and (min-width: $tablet-lg) {
+                max-width: 40%;
+            }
+            @media screen and (min-width: 768px) {
+                max-width: 70%;
+            }
+            @media screen and (min-width: $tablet-xlg) {
+                max-width: 400px;
+                margin-right: 45px;
+            }
+        }
+        .collectionData {
+            max-width: 350px;
+            position: absolute;
+            top: 130px;
+            left: 0;
+            @media screen and (min-width: $tablet-lg) {
+                left: 18%;
+            }
+            .catalogName {
+                font-size: 30px;
+                margin-bottom: 15px;
+                @media screen and (min-width: $tablet) {
+                    font-size: 50px;
+                }
+                @media screen and (min-width: $tablet-xlg) {
+                    font-size: 100px;
+                }
+            }
+            .collectionsDescription {
+                font-size: 14px;
+                span {
+                    display: block;
+                    font-size: 14px;
+                    margin-top: 10px;
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+    @media screen and (min-width: $tablet-xlg) {
+        .collectionsSlide.oddSlide {
+            justify-content: flex-start;
+            .collectionData {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                left: auto;
+                right: 0;
+                @media screen and (min-width: $tablet-xlg) {
+                    align-items: flex-end;
+                }
+            }
+            img {
+                margin-left: 45px;
+            }
+        }
+    }
+}
+
+.singleProductMainSlider {
+    width: 100%;
+    @media screen and (min-width: $tablet) {
+        width: 80%;
+    }
+    @media screen and (min-width: $tablet-xlg) {
+        width: 100%;
+    }
+    margin-bottom: 15px;
+    .mainSlide {
+        width: 100%;
+        height: 360px;
+        @media screen and (min-width: $tablet-lg) {
+            height: 600px;
+        }
+        @media screen and (min-width: $tablet-xlg) {
+            height: 760px;
+        }
+        img {
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+.singleProductSecondarySlider {
+    width: 73%;
+    margin: 0 auto;
+    @media screen and (min-width: $tablet) {
+        width: 65%;
+    }
+    @media screen and (min-width: $tablet-lg) {
+        width: 90%;
+    }
+    .secondarySlide {
+        height: 90px;
+        padding: 0 5px;
+        @media screen and (min-width: $tablet-lg) {
+            height: 135px;
+        }
+        @media screen and (min-width: $tablet-xlg) {
+            height: 155px;
+        }
+        img {
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    button {
+        &::before {
+            display: none;
+        }
+    }
+}
+
+.viewedProductsSlider {
+    width: 100%;
+    @media screen and (min-width: $tablet) {
+        width: 65%;
+        margin: 0 auto;
+    }
+    @media screen and (min-width: $tablet-lg) {
+        width: 100%;
+    }
+    .itemSlide {
+        text-align: center;
+        height: 535px;
+        margin-bottom: 30px;
+        position: relative;
+        @media screen and (min-width: $tablet) {
+            height: 625px;
+        }
+        @media screen and (min-width: $tablet-lg) {
+            height: 730px;
+        }
+        @media screen and (min-width: $tablet-xlg) {
+            height: 740px;
+        }
+        .productNav {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        img {
+            height: 100%;
+            object-fit: cover;
+            width: 100%;
+            height: 360px;
+            margin-bottom: 15px;
+            @media screen and (min-width: $tablet) {
+                height: 440px;
+            }
+            @media screen and (min-width: $tablet-lg) {
+                width: 95%;
+                height: 530px;
+            }
+            @media screen and (min-width: $tablet-xlg) {
+                width: 95%;
+                height: 540px;
+            }
+            @media screen and (min-width: $desktop) {
+                object-fit: cover;
+                width: 350px;
+                margin-bottom: 15px;
+            }
+        }
+        h4 {
+            font-size: 30px;
+            margin: 0 auto;
+            margin-bottom: 15px;
+            width: 80%;
+        }
+        .price {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+    }
+}
+
+.viewedBlock {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    @media screen and (min-width: $tablet-lg) {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+    .itemSlide {
+        position: relative;
+        height: 535px;
+        text-align: center;
+        margin-bottom: 30px;
+        @media screen and (min-width: $tablet) {
+            width: 70%;
+            height: 625px;
+        }
+        @media screen and (min-width: $tablet-lg) {
+            width: 40%;
+            height: 730px;
+        }
+        @media screen and (min-width: $tablet-xlg) {
+            width: 30%;
+            height: 740px;
+        }
+        .productNav {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        img {
+            height: 100%;
+            object-fit: cover;
+            width: 100%;
+            height: 360px;
+            margin-bottom: 15px;
+            @media screen and (min-width: $tablet) {
+                height: 440px;
+            }
+            @media screen and (min-width: $tablet-lg) {
+                width: 95%;
+                height: 530px;
+            }
+            @media screen and (min-width: $tablet-xlg) {
+                width: 95%;
+                height: 540px;
+            }
+            @media screen and (min-width: $desktop) {
+                object-fit: cover;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+        }
+        h4 {
+            font-size: 30px;
+            margin: 0 auto;
+            margin-bottom: 15px;
+            width: 80%;
+        }
+        .price {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+    }
+}
+
+.viewedPagination {
+    align-self: center;
+}
+
+.collectionsSharesSlider{
+    div{
+        @media screen and (min-width: 480px) and (max-width: 640px) {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+  .itemSharesSlide{
+      height: 252px !important;
+      position: relative;
+      padding: 0 10px;
+      max-width: 425px;
+
+      @media screen and (min-width: $tablet) and (max-width: 640px) {
+          height: 400px !important;
+      }
+      @media screen and (min-width: 641px) {
+          min-height: 315px !important;
+          height: 100% !important;
+          max-height: 390px !important;
+      }
+
+      .imgSharesContainer{
+          margin-top: 10px;
+          position: relative;
+
+          width: 100%;
+          height: auto;
+
+          .imgHideContainer{
+              margin-bottom: 15px;
+              overflow: hidden;
+
+              img{
+                  height: 100%;
+                  display: block;
+                  object-fit: cover;
+              }
+          }
+          .imgTextContainer{
+              width: 60px;
+              height: 69px;
+              position: absolute;
+              top: -10px;
+              right: 0;
+
+              p{
+                  color: var(--white, #FFF);
+                  font-family: 'Grand Hotel', cursive;
+                  font-size: 20px;
+                  font-style: normal;
+                  font-weight: 400;
+                  line-height: normal;
+
+                  position: absolute;
+                  top: 50%;
+                  right: 45%;
+                  transform: translate(50%, -50%);
+              }
+          }
+      }
+      .textSharesContainer{
+          display: none;
+          height: 100%;
+          align-items: center;
+          justify-content: right;
+          position: relative;
+
+          @media screen and (min-width: $tablet) {
+              display: flex;
+              flex-direction: column;
+              align-items: end;
+          }
+
+          .sharesName{
+              color: var(--white, #FFF);
+              text-align: right;
+              font-family: $main-font;
+              font-size: clamp(20px,2vw, 30px);
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+          }
+      }
+      .vvSeeMore{
+          margin: 10px 0;
+          font-family: $secondary-font;
+          font-size: 16px;
+      }
+  }
+}
+.productionSlider {
+    .itemSlide {
+        height: 250px;
+        @media screen and (min-width: $tablet-lg) {
+            height: 440px;
+         }
+        img {
+            height: 100%;
+             width: 93%;
+        }
+    }
+}
+
+.awardsSlider {
+    max-width: 800px;
+    margin: 0 auto;
+    .itemSlide {
+        height: 135px;
+        display: flex!important;
+        @include flex-cc;
+        img {
+            width: 140px;
+        }
+    }
+}

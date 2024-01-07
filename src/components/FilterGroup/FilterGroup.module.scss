@@ -1,0 +1,67 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.FilterGroup {
+    @include flex-jc;
+    flex-wrap: wrap;
+    padding: 5px 0;
+    gap: 24px 10px;
+    max-width: 755px;
+}
+
+.FilterBlock {
+    margin-bottom: 100px;
+
+    @media screen and (min-width: $desktop) {
+        margin-bottom: 145px;
+    }
+}
+
+.FilterBody {
+    margin: 0 auto;
+    text-align: right;
+}
+
+.FilterForm {
+    @include flex-cc-col;
+    gap: 50px;
+
+    @media screen and (min-width: $desktop) {
+        flex-direction: row;
+        align-items: flex-end;
+        gap: 10px;
+    }
+}
+
+.FilterConfirm {
+    @include flex-ac-sb;
+    flex-direction: column;
+    width: 221px;
+}
+
+.FilterClearBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    border: 1px solid transparent;
+    margin: 0 auto 20px;
+    @include transition;
+    cursor: pointer;
+
+    @media screen and (min-width: $tablet-xlg) {
+        margin: 0 0 20px 0;
+    }
+
+    &:hover {
+        color: $btn-bg;
+    }
+
+    &:hover path {
+        fill: $btn-bg;
+    }
+
+    path {
+        @include transition;
+    }
+}

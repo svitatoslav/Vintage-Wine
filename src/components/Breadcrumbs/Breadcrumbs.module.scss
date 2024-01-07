@@ -1,0 +1,42 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.breadcrumbs {
+    margin-bottom: 40px;
+    justify-content: center;
+    font-family: $secondary-font;
+    @include flex-w;
+    font-size: 14px;
+    @media screen and (min-width: $tablet-lg) {
+        margin-bottom: 70px;
+        font-size: 16px;
+    }
+    a {
+        &:hover {
+            @include transition;
+            color: $btn-bg;
+        }
+        svg {
+            width: 25px;
+            @media screen and (min-width: $tablet) {
+               width: auto;
+            }
+        }
+    }
+}
+.breadcrumbs,
+a.breadcrumbsLink {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: $main-color;
+    @include transition;
+    a,
+    span {
+        text-transform: capitalize;
+    }
+    span.currentPage {
+        font-weight: 700;
+        color: $btn-bg;
+    }
+}

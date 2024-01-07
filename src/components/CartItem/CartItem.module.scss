@@ -1,0 +1,274 @@
+@import '../../assets/mixins/mixins';
+@import '../../assets/variables/variables';
+
+.Cart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    text-align: center;
+
+    @media (min-width: $tablet) {
+        flex-direction: row;
+        align-items: start;
+        justify-content: unset;
+        text-align: left;
+        gap: 12px;
+    }
+
+    @media (min-width: $desktop) {
+        gap: 20px;
+    }
+}
+
+.CartImg {
+    img {
+        width: 172px;
+        height: 199px;
+
+        @media (min-width: $tablet-lg) {
+            width: 225px;
+            height: 260px;
+        }
+
+        @media (min-width: $desktop) {
+            width: 285px;
+            height: 332px;
+        }
+    }
+}
+
+.Counter {
+    grid-area: counter;
+    align-self: center;
+
+    @media (min-width: $desktop) {
+        align-self: flex-start;
+    }
+}
+
+.Trash {
+    grid-area: trash;
+    justify-self: end;
+
+    @media (min-width: $desktop) {
+        align-self: end;
+    }
+}
+
+.CartInfo {
+    width: 100%;
+
+    @media (min-width: $tablet) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    @media screen and (min-width: $tablet-lg) {
+        min-height: 200px;
+    }
+
+    @media screen and (min-width: $tablet-xlg) {
+        flex-direction: row;
+    }
+}
+
+.CartTitle {
+    @media screen and (min-width: $tablet-xlg) {
+        max-width: 340px;
+    }
+}
+
+.TitleName {
+    margin-bottom: 20px;
+    @include fonts(20px, $secondary-font);
+
+    @media screen and (min-width: $tablet-lg) {
+        font-size: 26px;
+    }
+}
+
+.Text {
+    @include fonts(14px, $secondary-font);
+    margin-bottom: 20px;
+
+    @media screen and (min-width: $tablet-lg) {
+        font-size: 16px;
+    }
+}
+
+.SubText {
+    @include fonts(12px, $secondary-font);
+    color: #bfbfbf;
+    margin-bottom: 20px;
+}
+
+.CartContent {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-areas: 'price counter trash';
+
+    @media screen and (min-width: $tablet-xlg) {
+        grid-template-areas:
+            'counter price '
+            'counter trash';
+        grid-template-columns: repeat(2, minmax(150px, auto));
+        column-gap: 60px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        grid-template-columns: 100px minmax(200px, auto);
+        gap: 20px 105px;
+    }
+}
+
+.PriceInfo {
+    display: flex;
+    align-items: center;
+    grid-area: price;
+
+    @media (min-width: $desktop) {
+        align-self: flex-start;
+    }
+
+    @media (min-width: $tablet-xlg) {
+        justify-self: flex-end;
+    }
+}
+
+.Price {
+    font-size: 30px;
+    font-family: $main-font;
+    padding-right: 4px;
+
+    @media (min-width: $tablet-lg) {
+        font-size: 40px;
+    }
+}
+
+.BasketSvg {
+    cursor: pointer;
+    width: 14px;
+    height: 16px;
+    fill: $main-color;
+    @media screen and (min-width: $tablet-lg) {
+        width: 24px;
+        height: 28px;
+    }
+}
+/*********CART POPUP VIEW*************/
+.Cart.popUpView {
+    margin-bottom: 0;
+    .CartImg {
+        img {
+            width: 105px;
+            height: 100px;
+        }
+    }
+    .Counter {
+        order: -1;
+        align-self: center;
+
+        @media (min-width: $desktop) {
+            align-self: auto;
+        }
+    }
+
+    .Trash {
+        justify-self: auto;
+
+        @media (min-width: $desktop) {
+            align-self: auto;
+        }
+    }
+
+    .CartInfo {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        @media (min-width: $tablet) {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        @media screen and (min-width: $tablet-lg) {
+            min-height: inherit;
+        }
+
+        @media screen and (min-width: $tablet-xlg) {
+            flex-direction: row;
+        }
+    }
+    .CartContent {
+        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+
+        @media (min-width: $tablet) {
+            width: 100%;
+            justify-content: space-between;
+        }
+        @media screen and (min-width: $tablet-xlg) {
+            width: 60%;
+            gap: 60px;
+        }
+
+        @media screen and (min-width: $desktop) {
+            gap: 60px;
+        }
+    }
+    .CartTitle {
+        margin-top: 10px;
+        width: 100%;
+        @media screen and (min-width: $tablet-xlg) {
+            width: 40%;
+            max-width: auto;
+        }
+    }
+    .SubText {
+        margin-bottom: 0;
+    }
+    .PriceInfo {
+        display: flex;
+        align-items: center;
+
+        @media (min-width: $desktop) {
+            align-self: auto;
+        }
+
+        @media (min-width: $tablet-xlg) {
+            justify-self: auto;
+        }
+    }
+    .TitleName {
+        margin-bottom: 0px;
+        @include fonts(20px, $secondary-font);
+
+        @media screen and (min-width: $tablet-lg) {
+            font-size: 26px;
+        }
+    }
+    .BasketSvg {
+        cursor: pointer;
+        width: 14px;
+        height: 16px;
+        fill: $black-color;
+        @include transition;
+        &:hover {
+            fill: $btn-bg;
+            @include transition;
+        }
+        @media screen and (min-width: $tablet-lg) {
+            width: 24px;
+            height: 28px;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+@import "./../../../assets/variables/variables";
+
+.TextWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  margin-bottom: 40px;
+
+  @media screen and (min-width: $tablet-lg) {
+    margin-bottom: 70px;
+  }
+}
+
+.EmptyCartText {
+  font-size: 35px;
+  @media screen and (min-width: $desktop) {
+    font-size: 50px;
+  }
+}

@@ -1,0 +1,29 @@
+@import '../../../../assets/mixins/mixins';
+@import '../../../../assets/variables/variables';
+
+.AddProductForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 11px;
+    padding: 26px 36px 31px 40px;
+    border: 2px solid #fff;
+}
+
+.AddProductFields {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.AddProductInput {
+    width: 49%;
+}
+
+.AddProductSubTitle {
+    margin: 15px 0;
+}

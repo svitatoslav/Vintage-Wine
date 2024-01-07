@@ -1,0 +1,324 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.ContentWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+
+  @media screen and (min-width: $tablet-xlg) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+    gap: 45px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    gap: 60px;
+  }
+}
+
+.ProductInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: $brd-white;
+  padding: 14px 8px 40px;
+  width: 100%;
+
+  @media screen and (min-width: $tablet) {
+    padding: 26px 28px 45px;
+  }
+
+  @media screen and (min-width: $tablet-lg) {
+    max-width: 453px;
+  }
+
+  @media screen and (min-width: $tablet-xlg) {
+    padding: 20px 28px 30px;
+  }
+}
+
+.ClientInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: $brd-white;
+  padding: 30px 15px 64px;
+
+  @media screen and (min-width: $tablet) {
+    padding: 30px 28px 64px;
+  }
+
+  @media screen and (min-width: $tablet-lg) {
+    max-width: 575px;
+  }
+
+  @media screen and (min-width: $tablet-xlg) {
+    width: 60%;
+    padding-bottom: 73px;
+  }
+}
+
+.ClientInfoTitle {
+  margin-bottom: 30px;
+}
+
+.CheckoutWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+
+  @media screen and (min-width: $tablet-xlg) {
+    flex-direction: row;
+  }
+}
+
+.ThanksBox {
+  position: relative;
+  width: 100%;
+
+  img {
+    width: 60%;
+  }
+}
+
+.ThanksText {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  text-align: center;
+  transform: translateY(-50%);
+  max-width: 290px;
+  
+  @media screen and (min-width: $tablet) {
+    max-width: 370px;
+  }
+  
+  @media screen and (min-width: $tablet-lg) {
+    max-width: 464px;
+  }
+}
+
+.MainText {
+  @include fonts(45px, $main-font);
+  margin-bottom: 12px;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 60px;
+  }
+
+  @media screen and (min-width: $tablet-lg) {
+    font-size: 80px;
+  }
+}
+
+.SubText {
+  @include fonts(16px, $secondary-font);
+  max-width: 200px;
+  margin: 0 auto;
+
+  @media screen and (min-width: $tablet) {
+    max-width: 100%;
+  }
+}
+
+.Textarea {
+  width: 100%;
+  margin-top: 12px;
+
+  textarea {
+    width: 100%;
+    font-size: 18px;
+    padding: 10px;
+  }
+}
+
+.Fields {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.AddedProducts {
+  display: flex;
+  flex-direction: column;
+  max-height: 473px;
+  width: 100%;
+  overflow: auto;
+  gap: 24px;
+  margin-bottom: 30px;
+  padding: 0 30px 0 5px;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 6px;
+  }
+}
+
+.Checkbox {
+  display: flex;
+  text-align: left;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 25px 10px 35px;
+  @include fonts(14px, $secondary-font);
+
+  input {
+    width: 20px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    margin: 30px 25px 40px;
+  }
+}
+
+// rest
+
+.ClientInfo {
+  .PersonalData {
+    width: 95%;
+    margin-bottom: 35px;
+
+    p {
+      margin-bottom: 15px;
+      font-size: 19px;
+      font-weight: 400;
+      font-family: $secondary-font;
+    }
+  }
+
+  .Delivery {
+    width: 95%;
+    margin-bottom: 35px;
+
+    p {
+      margin-bottom: 15px;
+      font-size: 19px;
+      font-weight: 400;
+      font-family: $secondary-font;
+    }
+  }
+
+  .PaymentMethods {
+    .PaymentMethodsTitle {
+      width: 100%;
+      margin-bottom: 15px;
+      font-size: 19px;
+      font-weight: 400;
+      font-family: $secondary-font;
+    }
+  }
+
+  .PaymentMethodsImages {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 35px;
+
+    .CardsImagesContainer {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+
+      .CardsImages {
+        width: 44%;
+      }
+
+      .MobilePay {
+        width: 44%;
+      }
+    }
+
+    .CardsImagesBig {
+      width: 50%;
+    }
+  }
+
+  .AddComment {
+    width: 95%;
+
+    button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 5%;
+      }
+
+      label {
+        width: 67%;
+        text-align: right;
+        font-size: 19px;
+        font-weight: 400;
+        font-family: $secondary-font;
+      }
+    }
+  }
+}
+
+.Comment {
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+@media screen and (min-width: $tablet) {
+
+  .ClientInfo {
+    .PersonalData {
+      width: 91%;
+    }
+
+    .Delivery {
+      width: 91%;
+    }
+
+    .PaymentMethods {
+      width: 91%;
+
+      .PaymentMethodsImages {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+
+        .CardsImagesContainer {
+          width: 54.5%;
+          margin-right: 30px;
+        }
+
+        .CardsImagesBig {
+          width: 25.5%;
+        }
+      }
+
+    }
+
+    .AddComment {
+      width: 91%;
+
+      button img {
+        width: 14px;
+        margin-right: 10px;
+      }
+
+      button label {
+        text-align: left;
+      }
+    }
+  }
+}

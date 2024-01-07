@@ -1,0 +1,43 @@
+@import '../../assets/variables/variables';
+
+
+.SearchWrapper {
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.SearchImg {
+  background-image: url('https://res.cloudinary.com/dhpukux5x/image/upload/v1701123992/search-img_opd9pm.png');
+  // background-image: url('../../../public/imageProject/search/search-img.png');
+  background-repeat: no-repeat;
+  background-position: top right;
+  max-width: 1500px;
+  margin-inline: auto;
+  min-height: 800px;
+  background-size: 656px 818px;
+  min-height: calc(100vh - 800px);
+
+  @media screen and (max-width: $tablet) {
+    background-size: 400px 600px;
+
+  }
+}
+
+.ProductWrapper {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  padding-bottom: 10px;
+
+  @media screen and (min-width: $tablet-lg) {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 20px;
+    column-gap: 10px;
+  }
+
+  @media screen and (min-width: $tablet-xlg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+

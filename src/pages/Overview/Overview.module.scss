@@ -1,0 +1,22 @@
+@import '../../assets/variables/variables';
+@import '../../assets/mixins/mixins';
+
+.Overview {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.OverviewStatistics {
+    display: grid;
+    grid-template-columns: 400px 400px;
+    grid-template-rows: 530px 350px;
+    gap: 80px 50px;
+}
+
+.OverviewChart {
+    display: flex;
+    justify-content: center;
+}

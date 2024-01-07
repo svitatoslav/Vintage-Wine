@@ -1,0 +1,56 @@
+@import '../../assets/variables/variables';
+
+
+.vvSectionTitle {
+  font-size: 30px;
+  font-weight: 400;
+  color: $main-color;
+  margin: 20px 0 50px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 50px;
+  }
+  @media screen and (min-width: $tablet-xlg) {
+    font-size: 70px;
+    margin: 50px 0 40px;
+  }
+}
+
+.vvSubTitle {
+  font-size: 25px;
+  font-weight: 400;
+  color: $btn-bg;
+  display: block;
+  text-align: left;
+  @media screen and (min-width: $tablet) {
+    font-size: 40px;
+
+  }
+}
+
+.vvTitle {
+  font-size: 30px;
+  line-height: 36px;
+
+  @media screen and (min-width: $tablet-lg) {
+    font-size: 50px;
+    line-height: inherit;
+  }
+
+  @media screen and (min-width: $tablet-xlg) {
+    font-size: 70px;
+     line-height: inherit;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 90px;
+     line-height: inherit;
+  }
+
+}
+
+
+
