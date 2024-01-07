@@ -50,6 +50,24 @@
 
 .AddParagraphBtn {
     background: $btn-bg;
-    padding: 5px;
+    padding: 10px 20px;
+    font-size: 24px;
+    display: inline-block;
     cursor: pointer;
+    margin-top: 10px;
+    @include transition;
+
+    &:hover {
+        background: $btn-hover;
+    }
+}
+
+.AddNewsField {
+    width: 100%;
+    text-align: center;
+}
+
+.AddNewsError {
+    color: $btn-bg;
+    margin-top: 5px;
 }

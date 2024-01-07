@@ -1,5 +1,4 @@
 import styles from './Contact.module.scss';
-import cn from 'classnames';
 
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Container from './../../components/Container/Container';

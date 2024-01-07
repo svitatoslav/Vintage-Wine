@@ -67,7 +67,6 @@ const App = () => {
 
         <Route path="/dashboard/" element={<Dashboard />}>
           <Route index element={<Overview />} />
-          <Route path="overview" element={<Overview />} />
           <Route path="management" element={<Management />} />
           <Route path="management/:slug" element={<ManagementWrapper />} />
           <Route path="orders" element={<OrdersAdmin />} />
@@ -75,12 +74,6 @@ const App = () => {
           <Route path="reservations" element={<Reservations />} />
           <Route path="contacts" element={<ContactRequests />} />
         </Route>
-        {/* <Route path="/overview" element={<Dashboard />} />
-                <Route path="/management" element={<Management />} />
-                <Route path="/management/:slug" element={<ManagementWrapper />} />
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/reservations" element={<Reservations />} />
-                <Route path="/contacts" element={<ContactRequests />} /> */}
       </Routes>
     </>
   );

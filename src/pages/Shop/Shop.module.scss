@@ -9,10 +9,14 @@
     font-weight: 400;
     margin-bottom: 40px;
     padding: 0 10px;
-
+    
     @media screen and (min-width: $tablet-lg) {
         margin-bottom: 100px;
     }
+}
+.ShopInfo{
+    min-height: calc(100vh - 500px);
+
 }
 
 .ShopImagesContainer {
